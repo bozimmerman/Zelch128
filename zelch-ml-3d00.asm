@@ -157,7 +157,8 @@ INRC
         BNE SLTM
         LDA $0BA7
         BEQ TIMEUP
-        SLTM NOP
+SLTM 
+        NOP
         LDA $0B9E
         BEQ INRR;**CHK IDLE
         LDA $0B07
@@ -190,15 +191,17 @@ OVRCONT
         RTS
 LOCKALT
         LDY #$00
-        ALP LDA BIXIT,Y
+ALP 
+        LDA BIXIT,Y
         STA $034A,Y
-INY:CPY
-        #$08
+        INY
+        CPY #$08
         BNE ALP
         STY $D0
         RTS
-BIXIT
-        .BYTE 83 89 83 56 50 52 51 13
+
+BIXIT   
+        BYTE 83,89,83,56,50,52,51,13
 ;**********RESTORE OLD BASIC POINTERS***************
 UNDERLAY
         LDA $0B06

@@ -9,9 +9,9 @@
     <FilesGlobal>False</FilesGlobal>
     <BatchMode>False</BatchMode>
     <AppendToDisk>False</AppendToDisk>
-    <GenToDisk>False</GenToDisk>
-    <BuildToPrgFile>True</BuildToPrgFile>
-    <d64Name />
+    <GenToDisk>True</GenToDisk>
+    <BuildToPrgFile>False</BuildToPrgFile>
+    <d64Name>c:\tmp\blah.d81</d64Name>
     <Comments />
     <Author />
     <BuildEvents>
@@ -22,37 +22,15 @@
         <PostBuildCommands />
     </BuildEvents>
     <BuildList>
-        <FileName>zelch.bas</FileName>
         <FileName>ansi-3a00-table.asm</FileName>
         <FileName>ascii-3b00-table.asm</FileName>
         <FileName>cursor-0300.asm</FileName>
         <FileName>ramdos128.asm</FileName>
-        <FileName>ansi maker.bas</FileName>
-        <FileName>bbs.ascii edit.bas</FileName>
-        <FileName>bbs.copy.bas</FileName>
-        <FileName>bbs.create.bas</FileName>
-        <FileName>bbs.editor.bas</FileName>
-        <FileName>bbs.main.bas</FileName>
-        <FileName>bbs.setup.bas</FileName>
-        <FileName>zelch-ml-3d00.asm</FileName>
         <FileName>zelch-ml-1300k.asm</FileName>
         <FileName>zelch-ml-1300l.asm</FileName>
         <FileName>zelch-ml-1300x.asm</FileName>
         <FileName>zelch-ml-2000.asm</FileName>
-        <FileName>prg.logon.bas</FileName>
-        <FileName>prg.misc.bas</FileName>
-        <FileName>prg.monster.bas</FileName>
-        <FileName>prg.msg bases.bas</FileName>
-        <FileName>prg.network.bas</FileName>
-        <FileName>prg.new user.bas</FileName>
-        <FileName>prg.news.bas</FileName>
-        <FileName>prg.online utils.bas</FileName>
-        <FileName>prg.sysop.bas</FileName>
-        <FileName>prg.u - d bases.bas</FileName>
-        <FileName>prg.voting booth.bas</FileName>
-        <FileName>prg.voting booth.bas</FileName>
-        <FileName>prg.zapterm.bas</FileName>
-        <FileName>raminstall.bas</FileName>
+        <FileName>zelch-ml-3d00.asm</FileName>
     </BuildList>
     <DetermineBuildOrder>0</DetermineBuildOrder>
     <PaddingByte>234</PaddingByte>
@@ -65,7 +43,7 @@
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>False</Topmost>
+            <Topmost>True</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>

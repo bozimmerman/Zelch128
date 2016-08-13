@@ -27,7 +27,7 @@
         JMP CHKDRV; 8264/19500/CHECK DRIVE
 ;*********END OF JMP TABLE*********
 ;230,570,1250,2085,2086,2570,3245,3540,3615
-IDD1    .BYTE 65
+IDD1            BYTE 65
 ;*******VERY IMPORTANT******
 LDAFAR
         LDX #$01
@@ -39,7 +39,7 @@ LDAFAR2
         LDX #$01
         JSR $FF74
         RTS
-IDD2    .BYTE 90
+IDD2            BYTE 90
 ;**************CREATE ONE CHARACTER INPUT A$*******************
 GETIT
         LDA #$41
@@ -84,9 +84,9 @@ DEFLP
         STA $3E
         RTS
 DEFBITS
-        .BYTE 34 58 158 56 50 51 55 58
+                BYTE 34,58,158,56,50,51,55,58
 IDD3
-        .BYTE 49
+                BYTE 49
 DEFFIX
         LDA $0B69
         STA $3D
@@ -122,8 +122,8 @@ NOCHAT
         LDA #$01
         STA $0B0B
         JMP EXOUT
-IDD4    .BYTE 50
-IDD5    .BYTE 48
+IDD4            BYTE 50
+IDD5            BYTE 48
 SYSNULL
         LDA $0B07
         BEQ USRCONT;SYSOP LOCAL
@@ -188,8 +188,7 @@ BADSTUF
 EXXOUT
         JSR BASRTINE
         JSR LOAD
-RTS;***YER
-        GONE
+        RTS;***YER GONE
 UPCASE
         LDX $0B0F;**UPCASE RTINE
         CPX #$00
@@ -237,7 +236,7 @@ LOAD
         LDX $0B12
         RTS
 IDD6
-        .BYTE 49
+                BYTE 49
 MOUSIT
         LDA $D4
         CMP #$58
@@ -264,9 +263,9 @@ MOLP
 MOUSOT
         RTS;**EXIT MOUSIT
 MASBIT
-        .BYTE 126 125 123 119 111
+                BYTE 126,125,123,119,111
 MAMAS
-         .BYTE 145 17 157 29 13
+                 BYTE 145,17,157,29,13
 ;*****************SEND ONE CHARACTER OUT RTINE*******************
 SEND
         JSR SAVE
@@ -352,7 +351,7 @@ NORTNH
         STA $FE
         INC $0B6B
         JMP NOFRMT
-IDD7    .BYTE 57
+IDD7            BYTE 57
 ISRTN
         LDA #$0D
         STA $FE
@@ -446,13 +445,13 @@ BADDEST
         JSR BASRTINE
         JSR LOAD
         RTS
-IDD8    .BYTE 48
+IDD8            BYTE 48
 BASRTINE
         LDA $0B71
         BNE BADGOOD
 BASBAD
         RTS
-IDD9    .BYTE 65
+IDD9            BYTE 65
 BADGOOD
         LDA $0B72
         BEQ BADUP
@@ -937,7 +936,7 @@ DOMSGS
         STY $0B89
         STY $0B8A
 MSGLP
-        LDA BITS,Y
+        LDA BTSS,Y
         STA ($FB),Y
         INY
         CPY #$08
@@ -992,20 +991,20 @@ OUTMSGS
         JMP NOMSG0
 OUTMSGS2
         JMP NOMSG1
-BITS    .BYTE 32 58 158 56 50 52 54 58
-BYTS    .BYTE 83 71 77 63 75 87 80 70 36
-MCMD    .BYTE 32 158;SYS
-        .BYTE 32 141;GOSUB
-        .BYTE 153 202;MID$
-        .BYTE 153 32;PRINT
-        .BYTE 161 249;GETKEY
-        .BYTE 254 11;SLEEP
-        .BYTE 153 194;PEEK
-        .BYTE 153 184;FRE
-        .BYTE 153 199;CHR$
+BTSS            BYTE 32,58,158,56,50,52,54,58
+BYTS            BYTE 83,71,77,63,75,87,80,70,36
+MCMD            BYTE 32,158;SYS
+                BYTE 32,141;GOSUB
+                BYTE 153,202;MID$
+                BYTE 153,32;PRINT
+                BYTE 161,249;GETKEY
+                BYTE 254,11;SLEEP
+                BYTE 153,194;PEEK
+                BYTE 153,184;FRE
+                BYTE 153,199;CHR$
 ;******************SYSOP CHAT MODE******************
-ENTRANCE .BYTE "CHAT MODE"
-EXITIT  .BYTE "RETURNING TO THE BBS"
+ENTRANCE         BYTE "CHAT MODE"
+EXITIT          BYTE "RETURNING TO THE BBS"
 CHATMODE
         JSR MSAVE
         LDA $0B0E
@@ -1288,7 +1287,7 @@ MORELP
 MOREWT
         JSR PAAS
         LDY #$00
-        MORELP2 LDA #$14
+MORELP2 LDA #$14
         STA $FE
         JSR SEND
         INY
@@ -1296,7 +1295,7 @@ MOREWT
         BNE MORELP2
 NOMORE
         RTS
-MORE    .BYTE "-PAUSE-"
+MORE    BYTE "-PAUSE-"
 ;******************GET ONE DISK LINK FILE******************
 FILEGET
         LDA #$00
@@ -1563,8 +1562,8 @@ COUNTOUT
         STA $0B2B
         JSR $FFCC
         RTS
-ASCMSG  .BYTE "ASCII TERM"
-GFXMSG  .BYTE "GRAPHICS TERM"
+ASCMSG          BYTE "ASCII TERM"
+GFXMSG          BYTE "GRAPHICS TERM"
 ;*******************ZAP TERM**********************
 ZAPTERM
         JSR $FFCC
@@ -1713,9 +1712,9 @@ A80CHK2
         JSR $EF79
         RTS
 ONOFF
-        .BYTE "ONOFF"
+                BYTE "ONOFF"
 LINFED
-        .BYTE "LINEFEEDS "
+                BYTE "LINEFEEDS "
 FEDSWCH
         LDA #$0D
         STA $FE
