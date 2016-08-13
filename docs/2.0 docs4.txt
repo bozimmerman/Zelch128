@@ -1,0 +1,1509 @@
+˚f:10:2^Copyright (C)1991 Elite Software^^Page <>
+_
+_
+                        Appendix A_
+_
+              Message Maker/Online Seq Editor_
+_
+_
+    The Message Maker is Zelch's powerful online text
+editor.  It is used to create E-Mail to be sent, to write
+posts and responses, to write feedback, and to edit already
+existing sequential files.  Some of the unique features of
+the Zelch editor are: its ability to create 40 and 80 column
+text that word wrap properly when read in either mode, its
+smart delete mode--the delete key will cause the cursor to
+trace its previous movement (if the last key was a cursor
+down, the delete would move the cursor up!), and its full
+support of commodore color graphics._
+_
+    The commands listed in this appendix are accessed when
+in the Message Maker by pressing "/" on a blank line
+followed by the command key (ie: "/v" to view the text in
+memory), or if you wish to access a menu of the commands use
+"/" by itself and press the command key when prompted._
+_
+    Most commands allow for an optional line range parameter
+when being used, such as: "/l10,20" to list lines 10-20. In
+the commands below the optional line ranges will be listed
+as "/lx,y"--where x is the starting line, and y is the last
+line._
+_
+Command : Format  Description_
+_
+Abort   : /a    : Will abort the current editing session_
+                  leaving the entire file and all changes_
+                  unsaved._
+_
+Save    : /s    : Will save all the text currently in memory_
+                  to disk as the specified file. If saving_
+                  an individual file link, no other parts_
+                  of the file will be affected by the saved_
+                  changes._
+_
+New     : /n    : Clear and erase all text currently in_
+                  message maker memory so that you may_
+                  re-enter it._
+_
+Edit    : /ex   : Allow you to search for and replace text_
+                  in line number x. If x is unspecified,_
+                  line 0 will be selected. The first prompt_
+                  asks you to enter a string of text_
+                  exactly as it already appears in the_
+                  line, while the second prompt asks for_
+                  the string to replace that text with._
+_
+ReWrite : /rx   : Use this command if you wish to completely_
+                  re-enter line number x. Pressing return_
+                  without entering anything will leave the_
+                  line unchanged._
+_
+_
+Delete1 : /d-x  : Will erase from text memory the last x_
+                  lines of the current message._
+_
+Delete2 : /dx   : Erase line number x from text memory._
+_
+Delete3 : /dx,  : Delete all lines of the message starting_
+                  with line x._
+_
+Delete4 : /dx,y : Delete a range of lines from the text. The_
+                  range should be from line x to line y of_
+                  the message._
+_
+View    : /vx,y : View the current message exactly as it_
+                  will appear when saved. You may enter_
+                  x and y as viewing ranges, though they are_
+                  purely optional._
+_
+List    : /lx,y : List the current text with the line number_
+                  of each line displayed beside it. As_
+                  explained above, x and y are optional_
+                  range line numbers._
+_
+Line #s : /t    : Will toggle on and off the message maker's_
+                  auto line numbers mode. When on, the line_
+                  currently being entered will be displayed_
+                  to the right of it._
+_
+W. Wrap : /w    : Toggle the auto word wrap feature on and_
+                  off. When on, the [clr] key remains_
+                  inoperative and text is automatically_
+                  formatted for 40/80 viewing. When off,_
+                  the [clr] key may be entered, and the_
+                  cursor may not move beyond the last_
+                  column. Word wrap should be turned off_
+                  for cursor movements, and all graphics_
+                  entries and uploads._
+_
+Graphics: /u    : Toggle uppercase commodore graphics mode._
+                  This should be basically kept off at all_
+                  times except when the user wishes to_
+                  enter [shift] key graphic characters._
+                  This command will only toggle on if_
+                  the user is in graphics mode._
+_
+Center  : /cx,y : Will center a range of text from line x to_
+                  y for your current column setting. If_
+                  x and y are omitted, the entire text will_
+                  be affected. This command may not work_
+                  properly on lines containing color or_
+                  cursor movements._
+_
+Insert  : /ix   : Insert one blank line before line number_
+                  x. If x is unspecified, the line will be_
+                  inserted at the beginning of your message._
+_
+_
+_
+_
+Get     : /g    : Lets users with SysOp access read in_
+                  specified files for use in the editor._
+_
+Put     : /p    : Allows the user to save a portion of the_
+                  text as a separate filename on any drive._
+_
+Output  : /o    : Permits SysOps in local mode to make hard_
+                  copies of the work text._
+_
+Bit-edit: /*x   : Lets SysOps in local use the bit edit_
+                  feature for text changes on line x._
+_
+Bit-list: /bx,y : Lists the line range in bit mode._
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+                        Appendix B_
+_
+     T$(x) variables defined from the "sys.text" file._
+_
+_
+Line #   DescriptionÄ_
+_
+  1  Space to abort/CLR to pause (displayed before most_
+     SEQ files)_
+  2  "Filename: " prompt for reading files_
+  3  "Device Number: " prompt for drives unit number (8-30)_
+  4  "Drive/LU: " prompt for drive number (0-254)_
+  5   Program (module) not found error message_
+  6  "Enter handle or user ID: " prompt (mail or user edit)_
+  7  Searching message (during user searches, etc.)_
+  8  Not found (part of above search)_
+  9  System time expired_
+ 10  Menu not found error message_
+ 11  Max calls exceeded_
+ 12  You have no mail_
+ 13  "You have mail, read it now (y/n)? " prompt_
+ 14  Next message (during mail read)_
+ 15  "No more mail, delete all unheld messages (y/n)?"_
+ 16  File not found (SEQ editor)_
+ 17  File link not found (SEQ editor)_
+ 18  Loading... (SEQ file)_
+ 19  "Which file link? " prompt_
+ 20  Invalid password (for password opcode)_
+ 21  Color Graphics mode enabled_
+ 22  ASCII mode enabled_
+ 23  Linefeeds on_
+ 24  Linefeeds off_
+ 25  "Subject of chat request: " prompt_
+ 26  Paging sysop (will add "."'s when paging)_
+ 27  The page signal is now off (only if toggle paging_
+     is used)_
+ 28  "DOS Command: " prompt_
+ 29  "Filemask (return=*): " prompt_
+ 30  "Character Mask (return=*): " prompt (for directories)_
+ 31  "Pattern to match or starting ID (return=1): " prompt_
+ 32  "Enter new one liner: " prompt_
+ 33  "Flag to set (A-Z): " prompt for set flag opcode_
+ 34  Not enough credits for check system credits opcode_
+ 35  Connection, hit return_
+ 36  Press your backspace/delete key_
+ 37  "Need linefeeds (y/n)? " prompt_
+ 38  "Enter your handle or user ID number: " prompt_
+ 39  "Apply for access? " prompt if user not found_
+ 40  "Enter your password: " prompt_
+ 41  Invalid user information or password_
+ 42  Loading user information..._
+ 43  No empty accounts (shown to new users if all_
+     accounts are full)_
+ 44  "Enter your handle (16 characters max): " prompt_
+ 45  Checking for duplicate handle..._
+ 46  That handle is already being used_
+_
+_
+ 47  "Enter your real name (16 characters max): " prompt_
+ 48  "Enter your voice phone number: " prompt_
+ 49  "Enter a password to use: " prompt_
+ 50  "Are you using 80 columns (y/n)? " prompt_
+ 51  Finding an open account_
+ 52  Your account ID number is: \?id\, hit return_
+ 53  "Is all info correct (y/n)? " prompt_
+ 54  Saving your application..._
+ 55  "Move how many days (ex: +3 or -7): " prompt (last_
+     call date)_
+ 56  Entering message base_
+ 57  "Which subboard? " prompt for change message bases_
+ 58  Access denied (when access not allowed to a message_
+     base)_
+ 59  No more messages/That was the last message_
+ 60  "Read message #: " prompt for read opcode_
+ 61  That message has been deleted_
+ 62  "Subject of post: " prompt_
+ 63  "Start at message #: " prompt_
+ 64  "Erase this message and all replies (y/n)? " for_
+     delete message_
+ 65  "Which UD sig? " prompt for change transfer bases_
+ 66  Access denied (when access not allowed to a UD base)_
+ 67  Entering UD base_
+ 68  "Enter filename: " prompt for upload and download_
+ 69  "Filetype P)RG, S)EQ, W)ORDPRO? " prompt_
+ 70  Go to send mode!_
+ 71  Error--transfer aborted_
+ 72  Error--standby, validating disk (splat file, etc)_
+ 73  Sorry, not enough UD block credits_
+ 74  Go to receive mode!_
+ 75  Go to PUNTER multi-send mode!_
+ 76  Enter filenames, return to begin transfer (for_
+     multi-down load)_
+ 77  Go to PUNTER multi-receive mode!_
+ 78  X=Abort, L=Set auto-logoff, RETURN=start transfer_
+ 79  "Enter topic letter: " prompt for voting booth_
+ 80  Finding an open topic..._
+ 81  All topics are being used_
+ 82  Writing topic, clearing ballot box..._
+ 83  "Edit voting text: " display_
+ 84  Counting ballots... (when tallying votes to show_
+     results)_
+ 85  "Your choice: " prompt for vote_
+ 86  Recording your vote..._
+ 87  You may not post another message on this subboard_
+     during this call._
+ 88  SysOp online, please hold... (when accessing online_
+     sysop utilities)_
+ 89  Invalid network destination (invalid letter)_
+ 90  C)lear or S)et flag?_
+ 91  You must be in ASCII._
+ 92  ANSI off._
+ 93  ANSI on._
+ 94  Are you using ANSI color?_
+ 95  Edit which item (return=continue)  (for new user apps)_
+_
+_
+ 96  x Messages with new activity_
+ 97  Message totals_
+ 98  New replies..._
+ 99  "Jump to reply #" prompt_
+100  Scanning..._
+101  Reply to "topic":  (reminds users of subject of_
+     original post when replying)_
+102  Kill this reply (y/n)?_
+103  Killing..._
+104  Would you like to answer the questionnaire?_
+105  Which newsfile (A-Z)?_
+106  Newsfile not found, appending... (creating process)_
+107  No News_
+108  No New News_
+109  No U/D file description slots available at this time_
+110  Describe file to be uploaded:_
+111  You've reached the maximum number of files._
+112  No files selected._
+113  Transfer complete._
+114  Transfer aborted._
+115  Auto-Logoff flag set._
+116  Punter or Xmodem (p/x)?_
+117  Examining directories... (create u/d desc file)_
+118  No files on record._
+119  Which system to network to (A-Z)?_
+120  Enter handle to send network mail to:_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+                        Appendix C_
+_
+             Required System Sequential Files_
+_
+_
+    The files listed below are "hard wired" into the system.
+That means that at one point or another the BBS will either
+look for, or create them._
+_
+_
+Filename                            Description of file_
+_
+"sys.text"          Boot disk       This file must be on_
+                                    your boot disk.  It_
+                                    contains the text for_
+                                    the BBS's definable_
+                                    strings._
+_
+"sys.variables"     Boot disk       This file must also be
+                                    on your boot disk._
+                                    It contains some very_
+                                    important system info,_
+                                    such as drive_
+                                    configuration, modem_
+                                    type, etc._
+_
+"sys.errorlog"      System Data     A log of BASIC errors_
+                    Files Drive     which occurred in_
+                                    the main BBS, or_
+                                    in a Zelch specific_
+                                    module._
+_
+"sys.userlog"       System Data     The log of users who
+                    Files Drive     have called your system_
+                                    since it was last_
+                                    deleted. If the extended_
+                                    log flag is set for the_
+                                    users logged, this will_
+                                    also contain the a list_
+                                    of commands they used._
+_
+"sys.msg help"      System Data     A list of the commands_
+                    Files Drive     available to the when_
+                                    when the user types "/h"_
+                                    from the message maker._
+_
+"sys.news"          System Data     Your system news._
+                    Files Drive_
+_
+"sys.welcome"       System Data     A file welcoming the
+                    Files Drive     user to the BBS after_
+                                    they have logged on._
+_
+"mail. x"           E-Mail Drive    The mailfile for user ID
+                                    number x._
+_
+_
+_
+"sys.feedback"      Feedback Drive  Messages sent to the_
+                                    sysops using the_
+                                    feedback op-code._
+_
+"sys.new user"      System Data     This file contains all_
+                    Files Drive     of the new user
+                                    applications.  Use the_
+                                    read new user_
+                                    applications op-code to_
+                                    view this file._
+_
+"sys.title"         System Data     Color graphics title_
+                    Files Drive     screen.  If more than_
+                                    1, will appear as:_
+                                    "sys.title #" where_
+                                    "#" is a random number._
+_
+"sys.title/a"       System Data     Ascii version of above_
+                    Files Drive     file.  Will appear as:_
+                                    "sys.title #/a"._
+_
+"sys.new msg"       System Data     Introduction message to_
+                    Files Drive     new users, usually_
+                                    system rules, etc._
+_
+"sys.new app"       System Data     One liner questions (up_
+                    Files Drive     to 200) that the system_
+                                    asks all new users if_
+                                    the file exists._
+                                    Responses are stored in_
+                                    the "sys.new user" file._
+_
+"sys.sig a title"   Current Msg     Introduction to message_
+                    Base Drive      base (sig) A._
+_
+"msg.a 1"           Current Msg     Message base A, message_
+                    Base Drive      #1 and all of its_
+                                    responses._
+_
+"sys.u/d a title"   Current U/D     Introduction to U/D base_
+                    Base Drive      A._
+_
+"vote.topic a"      Voting Booth    Link 0=Possible answers_
+                    Topic Drive     for topic, link 1=_
+                                    vote results._
+_
+"vote.text a"       Voting Booth    The actual question/text_
+                    Topic Drive     for topic A._
+_
+"sys.automessage"   System Data     This file will be read_
+                    Files Drive     immediately after the_
+                                    "sys.welcome" file._
+                                    It is usually a user-_
+                                    written message._
+_
+_
+_
+_
+"sys.zos help"      System Data     Help file for the ZOS_
+                    Files Drive     disk interface._
+_
+"sys.script"        System Data     Monster Mode_
+                    Files Drive     instruction file._
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+                        Appendix D_
+_
+              Writing Zelch Specific Modules_
+_
+_
+    This section contains information on writing Zelch
+specific modules-- that is, modules that are written using
+various BBS routines and variables._
+_
+_
+Part I: System Variables_
+_
+Arrays used                     m(x)   Numeric variables_
+pl(26)   Posts this call          x=0  Modem type_
+t$(100+) Text strings               1  Extended log default_
+m(20+)   System numbers             2  Monster Mode hour_
+d(10+,1) System drives              3  All system up-case_
+o$(20+)  System work strings        4  Carrier detect bit_
+o(20+)   System work numbers        5  Hangup (poke 56577)_
+u$(10+)  User data                  6  Hangup (poke 56579)_
+u(5+)    User numeric data          7  Pickup (poke 56577)_
+tt$(200) Message maker/work array   8  Pickup (poke 56579)_
+ui$(500) Handles of all users       9  Idle baud rate_
+m$(30,4) Current menu data         10  New user blocks_
+cd(26,1) Time and call limits      11  New user credits_
+p0$(75)  Extended log storage      12  Default weed protect_
+mr(50)   Number of responses/msg   14  Max Users_
+mn$(50)  Activity dates for msgs   15  # credits/response_
+mx(30)   SysOp work array          16  # ascii titles_
+                                   17  # color titles_
+_
+_
+o$(x)  System string variables  o(x)   Numeric data_
+  x=1  On at time                 x=0  Calls since boot_
+    2  Date compare string          1  Xfer logoff flag_
+    3  Expanded date                2  Number of feedback_
+    4  Expanded last call date      3  (expansion)_
+    5  Message header string        4  Calls ever_
+    6  Last menu loaded in          5  Logged errors_
+    7  Hotkeys for menu             6  New users_
+    8  ASCII prompt                 7  GFX mode flag_
+    9  Graphics prompt              8  Message line limit_
+   10  Menu 3 letter identifier     9  Edit seq file flag_
+   11  Last program loaded         10  Which link to save_
+   12  System one liner            11  Msg Maker abort flag_
+   13  Command for jump            12  Msg Maker save mode_
+   14  Modem initialization        13  Menu flag_
+   15  Previous menu               14  Logoff during e-mail_
+   16  Current menu                15  Relogon flag_
+   17  Logon compare string        16  Screen blanking flag_
+   18  ZapTerm initialization      17  U/D baud pters_
+   19  Main menu                   18  "            "_
+   20  SysOp utility menu          19  Xfer protocol_
+   21  Default ASCII color         20  At prompt flag_
+   22  Anonymous access_
+   23  Current protocol_
+_
+_
+u$(x)  User data variables      u(x)   User Numericals_
+  x=1  Handle                     x=1  Block credits_
+    2  Password                     2  System credits_
+    3  Real name                    3  Default baud_
+    4  Phone number                 4  Number of posts_
+    5  Access level                 5  Number of email_
+    6  Last call info_
+    7  Access flags_
+    8  Info flags_
+    9  Calls today
+   10  Join/Unjoin_
+_
+_
+d(x,y) y=0 for unit, y=1 for drive/LU_
+  x=0  System prg files drive       1  System data files_
+    2  Voting topics                3  Temp usage_
+    4  User data files              5  E-Mail drive_
+    6  Feedback                     7  Current message base_
+    8  Current U/D drive            9  Menus drive_
+   10  U/D descriptions            11  Expansion drive_
+_
+_
+System work and temporary variables used throughout the
+program:_
+_
+a$, c$, i$, o$, w0$-w9$, a, d, e, i, u, w0-w9, x, y_
+_
+_
+Other variables:_
+_
+f$ = Filename                   f0$= Secondary filename_
+_
+m1$= Op-Code work variable      m2$= Data field temp_
+m3$= Data field work variable   m4$= Current message base_
+m5$= Message base subop flag    m6$= Last caller or sub name_
+m7$= Last logoff or sub letter  m8$= File description string_
+_
+n$ = Name of your BBS           r$ = chr$(13)_
+sp$= String of 100 spaces       t$ = Mins remaining online_
+u2$= U/D subop flag_
+_
+_
+ba = Current baud               d0 = Secondary drive/LU_
+d1 = 3rd Unit                   d2 = 3rd drive/LU_
+id = Callers system ID number   l  = current line in editor_
+_
+m0 = Global read new loop       m1 = Current message base_
+m2 = Max messages               m3 = Current # of messages_
+m4 = Current post position      m5 = Current message number_
+m6 = Current reply              m7 = Read new flag_
+m8 = Abort read new flag        m9 = Read new loop variable_
+_
+u0 = Secondary unit             u1 = Current u/d section_
+u2 = Min. blocks for u/d        u3 = U/D Credit ratio_
+u4 = Max. files for u/d         u5 = Global read end_
+u6 = Variable print use         u7 = Msg base cont flag_
+_
+_
+Part II: Module requirements_
+_
+o  Modules must start at line 30000, which MUST contain_
+   "sys15625"._
+o  Line 30010 MUST be the first line of your code._
+o  You must use the BBS input and output routines (they_
+   will handle carrier detect and time limit checks)._
+o  Modules must be under 100 blocks in length._
+_
+_
+Part III: "bbs.main" Commonly used routines_
+_
+Line   Description_
+_
+   4   Output o$ to modem and screen._
+   5   Limited input (uppercase, max length set as x)_
+   6   Standard input (text returned in i$)_
+   8   Get a$--sysop menu is accessible if at prompt_
+   9   Output 1 character (a$)_
+  10   Numeric input as i, text as i$._
+  13   Hangup/Disconnect routines_
+  18   Pickup phone_
+  23   Load a module named i$ from unit (u), drive/lu (d)_
+  25   Read file f$ from unit (u), drive/lu (d)_
+  28   Limited get routine c$=possible keys, a$=key
+       pressed_
+  30   Print o$ on screen at positions x and y_
+ 100   Update all window data_
+ 250   print o$ status/chat request reasons in bottom
+       window_
+ 300   Update only chat and grfx flags on window_
+ 400   Update time and date variables_
+ 450   Change baud, i=baud to change to_
+ 600   Logoff routine_
+1000   Message maker (f$=filename, u=unit, d=drive/lu,_
+       o(12)=0/append or create, 1/rewrite, 2/edit link
+       (o(10)=link#)_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+                        Appendix E_
+_
+               Memory Usage and Organization_
+_
+_
+General memory usage:_
+_
+0e00-0e40  Sprite used for the 40 column cursor_
+1300-1bff  Transfer protocols_
+1c00-1dff  Transfer buffers_
+1e00-1fff  Temporary buffer area for ML data storage_
+2000-39ff  System ML (described in Appendix E)_
+3a00-3aff  ANSI tables_
+3b00-3cff  ASCII tables_
+3d00-3fff  Interrupts routines_
+_
+_
+System flags:_
+_
+2816 (0b00) Temporary storage_
+2817 (0b01)_
+2818 (0b02) Basic pointers_
+2819 (0b03)_
+2820 (0b04)_
+2821 (0b05)_
+2822 (0b06) Module overlay/underlay flags_
+2823 (0b07) SysOp local mode flag (1=on)_
+2824 (0b08) Time limit exceeded (0=yes)_
+2825 (0b09) Amount of time remaining in minutes_
+2826 (0b0a) T.O.D. Clock compare byte_
+2827 (0b0b) Logoff flag (1=force logoff)_
+2828 (0b0c) i$ and a$ rest byte_
+2829 (0b0d) Graphics/ASCII flag (0=ASCII mode)_
+2830 (0b0e) ML Chat mode flag (1=Currently in chat mode)_
+2831 (0b0f) Uppercase input flag (1=on)_
+2832 (0b10) Temporary ml storage for A_
+2833 (0b11) "                      " X_
+2834 (0b12) "                      " Y_
+2835 (0b13) Pointer to current color in color cycle_
+2836 (0b14) Defined color #1_
+2837 (0b15) "           " #2_
+2838 (0b16) "           " #3_
+2839 (0b17) "           " #4_
+2840 (0b18) "           " #5_
+2841 (0b19) "           " #6_
+2842 (0b1a) "           " #7_
+2843 (0b1b) "           " #8_
+2844 (0b1c) Mask output for passwords (1=yes)_
+2845 (0b1d) Linefeeds (1=on)_
+2846 (0b1e) Current column number for input routine_
+2847 (0b1f) # Characters before line link (default=120)_
+2848 (0b20) 80 column word wrap work byte_
+2849 (0b21) General word wrap work byte_
+2850 (0b22) Word wrap flag (1=on, 0=stop at end)_
+2851 (0b23) Chat mode work byte (stores time remaining)_
+2852 (0b24) Carrier detect bit_
+_
+_
+2853 (0b25) Carrier detect value_
+2854 (0b26) High-byte/Low-byte for file block count_
+2855 (0b27)_
+2856 (0b28) High-byte/Low-byte for blocks free on disk_
+2857 (0b29)_
+2858 (0b2a) Number of files counted in count file routine_
+2859 (0b2b) ASC() value of character pressed during hot-key_
+            output (0=none)_
+2860 (0b2c) Temporary work byte for hot-keys_
+2861 (0b2d) X position of text for "on window" display ml_
+2862 (0b2e) Y position of text for "on window"_
+2863 (0b2f) Current year_
+2864 (0b30) Storage space for "on window"_
+2865 (0b31)_
+2866 (0b32)_
+2867 (0b33)_
+2868 (0b34)_
+2869 (0b35)_
+2870 (0b36)_
+2871 (0b37)_
+2872 (0b38)_
+2873 (0b39)_
+2874 (0b3a)_
+2875 (0b3b)_
+2876 (0b3c)_
+2877 (0b3d)_
+2878 (0b3e)_
+2879 (0b3f) Current month_
+2880 (0b40) Day of month_
+2881 (0b41) # days in January_
+2882 (0b42)           February (accounts for leap years)_
+2883 (0b43)           March_
+2884 (0b44)           April_
+2885 (0b45)           May_
+2886 (0b46)           June_
+2887 (0b47)           July_
+2888 (0b48)           August_
+2889 (0b49)           September_
+2890 (0b4a)           October_
+2891 (0b4b)           November_
+2892 (0b4c)           December_
+2893 (0b4d) (not used)_
+2894 (0b4e) (not used)_
+2895 (0b4f) Flag 0=add a line link and exit input, 1=wait_
+            for return_
+2896 (0b50) Chat page flag (0=off, 1=on, 2=waiting for_
+            clear)_
+2897 (0b51) Temporary storage_
+2898 (0b52)_
+2899 (0b53)_
+2900 (0b54)_
+2901 (0b55)_
+2902 (0b56)_
+2903 (0b57)_
+2904 (0b58)_
+2905 (0b59)_
+_
+_
+2906 (0b5a)_
+2907 (0b5b)_
+2908 (0b5c)_
+2909 (0b5d)_
+2910 (0b5e)_
+2911 (0b5f)_
+2912 (0b60)_
+2913 (0b61)_
+2914 (0b62) Date check flag for interrupts_
+2915 (0b63) 80 column user flag (1=80 columns)_
+2916 (0b64) Trap Online Basic byte_
+2917 (0b65) Line numbers in editor (1=on)_
+2918 (0b66) 80 column word wrap work byte_
+2919 (0b67) 40 column word wrap work byte_
+2920 (0b68) Last character sent by output_
+2921 (0b69) Basic pointers for assigning variables_
+2922 (0b6a)_
+2923 (0b6b) Line formatting flag for output (CTRL-H's)_
+2924 (0b6c) Displayable character flag used by input ml_
+2925 (0b6d) All system up-case flag (1=on)_
+2926 (0b6e) Character mask for directory routine_
+2927 (0b6f) Temporary storage for online basic_
+2928 (0b70)_
+2929 (0b71) Online basic active (1=yes)_
+2930 (0b72) Direct mode flag (0=yes)_
+2931 (0b73) Exit online basic (1=yes)_
+2932 (0b74) Device number for basic program_
+2933 (0b75) Drive/LU for basic program_
+2934 (0b76) Temporary storage for basic filename_
+2935 (0b77)_
+2936 (0b78)_
+2937 (0b79)_
+2938 (0b7a)_
+2939 (0b7b)_
+2940 (0b7c)_
+2941 (0b7d)_
+2942 (0b7e)_
+2943 (0b7f)_
+2944 (0b80)_
+2945 (0b81)_
+2946 (0b82)_
+2947 (0b83)_
+2948 (0b84)_
+2949 (0b85)_
+2950 (0b86)_
+2951 (0b87) Temporary "msg basic pointers"_
+2952 (0b88)_
+2953 (0b89) Message Basic flag (1=on)_
+2954 (0b8a) NO Message Basic flag (0=supress)_
+2955 (0b8b) Message Basic work bytes_
+2956 (0b8c)_
+2957 (0b8d)_
+2958 (0b8e) Message Basic list suppressor_
+2959 (0b8f) Pause prompts flag (1=yes)_
+2960 (0b90) Monster Mode hour_
+2961 (0b91) Monster Mode "do" flag (1=do) (2=running)_
+_
+_
+2962 (0b92) Line number for pause prompts_
+2963 (0b93) Online basic vectors_
+2964 (0b94)_
+2965 (0b95)_
+2966 (0b96)_
+2967 (0b97)_
+2968 (0b98)_
+2969 (0b99)_
+2970 (0b9a)_
+2971 (0b9b) Copyfile work bytes_
+2972 (0b9c)_
+2973 (0b9d) Idle timer byte_
+2974 (0b9e) Idle minutes (0=unlimited)_
+2975 (0b9f) "drecfile" blocks_
+2976 (0ba0)_
+2977 (0ba1) "drecfile" length of rel file_
+2978 (0ba2) Access level for current user_
+2979 (0ba3) ANSI flag (1=on)_
+2980 (0ba4) "direc" work byte_
+2981 (0ba5) ANSI work byte_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+                        Appendix F_
+_
+                 Machine Language Routines_
+_
+_
+    The following are the ML routines, their SYS addresses,
+and a description on how the user who wishes to write Zelch
+specific modules may access and use them._
+_
+15616 ($3d00) SETUP_
+_
+    This is the first ML routine executed by the system
+which initializes various parts of the BBS and activates the
+interrupt routines._
+_
+15619 ($3d03) LOCKUPS_
+_
+    Executed every 60th of a second, this is the heart of
+the system and the performer of the most basic BBS
+functions. This routine updates the user time remaining, and
+updates the date, month, and year should it change. If the
+user online runs out of time or drops carrier, this is the
+routine which sets the logoff flag ($0b0b)._
+_
+15622 ($3d06) OVERLAY_
+_
+    Used to setup the system for the load of a Zelch
+specific module, this routine will set the start of basic to
+the end of the main BBS module (bbs.main) and set the
+overlay/underlay flag._
+_
+15625 ($3d09) UNDERLAY_
+_
+    After a Zelch specific module has been loaded, the first
+line of the module should execute this ML routine which
+resets the original BASIC pointers before the OVERLAY
+routine was executed._
+_
+15628 ($3d0c) CURSOR_
+_
+    This routine will update the 40 column cursor (the
+sprite) and move it to the current cursor position. It is
+executed automatically by the ML input routine._
+_
+15631 ($3d0f) ONWINDOW_
+_
+    This routine interfaces with the system BIGOUT ml
+routine to send the o$ string to any part of the screen (ie:
+in the windows if desired). The X and Y positions are poked
+and o$ is defined before this routine is executed._
+_
+15634 ($3d12) CLEAR1_
+_
+    This one has quite a few functions, but in the BBS it is
+SYSed just before executing a CLR basic command. It stores
+_
+_
+_
+the status of the the BBSs variables so that CLEAR2 can
+restore them._
+_
+15637 ($3d15) CLEAR2_
+_
+    Restores the basic variables back to the pointers set
+aside by the CLEAR1 routine. Used in the BBS right after a
+CLR command._
+_
+_
+The MAIN ML routines:_
+_
+8192 ($2000) GETIT_
+_
+    An often used routine which accesses the GETINE routine
+below and interfaces with basic through a buffer to create
+the variable a$. After execution, a$ will contain the
+character typed by either the user online or the local user._
+_
+8195 ($2003) GETINE_
+_
+    The most often used routine in the system, this routine
+is accessed almost exclusively by other ML routines. It will
+scan the keyboard first for a key being pressed. If a key is
+pressed it will translate for upcase mode and any other
+parameters, and store the result in memory location 254. If
+no key was pressed on the keyboard, it will scan the modem
+channel for a keypress. If any was pressed, the system will
+also translate for upcase mode, ascii, and any other input
+masks and/or translations. Very few keys are actually masked
+under normal circumstances, though the HOME key will only be
+accepted if the word wrap flag is off._
+_
+8198 ($2006) SEND_
+_
+    Another routine used most often by other ML routines,
+this will take the character found in memory location 254
+and send it to both screen and modem. All necessary
+translations and masks are made before the character is
+sent._
+_
+8201 ($2009) INPT_
+_
+    The compliment to the GETIT routine, this will allow the
+user to input an entire line of text or graphics and wait
+for the return key to be hit (or 120 characters). The text
+entered will then be placed into the variable i$ for BASIC
+use. There are many flags and settings which will affect the
+way this routine will work for you. When set, word wrap will
+be automatic._
+_
+8204 ($200c) BIGOUT_
+_
+    SYSing this routine will take the text stored in the
+variable o$ and send it to both screen and modem. If the
+last character in the variable is a control-c, a carriage
+_
+_
+return will not be sent, otherwise one will. This routine is
+also the one affected by the system upcase flag. Extra
+returns may be added in the text by inserting control-K's
+into the line._
+_
+8207 ($200f) CHATMODE_
+_
+    Although chat mode is automatically entered when the
+[ESC] key is hit from the INPT, GETIT, or GETINE routines;
+you may also execute it automatically from this SYS._
+_
+8210 ($2012) FILESEND_
+_
+    If a SEQUENTIAL file using channel 2 is opened, this
+routine will send the contents to both screen and modem. The
+spacebar may be used to abort, and the [HOME] key to pause.
+This routine will abort at the end of files, and at the end
+of file links!_
+_
+8213 ($2015) FILEGET_
+_
+    This routine is accessed by the FILESEND routine when
+the spacebar is used to abort. It simply reads in the
+contents of a sequential file using channel 2 until it
+either reaches the end of the file, or reaches the end of
+the file link. It's used by the BASIC to skip over links for
+various reasons._
+_
+8216 ($2018) TIMEVAR_
+_
+    This routine reads the current time of day and puts it
+into the variable i$. The format used is "HH:MM?m" (ie:
+"08:34pm")._
+_
+8219 ($200b) DIREC_
+_
+    If the directory of a drive is opened using channel 2
+and secondary device 0, this routine will display it to both
+screen and modem. If specified, it will also mask the
+character mask character. Spacebar may be used to abort the
+display, and the home key will pause._
+_
+8222 ($200e) INLINE_
+_
+    And yet another drive related command! This one reads in
+one line of text from an open sequential file using channel
+2 and places the resulting text into the variable i$. The
+advantage this routine has over the BASIC "input#2,i$"
+command is that this routine accepts commas and semicolons._
+_
+8225 ($2011) BLOCKS_
+_
+    Like DIREC, this one is accessed with a channel 2 open
+directory using secondary device 0. Another necessity is
+that a filemask specific to the one file being accessed.
+This routine will read in and poke the number of blocks for
+_
+_
+that file, and the number of blocks free on the disk as
+well._
+_
+8228 ($2014) COUNTFILE_
+_
+    This is the last of the directory format routines. After
+opening up a directory (Ch 2, SD 0) with or without a
+filemask, this routine will count the number of files in the
+directory and poke the result into memory._
+_
+8231 ($2017) ZAPTERM_
+_
+    This is the terminal mode part of the Zapterminal
+module, the description of which is where you'll find
+details on using it._
+_
+8234 ($201a) SETPOT_
+_
+    This is the first of the On-Line basic routines and is
+used as a prep routine for storing the current system and
+zero page pointers, flags, and values so that the correct
+position in the BBS will be returned to._
+_
+8237 ($201d) DEFFIX_
+_
+    This routine is accessed exclusively by INPT and GETIT.
+It resets basic pointers changed by those routines._
+_
+8240 ($2020) SETBAS_
+_
+    SYSing this routine will turn on Online basic mode where
+BASIC input and print commands will work online._
+_
+8243 ($2023) OFFBAS_
+_
+    Turns off online basic and returns to the spot in memory
+where the SETPOT routine was executed. Normally accessed by
+entering direct mode when OnLine basic is running in
+"program" mode._
+_
+8246 ($2026) MSGFIX_
+_
+    Used exclusively by GETINE, this is a subroutine to
+interpret and execute display codes, or message basic
+codes._
+_
+8249 ($2029) REST_
+_
+    This is a vector to the routine accessed by INLINE,
+GETIT, and INPT to set up their respective variables._
+_
+8252 ($202c) DEFINE_
+_
+    The complement to REST, this works with the other
+variable creating routines to perform their ultimate
+functions._
+_
+_
+8255 ($202f) COPYFI_
+_
+    This routine is used to copy a file (any type) open with
+channel number 2 to the file using channel number 3.
+Relative files are copied a record at a time while
+sequential, program, and other types are copied
+sequentially._
+_
+8258 ($2032) DRECFILE_
+_
+    Used by the U/D and offline copy modules to read in
+filenames and filetypes into i$.  Directories should be
+opened as channel 2 and secondary device 0.  Reads should
+also be proceeded with a pair of "get#2,a$"s._
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+                          Glossary_
+_
+_
+ÅANSIÄ (American National Standards Institute):  This term
+refers to the IBM color graphics emulation mode supported by
+Zelch.  It contains 8 standard colors and several screen
+controls._
+Å_
+ÅASCIIÄ (American Standard Code for Information Interchange): 
+Communication mode devised to allow communications between
+computers of different types.  It allows use of upper and
+lowercase characters as well as all of the standard
+punction._
+Å_
+ÅAccessÄ:  Areas that the user has permission to use,
+determined by access flags and levels._
+Å_
+ÅAccess FlagsÄ:  26 switches that may be set or unset.  They
+may be checked with special access flag op-codes._
+Å_
+ÅAccess LevelÄ:  Security clearance for the various functions
+of your BBS.  Most systems have at least three levels,
+including:  new user (very little access to commands),
+validated user (access to everything except sysop
+functions), and sysop access (has ability to change the
+system).  You may designate any letter (A-Z) to any access
+level-- with one exception:  access level A is reserved for
+new users._
+Å_
+ÅAccountÄ:  All of the user information for one user._
+_
+ÅAccount NumberÄ:  The record number in the user relative file
+that contains all of the caller's information (including
+handle, real name, password, etc.)  This number is also used
+to file E-Mail._
+Å_
+ÅAutomaintenanceÄ:  Another name for Monster Mode-- this
+executes once per day at the specified time, and performs
+system cleanup such as:  inactive user deleting, news
+deletion, disk validation, etc._
+Å_
+ÅBaud RateÄ:  This is the speed at which your modem is
+communicating with the remote modem.  It is generally
+referred to in BPS or bits per second._
+Å_
+ÅBoot DiskÄ:  This is a copy of the disk that came with the
+documentation.  It is the one that has your serial number
+written on the front label._
+Å_
+ÅCallerÄ:  A person connecting to your system.  Sometimes
+interchangable with "user".Å_
+Å_
+ÅCarrierÄ:  The signal sent constantly between modems when
+online.  When this signal is interrupted, the modem hangs
+up._
+Å_
+Å_
+Å_
+ÅCharacter MaskÄ:  First character of filenames that should
+not be displayed when listing a disk directory.  This is
+used to suppress the U/D letter appended to U/D base
+transfers._
+_
+ÅColor CycleÄ:  The defined pool of 8 colors from which a
+color is taken whenever a CONTROL-1 (black) appears in the
+text to be displayed.  The pattern generally flow from one
+color to the next in an eye catching arrangement._
+Å_
+ÅCommandÄ:  This refers to the key used to access a group of
+op-codes, and to the op-codes themselves.  When the key is
+pressed the op-codes will execute in sequence._
+Å_
+ÅConfigurationÄ:  Collection of files and menus found on your
+"configurations disk," that, when unpacked form a particular
+BBS._
+_
+ÅDOSÄ (Disk Operating System):  This word refers to commands
+that your drive will recognize when sent in the form of: 
+open15,8,15,"<command>":close15_
+Å_
+ÅDatafieldÄ:  Information used by the op-codes as parameters
+for certain tasks.  This information sometimes includes
+device and drive/LU numbers, filenames, etc._
+Å_
+ÅDeviceÄ:  This is the unit number of the disk drive to be
+accessed.  Valid unit numbers range from 8 to 30._
+Å_
+ÅDisplay CodeÄ:  Code that can be placed within text perform
+certain operations.  See also message basic._
+Å_
+ÅDownloadÄ:  Transferring of a file from the BBS to the caller
+using the last protocol loaded._
+Å_
+ÅDrive/LUÄ (Logical Unit):  Used mostly in the selection of
+partitions on CMD and Lt Kernel hard drives.  Valid
+drive/LU's range from 0-9 on Lt Kernels and 0-254 on CMDs. 
+This is normally 0 for single floppy drives._
+Å_
+ÅE-MailÄ:  Electronic mail from one user on your BBS to
+another.  These messages can only be read by the receiving
+user and are therefore private._
+Å_
+ÅFile LinkÄ:  A portion of a sequential file such as a
+specific news file found in the larger news sequential file.
+Link 0 would be the first newsfile, link 1 the second, and
+so on._
+Å_
+ÅFilemaskÄ:  Ability to view selective directories with
+wildcard searches using "*" and "?".  For example: "prg.*"
+would look for files that begin with the prefix "prg.".  You
+can also perform file-type directories with "*=s" where all
+files of the type "s" (sequential) would be selected._
+Å_
+Å_
+Å_
+Å_
+ÅGfilesÄ:  Short for general text files.  These usually
+contain jokes, bbs lists, etc._
+_
+ÅÅÅHandleÄ:  Pseudoname of the caller.  Can be compared to CB
+handles that allow you to assume a different identity._
+Å_
+ÅIdle TimerÄ:  This is the counter used to boot users offline
+should they sit for more than the amount of time specified
+without pressing any keys._
+Å_
+ÅLinefeedsÄ:  Some ASCII terminals require this to be sent
+with the standard carriage return character.  It prevents
+text on their end from printing over itself._
+Å_
+ÅLogical UnitÄ:  See drive/LU._
+Å_
+ÅLogoffÄ:  The process whereby a user leaves the system._
+_
+ÅLoÅginÄ:  The user's entry onto the system by correctly
+aswering the Handle/ID and the Password prompts. _
+Å_
+ÅLogonÄ:  Synonym for Login._
+_
+ÅMenuÄ:  The file containing the list of commands available by
+the user, the data relating to the commands, the prompts for
+that area of the board, and other data._
+Å_
+ÅMenu CodeÄ:  The data bits for menus which inform the system
+whether or not the menu is automatically displayed when
+loaded, and what commands (if any) are automatically
+executed._
+_
+ÅMenu IdentifierÄ:  A three letter code uniquely describing
+each menu._
+_
+ÅMessageÄ:  Usually refers to the collection of posts, or
+subject files found in your message bases.  May sometimes
+refer to pieces of E-Mail as well._
+_
+ÅMessage BaseÄ:  Also referred to as SIG or Subboard, this is
+an area of your board where messages are posted on a related
+subject or theme._
+_
+ÅMessage BasicÄ:  (A.K.A.  Display Codes) Commands which may
+be embedded in lines of text, prompts, or files which
+display variables, pieces of data, or perform functions;
+they are usually surrounded by the "\" character.  You may
+find a complete list of the display codes on your quick
+reference sheets._
+Å_
+ÅModuleÄ:  A program that is used with the BBS which does not
+have to remain in memory at all times.  Modules are
+typically written Zelch-specific and are preceeded on your
+directory with the prefix "prg."._
+_
+ÅMonster ModeÄ:  See automaintenance._
+Å_
+Å_
+ÅNetworkingÄ:  The process by which mail and other messages
+are sent by a BBS program from one system to another._
+_
+ÅOffline EditorÄ:  Also called the System Editor, this is the
+program accessable by entering option 2 after loading and
+running the program "zelch"._
+_
+ÅOp-codeÄ:  A specific and unique operation of the BBS._
+_
+ÅOp-code routineÄ:  Closely related to the "command", this is
+a group of op-codes which may not be directly accessed by
+the user because it has a lowercase letter.  Op-code
+routines have access levels and commands letters, but do not
+have descriptions._
+_
+ÅOp-code subroutineÄ:  See Op-code routine._
+_
+ÅParametersÄ:  Data required to assist in the operation of BBS
+functions._
+Å_
+ÅPETSCIIÄ:  Commodore Business Machines standard codes for
+its character set.  These codes were introduced around the
+time of the Commodore PET computer._
+_
+ÅPfilesÄ:  ÄSynonym for module._
+Å_
+ÅPÅostÄ:  A single subject message which may or may not contain
+related replies, that are found in the message bases._
+_
+ÅPromptÄ:  A line of text which suggests to the user that
+he/she should type in a command letter._
+_
+ÅProtocolsÄ:  A communication checksum system used in the
+transfer of files to and from the system.  The transfer
+protocols Punter and X-Modem are supported by Zelch 128._
+_
+ÅREUÄ (Ram Expansion Unit):  A device which, when attached to
+the cartridge port of your 128, allows you to access memory
+chips within the device.  In Zelch 128, these devices are
+used with RamDos to act as a Ram Disk Drive._
+_
+ÅRam Expansion UnitÄ:  See REU._
+Å_
+ÅReplyÄ:  A comment or response to a posted message which,
+when saved, is attached to that message and read along with
+it._
+_
+ÅSubOpÄ:  A user designated by you with the task of managing
+the affairs of a particular message base or U/D base.Å_
+Å_
+ÅSysOpÄ:  The main dude or main dudes responsible for the
+operation of your system.  This includes you and any
+assistants you trust with the vitals of your board._
+_
+Å_
+Å_
+Å_
+Å_
+ÅSystemÄ:  This is a broad term referring to your BBS computer
+and all of your system peripherals and drives, your BBS
+program and all of its modules, and the menus and text
+files related to your bulletin board._
+_
+ÅSystem EditorÄ:  See offline editor._
+_
+ÅU/DÄ (Upload/Download):  The section of your board dedicated
+to the transferring of files via uploading and downloading.
+This can also refer to U/D bases, which are sections
+dedicated to files of a certain kind._
+Å_
+ÅUploadÄ:  Transferring of a file from the callerÄ to the BBS
+using the last protocol loaded._
+ÅÅ_
+ÅUserÄ:  A caller to your system who has an account/ID
+number and some sort of access.Å_
+Å_
+ÅUser IDÄ:  See account number.Å_
+Å_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+_
+

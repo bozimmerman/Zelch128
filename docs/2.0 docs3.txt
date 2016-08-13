@@ -1,0 +1,1278 @@
+ûh:10:3^^Zelch 128 v2.0a
+ûf:10:2^Copyright (C)1991 Elite Software^^Page <>
+_
+_
+7.0a  Op-codes and Op-code routines_
+_
+    Understanding the concepts of BBS creation involves
+understanding the following terminology:_
+_
+Op-codes: The basic functions of the BBS._
+_
+Commands: Groups of Op-Codes which are executed by a user
+pressing the command key._
+_
+Menus: Groups of commands (usually related in some way)
+available to the user._
+_
+    Any reference to the word "menu" refers not only the
+visible text file that lists available options, but to the
+data that contains the structure of your BBS (ie: command
+keys, descriptions, access levels, list of op-codes to
+perform, etc.)_
+_
+    To create a command using the available op-codes, you
+must first break the command down into its very basic
+format.  For instance, most boards have an option to leave
+feedback.  You press the command key to leave feedback and
+the board asks you if you are sure (y/n).  If you hit yes,
+you are ready to type your message.  Because of the
+flexibility that we had in mind when writing Zelch, all
+processes have been broken down into the necessary
+operations.  The op-codes required to perform the feedback
+option might be first to display a line of text (the "Leave
+feedback (y/n)?" prompt), second to allow the user to input
+an answer (character prompt op-code--allows user to enter
+defined keys), third would be the actual feedback op-code;
+however, you may decide to just have the system
+automatically execute the feedback op-code and skip the
+extra prompts.  Only with the op-code concept can this level
+of flexibility be achieved._
+_
+    The commands that are accessed from the menus can also
+be broken into the following simple parts:_
+_
+Command key - This refers to the key on the keyboard which
+must be pressed by the user to activate the op-coded
+command.  Several op-codes refer to the execution of
+"op-code subroutines."  Op-code subroutines are commands
+that have lowercase command keys, and may not be directly
+executed by the user._
+_
+Access levels - Lettered from A to Z, these refer to those
+access levels (and therefore to the users on your system
+having those access levels) which are allowed to access the
+commands.  Do not confuse access levels with the access flag
+concept described below._
+_
+Description - This is the text which is displayed when the
+user presses the command key at the menu prompt._
+_
+_
+_
+Op-Codes - the functions, performed in the order in which
+they are listed, which make up the commands of the menu._
+_
+Datafields - the various parameters which are needed by the
+Op-Codes._
+_
+    The menus themselves are broken down into these parts:_
+_
+Menu text - viewable text that contains a list of options
+available from the menu, which could be a simple as a
+straight list, or as elaborate as a graphic screen._
+_
+Menu type - each menu can contain these attributes:_
+_
+    1. Auto display text- the menu will automatically_
+       display the menu text before giving a prompt to the_
+       user._
+    2. Non auto display text- the menu text is not_
+       automatically displayed, a prompt will appear_
+       immediately._
+    3. Auto execute menu- the letter of the command or_
+       op-code routine to be automatically executed when_
+       the menu is loaded._
+_
+Prompt - a short line of text which, when seen by the user,
+will tell him/her that he/she should now enter a command.
+These are separated into a Graphics prompt (for
+color/graphics callers) and an ASCII prompt (for those in
+ASCII translation mode--the ASCII-impaired user)._
+_
+Commands - those commands which the user may access from the
+menu._
+_
+    There are several datafield parameters not discussed
+anywhere in the documentation so far.  Any op-code that has
+a filename datafield has the ability to accept partial
+filenames.  Simply enter the first part of the available
+filenames and an "*".  The caller will be prompted for the
+remainder of the filename.  Also, several of the sample
+configurations contain special device and LU parameters in
+order to make setting up your system as easy as possible.
+You may see a device numbers such as "#1" rather than the
+usual numbers from 8-30 (which would be displayed as "8"--
+with no number sign).  If the number sign is present, the
+system uses the drive data stored in the d(x,y) variables
+where the number following the "#" is the x value.  Appendix
+D has a listing of all of the d(x,y) variables._
+_
+    Following is the first installment of op-codes available
+for use in menus.  The following op-codes are coded within
+the "bbs.main" program.  For each op-code, we will specify
+its number, give a detailed description of its function and
+major uses, and list the parameters (datafields) necessary
+to specify the task of the op-code.  When editing or
+creating menus, we highly recommend looking at the menus _
+_
+_
+_
+included with the sample configurations to help you
+understand the intricacies of menu making.  Keep in mind
+that the following sections on op-codes are meant to be used
+in conjunction with your quick reference sheets.  The
+sections below mearly describe the use and purposes of the
+op-codes while the reference sheets provide valuable
+information on the op-code datafields._
+_
+_
+7.0b  Main BBS Op-codes_
+_
+  1 : Load a new menu : with this op-code your bbs is
+basically unlimited in size.  You can have an infinite
+number of menus with up to 50 commands on each.  The new
+menu configuration is loaded on top of the menu in memory
+from the specified menu drive._
+_
+  2 : Load a module : this routine is used to load and
+execute a Zelch specific module.  See Appendix D on writing
+Zelch specific modules._
+_
+  3 : Instant logoff : causes the BBS to update the caller's
+file, disconnect the call, update the log, and return to
+waiting for call status._
+_
+  4 : Send E-Mail : this command may be used not only for
+the usual E-Mail command found on most systems, but also for
+a "subop" feedback option if a user ID number is specified.
+If an ID number is not specified, the caller will be
+prompted to enter either a handle or user ID number._
+_
+  5 : Re-read E-Mail : though reading E-Mail is an automatic
+part of the logon process, it is sometimes necessary to go
+back to either answer held mail, or to answer a question
+after checking something on the system.  When executed,
+re-read E-Mail will go through the process of checking for
+mail and allowing you to reply (respond to the message),
+hold (keep the message on file so that it may be answered at
+a later time), forward message (send your mail to another
+user), abort reading (holds all messages), and next (move to
+the next message)._
+_
+  6 : Send feedback : allows the user to append to the
+feedback file.  Feedback is often accessible by all callers
+with sysop access, therefore it is not filed in user E-Mail._
+_
+  7 : Read feedback : read feedback in the same format used
+when reading E-Mail.  Make sure that this command is only
+available to those users that you want to answer questions
+about the system, etc._
+_
+  8 : Edit a Seq file : sequential files in whole may be
+loaded into the message maker for editing and/or creating.
+Many Zelch files are further separated into different links
+(like an E-Mail file containing 5 file links, ie: 5 pieces
+of mail, or a message containing 15 replies, ie: 15 file_
+_
+_
+links).  Link 0 in any file is usually the first file link,
+or the entire file in cases where there is only 1 part to
+the file.  For menus, link 0 contains the viewable menu
+text, and link 1 (the next part) contains all the commands
+in their op-code programmed format.  In E-mail, link 0 is
+the first piece of mail, link 1 is the second, and so on.
+When entering the link data, you may enter an "*" if you
+would like the user to enter the link to edit, a "+" to
+append a new link to the file specified (or create a new
+file if it doesn't already exist), a "-" to overwrite the
+entire file specified, or a number from 0 - 255 which refers
+to the link within the file that you wish to load and edit._
+_
+  9 : Read a Seq file : will display for the user the
+sequential file specified as the filename, and only the link
+within that file specified by the link data (again, entering
+"0" for link data will display the first link, "1" the
+second and so on); you can also use "*" if you want the user
+prompted for the link, and "+" if you want the user to view
+all links, pressing return between each.  Pressing the space
+bar will abort sequential file reads, and pressing either
+CONTROL-S, or your [HOME] key will pause the file read (any
+other key continuing)._
+_
+ 10 : Character prompt : this one is a work horse you will
+use often.  Executing this op-code will force the system to
+wait until one of the specified keys is entered by the user.
+The first datafield is the keys which MAY be entered to
+abort the rest of the op-codes in the command. The second
+datafield is the keys which may be entered to continue with
+the rest of the command.  Basically this op-code will wait
+until the user hits a key from the choices available,
+display the key that was pressed, and then either abort back
+to the prompt, or continue with the rest of the op-codes in
+the command.  The major use of this op-code is for prompts.
+For example, in most "Send Feedback" commands on BBSs, the
+system will send out a prompt like "Send Feedback (y/n)?"
+and then wait for the user to hit either an "N" (which would
+be the abort key), or a "Y" (which would continue the
+feedback process)._
+_
+ 11 : Password prompt : used mostly to guard the high
+security areas of your system.  This will ask the user to
+enter a password (the characters of which are displayed as
+your password mask character).  If the password entered by
+the user matches the password specified in the DATA area of
+this op-code, then the user will be allowed to continue with
+the command.  If the password entered does not match the one
+specified in the data, the user will not be allowed to
+continue with the command, and will return to the menu
+prompt._
+_
+ 12 : Toggle graphics mode : if the user executing this
+op-code is in ASCII translation mode, this op-code will
+change the system to color/graphics mode (expecting the user
+_
+_
+_
+to do the same) and send out a message informing the user of
+the change.  If the user is in color/graphics mode already,
+the system will change to ASCII and announce the change._
+_
+ 13 : Toggle linefeeds : this will toggle the function of
+sending and not sending linefeeds to the user._
+_
+ 14 : Check for graphics mode : the datafield will specify
+which mode will allow the user to continue with the command.
+If the datafield is a "1" (for graphics mode) and the user
+is in ASCII mode, the rest of the op-codes following this
+check will not be executed.  If the user was in graphics
+mode, the rest of the command would have been executed._
+_
+ 15 : Check one access flag : not to be confused with a
+users access LEVEL, access flags (lettered A through Z) are
+simply put: flags individual to each user which may be
+either set, or not set.  The purpose of this op-code is to
+check to see if any one access flag specified in the data
+field is set.  If ANY of the flags which you have set in the
+datafield are also set for the caller, the system will allow
+the rest of the op-codes in the command to be executed.
+Otherwise the command will not be executed and the user will
+be returned to the prompt._
+_
+ 16 : Check 100% match : like the above op-code, this one is
+used in checking the status of the users access flags.  The
+difference, however, is that the rest of the command will
+only be executed if ALL of the access flags set in the
+datafield are also set for the caller._
+_
+ 17 : Page the sysop : sometimes and often for the stupidest
+reasons, your users will want to go into chat mode with you.
+The way they will notify you of their desire is to turn on
+(or off) the flashing red box in the upper left hand side of
+your window by using this op-code.  The page option has two
+modes of operation.  The first is toggle mode (a "0" in the
+datafield), where chat page is toggled on when first
+selected, and then toggled off if selected again (and so
+on).  The second is the more often used: continuous mode (a
+"1" in the datafield), where chat page stays on regardless
+of the number of times the option is selected.  Either way,
+the page is turned off when the sysop exits from chat mode
+with them._
+_
+ 18 : Dos command : this option allows you to send any basic
+2.0 DOS command to any drive currently online.  If the
+datafield contains an "*" the user will be prompted for the
+command to execute.  The only other possible datafield would
+be the DOS command.  Be careful when allowing users to
+access this op-code, as it is possible to format your disks.
+ The DOS commands should be entered as if it were the
+<COMMAND> in the basic code below:_
+_
+      open15,(device),15,"<COMMAND>":close15_
+_
+_
+_
+An example datafield would be:  s0:filename   to scratch a
+file on drive/lu 0.  Refer to any Commodore disk drive
+manual for complete lists of BASIC 2.0 DOS commands._
+_
+ 19 : Directory : displays a list of all files on the given
+disk drive (roughly the same as typing "directory" in 128
+basic).  There are two masks that will be used to limit the
+display of filenames.  One is the filename mask, with which
+you may view selective directories.  For example, using
+"file*" as a filemask, only file names that have the word
+"file" as the first 4 characters of the name will be
+displayed.  The second mask is one unique to Zelch--the
+character mask. Character masks are used to allow several
+U/D bases to be on the same disk.  All files in U/D base A
+will automatically have an "A" appended to the beginning of
+the file name.  For example if a file named "dog" were
+uploaded to U/D base A, the name of the file on the disk
+would be "Adog".  To make the directory command list only
+the files in U/D base A, simply set the character mask to
+"A" and the filemask to "A*" (or set it to "#" if all U/D
+bases share the same menu--"#" will be replaced by the
+letter of the current U/D base). When adding directory
+op-codes to transfer menus that access more than one U/D
+base, make sure to set the character mask to "#"._
+_
+ 20 : Random check : this op-code is used to add random
+occurrences to your commands.  The datafield should contain
+a number from 1 to 100 which will be the percent chance for
+the rest of the command to continue._
+_
+ 21 : Edit stats : will allow the caller to access a menu
+where he/she may change various trivial aspects of their
+person.  Able to be edited here are their user handle,
+system password, screen width, last call date (for new
+message reading purposes), etc.  Making the datafield a
+number from 1-8 will make only a specific change possible._
+_
+ 22 : Userlist : give the user an opportunity to view the
+user handle and ID number of the users on your system.  At
+the prompt the user may either press return to view all the
+users (spacebar aborts), a user ID number to view all users
+starting at that number, or a string which the system will
+try to match against the handles._
+_
+ 23 : Relogon : when executed, this op-code will immediately
+log the user off the system, and initiate the logon process
+as if they had just logged off and called back.  This is
+useful to households that have more than one user calling
+from the same line and computer._
+_
+ 24 : Change one-liner : Zelch 128 has a built in one liner
+option which is simply a variable accessed as a display code
+in any way you like.  Executing this op-code will prompt the
+user to enter a line of text to replace the previous one
+liner.  To display this one-liner, the display code will be
+"\?o$(12)\"_
+_
+_
+ 25 : Display one line of text : basically self
+explanatory--This op-code will output to the user the line
+of text specified in the datafield.  The following control
+characters are useful in these datafields:_
+_
+CONTROL-C : line link.  Normally the system will send a
+carriage return after printing any line of text with this
+op-code.  If a Control-C is found as the last character in
+the line, the return will be suppressed and the cursor will
+remain at the end of the line (useful at prompts)._
+_
+CONTROL/SHIFT-G : a code used instead of quotation marks in
+a line of text.  This is specified for programming purposes,
+and for your curiosity should you find one.  Your quotation
+marks will work normally as well!_
+_
+CONTROL/SHIFT-H : this code is used to create the 40/80
+toggle effect in the system.  This can be inserted at the
+39th column of any line of text of 40 characters or more to
+make it more readable to the 40 column caller._
+_
+CONTROL-K : any occurrence of this code in a line of text
+will be ouputed to the user as a carriage return.  It can
+and should be used instead of one when entering your line of
+text._
+_
+CONTROL-1 : when found, the system will substitute this code
+in your text for the next color in the color cycle._
+_
+ 26 : Execute another op-code : this op-code would be more
+appropriately named "Execute another command".  What it
+basically does is search for the command letter (or the
+op-code subroutine letter) specified in the datafield and
+executes it as if the user had selected it. Currently it is
+one of the only ways to access the op-code subroutines._
+_
+ 27 : Change baud rate : this option was created to ease the
+pain of the 300 baud caller.  The user will be prompted to
+enter a new baud rate which may be any number from 100 -
+600.  If the user is at a baud rate from 100 - 600, the
+system will prompt them to go change their own baud rate
+within their terminal, and then return to the system and
+press return._
+_
+ 28 : Count files : the datafields for this op-code will
+work basically the same as the datafields for the directory
+op-code.  The difference between them is that instead of
+displaying the files on your disk, it will mearly count how
+many there are and display that number._
+_
+ 29 : Redisplay menu text : executing this op-code will
+cause the system to display the viewable text for the
+current menu.  This is useful when creating  ?  commands
+within your menus._
+_
+_
+_
+_
+ 30 : Check for user ID number : this one was created as an
+alternative way of handling SubOperators and Asst. SysOps.
+The datafield of this op-code will contain one or more user
+ID numbers (separated by semicolons) corresponding to the
+users which may access the rest of the command.  If the ID
+number of the user is not listed in the datafield, the
+system will not execute the op-codes following this one in
+the command._
+_
+ 31 : Set an access flag : will allow you to set an access
+flag on or off for whatever reason.  The first datafield
+will be the alphabetic letter of the flag you wish you
+effect (an uppercase letter from A to Z), and the second
+datafield will contain either a "1" if you wish to set that
+access flag on, or a "0" if you wish to unset or turn it
+off._
+_
+ 32 : Jump on bad compare : various op-codes found in this
+list do not perform specific tasks in themselves, but rather
+they check the status of various data to decide whether the
+rest of the command should be executed.  Examples of these
+"compare" op-codes are #'s 35, 30, 16, 108, etc.... Usually,
+if the compares turn out as specified, the remaining
+op-codes after the compare will be allowed to be executed;
+and if the compare did not match up (ie: was "bad"), then
+the user is returned to the menu prompt. By executing this
+op-code before any compares in the command are found, the
+system will by-pass the prompt in favor of the command
+letter (or op-code subroutine letter) specified in the
+datafield for this op-code.  Keep in mind that the specified
+alternative command will only execute if a compare after
+this op-code fails._
+_
+ 33 : Change system credit value : will either subtract or
+add to the value of the users system credits.  If the
+datafield is "4", then the number four will be added to the
+users system credits.  If the datafield is "-2", then 2
+credits will be subtracted from the users system credits;
+the 2 credits will therefore have been spent.  Note that it
+is possible for negative numbers to result from using this
+op-code (which may or may not be desirable depending on your
+credit system), so you might want to use this op-code in
+conjunction with #35 for desired results._
+_
+ 34 : Reset a counter variable : will set the values of
+various pieces of data displayed on your waiting for call
+screen to 0._
+_
+ 35 : Check # of system credits : if the number of credits
+that the user has is equal to or greater than the number
+specified in the datafield, the system will allow the rest
+of the op-codes in the command to be executed._
+_
+_
+_
+_
+_
+_
+ 36 : Run a BASIC program : will load and run a normal
+everyday BASIC program specified in the datafield. Variables
+will not be transferred to and from the BBS to the executed
+BASIC program, which makes these very different from Zelch
+specific modules.  As a general rule, if the program works
+with only print and input statements, does not use hi-res or
+sprite graphics, does not have pokes or peeks of any kind,
+doesn't rely on joystick or other external input, is less
+than 100 blocks, does not use logical channel 5 for input or
+output, and does not use windows; the program SHOULD work
+on-line.  All input and output from the basic program will
+of course work with the user online, whether remote or
+local.  Any "end" statements, as well as any basic errors,
+will return the user to the menu from which he/she came._
+_
+ 37 : Return to previous menu : when executed, this command
+will load and execute the menu that had been accessed
+previous to the current one.  It is useful for "Quit" type
+functions from sub menus and sub sections of your system.
+This will only move backwards one menu._
+_
+ 38 : Write a file with header : this works similarly to the
+edit a seq file op-code except that in addition to the
+message maker data, a short header is added to the beginning
+of the message.  This header includes the authors handle, id
+number, and the time/date.  This command can be used to
+write your "sys.automessage" file if you chose to have one._
+_
+ 39 : Menu prompt : this op-code combines character prompts
+with execute another op-code.  The first datafield includes
+all of the valid key presses, the second datafield contains
+a list of command keys to correspond with each letter.  When
+a letter from the first datafield is pressed, the system
+finds the corresponding command or op-code subroutine letter
+from the second datafield and executes it._
+_
+ 40 : Check access : if the caller's access level is
+included in the string of valid access levels in the
+datafield, the remainder of the op-codes will be executed._
+_
+ 41 : Toggle ANSI : this works much like the toggle
+linefeeds op-code except ANSI mode is the object of the
+switch.  Note that ANSI may only be turned on if the user is
+in ASCII translation mode._
+_
+_
+7.1a  Intro to Zelch Message Bases_
+_
+    The message bases are the areas of the BBS set aside for
+public discussion.  Zelch supports up to 26 message bases,
+with up to 50 messages and their replies.  It is our
+experience that a good message base system is the key to a
+successful BBS.  Users that keep the message bases rolling
+by posting and replying are generally the die-hard BBS'ers
+that make running a BBS worthwhile._
+_
+_
+_
+    Message bases (sometimes referred to as subboards or
+sigs) are generally directed at a general interest group,
+and provide an area for those users to meet and discuss
+related topics.  Many systems have message bases set aside
+for programming questions, public forums, debates, adult
+messages, etc.  Because of the op-code format of Zelch
+message bases, it is even possible to put a file transfer
+related message base in the same menu as your transfer
+commands!_
+_
+Note:  It is VERY important that you select an active
+message base before allowing the user to have access to any
+other 100 series op-codes.  A read new command with no
+message base selected could cause problems._
+_
+_
+7.1b  Op-code module:  "prg.msg bases"_
+_
+101 : Select a message base : this op-code should be
+executed at some point during the call before any of the
+other subboard commands are used.  This tells the BBS which
+subboard it will be working with throughout all of the 100
+series op-codes (101-199).  A good idea might be to have the
+BBS select message base A before loading a message base
+menu.  The system will not select a message base that the
+user does not have access to, or one that has not been
+created._
+_
+102 : List message bases : this command lists to the user
+all of the message bases which he/she may access.  In order
+to create the feel of message base subdirectories, two
+datafields are used:  starting message base letter (A-Z) and
+ending message base letter (A-Z).  Using these datafields
+can make groups of message bases accessible from different
+areas of your system._
+_
+103 : Read a message : reads a message on the selected
+subboard.  The following commands are available while
+reading messages:  Jump, Mail, Again, Quit, and next.  If
+the caller has subop or sysop access, or if he/she posted
+the message that was just read, Kill and Edit also will be
+available. Jump allows you to move forward or backward to
+another reply. Mail allows you to send a private message to
+the author of a message.  Again will reread the message or
+reply.  Kill and Edit allow you to Kill (delete) or Edit any
+posts or responses written by you.  If your subop or sysop
+flag is set, you may kill or edit ANY message._
+_
+There are two message read modes available.  The first read
+mode will stop after each individual response and prompt you
+for the commands described above.  The second read mode will
+accept the commands in the form of hotkeys.  Simply press
+the letter of the command as the message is being read. When
+the message and all of its replies have been read, you will
+be asked whether or not you would like to add a reply. If
+you choose to reply, and have access to the anonymous option
+_
+_
+(access levels for this defined in offline editor) then you
+will have the option to respond anonymously._
+_
+104 : Read new : when executed, this command will read any
+message with new replies (on the current message base), and
+its new replies.  "New" replies and posts refer to those
+messages posted since your last call._
+_
+105 : Global read new : this op-code will read all new
+messages on every JOINED message base, starting with the
+message base where the command was pressed and ending with
+the message base defined in the datafield for this op-code.
+Users may join and drop message bases if they have access to
+the join/drop op-code._
+_
+106 : Post a message : allows the user to create a new
+message for others to reply to.  If the maximum number of
+messages on the message base has been exceeded, the oldest
+message will be written over.  A user is limited to the
+number of posts per call as defined in the message base
+configuration data._
+_
+107 : Scan messages : when scanning messages, all of the
+important information is listed:  message number, number of
+replies, handle of author, date and time posted, and
+subject._
+_
+108 : Check current message base sub-operator flag : there
+are several ways to setup subop access, but the easiest way
+to do so is to use the check for subop access op-code.  It
+is used to limit access to subboard editing commands if they
+are added to the message base menu.  The op-code works by
+checking the subop ID numbers (defined in the message base
+configuration) for the caller's ID number.  If the caller's
+ID number is included in the list, the rest of the opcodes
+following the check will execute; otherwise, the command is
+aborted._
+_
+109 : Edit sub intro : this provides an easy way to allow
+subops to edit their sub intros without having to give the
+subop access to system files or other message base intros.
+When selected, the op-code will load the opening message
+(intro) for the selected message base off of the appropriate
+drive, and allow the caller to edit and save it._
+_
+110 : Join/Drop message base : this allows the user to
+toggle the joined status of the active message base. All
+unjoined message bases are skipped when performing a global
+read new command.  This data gets stored with the userfiles,
+so it is not necessary to do it each call.  The Join/Drop
+command does not prevent access to a sub, it just causes it
+to be skipped when in global new read mode._
+_
+111 : Scan new messages : works exactly the same as the scan
+command except that it lists only those messages that are
+new, or have had new replies since your last call._
+_
+_
+112 : Toggle read mode : this is the command used to toggle
+the read mode described in the read a message op-code.  The
+two modes available are continuous read mode, which
+suppresses prompts between replies, and non-continuous,
+which will prompt the user for commands between each
+message._
+_
+_
+7.2a  Intro to Zelch U/D Bases_
+_
+    The U/D bases are the area of the board where files are
+transferred from disk to modem and vise-versa.  Zelch
+supports both open transfers (where all files on a disk are
+available for downloading), and subboard transfer bases
+(where those files belonging to a particular transfer base
+may only be accessed when the caller has selected that U/D
+base).  File descriptions may also be included for each
+transferable file if the "sys.u/d desc" file has been
+created, the open transfers system is not used, and a file
+limit greater than zero was specified in the U/D base
+configuration._
+_
+    Transferring of files may either be done using the
+Punter protocol or the Xmodem protocol.  Also note that like
+the message bases, U/D base op-codes assume that a U/D base
+was selected prior to allowing the user to access sig-based
+commands.  Lastly, remember that when using the transfer
+base (non-open) system, you must make sure to include the
+"#" as the datafields for all op-codes relating to uploading
+and downloading._
+_
+_
+7.2b  Op-Code Module:  "prg.u/d bases"_
+_
+201 : Select a U/D base : this op-code functions much like
+its message base counterpart.  U/D bases cannot be selected
+if the caller does not have access to it._
+_
+202 : List U/D bases : functions exactly like its message
+base equivalent._
+_
+203 : Upload a file : using this op-code, the caller can
+send a file to the BBS using the protocol in memory.  If "#"
+is included in the datafields, the file name will have the
+current U/D letter automatically tacked to the beginning and
+thereby be joined to that U/D base.  Make sure that if you
+are using transfer subboards, you set the filename to "#" so
+that the file is sent to the proper U/D section.  After an
+upload occurs, the system will check the upload drive for
+the amount of disk space remaining and compare that to the
+minimum blocks setting for the selected U/D section.  If the
+disk space is less than that setting, the last file uploaded
+will be erased. If a successful upload has occurred, the
+user will receive block credits equal to the number of
+blocks uploaded times the credit ratio number specified for
+the U/D base. If the_
+_
+_
+"sys.u/d desc" file was created, and the max number of
+uploads as specified in the U/D base configuration has not
+been exceeded, the user will also be allowed to write a
+description for the upload._
+_
+204 : Download a file : this code will let the user download
+either a specific file found in the datafield, a file from
+the current U/D base (if "#"'s were included in the
+datafields), or any file on the specified drive if the
+filename is "*".  The user must have enough block credits to
+download the specified file.  If this file is from a U/D
+base, and descriptions are used, the user will now be
+allowed to view that description. After the download, an
+amount of credits equal to the length of the download (in
+blocks) will then be subtracted from the users block
+credits._
+_
+205 : Multi-Upload : transfers work exactly as the Upload
+transfer except that using a properly programmed terminal,
+the user may send multiple files one after another.  If a
+bad transfer occurs, the multi-upload function will abort.
+Multi-Upload will only work with the Punter protocol._
+_
+206 : Multi-Download : this works like the download except
+that the user will be prompted to select multiple files from
+the files available, making sure the user has enough block
+credits before allowing the transfer.  Multi-Download will
+only work with the Punter protocol._
+_
+207 : Check current U/D base Sub-Operator flag : this works
+exactly like its message base counterpart._
+_
+208 : Display blocks free : will display the number of
+commodore blocks, xmodem blocks, and the number of kilobytes
+free in the current U/D base._
+_
+209 : Edit sub intro : works like the corresponding message
+base op-code._
+_
+210 : Change protocols : this op-code allows the user to
+switch between the two available transfer protocols.  This
+protocol is used for all file transfers, and the users
+preference here is saved with their account information._
+_
+211 : Rebuild description log : if you are using the file
+description system, then this op-code will attempt to verify
+the data contained in the relative file.  For each U/D base,
+the following must be true for the files to get logged: the
+"sys.u/d desc" file must exist, the max files for the
+selected U/D base is something other than 0, there are free
+records available in the relative file._
+_
+212 : List files with descriptions : this will list the
+files and their descriptions for the U/D base._
+_
+_
+_
+_
+7.3a  Intro to the Voting Booth_
+_
+    The Zelch voting booth allows for several different
+types of voting systems.  Your voting booth may consist of 1
+topic, or as many as 26 separate topics.  Two types of
+topics are supported, the first type being the traditional
+multiple-choice topic, and the second being the
+questionnaires format with multiple questions and free
+response.  Also by controlling access to your edit a topic
+command, you may allow users to submit topics for validation
+by the sysops._
+_
+_
+7.3b  Op-Code Module:  "prg.voting booth"_
+_
+301 : Create/Edit a topic : executing this op-code allows
+the user to either create or change a voting topic and its
+data.  The first datafield is the topic letter to be
+created/changed (A-Z), or "#" for the next available slot.
+The second datafield is the type of voting topic
+(traditional or questionnaires).  The user will be prompted
+for the topic title (a short 20 character description of the
+voting topic), a short text describing the voting topic, the
+key letter to chose each option, and a description of each
+option (something short).  For a questionnaires type voting
+topic, well, just follow the prompts.  Executing this
+op-code will automatically reset the voting results for the
+topic being edited/changed.  Voting topics are saved on the
+voting data drive as defined in the offline editor._
+_
+302 : Delete a topic : does just what it says.  The topic
+specified will be deleted and unaccessible by the Vote on a
+topic op-code._
+_
+303 : Reset topic results : will not affect the voting topic
+itself, but will simply clear out the votes that have been
+made on the topic.  After executing, all users who have
+voted on the reset topic may vote again._
+_
+304 : Vote on a topic : after deciding that the specified
+voting topic exists, and that the user has access to the
+topic, this op-code will display the text of the topic being
+accessed.  The system then checks to make sure that the
+caller has not yet voted on the topic.  If he/she has not, a
+list of options will be displayed for the user to choose
+from. Hitting return at this prompt will abort the vote.
+After the user has voted, or if the user has already voted
+on the topic, the system will display the results of all the
+votes taken.  Questionnaire topics are handled different
+than the traditional topics.  The system checks to make sure
+that your answers are not on file, and then proceeds to ask
+you the questions.  If you have voted, you will be shown a
+listing of everyone's answers._
+_
+_
+_
+_
+_
+305 : List available topics : this option scans the voting
+topic records (A-Z) and lists the letter and title of voting
+topics found.  If the extended listing mode is used, the
+user will be told which topics are unvalidated, as well as
+who submitted each topic._
+_
+306 : Validate a topic : submitted topics are not available
+to be voted on until they have been validated, that is,
+until they have been given access levels by a sysop or
+someone with access to this command.  The second datafield
+can contain default access levels to give validated topics,
+or an "*" if you would like to be prompted._
+_
+_
+7.4a  Intro to the SysOp-oriented Op-codes_
+_
+    Unlike most of the other op-code modules, these op-codes
+have no relation to each other, other than the fact that
+they are mostly utility type commands.  Remember that sysops
+are not only limited to the commands in this module, but may
+use combinations of other op-codes to perform certain tasks
+like reading and deleting logs.  You may also decide to
+allow subops access to some of the subboard editing features
+included in this module._
+_
+_
+7.4b  Op-Code Module:  "prg.sysop"_
+_
+401 : View user information : after entering a user ID
+number or the exact handle of the user you wish to view
+information about, the system will display for you every
+piece of information on that user._
+_
+402 : Edit user information : the information on the user
+you want to edit will be loaded after specifying the ID or
+exact handle of the user.  The information will then be
+displayed with its current values.  Hitting return after
+each piece of information will leave the data unchanged,
+while hitting your delete key will allow you to re-enter the
+information.  It should be noted that you cannot edit your
+own account, so, if you need to edit any information about
+yourself not accessible with the online sysop utilities, you
+must logon as another user with access to this command._
+_
+403 : Edit a msg base : here is where message base sub
+boards are created, edited, and deleted.  Message bases
+range from A to Z.  The data edited includes:_
+_
+Subboard name - Basically only used for the List subboard
+op-code, and is also available as a display code._
+_
+Device number, Drive/LU - The disk drive on which the
+subboard opening message, and all subboard messages will be
+accessed from._
+_
+_
+_
+_
+Max msgs - This number represents the maximum files/posted
+messages which may be accessed from the current message
+base.  Posted messages are not to be confused with replies,
+which are tagged to the end of posts.  The max number of
+posts in any one message base is 50, while the number of
+replies may be infinite (or as set below)._
+_
+Max responses - This is the maximum number of replies
+monster mode will allow to be attached to each post. The
+maximum number here is larger than I can think of at 3am._
+_
+Min responses - When monster mode enforces the Max responses
+number for a posted message, it will delete all old
+responses, leaving the number of responses specified here._
+_
+Access - All of the access levels which may enter and access
+this message base.  Using this editor works much the same as
+the user editor._
+_
+Subops - This is a list of user ID numbers that should have
+access to subop related commands on this subboard.  The ID
+numbers are separated with semicolons (ie: "1;2;92"). You
+may include yourself in this list, though it is not
+necessary if your sysop flag is set._
+_
+Post/Call - Maximum number of posts that the user may add to
+this subboard on each call._
+_
+Extra masks - This is either a list of ID numbers separated
+by semicolons that may access this message base (only those
+ID's would have access!) or a system flag letter A-Z that
+must be set to enter the message base (great for creating
+adult message bases).  If neither mask is being used, put an
+"*" in this spot._
+_
+404 : Edit a U/D base : Working much the same as the message
+base editor, U/D subboards A through Z may be created,
+deleted, and changed from here._
+_
+Subboard name - Basically only used for the List subboard
+op-code, and is also available as a display code._
+_
+Device number, Drive/LU - The disk drive on which U/D
+commands will look for and direct files._
+_
+Min blocks - This is the minimum number of blocks which must
+be on the U/D drive after an upload for the system to keep
+the file._
+_
+Credits/Block - The number of block credits awarded for each
+block uploaded to this U/D section._
+_
+Access - All of the access levels which may enter and access
+this transfer base.  Using this editor works much the same
+as the user editor._
+_
+_
+_
+Subops - This is a list of user ID numbers that should have
+access to subop related commands on this subboard.  The ID
+numbers are separated with semicolons (ie: "1;2;104"). You
+may include yourself in this list, though it is not
+necessary if your sysop flag is set._
+_
+405 : ZOS : (short for Zelch Operating System) is an easy
+interface between you and your disk drive.  The numbers in
+the prompt represent the current operating device and
+drive/LU.  All DOS commands as well as the commands listed
+below are valid for entry here.  Hitting return on a blank
+prompt will exit ZOS._
+_
+ZOS FILE HANDLING COMMANDS:_
+_
+Note:  "filename" should be the name of the file you wish to
+access.  "u" is the device of the drive being accessed, and
+"d" is the drive/LU. Reference to "x" will mean either a
+file link number (0 being the first link, 1 the second, and
+so on.), or a record or other parameter number as specified
+in the command. Add no extra spaces not needed for filename
+or parameter data._
+_
+u,d - typing in a device followed by a comma and a drive/LU
+will change the drive being accessed by ZOS.  Your prompt
+will change accordingly._
+_
+@:filename - display a sequential file starting with link 0.
+Between each file link displayed, you will be prompted to
+either hit return to display the next link, or "s" to skip
+the next link and again be prompted.  The spacebar aborts
+the file and the home key pauses._
+_
+#x@:filename - displays a SEQ file starting with file link
+x, as specified in the command.  For example:_
+#10@:burp - would display the sequential file "burp"
+starting with file link number 10 (the 11th part)._
+_
+w:filename - will replace or create the sequential file
+specified with the text entered in the message maker._
+_
+#xw:filename - will replace the file link of the file
+specified with the new text as edited in the message maker.
+If the file link specified does not exist, the editor will
+allow you to append a new file link to the file._
+_
+e:filename - will load in and allow you to edit file link 0
+of the sequential file specified._
+_
+#xe:filename - will attempt to load for editing the file
+link of the file specified.  For example:_
+#6e:belch - will load in file link 6 of the file "belch" for
+editing._
+_
+$ - display the complete directory of the active drive.
+Spacebar aborts._
+_
+_
+$:filemask* - display a selective directory of the active
+drive._
+_
+% - display the number of files counted on the active
+drive._
+_
+%:filemask* - count all files beginning with the given
+filemask.  For example:_
+%0:mail.* - will count all of the "mail" files on the active
+drive._
+_
+px - will display the contents of memory location x._
+_
+#ypx - will poke the value of y into memory location x. For
+example:_
+#5p2929 - will poke the value 5 into memory location 2929._
+_
+^:filename - will execute the Zelch specific module
+"filename".  It is not productive to use this command on the
+zelch system modules._
+_
+#xs:filename - delete file link x from the file "filename".
+For example:_
+#5s:msg.a 1 - will erase the 5th reply from the message
+"msg.a 1"._
+_
+!:filename - allow you to append one line of text to a
+sequential file.  After entering the command, the system
+will respond with a colon and wait for you to enter the text
+to append.  All keys will work normally except parenthesis.
+Between all parenthesis, the user will have a number from 0
+to 255 representing the chr$ value of the character to place
+at that point in the line of text.  This is useful for all
+non-keyable characters (such as line link characters "(3)",
+or file link delimiters "(1)", etc.)_
+_
+#x!:filename - is used to edit record number x of the
+relative file "filename".  The system will expect input in a
+similar manner as described above in the sequential file
+format of this command.  Be careful not to exceed the length
+of the record in the relative file being edited.  That would
+be bad._
+_
+#u,dc:filename - is used to copy one program or sequential
+file from the active device onto the disk in drive u,
+device/LU d.  This command will not work on relative files,
+and will not duplicate a file on the same disk unless the
+BASIC DOS 2.0 command format is used.  Also remember that
+the_
+_
+filename must contain the filetype at the end; ",p" should
+be appended to program type filenames, and ",s" should be
+appended to sequential type filenames. For example:_
+#9,1c:burp,s - will copy the sequential file "burp" from the
+active device to the disk in drive 9,1._
+_
+_
+_
+u:filename - allows the user to upload the file "filename"
+to the drive using the active protocol.  Filetypes must be
+included here as in the copy command above._
+_
+#xu:filename - is for the uploading of the file "filename"
+to the drive using the protocol specified by "x". If x is 0,
+punter is used, while 1 is used for xmodem._
+_
+d:filename - lets the user download the file "filename" from
+the selected drive using the active protocol.  Filetypes
+must be included here as in the copy command above._
+_
+#xd:filename - is for the downloading of the file "filename"
+from the active drive using the protocol specified by "x".
+If x is 0, punter is used, while 1 is used for xmodem._
+_
+b:filename - will run the ordinary basic program "filename"
+off the current drive.  This activates online basic, so BBS
+routines and variables are not carried over to this
+program._
+_
+406 : Edit time/date : this works much the same way as the
+time/date entry section of the BBS setup module._
+_
+407 : Add a user : will check for the next available user
+slot for a new user and enter the user edit op-code._
+_
+408 : Read new user apps : also accessible from the waiting
+for call menu, this is a convenient feature created for the
+quick and easy validation of your new users.  After a user
+first applies for access to your system, their important
+personal info and the answers to the new user questionnaires
+are saved in the applications file.  This op-code then goes
+through each application, listing each one and giving you a
+prompt with these options:_
+_
+Again - redisplay the application._
+Delete - erase this user from your system._
+Edit - let you perform a complete edit on the user._
+Hold - keep this application for later consideration._
+Quit - hold all remaining applications and exit._
+Mail - send personal mail to the user._
+Validate - give the user a new access level and toggle any_
+           flags if necessary._
+_
+409 : Edit one-liners file : reads in the file
+"sys.one-liners" from your system data files drive and takes
+you to the message maker for changes.  After saving, the new
+one-liners are loaded and implemented._
+_
+_
+7.5a  Possibilities With Newsfiles_
+_
+    When a user first logs on to the system, all new
+newsfiles in the file "sys.news" on the system data drive
+will be displayed (if the user has the appropriate access).
+_
+_
+We have included the means by which you may create multiple
+news files on your system.  You may choose to have a
+newsfile for any number of subsections on your BBS (such as
+a U/D section newsfile, games news, etc.) simply by
+accessing a file other than "sys.news".  If you want any of
+the following op-codes to work with the "sys.news" file, you
+must specify that as the filename, and the system data files
+drive as the device and drive/LU._
+_
+_
+7.5b  Op-Code Module:  "prg.news"_
+_
+501 : Create/Edit a newsfile : with this op-code you can
+either create a new newsfile or edit an already existing
+file and its attributes.  The following information is
+needed when creating a newsfile:  the letter A-Z of the
+newsfile to edit, subject of the newsfile, access levels
+required to view the file, the new until date, and the
+delete date._
+_
+    The new until date is the last day on which the newsfile
+will appear to everyone who has access to it.  If you want
+the newsfile to appear only once, this should be set for the
+time and date that the file was created._
+_
+502 : Delete a newsfile : this is the command used to remove
+a newsfile and all of its data from the specified news
+sequential file.  It basically performs a scratch file link
+command._
+_
+503 : List newsfiles : will list all of the newsfile topics
+in the specified news sequential file._
+_
+504 : Read a newsfile : this is used to review a single
+newsfile that you missed at logon, or perhaps one that is no
+longer new, but has not yet been deleted._
+_
+505 : Read new newsfiles : performs the same operation that
+occurs at logon, except a different newsfile name may be
+specified._
+_
+_
+7.6  Op-Code Module:  "prg.misc"_
+_
+    Op-codes 601, 602, and 603 are unrelated utilities. They
+are described in full in section 3.3.  These op-codes are
+actually independent programs, but because we have tried to
+limit the number of modules required to run the BBS, we have
+combined them into an op-code module._
+_
+_
+7.7a  The Zelch Networking System_
+_
+    Networking is the ability of a group of BBS's
+(preferably long distance) to transfer files back and forth
+_
+_
+_
+for users without accounts on each of the systems.  A
+network works like the postal system.  A message is dropped
+off at one board in the network, and will be filed.  That
+message then makes its way from one system to another via
+Monster Mode until it reaches the user on the destination
+system.  Through networking, a user on a local BBS can send
+mail to a long distance board without calling long distance
+(all charges are paid by the sysop if long distance
+networking is active).  Networking does not have to be done
+long distance.  It is sometimes fun to network mail between
+systems in the same area that have different callers._
+_
+Note:  Zelch networking is only compatible with other Zelch
+systems.  Each networking system in existence has its own
+intricacies that are impossible to overcome._
+_
+_
+7.7b  Concepts Behind Networking_
+_
+    For each system in your network, the following
+information is kept on file:_
+_
+Name of the BBS - this is the 1-20 character name of the
+system to which the mail is sent._
+_
+BBS phone number - the phone number of the system that is in
+the network.  This phone number serves as a network ID or
+Node number/address._
+_
+Incoming password - this is the code that this system will
+use to logon to your system if/when it calls to upload
+messages.  This password is used to determine which system
+is calling._
+_
+Destination number - this is where mail to the system
+mentioned above should be filed.  The network command in
+monster mode only calls systems that have the same BBS phone
+number and destination number._
+_
+Baud rate - the highest and most reliable baud rate
+supported by the destination BBS._
+_
+    With this configuration it is possible to have 26
+systems in your network, and yet only be responsible for
+calling 1.  To do this, you would configure 25 out of the 26
+systems to contain the system name, BBS phone number, and a
+common destination phone number.  The 26th system is the
+system whose phone number is the same as its destination
+phone number.  All of the mail sent to the first 25 systems
+will be filed along with this system's mail.  It may be
+helpful to think of this setup as a 25 spoked wheel, with
+the 26th system being in the center.  When that system is
+called, and the mail is unpacked, that system then sorts
+each individual message in the same manner.  New destination
+systems are chosen._
+_
+_
+_
+    Some configurations may involve each system calling the
+next link in a small network.  That link then calls the
+third, which calls the fourth, which then calls the first
+system again to complete the chain.  It is also possible to
+create several of the "spoked wheels" described above on
+smaller scales (ie: two or three 5 spoked wheels)._
+_
+    It is very important that the network be planned out
+before being implemented.  Perform logic tests to make sure
+that the mail should logically get to its destination._
+_
+_
+Note:  It is very important that you configure the
+information for your system as part of the network before
+any network calls are made._
+_
+_
+7.7c  Op-Code Module:  "prg.network"_
+_
+701 : Net e-mail : this is the command used to file a piece
+of networked mail.  The user will be prompted to enter the
+letter corresponding to the destination system and the
+handle of the user on that system that the mail is sent to.
+Handles must be typed exactly as they appear on the
+destination system.  If the user is not found, Monster Mode
+will file a complaint with the author of the mail._
+_
+702 : Net feedback : using this command, you can send
+feedback directly to the sysops of another system without
+calling their board.  This is particularly useful when you
+are having problems connecting with the system, or cannot
+get through._
+_
+703 : List systems : this command will list the names and
+phone numbers of the systems in your network.  Your own
+board will not be listed, and local numbers will be preceded
+with an "L".  Before each system is the letter used to
+identify it when sending messages._
+_
+704 : Add a system : by using this command, you can
+configure your system as part of the network and add new
+systems.  Read section 7.7b for information about this data._
+_
+705 : Delete a system : this command is used to delete a
+system from your network should it go down or be removed
+from your network.  Make sure that you reconfigure the
+destination numbers if you remove an important system._
+_
+_
+_
+_
+_
+_
+_
+_
+
