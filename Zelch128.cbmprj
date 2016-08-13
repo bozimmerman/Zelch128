@@ -25,12 +25,12 @@
         <FileName>ansi-3a00-table.asm</FileName>
         <FileName>ascii-3b00-table.asm</FileName>
         <FileName>cursor-0300.asm</FileName>
-        <FileName>ramdos128.asm</FileName>
-        <FileName>zelch-ml-1300k.asm</FileName>
         <FileName>zelch-ml-1300l.asm</FileName>
-        <FileName>zelch-ml-1300x.asm</FileName>
         <FileName>zelch-ml-2000.asm</FileName>
         <FileName>zelch-ml-3d00.asm</FileName>
+        <FileName>zelch-ml-1300k.asm</FileName>
+        <FileName>zelch-ml-1300x.asm</FileName>
+        <FileName>ramdos128.asm</FileName>
     </BuildList>
     <DetermineBuildOrder>0</DetermineBuildOrder>
     <PaddingByte>234</PaddingByte>
