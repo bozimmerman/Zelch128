@@ -1,8 +1,8 @@
 *= $1300
 ;.D X-XFER 1300
-        JMP SENDCHK
+        JMP SENDFIL
         JMP RECVCHK
-        JMP SENDCRC
+        JMP SENDFIL
         JMP RECVCRC
 PRINT2
         NOP
@@ -80,10 +80,10 @@ CRCMSB
 ;****************
 ;VARIABLE STORAGE
 ;****************
-BUFFER  = $1EFD
+BUFFER = $1EFD
 BUFFER3 = $1F00
 ENDBUF = $1F80
-CRCBUF  = $1F81
+CRCBUF = $1F81
 ACK = $06
 CAN = $18
 EOT = $04
@@ -97,17 +97,17 @@ XTYPE = $FF
 ;***************
 ;VARIABLE MEMORY
 ;***************
-BLOCK                   BYTE 0
-GOOD                    BYTE 0
-ERRORS                  BYTE 0
-ABORT                   BYTE 0
-TIMEOUTS                BYTE 0
-BUFBIT                  BYTE 0
-BUFSIZE                 BYTE 0
-CHECKSM                 BYTE 0
-CRC                     BYTE 0,0
-CLOCK                   BYTE 0
-IOSTAT                  BYTE 0
+BLOCK             BYTE 0
+GOOD              BYTE 0
+ERRORS            BYTE 0
+ABORT             BYTE 0
+TIMEOUTS          BYTE 0
+BUFBIT            BYTE 0
+BUFSIZE           BYTE 0
+CHECKSM          BYTE 0
+CRC               BYTE 0,0
+CLOCK             BYTE 0
+IOSTAT            BYTE 0
 ;*************
 ;MISC ROUTINES
 ;*************
@@ -122,6 +122,7 @@ CLEAR
         STA CRC
         STA CRC+1
         STA TIMEOUTS
+        STA IOSTAT
         RTS
 RETIME
         LDA #$00
@@ -271,8 +272,7 @@ RECVLP
 CANCEL
         LDA #$01
         STA ABORT
-R2 
-        JSR CHECKABORT
+R2      JSR CHECKABORT
         JSR CHECKTIME
         LDA ABORT
         BEQ ARECVN
@@ -433,23 +433,25 @@ EXITXMODEM
 ;******************
 ;SEND A XMODEM FILE
 ;******************
-SENDCHK
-        LDA #$00
-        STA XTYPE
-        LDA #$84
-        STA BUFSIZE
-        JMP SNDBEGIN
-SENDCRC
-        LDA #$01
-        STA XTYPE
-        LDA #$85
-        STA BUFSIZE
-SNDBEGIN
+SENDFIL
         LDA #$00
         STA UPDN
         JSR CLEAR
         JSR FLUSHBUF
-        INC BLOCK
+        JSR SNDSCRC
+        JMP SNDSTART
+SNDSCHK
+        LDA #$00
+        STA XTYPE
+        LDA #$84
+        STA BUFSIZE
+        RTS
+SNDSCRC
+        LDA #$01
+        STA XTYPE
+        LDA #$85
+        STA BUFSIZE
+        RTS
 SNDBUILD
         LDX #$02
         JSR $FFC6
@@ -467,6 +469,9 @@ SREAD
         JMP SND2
 PADBUF
         INY
+        INY
+        CPY #$80
+        BCC PAD2
 PAD2
         LDA #PAD
         STA BUFFER3,Y
@@ -506,6 +511,7 @@ SENDLOOP
         STY BUFBIT
         CPY BUFSIZE
         BCC SENDLOOP
+SNDSTART
         JSR $FFCC
         LDX #$05
         JSR $FFC6
@@ -515,9 +521,9 @@ SENDWAIT
         JSR CHECKTIME
         JSR $FFE4
         CMP #NAK
-        BEQ RESEND
+        BEQ SNDCHK
         CMP #CNAK
-        BEQ RESEND
+        BEQ SNDCRC
         CMP #CAN
         BEQ SNDABORT
         CMP #ACK
@@ -528,12 +534,20 @@ SENDWAIT
         LDA ABORT
         BNE SNDABORT
         LDA CLOCK
-        BNE RESEND
+        BNE SENDERR
         JMP SENDWAIT
 ;****** MISC SEND ROUTINES ******
 SNDABORT
         JMP ABORTXMODEM
-RESEND
+SNDCRC
+        JSR SNDSCRC
+        JMP SENDRE
+SNDCHK
+        JSR SNDSCHK
+SENDRE
+        LDA BLOCK
+        BEQ NEXTBLOCK
+SENDERR
         INC ERRORS
         JSR $FFCC
         LDA #$3A
@@ -561,5 +575,3 @@ NXTGO
         JSR PAAS
         JSR FLUSHBUF
         JMP SNDBUILD
-
-
