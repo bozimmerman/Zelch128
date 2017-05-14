@@ -1,5 +1,72 @@
-Zelch 128 (C)1991-2016 William Fink, Bo Zimmerman
+Zelch 128 (C)1991-2017 William Fink, Bo Zimmerman
 Please read the LICENSE file for license information
 Please read the NOTICE file for credits information
 
-More forthcoming
+The Zelch 128 Package is in CBM Prg Studio format.  If you'd like to
+download the binaries, just visit: http://bbs.zimmers.net and scroll to the bottom.
+
+
+HOW TO ASSEMBLE:
+
+The Zelch 128 distribution package consists of two disks.  
+
+The first 1571 (.D71) disk is the BOOT disk, and consists of the following files:
+
+zelch,p
+bbs.main,p
+bbs.editor,p
+bbs.setup,p
+bbs.ascii edit,p
+bbs.copy,p
+bbs.create,p
+raminstall,p
+ ramdos128,p (** note the preceding space!)
+v3.0 2000,p
+v3.0 3d00,p
+crsr 0e00,p
+ascii 3b00,p
+ansi 3a00,p
+sys.variables,s
+sys.text,s
+----------------,u
+p-xfer 1300,p
+x-xfer 1300,p
+l-xfer 1300,p
+k-xfer 1300,p
+prg.logon,p
+prg.zapterm,p
+prg.new user,p
+prg.msg bases,p
+prg.voting booth,p
+prg.sysop,p
+prg.misc,p
+prg.monster,p
+prg.news,p
+prg.online utils,p
+prg.u/d bases,p
+prg.network,p
+
+The second 1571 (.D71) disk is the CONFIGURATIONS disk and consists of the following files:
+run.me,p
+-----zelch-----,u
+conf.zelch,s
+gam.bagels,p
+gam.wheel,p
+-----elite-----,u
+conf.elite
+prg.dating boot,p
+prg.dating,p
+prg.star trek,p
+prg.bbs list,p
+---simplicity---,u
+conf.simple,s
+
+To build the files for these disks, you'll need three programs.  One, obviously, is CBM prg studio.  The other is DirMaster, or some other program that lets you copy files into a blank .D71 image.  The last is either an emulator to run the disks on, or a program to copy the images to real floppies.
+
+The first step is to load CBM prg studio.  Starting with the BASIC files, open up each file so you can see the code.  Then Click the little PRG button to "Generate .prg (current file)"  or select Build->Program->To File from the menu.  After all the BASIC files are built, and the prg files saved, then do the Assembly files the same way.  The Assembly files will give you an extra window "Assembly Dump", but you can just hit the X to close this and ignore it.
+
+The next step is to copy the files for the boot disk into a .D71 image, in the order shown above.  Please note that some of the files will need to be renamed after they are copied into the image.  These are: ramdos128 (add a space to the beginning), and prg.u - d bases, which should be renamed to "prg.u/d bases".  Also, the SEQ (,s) files mentioned above can be found in the project "data" directory, such as sys.text and sys.variables, and copied in as-is.
+
+Next is to build the files for the configuration disk into a different .D71 image.  Once again, copy the files in the order shown above, grabbing the SEQ (,s) files from the projects data directory.
+
+The last step is to either load up your emulator, or copy the images to real floppies, and get to work.  Instructions from here on are covered by the documentation in the projects docs directory.
