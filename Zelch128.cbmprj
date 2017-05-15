@@ -38,8 +38,8 @@
     <BuildList>
         <FileName>crsr 0e00.asm</FileName>
         <FileName>l-xfer 1300.asm</FileName>
-        <FileName>v3.0 2000.asm</FileName>
-        <FileName>v3.0 3d00.asm</FileName>
+        <FileName>ml 2000.asm</FileName>
+        <FileName>ml 3d00.asm</FileName>
         <FileName>k-xfer 1300.asm</FileName>
         <FileName>x-xfer 1300.asm</FileName>
         <FileName>ramdos128.asm</FileName>
@@ -206,6 +206,17 @@
         </SourceFile>
         <SourceFile>
             <Name>l-xfer 1300.asm</Name>
+            <PrgName />
+            <FileType>2</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>ml 2000.asm</Name>
             <PrgName />
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
@@ -436,18 +447,7 @@
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>v3.0 2000.asm</Name>
-            <PrgName />
-            <FileType>2</FileType>
-            <IncludeInBuild>True</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>v3.0 3d00.asm</Name>
+            <Name>ml 3d00.asm</Name>
             <PrgName />
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
