@@ -51,17 +51,19 @@
         <FileName>prg.voting booth.bas</FileName>
         <FileName>prg.zapterm.bas</FileName>
         <FileName>crsr 0e00.asm</FileName>
-        <FileName>ascii 1c00.asm</FileName>
+        <FileName>ascii.asm</FileName>
         <FileName>filecopy.bin.asm</FileName>
         <FileName>ml 3d00.asm</FileName>
         <FileName>ml 2000.asm</FileName>
-        <FileName>p-xfer 3000.asm</FileName>
+        <FileName>interrupts.asm</FileName>
+        <FileName>main ml.asm</FileName>
+        <FileName>p-xfer.asm</FileName>
     </BuildList>
     <DetermineBuildOrder>0</DetermineBuildOrder>
     <PaddingByte>234</PaddingByte>
     <SourceFiles>
         <SourceFile>
-            <Name>ascii 1c00.asm</Name>
+            <Name>ascii.asm</Name>
             <PrgName />
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
@@ -149,18 +151,18 @@
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>ml 2000.asm</Name>
+            <Name>interrupts.asm</Name>
             <PrgName />
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>False</Topmost>
+            <Topmost>True</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>ml 3d00.asm</Name>
+            <Name>main ml.asm</Name>
             <PrgName />
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
@@ -259,7 +261,7 @@
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>p-xfer 3000.asm</Name>
+            <Name>p-xfer.asm</Name>
             <PrgName />
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>

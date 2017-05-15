@@ -22,7 +22,7 @@
         JMP OFFBAS; 8243 / 16500 / TURN OFF ONLINE BASIC
         ; 220,570,1250,2085,2086,2570,3245,3540,3615
 IDD1
-        ; .BYTE 65
+        BYTE $65
         ;*******VERY IMPORTANT******
 LDAFAR
         LDX #$01
@@ -35,7 +35,7 @@ LDAFAR2
         JSR $FF74
         RTS
 IDD2
-        ; .BYTE 90
+        BYTE $90
         ;**************CREATE ONE CHARACTER INPUT A$*******************
 GETIT
         LDA #$41; **SET UP A$="
@@ -80,9 +80,9 @@ DEFLP
         STA $3E
         RTS
 DEFBITS
-        ; .BYTE 34 58 158 56 50 51 55 58
+        BYTES $34 $58 $158 $56 $50 $51 $55 $58
 IDD3
-        ; .BYTE 49
+        BYTE $49
 DEFFIX
         LDA $0B69
         STA $3D
@@ -114,9 +114,9 @@ NOCHAT
         STA $0B0B
         JMP EXOUT
 IDD4
-        ; .BYTE 50
+        BYTE $50
 IDD5
-        ; .BYTE 48
+        BYTE $48
 SYSNULL
         LDA $0B07; SYSOP LOCAL
         BEQ USRCONT
@@ -213,7 +213,7 @@ LOAD
         LDX $0B12
         RTS
 IDD6
-        ; .BYTE 49
+        BYTE $49
         ;*****************SEND ONE CHARACTER OUT RTINE*******************
 SEND
         JSR SAVE
@@ -277,7 +277,7 @@ NORTNH
         INC $0B6B
         JMP NOFRMT
 IDD7
-        ; .BYTE 57
+        BYTE $57
 ISRTN
         LDA #$0D
         STA $FE
@@ -349,14 +349,14 @@ BADDEST
         JSR LOAD
         RTS
 IDD8
-        ; .BYTE 48
+        BYTE $48
 BASRTINE
         LDA $0B71
         BNE BASGOOD
 BASBAD
         RTS
 IDD9
-        ; .BYTE 65
+        BYTE $65
 BASGOOD
         LDA $0B0B
         BEQ BADUP
@@ -714,9 +714,9 @@ RTNSEND
         RTS
         ;******************SYSOP CHAT MODE******************
 ENTRANCE
-        ; .BYTE "CHAT MODE"
+        BYTES "CHAT MODE"
 EXITIT
-        ; .BYTE "RETURNING TO THE BBS"
+        BYTES "RETURNING TO THE BBS"
 CHATMODE
         LDA $0B0E; *NOT IN TWICE
         BNE CHATGONE
@@ -1183,9 +1183,9 @@ COUNTOUT
         JSR $FFCC
         RTS
 ASCMSG
-        ; .BYTE "ASCII TERM"
+        BYTES "ASCII TERM"
 GFXMSG
-        ; .BYTE "GRAPHICS TERM"
+        BYTES "GRAPHICS TERM"
         ;*******************ZAP TERM**********************
 ZAPTERM
         JSR $FFCC
@@ -1309,9 +1309,9 @@ A80CHK2
         JSR $EF79
         RTS
 ONOFF
-        ; .BYTE "ONOFF"
+        BYTES "ONOFF"
 LINFED
-        ; .BYTE "LINEFEEDS "
+        BYTES "LINEFEEDS "
 FEDSWCH
         LDA #$0D
         STA $FE
