@@ -36,36 +36,74 @@
         <PostBuildCommands />
     </BuildEvents>
     <BuildList>
-        <FileName>zelch.bas</FileName>
+        <FileName>crsr 0e00.asm</FileName>
+        <FileName>ascii.asm</FileName>
+        <FileName>interrupts.asm</FileName>
+        <FileName>main ml.asm</FileName>
+        <FileName>p-xfer.asm</FileName>
+        <FileName>bbs.ascii edit.bas</FileName>
+        <FileName>bbs.copy.bas</FileName>
         <FileName>bbs.create.bas</FileName>
+        <FileName>bbs.editor.bas</FileName>
         <FileName>bbs.main.bas</FileName>
         <FileName>bbs.setup.bas</FileName>
-        <FileName>bbs.editor.bas</FileName>
-        <FileName>filecopy.bas</FileName>
         <FileName>prg.logon.bas</FileName>
+        <FileName>prg.misc.bas</FileName>
         <FileName>prg.monster.bas</FileName>
         <FileName>prg.msg bases.bas</FileName>
+        <FileName>prg.network.bas</FileName>
         <FileName>prg.new user.bas</FileName>
+        <FileName>prg.news.bas</FileName>
+        <FileName>prg.online utils.bas</FileName>
         <FileName>prg.sysop.bas</FileName>
         <FileName>prg.u - d bases.bas</FileName>
         <FileName>prg.voting booth.bas</FileName>
         <FileName>prg.zapterm.bas</FileName>
-        <FileName>crsr 0e00.asm</FileName>
-        <FileName>ascii.asm</FileName>
-        <FileName>filecopy.bin.asm</FileName>
-        <FileName>ml 3d00.asm</FileName>
-        <FileName>ml 2000.asm</FileName>
-        <FileName>interrupts.asm</FileName>
-        <FileName>main ml.asm</FileName>
-        <FileName>p-xfer.asm</FileName>
+        <FileName>raminstall.bas</FileName>
+        <FileName>zelch.bas</FileName>
+        <FileName>ansi.asm</FileName>
+        <FileName>ramdos128.asm</FileName>
     </BuildList>
     <DetermineBuildOrder>0</DetermineBuildOrder>
     <PaddingByte>234</PaddingByte>
     <SourceFiles>
         <SourceFile>
+            <Name>ansi.asm</Name>
+            <PrgName />
+            <FileType>2</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
             <Name>ascii.asm</Name>
             <PrgName />
             <FileType>2</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>bbs.ascii edit.bas</Name>
+            <PrgName />
+            <FileType>1</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>bbs.copy.bas</Name>
+            <PrgName />
+            <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
             <Breakpoints />
@@ -129,28 +167,6 @@
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>filecopy.bas</Name>
-            <PrgName />
-            <FileType>1</FileType>
-            <IncludeInBuild>True</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>filecopy.bin.asm</Name>
-            <PrgName />
-            <FileType>2</FileType>
-            <IncludeInBuild>True</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
-        </SourceFile>
-        <SourceFile>
             <Name>interrupts.asm</Name>
             <PrgName />
             <FileType>2</FileType>
@@ -184,6 +200,17 @@
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
+            <Name>prg.misc.bas</Name>
+            <PrgName />
+            <FileType>1</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
             <Name>prg.monster.bas</Name>
             <PrgName />
             <FileType>1</FileType>
@@ -206,7 +233,40 @@
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
+            <Name>prg.network.bas</Name>
+            <PrgName />
+            <FileType>1</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
             <Name>prg.new user.bas</Name>
+            <PrgName />
+            <FileType>1</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>prg.news.bas</Name>
+            <PrgName />
+            <FileType>1</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>prg.online utils.bas</Name>
             <PrgName />
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
@@ -264,6 +324,28 @@
             <Name>p-xfer.asm</Name>
             <PrgName />
             <FileType>2</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>ramdos128.asm</Name>
+            <PrgName />
+            <FileType>2</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>raminstall.bas</Name>
+            <PrgName />
+            <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
             <Breakpoints />
