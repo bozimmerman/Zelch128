@@ -63,6 +63,8 @@
         <FileName>zelch.bas</FileName>
         <FileName>ansi.asm</FileName>
         <FileName>ramdos128.asm</FileName>
+        <FileName>x-xfer.asm</FileName>
+        <FileName>l-xfer.asm</FileName>
     </BuildList>
     <DetermineBuildOrder>0</DetermineBuildOrder>
     <PaddingByte>234</PaddingByte>
@@ -168,6 +170,17 @@
         </SourceFile>
         <SourceFile>
             <Name>interrupts.asm</Name>
+            <PrgName />
+            <FileType>2</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>l-xfer.asm</Name>
             <PrgName />
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
@@ -346,6 +359,17 @@
             <Name>raminstall.bas</Name>
             <PrgName />
             <FileType>1</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>x-xfer.asm</Name>
+            <PrgName />
+            <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
             <Breakpoints />

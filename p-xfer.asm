@@ -1,5 +1,5 @@
-* =$3000
-                    ; punter protocol for zelch 1.0
+* =$1300
+                    ; punter protocol for zelch 2.0a
 kCHKIN = $FFC6
 kCHKOUT = $FFC9
 kCLRCHN = $FFCC
@@ -16,54 +16,54 @@ L3000               lda #$00
                     nop 
                     jmp L3018
                     
-                    byte $4c,$9b,$35 
+                    byte $4c,$9b,$18 
 L3018               sta $64
                     tsx 
-                    stx $381c
+                    stx $1c1c
                     lda #$30
                     clc 
                     adc $64
-                    sta $302e
-                    lda #$30
+                    sta $132e
+                    lda #$13
                     adc #$00
-                    sta $302f
+                    sta $132f
                     jmp L3030
                     
 L3030               jmp L3051
                     
-                    byte $4c,$08,$34,$4c,$d0,$33,$4c,$ce
-                    byte $34,$4c,$17,$35,$4c,$aa,$35,$47
+                    byte $4c,$08,$17,$4c,$d0,$16,$4c,$ce
+                    byte $17,$4c,$17,$18,$4c,$aa,$18,$47
                     byte $4f,$4f,$42,$41,$44,$41,$43,$4b
                     byte $53,$2f,$42,$53,$59,$4e 
-L3051               sta $3805
+L3051               sta $1c05
                     lda #$00
-                    sta $3800
-                    sta $3801
-                    sta $3802
+                    sta $1c00
+                    sta $1c01
+                    sta $1c02
 L305f               lda #$00
-                    sta $3806
-                    sta $3807
+                    sta $1c06
+                    sta $1c07
 L3067               jsr S367b
                     jsr S30f2
                     lda $96
                     bne L30c9
-                    lda $3801
-                    sta $3800
-                    lda $3802
-                    sta $3801
+                    lda $1c01
+                    sta $1c00
+                    lda $1c02
+                    sta $1c01
                     lda $0200
-                    sta $3802
+                    sta $1c02
                     lda #$00
-                    sta $3804
+                    sta $1c04
                     lda #$01
-                    sta $3803
-L308d               lda $3805
-                    bit $3803
+                    sta $1c03
+L308d               lda $1c05
+                    bit $1c03
                     beq L30ab
-                    ldy $3804
+                    ldy $1c04
                     ldx #$00
-L309a               lda $3800,x
-                    cmp $3042,y
+L309a               lda $1c00,x
+                    cmp $1342,y
                     bne L30ab
                     iny 
                     inx 
@@ -71,29 +71,29 @@ L309a               lda $3800,x
                     bne L309a
                     jmp L30be
                     
-L30ab               asl $3803
-                    lda $3804
+L30ab               asl $1c03
+                    lda $1c04
                     clc 
                     adc #$03
-                    sta $3804
+                    sta $1c04
                     cmp #$0f
                     bne L308d
                     jmp L305f
                     
 L30be               lda #$ff
-                    sta $3806
-                    sta $3807
+                    sta $1c06
+                    sta $1c07
                     jmp L3067
                     
-L30c9               inc $3806
+L30c9               inc $1c06
                     bne L30d1
-                    inc $3807
-L30d1               lda $3807
-                    ora $3806
+                    inc $1c07
+L30d1               lda $1c07
+                    ora $1c06
                     beq L30ec
-                    lda $3806
+                    lda $1c06
                     cmp #$07
-                    lda $3807
+                    lda $1c07
                     cmp #$14
                     bcc L3067
                     lda #$01
@@ -137,7 +137,7 @@ L311d               pha
 L3124               ldx #$05
                     jsr kCHKOUT
                     ldx #$00
-L312b               lda $3042,y
+L312b               lda $1342,y
                     jsr S3700
                     iny 
                     inx 
@@ -145,12 +145,12 @@ L312b               lda $3042,y
                     bne L312b
                     jmp kCLRCHN
                     
-L313a               sta $3808
+L313a               sta $1c08
                     lda #$00
-                    sta $380b
+                    sta $1c0b
 L3142               lda #$02
                     sta $64
-                    ldy $3808
+                    ldy $1c08
                     jsr L3124
 L314c               lda #$04
                     jsr L3051
@@ -162,13 +162,13 @@ L314c               lda #$04
                     
 L315c               ldy #$09
                     jsr L3124
-                    lda $380d
+                    lda $1c0d
                     beq L316b
-                    lda $3808
+                    lda $1c08
                     beq L318a
-L316b               lda $3904
-                    sta $3809
-                    sta $3817
+L316b               lda $1d04
+                    sta $1c09
+                    sta $1c17
                     jsr S327f
                     lda $96
                     cmp #$01
@@ -186,20 +186,20 @@ L318a               lda #$10
                     lda $96
                     bne L315c
                     lda #$0a
-                    sta $3809
+                    sta $1c09
 L3198               ldy #$0c
                     jsr L3124
                     lda #$08
                     jsr L3051
                     lda $96
                     beq L31ab
-                    dec $3809
+                    dec $1c09
                     bne L3198
 L31ab               rts 
                     
 S31ac               lda #$01
-                    sta $380b
-L31b1               lda $381e
+                    sta $1c0b
+L31b1               lda $1c1e
                     beq L31bb
                     ldy #$00
                     jsr L3124
@@ -208,15 +208,15 @@ L31bb               lda #$0b
                     lda $96
                     bne L31b1
                     lda #$00
-                    sta $381e
-                    lda $3804
+                    sta $1c1e
+                    lda $1c04
                     cmp #$00
                     bne L3205
-                    lda $380d
+                    lda $1c0d
                     bne L323d
-                    inc $3819
+                    inc $1c19
                     bne L31dd
-                    inc $381a
+                    inc $1c1a
 L31dd               jsr S3364
                     ldy #$05
                     iny 
@@ -224,19 +224,19 @@ L31dd               jsr S3364
                     cmp #$ff
                     bne L31ff
                     lda #$01
-                    sta $380d
-                    lda $3816
+                    sta $1c0d
+                    lda $1c16
                     eor #$01
-                    sta $3816
+                    sta $1c16
                     jsr S3364
                     jsr S3344
                     jmp L3202
                     
 L31ff               
-                    byte $20, $ff,$32
+                    byte $20, $ff,$15
 L3202               lda #$2d
                     ;;bit $3aa9
-                    byte $3c
+                    byte $2c
 L3205               lda #$3a
                     jsr S3586
                     ldy #$06
@@ -248,7 +248,7 @@ L3205               lda #$3a
                     jsr S3364
                     ldy #$04
                     lda ($66),y
-                    sta $3809
+                    sta $1c09
                     jsr S3371
                     ldx #$05
                     jsr kCHKOUT
@@ -256,7 +256,7 @@ L3205               lda #$3a
 L322c               lda ($66),y
                     jsr S3700
                     iny 
-                    cpy $3809
+                    cpy $1c09
                     bne L322c
                     jsr kCLRCHN
                     lda #$00
@@ -271,71 +271,71 @@ L323d               lda #$2a
                     lda $96
                     bne L323d
                     lda #$0a
-                    sta $3809
+                    sta $1c09
 L3255               ldy #$0c
                     jsr L3124
                     lda #$10
                     jsr L3051
                     lda $96
                     beq L3268
-                    dec $3809
+                    dec $1c09
                     bne L3255
 L3268               lda #$03
-                    sta $3809
+                    sta $1c09
 L326d               ldy #$09
                     jsr L3124
                     lda #$00
                     jsr L3051
-                    dec $3809
+                    dec $1c09
                     bne L326d
                     lda #$01
                     rts 
                     
 S327f               ldy #$00
 L3281               lda #$00
-                    sta $3806
-                    sta $3807
+                    sta $1c06
+                    sta $1c07
 L3289               jsr S367b
                     jsr S30f2
                     lda $96
                     bne L32cf
                     lda $0200
-                    sta $3900,y
+                    sta $1d00,y
                     cpy #$03
                     bcs L32b9
-                    sta $3800,y
+                    sta $1c00,y
                     cpy #$02
                     bne L32b9
-                    lda $3800
+                    lda $1c00
                     cmp #$41
                     bne L32b9
-                    lda $3801
+                    lda $1c01
                     cmp #$43
                     bne L32b9
-                    lda $3802
+                    lda $1c02
                     cmp #$4b
                     beq L32c4
 L32b9               iny 
-                    cpy $3809
+                    cpy $1c09
                     bne L3281
                     lda #$01
                     sta $96
                     rts 
                     
 L32c4               lda #$ff
-                    sta $3806
-                    sta $3807
+                    sta $1c06
+                    sta $1c07
                     jmp L3289
                     
-L32cf               inc $3806
+L32cf               inc $1c06
                     bne L32d7
-                    inc $3807
-L32d7               lda $3806
-                    ora $3807
+                    inc $1c07
+L32d7               lda $1c06
+                    ora $1c07
                     beq L32fa
-                    lda $3806
+                    lda $1c06
                     cmp #$06
-                    lda $3807
+                    lda $1c07
                     cmp #$10
                     bne L3289
                     lda #$02
@@ -350,17 +350,17 @@ L32fa               lda #$08
                     sta $96
                     rts 
                     
-L32ff               lda $3816
+L32ff               lda $1c16
                     eor #$01
-                    sta $3816
+                    sta $1c16
                     jsr S3364
                     ldy #$05
-                    lda $3819
+                    lda $1c19
                     clc 
                     adc #$01
                     sta ($66),y
                     iny 
-                    lda $381a
+                    lda $1c1a
                     adc #$00
                     sta ($66),y
                     ldx #$02
@@ -371,7 +371,7 @@ L3323               jsr kCHRIN
                     iny 
                     jsr kREADST
                     bne L3338
-                    cpy $3818
+                    cpy $1c18
                     bne L3323
                     tya 
                     pha 
@@ -392,7 +392,7 @@ L3345               jsr kCLRCHN
                     jsr S359b
                     ldy #$04
                     lda ($66),y
-                    sta $3809
+                    sta $1c09
                     jsr S3371
                     pla 
                     ldy #$04
@@ -402,66 +402,66 @@ L3345               jsr kCLRCHN
                     
 S3364               lda #$00
                     sta $66
-                    lda $3816
+                    lda $1c16
                     clc 
-                    adc #$39
+                    adc #$1d
                     sta $67
                     rts 
                     
 S3371               lda #$00
                     sta $66
-                    lda $3816
+                    lda $1c16
                     eor #$01
                     clc 
-                    adc #$39
+                    adc #$1d
                     sta $67
                     rts 
                     
 S3380               lda #$00
-                    sta $3812
-                    sta $3813
-                    sta $3814
-                    sta $3815
+                    sta $1c12
+                    sta $1c13
+                    sta $1c14
+                    sta $1c15
                     ldy #$04
-L3390               lda $3812
+L3390               lda $1c12
                     clc 
                     adc ($66),y
-                    sta $3812
+                    sta $1c12
                     bcc L339e
-                    inc $3813
-L339e               lda $3814
+                    inc $1c13
+L339e               lda $1c14
                     eor ($66),y
-                    sta $3814
-                    lda $3815
+                    sta $1c14
+                    lda $1c15
                     rol a
-                    rol $3814
-                    rol $3815
+                    rol $1c14
+                    rol $1c15
                     iny 
-                    cpy $3809
+                    cpy $1c09
                     bne L3390
                     ldy #$00
-                    lda $3812
+                    lda $1c12
                     sta ($66),y
                     iny 
-                    lda $3813
+                    lda $1c13
                     sta ($66),y
                     iny 
-                    lda $3814
+                    lda $1c14
                     sta ($66),y
                     iny 
-                    lda $3815
+                    lda $1c15
                     sta ($66),y
                     rts 
                     
 L33d0               lda #$00
-                    sta $380d
-                    sta $380c
-                    sta $381d
+                    sta $1c0d
+                    sta $1c0c
+                    sta $1c1d
                     lda #$01
-                    sta $3816
+                    sta $1c16
                     lda #$ff
-                    sta $3819
-                    sta $381a
+                    sta $1c19
+                    sta $1c1a
                     jsr S3371
                     ldy #$04
                     lda #$07
@@ -479,40 +479,40 @@ L3402               lda #$00
                     rts 
                     
 L3408               lda #$01
-                    sta $3819
+                    sta $1c19
                     lda #$00
-                    sta $381a
-                    sta $380d
-                    sta $3816
-                    sta $3905
-                    sta $3906
-                    sta $380c
+                    sta $1c1a
+                    sta $1c0d
+                    sta $1c16
+                    sta $1d05
+                    sta $1d06
+                    sta $1c0c
                     lda #$07
-                    sta $3904
+                    sta $1d04
                     lda #$00
 L3428               jsr L313a
-                    lda $380d
+                    lda $1c0d
                     bne L3402
                     jsr S3484
                     bne L3471
                     jsr kCLRCHN
-                    lda $3809
+                    lda $1c09
                     cmp #$07
                     beq L3455
                     ldx #$02
                     jsr kCHKOUT
                     ldy #$07
-L3446               lda $3900,y
+L3446               lda $1d00,y
                     jsr S3700
                     iny 
-                    cpy $3809
+                    cpy $1c09
                     bne L3446
                     jsr kCLRCHN
-L3455               lda $3906
+L3455               lda $1d06
                     cmp #$ff
                     bne L3464
                     lda #$01
-                    sta $380d
+                    sta $1c0d
                     lda #$2a
                     byte $2c
                     ;;bit $2da9
@@ -525,34 +525,34 @@ L3464               lda #$2d
 L3471               jsr kCLRCHN
                     lda #$3a
                     jsr S3700
-                    lda $3817
-                    sta $3904
+                    lda $1c17
+                    sta $1d04
                     lda #$03
                     jmp L3428
                     
-S3484               lda $3900
-                    sta $380e
-                    lda $3901
-                    sta $380f
-                    lda $3902
-                    sta $3810
-                    lda $3903
-                    sta $3811
+S3484               lda $1d00
+                    sta $1c0e
+                    lda $1d01
+                    sta $1c0f
+                    lda $1d02
+                    sta $1c10
+                    lda $1d03
+                    sta $1c11
                     jsr S3364
-                    lda $3817
-                    sta $3809
+                    lda $1c17
+                    sta $1c09
                     jsr S3380
-                    lda $3900
-                    cmp $380e
+                    lda $1d00
+                    cmp $1c0e
                     bne L34cb
-                    lda $3901
-                    cmp $380f
+                    lda $1d01
+                    cmp $1c0f
                     bne L34cb
-                    lda $3902
-                    cmp $3810
+                    lda $1d02
+                    cmp $1c10
                     bne L34cb
-                    lda $3903
-                    cmp $3811
+                    lda $1d03
+                    cmp $1c11
                     bne L34cb
                     lda #$00
                     rts 
@@ -561,30 +561,30 @@ L34cb               lda #$01
                     rts 
                     
 L34ce               lda #$00
-                    sta $3819
-                    sta $381a
-                    sta $380d
-                    sta $3816
-                    sta $380c
+                    sta $1c19
+                    sta $1c1a
+                    sta $1c0d
+                    sta $1c16
+                    sta $1c0c
                     lda #$07
                     clc 
                     adc #$01
-                    sta $3904
+                    sta $1d04
                     lda #$00
 L34e9               jsr L313a
-                    lda $380d
+                    lda $1c0d
                     bne L3511
                     jsr S3484
                     bne L3506
-                    lda $3907
-                    sta $381b
+                    lda $1d07
+                    sta $1c1b
                     lda #$01
-                    sta $380d
+                    sta $1c0d
                     lda #$00
                     jmp L34e9
                     
-L3506               lda $3817
-                    sta $3904
+L3506               lda $1c17
+                    sta $1d04
                     lda #$03
                     jmp L34e9
                     
@@ -593,14 +593,14 @@ L3511               lda #$00
                     rts 
                     
 L3517               lda #$00
-                    sta $380d
-                    sta $380c
+                    sta $1c0d
+                    sta $1c0c
                     lda #$01
-                    sta $3816
-                    sta $381d
+                    sta $1c16
+                    sta $1c1d
                     lda #$ff
-                    sta $3819
-                    sta $381a
+                    sta $1c19
+                    sta $1c1a
                     jsr S3371
                     ldy #$04
                     lda #$07
@@ -614,26 +614,26 @@ L3517               lda #$00
                     iny 
                     sta ($66),y
                     ldy #$07
-                    lda $381b
+                    lda $1c1b
                     sta ($66),y
                     lda #$01
-                    sta $381e
+                    sta $1c1e
 L3553               jsr S31ac
                     beq L3553
                     lda #$00
                     sta $0200
                     rts 
                     
-L355e               inc $380c
-                    lda $380c
+L355e               inc $1c0c
+                    lda $1c0c
                     cmp #$03
                     bcc L3574
                     lda #$00
-                    sta $380c
-                    lda $380b
+                    sta $1c0c
+                    lda $1c0b
                     beq L3579
                     bne L3585
-L3574               lda $380b
+L3574               lda $1c0b
                     beq L3585
 L3579               ldx #$00
 L357b               ldy #$00
@@ -645,10 +645,10 @@ L357d               iny
 L3585               rts 
                     
 S3586               pha 
-                    lda $3819
-                    ora $381a
+                    lda $1c19
+                    ora $1c1a
                     beq L3599
-                    lda $381d
+                    lda $1c1d
                     bne L3599
                     pla 
                     jsr S3700
@@ -770,7 +770,7 @@ S367b               lda $d3
                     bne L3694
 L368d               pla 
                     tsx 
-                    cpx $381c
+                    cpx $1c1c
                     bne L368d
 L3694               lda #$01
                     sta $0200
@@ -814,11 +814,11 @@ L3711               lsr a
                     bcs L3735
                     lda #$02
                     ldy #$00
-                    sta $3b02,y
+                    sta $1b02,y
                     iny 
                     sty $a6
 L372f               lda $9e
-                    sta $3b02,y
+                    sta $1b02,y
 L3734               clc 
 L3735               pla 
                     tay 
@@ -846,9 +846,9 @@ S375a               lda $0a0f
                     bcs L377e
                     lda #$10
                     sta $dd0e
-                    lda $3b00
+                    lda $1b00
                     sta $dd04
-                    lda $3b01
+                    lda $1b01
                     sta $dd05
                     lda #$81
                     jsr $e67f
