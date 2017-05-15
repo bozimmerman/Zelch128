@@ -1,6 +1,10 @@
 * =$1300
 
-                    ; ?-modem source for zelch 2.0a
+                    ; assembly source for zelch 2.0a
+                        ; no idea what this does.  It's booted at init
+                        ; time by zelch.prg, logon.bas when sysop local
+                        ; local mode is set, and then
+                        ; online utils ensures its loaded always.
 
 kCHKIN = $FFC6
 kCHKOUT = $FFC9
