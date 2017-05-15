@@ -1,7 +1,9 @@
+        
+        
 * = $2000
-;.D V3.0 2000
-        JMP GETIT;8192 / 1000 / GET A$
-        JMP GETINE;8195 / 2000 / GET ONE CHARACTER
+        ; .D V1.0 2000
+        JMP GETIT; 8192 / 1000 / GET A$
+        JMP GETINE; 8195 / 2000 / GET ONE CHARACTER
         JMP SEND; 8198 / 3000 / SEND ONE CHARACTER
         JMP INPT; 8201 / 4000 / INPUT I$
         JMP BIGOUT; 8204 / 5000 / OUTPUT O$
@@ -18,17 +20,10 @@
         JMP DEFFIX; 8237 / 1500 / RESTORE BAISC POINTERS AFTER A DEFINE
         JMP SETBAS; 8240 / 16000 / TURN ON ONLINE BASIC
         JMP OFFBAS; 8243 / 16500 / TURN OFF ONLINE BASIC
-        JMP MSGFIX; 8246 / 5300 / RESET FROM MSG BASIC
-        JMP REST; 8249 / 4800 / SETUP I$
-        JMP DEFINE; 8252 / 1500 / DEFINE I$
-        JMP COPIFI; 8255/17000/COPY#2 TO #3
-        JMP DRECFILE; 8258/18000/DIRECTORY
-        JMP RELREC; 8261/19000/RECORD LENTH
-        JMP CHKDRV; 8264/19500/CHECK DRIVE
-;*********END OF JMP TABLE*********
-;230,570,1250,2085,2086,2570,3245,3540,3615
-IDD1            BYTE 65
-;*******VERY IMPORTANT******
+        ; 220,570,1250,2085,2086,2570,3245,3540,3615
+IDD1
+        ; .BYTE 65
+        ;*******VERY IMPORTANT******
 LDAFAR
         LDX #$01
         LDA #$AE
@@ -39,24 +34,25 @@ LDAFAR2
         LDX #$01
         JSR $FF74
         RTS
-IDD2            BYTE 90
-;**************CREATE ONE CHARACTER INPUT A$*******************
+IDD2
+        ; .BYTE 90
+        ;**************CREATE ONE CHARACTER INPUT A$*******************
 GETIT
-        LDA #$41
+        LDA #$41; **SET UP A$="
         STA $0B0C
-        JSR REST;**SET UP A$="
-        JSR GETINE;**GET IT
+        JSR REST
+        JSR GETINE; **GET IT
         LDA $FE
         BNE ISNTNULL; NOT NULL
         LDA #$00
         STA $FB
         JMP DEFINE
 ISNTNULL
-        LDY #$00
+        LDY #$00; ** STORE IN MEMORY
         LDA $FE
-        STA ($FB),Y;** STORE IN MEMORY
-        LDA #$01
-        STA $FB;NOT NULL
+        STA ($FB),Y
+        LDA #$01; NOT NULL
+        STA $FB
 DEFINE
         LDA #$00
         STA $0B0F
@@ -84,96 +80,76 @@ DEFLP
         STA $3E
         RTS
 DEFBITS
-                BYTE 34,58,158,56,50,51,55,58
+        ; .BYTE 34 58 158 56 50 51 55 58
 IDD3
-                BYTE 49
+        ; .BYTE 49
 DEFFIX
         LDA $0B69
         STA $3D
         LDA $0B6A
         STA $3E
         RTS
-;*****************MAIN ONE CHAR INPUT ROUTINE****************
+        ;*****************MAIN ONE CHAR INPUT ROUTINE****************
 GETINE
         JSR SAVE
         JSR $3D0C
-        LDX #$14
+        LDX #$FE
         JSR $FFC6
         JSR $EEEB
-        CMP #$00
-        BNE NOTNULL
-        JSR MOUSIT;**HANDLE JOYSTICK IO
-NOTNULL
+        CMP #$00; STORE SYSOP KEY
+        BEQ SYSNULL
         CMP #$01
         BEQ SYSNULL
-        STA $FE;***STORE SYSOP KEY
+        STA $FE
         CMP #$1B
         BNE NOCHAT
-        LDA $0B07
-        BNE NOCHAT;NO LOCAL CHAT
         LDA $0B0E
         BEQ CH1
         JMP EXOUT
-CH1 
-        JSR CHATMODE;JSR CHAT WILL GO****
+CH1     JSR CHATMODE; JSR CHAT WILL GO****
 NOCHAT
         CMP #$0A
         BNE EXOUT
         LDA #$01
         STA $0B0B
         JMP EXOUT
-IDD4            BYTE 50
-IDD5            BYTE 48
+IDD4
+        ; .BYTE 50
+IDD5
+        ; .BYTE 48
 SYSNULL
-        LDA $0B07
-        BEQ USRCONT;SYSOP LOCAL
+        LDA $0B07; SYSOP LOCAL
+        BEQ USRCONT
 GONE
         LDA #$00
         STA $FE
         JMP EXXOUT
 USRCONT
-        LDX #$05
-        JSR $FFC6;MODEM INPUT
-        JSR $EEEB
-        STA $FE;GET BYTE
-        LDX #$14
+        LDX #$05; MODEM INPUT
         JSR $FFC6
-        LDA $FE
-        BEQ GONE;USER NULL
+        JSR $EEEB; GET BYTE
+        STA $FE
+        LDX #$FE
+        JSR $FFC6
+        LDA $FE; USER NULL
+        BEQ GONE
         CMP #$03
         BEQ GONE
         CMP #$01
         BEQ GONE
-        LDA $0B9E
-        STA $0B9D
-        LDA $0B0D
-        BNE EXOUT;GFX ON/OFF
+        LDA $0B0D; GFX ON/OFF
+        BNE EXOUT
         LDX $FE
-        LDA $3B00,X
-        STA $FE;ASCII TRANSLATE
+        LDA $1C00,X; ASCII TRANSLATE
+        STA $FE
 EXOUT
-        LDA $0B0E
-        BNE EXXXXX;CHAT MODE
+        LDA $0B0E; CHAT MODE
+        BNE EXXXXX
         LDA $FE
         JSR UPCASE
         STA $FE
-        CMP #$5C
-        BNE ONN1
-        LDA $0B07
-        BNE ONN1
-        LDA #$00
-        STA $FE
-ONN1
-        CMP #$A0
-        BNE ONN
-        LDA #$20
-        STA $FE
-ONN 
-        LDA $FE
-        CMP #$1B
-        BEQ BADSTUF
-        CMP #$22
-        BNE EXXXXX;QUOTE
+        CMP #$22; QUOTE
+        BNE EXXXXX
         LDA #$87
         STA $FE
 EXXXXX
@@ -182,20 +158,21 @@ EXXXXX
         LDA $FE
         CMP #$13
         BNE EXXOUT
-BADSTUF
         LDA #$00
         STA $FE
 EXXOUT
         JSR BASRTINE
         JSR LOAD
-        RTS;***YER GONE
+        RTS; ***YER GONE
 UPCASE
-        LDX $0B0F;**UPCASE RTINE
+        LDX $0B0F; **UPCASE RTINE
         CPX #$00
         BEQ RTCASE
         CMP #$0D
         BEQ RTCASE
         CMP #$13
+        BEQ RTCASE
+        CMP #$0A
         BEQ RTCASE
         CMP #$08
         BEQ RTCASE
@@ -227,7 +204,7 @@ RTTCASE
         LDA #$00
         RTS
 SAVE
-        STA $0B10;TEMP STORAGE
+        STA $0B10; TEMP STORAGE
         STY $0B11
         STX $0B12
 LOAD
@@ -236,146 +213,79 @@ LOAD
         LDX $0B12
         RTS
 IDD6
-                BYTE 49
-MOUSIT
-        LDA $D4
-        CMP #$58
-        BNE MOSNO
-        LDY #$00
-        LDA $DC00;**MOUSE-CRSR
-MOLOOP
-        CMP MASBIT,Y
-        BEQ MOGOOD
-        INY
-        CPY #$05
-        BNE MOLOOP
-MOSNO
-        LDA #$01
-        RTS
-MOGOOD
-        LDA MAMAS,Y;***GET THE KEY
-        CMP #$0D
-        BEQ MOUSOT
-MOLP
-        LDX $DC00
-        CPX #$7F
-        BNE MOLP
-MOUSOT
-        RTS;**EXIT MOUSIT
-MASBIT
-                BYTE 126,125,123,119,111
-MAMAS
-                 BYTE 145,17,157,29,13
-;*****************SEND ONE CHARACTER OUT RTINE*******************
+        ; .BYTE 49
+        ;*****************SEND ONE CHARACTER OUT RTINE*******************
 SEND
         JSR SAVE
-        LDX #$14
+        LDX #$FF
         JSR $FFC9
         JSR $3D0C
-        LDA #$00
+        LDA #$00; **KOTE/INSERT
         STA $F4
-        STA $F5;**KOTE/INSERT
-        LDA $0B07
-        BNE STARTSND;**SKIP SLOW
+        STA $F5
+        LDA $0B07; **SKIP SLOW
+        BNE STARTSND
         JSR SLOWIT
         JMP STARTSND
 NOPE
         JMP BADDEST
 STARTSND
         LDA $FE
-        CMP #$03
-        BEQ NOPE;**RVS C
-        CMP #$0D
+        CMP #$03; **RVS C
+        BEQ NOPE
+        CMP #$87
+        BNE NOQUOTE
+        LDA #$22; **SAVE TO QUOTE
+        STA $FE
+NOQUOTE
+        LDA $FE
+        CMP #$8B
         BEQ RVSK
         CMP #$0B
-        BEQ RVSK
-        CMP #$8B
-        BNE ITT
+        BNE NORVSK
 RVSK
-        JMP DO0D
-ITT
-        CMP #$5C
-        BNE MSGBAS;***\ SIGN
-        LDA $0B71
-        BNE MSGNOP
-        LDA $0B8A
-        BEQ MSGNOP
-        LDA $0B8E
-        BNE MSGNOP
-        LDA $0B89
-        BEQ MSGCON;**DUN
-        LDA #$02
-        STA $0B89
-        JMP BADDEST
-MSGCON
-        LDA #$01
-        STA $0B89
-        LDX #$02
-        LDY #$1B;*PTERS
-        STX $0B87
-        STY $0B88
-        JMP BADDEST
-MSGBAS
-        LDA $0B89
-        BEQ MSGNOP
-        JSR MSGQUIK
-        JMP BADDEST
-MSGNOP
-        LDA $FE
-        CMP #$87
-        BNE NOQUOT
-        LDA #$22
-        STA $FE;**SAVE TO QUOTE
-NOQUOT
+        LDA #$0D; **CHAR TO CR
+NORVSK
         CMP #$13
         BNE NOCLR
         CMP $0B68
         BNE NOCLR
-        LDA #$00;**NO 2-CLRS
+        LDA #$00; **NO 2-CLRS
 NOCLR
-        CMP #$93
+        CMP #$0D
         BNE NORTNH
-        LDA #$01
-        STA $0B92
-        LDA #$93
-NORTNH
-        STA $FE
-        STA $0B68;**PERMIN
+        LDA $0B68
         CMP #$88
-        BNE NOFRMT;**RVS-H FORMAT
-        LDA $0B63
-        BEQ ISRTN;**40 COLS=RTN
-        LDA $0B6B
-        BNE ISRTN;**H PREVS=RTN
+        BNE RTNNOH
+        LDA #$00; ***H WUZ PREVS
+        JMP NORTNH
+RTNNOH
+        LDA #$00
+        STA $0B6B
+        LDA #$0D
+NORTNH
+        STA $FE; **PERMIN
+        STA $0B68
+        CMP #$88; **RVS-H FORMAT
+        BNE NOFRMT
+        LDA $0B63; **40 COLS=RTN
+        BEQ ISRTN
+        LDA $0B6B; **H PREVS=RTN
+        BNE ISRTN
         LDA #$20
         STA $FE
         INC $0B6B
         JMP NOFRMT
-IDD7            BYTE 57
+IDD7
+        ; .BYTE 57
 ISRTN
         LDA #$0D
         STA $FE
         LDA #$00
         STA $0B6B
 NOFRMT
-        CMP #$0D
-        BNE NOFRMT2;*MORE
-        INC $0B92
-        LDX $0BA3
-        BEQ NOFRMT2
-        LDX $F3
-        BEQ NOFRMT2;**RVS OFF ANSI
-        LDA #$92
-        STA $FE
-        JSR ANSII
-        LDA #$00
-        STA $0BA5
-        LDA #$0D
-        STA $FE
-NOFRMT2
-        CMP #$90
-        BNE NOCYCL;*COLOR
-NOTCOLOR
+        CMP #$90; **COLOR
+        BNE NOCYCL
         LDX $0B13
         INX
         CPX #$08
@@ -384,11 +294,10 @@ NOTCOLOR
 NXTCOLOR
         STX $0B13
         LDA $0B14,X
-        BEQ NOTCOLOR
         STA $FE
 NOCYCL
-        LDA $0B1C
-        BEQ NOSTAR;*** SYSOP LOCAL OUTPUT - * MODEM OUTPUT
+        LDA $0B1C; *** SYSOP LOCAL OUTPUT - * MODEM OUTPUT
+        BEQ NOSTAR
         LDA $FE
         CMP #$0D
         BEQ NOSTAR
@@ -397,67 +306,61 @@ NOCYCL
         LDA $0B6E
         STA $FE
 NOSTAR
-        JSR ANSII;***ANSI ROUTINES
-        LDA $0BA5
+        LDA $0B07; *** SYSOP LOCAL, NO MODEM OUTPUT
         BNE SYSSEND
-        LDA $0B07
-        BNE SYSSEND;****SYSOP LOCAL-NO MODEM OUTPUT
-        LDA $0B0D
-        BNE USERSEND;***GFX ON
-        LDX $FE
-        LDA $3C00,X
-        STA $FE;*ASCII
+        LDA $0B0D; ***GFX ON
+        BNE USERSEND
+        LDX $FE; *ASCII
+        LDA $1D00,X
+        STA $FE
 USERSEND
         LDX #$05
         JSR $FFC9
         LDA $FE
-        BEQ SYSSEND
         JSR $EF79
         LDA $FE
         CMP #$0D
         BNE SYSSEND
         LDA $0B1D
         BEQ SYSSEND
-        LDA #$0A
-        JSR $EF79;***LINEFEEDS
+        LDA #$0A; ***LINEFEEDS
+        JSR $EF79
 SYSSEND
-        LDX #$14
-        JSR $FFC9;***LOCAL SEND
-        LDA $0B0D
-        BNE NOTRANS;***GFX ON
-        LDA $0BA5
-        BNE NOTRANS;*ANSII COLOR
-        LDA $0B07
-        BEQ SYSKII;**LOCAL ASCII
+        LDX #$FF; ***LOCAL SEND
+        JSR $FFC9
+        LDA $0B0D; ***GFX ON
+        BNE NOTRANS
+        LDA $0B07; **LOCAL ASCII
+        BEQ SYSKII
         LDX $FE
-        LDA $3C00,X
+        LDA $1D00,X
         STA $FE
 SYSKII
         LDX $FE
-        LDA $3B00,X
+        LDA $1C00,X
         STA $FE
 NOTRANS
-        LDA $FE
-        JSR $C00C;**LO-OUT
+        LDA $FE; **LO-OUT
+        JSR $C00C
 BADDEST
-        LDA #$00
-        STA $D015;**SPRITE OFF
+        LDA #$00; **SPRITE OFF
+        STA $D015
         JSR BASRTINE
         JSR LOAD
         RTS
-IDD8            BYTE 48
+IDD8
+        ; .BYTE 48
 BASRTINE
         LDA $0B71
-        BNE BADGOOD
+        BNE BASGOOD
 BASBAD
         RTS
-IDD9            BYTE 65
-BADGOOD
-        LDA $0B72
+IDD9
+        ; .BYTE 65
+BASGOOD
+        LDA $0B0B
         BEQ BADUP
-        LDA $7F
-        CMP #$80
-        BEQ BADUP
+BASBAS
         LDA #$00
         STA $0B71
         JMP OFFBAS
@@ -468,134 +371,52 @@ BADUP
         LDA #$7F
         STA $91
 BADDN
-        LDA $0B0B
+        LDA $0B72
         BEQ BASBAD
-        LDA $0B64
-        BNE BASBAD
-        LDX #$1E
-        STX $0B64
-        JMP $4D3F
-MSGQUP
-        LDX $0B87
-        LDY $FB
-        STY $0B87
-        STX $FB
-        LDX $0B88
-        LDY $FC
-        STY $0B88
-        STX $FC
-        RTS
-MSGQUIK
-        JSR MSGQUP
-        LDY #$00
-        LDA $FE
-        STA ($FB),Y
-        INC $FB
-        JMP MSGQUP
-DO0D
-        LDA #$00
-        STA $0B89
-        LDA $0B68
-        CMP #$88
-        BNE RTNNOH
-        LDA #$00
-        JMP NORTNH;***H WUZ PREVS
-RTNNOH
-        LDA #$00
-        STA $0B6B
-        LDA #$0D
-        JMP NORTNH
-ANSII
-        LDA $0B0D
-        BNE ANSGO
-        LDA $0BA3
-        BNE ANS2
-ANSGO
-        LDA #$00
-        STA $0BA5
-        JMP ANSG3
-ANSG2
-        LDA $0BA5
-        STA $FE
-ANSG3
-        LDX #$14
-        JSR $FFC9
-        RTS
-ANS2
-        LDX #$05
-        JSR $FFC9
-        LDX #$00
-ANSLP
-        LDA $3A00,X
-        BEQ ANSGO
-        CMP $FE
-        BEQ ANSDO;***IS IT CHAR
-ANSNO
-        INX
-        LDA $3A00,X
-        BNE ANSNO
-        INX
-        JMP ANSLP;**LOOP BACK
-ANSDO
-        INX
-        LDA $3A00,X
-        STA $0BA5
-        LDA $0B07
-        BNE ANSG2
-        LDA #$1B
-        JSR $EF79
-        LDA #$5B
-        JSR $EF79
-ANSD2
-        INX
-        LDA $3A00,X
-        BEQ ANSG2
-ANSX
-        JSR $EF79
-        JMP ANSD2;**CONT
-;****************INPUT ONE LINE OF I$********************
+        LDA $7F
+        CMP #$80
+        BEQ BASBAD
+        JMP BASBAS
+        ;****************INPUT ONE LINE OF I$********************
 INPT
-        JSR REST;***SET UP I$
-        TAY
-        STA $0B1E;***CLR COL
-        LDA $D7
-        BEQ INPTLP;**80 COL CRSR
+        JSR REST; ***SET UP I$
+        TAY; ***CLEAR COLUMN
+        STA $0B1E
+        LDA $D7; **80 COL CRSR
+        BEQ INPTLP
         LDA #$1B
         JSR $EF79
         LDA #$45
         JSR $EF79
 INPTLP
-        JSR GETINE;***GET A CHAR
-        LDA $0B4D
-        BNE THEEND
-        LDA $0B0B
-        BEQ NEND;**CHAR DROP
-THEEND
+        JSR GETINE; ***GET A CHAR
+        LDA $0B0B; **CHAR DROP
+        BEQ NEND
         JMP DUNWRAP2
 NEND
-        LDA $FE
-        BEQ INPTLP;**NULL LP
+        LDA $FE; **NULL LP
+        BEQ INPTLP
         LDA $0B1E
         CMP #$27
         BCS NOLNM
-        LDA #$4F
-        STA $0B20;*DEFAULT, WORD
-        LDA #$27
-        STA $0B67;*WRAPPING VALS
+        LDA #$4F; *DEFAULT, WORD
+        STA $0B20
+        LDA #$27; *WRAPPING VALS
+        STA $0B67
         LDY #$FF
 LNMLP
         INY
         LDA $1F00,Y
-        CMP #$88
-        BNE LNXT;**REMOVE STRAY H
+        CMP #$88; **REMOVE STRAY H
+        BNE LNXT
         LDA #$20
         STA $1F00,Y
 LNXT
         CPY $FB
         BNE LNMLP
         LDY #$00
-        LDA $0B65
-        BEQ NOLNM;**PUT REG VALS
+        LDA $0B65; **PUT REG VALS
+        BEQ NOLNM
         LDA $0B63
         BNE LIN80
         LDA #$23
@@ -606,43 +427,42 @@ LIN80
         LDA #$4B
         STA $0B20
 NOLNM
-        JSR FIRSTCHK
         LDA $FE
-        CMP #$0D
-        BEQ COINPT;**PASS OVR CHK
-        CMP #$14
-        BEQ COINPT;**PASS OVR CHK
-        LDA $0B4F
-        BEQ COINPT;**STPCHK
+        CMP #$0D; **PASS OVR CHK
+        BEQ COINPT
+        CMP #$14; **PASS OVR CHK
+        BEQ COINPT
+        LDA $0B4F; **STPCHK
+        BEQ COINPT
         LDA $FB
-        CMP $0B1F
-        BEQ INPTLP;**MAX CHARS
+        CMP $0B1F; **MAX CHARS
+        BEQ INPTLP
 COINPT
         LDA $FE
-        CMP #$9D
-        BNE STGOOD;**CURSOR LFT
+        CMP #$9D; **CURSOR LFT
+        BNE STGOOD
         LDA $0B1E
         BEQ STGOOD
         DEC $0B1E
 STGOOD
         JSR UPRTINE
         LDA $0B1E
-        CLC
-        ADC $0B6C;***INC CURR COLUMN
+        CLC; ***INC CURR COLUMN
+        ADC $0B6C
         STA $0B1E
         LDA $FE
-        CMP #$0D
-        BNE NORTRN;***CR HIT
+        CMP #$0D; ***CR HIT
+        BNE NORTRN
         JMP DUNWRAP2
 NORTRN
-        CMP #$14
-        BEQ DELETE;***DEL HIT
+        CMP #$14; ***DEL HIT
+        BEQ DELETE
         JMP NODELETE
 SPECDEL
         STA $FE
         JSR SEND
         JMP INPTLP
-;**SMART DELETE ROUTINE**
+        ;**SMART DELETE ROUTINE**
 DELETE
         LDA $FB
         BEQ JPINLP
@@ -653,18 +473,18 @@ DELETE
         LDA #$11
         JMP SPECDEL
 NOUP
-        CMP #$11
-        BNE NODN;**CRSR DN
+        CMP #$11; **CRSR DN
+        BNE NODN
         LDA #$91
         JMP SPECDEL
 NODN
-        CMP #$9D
-        BNE NOLF;**CRSR LF
+        CMP #$9D; **CRSR LF
+        BNE NOLF
         LDA #$1D
         JMP SPECDEL
 NOLF
-        CMP #$1D
-        BNE NORT;**CRSR RT
+        CMP #$1D; **CRSR RT
+        BNE NORT
         LDA #$9D
         JMP SPECDEL
 NORT
@@ -676,31 +496,31 @@ NORT
 JPINLP
         JMP INPTLP
 NODELETE
-        LDA $FB;***CHK MAX CHARS
-        CMP $0B1F
-        BCC NOLINK;**LINE LINK
+        LDA $FB; ***CHK MAX CHARS
+        CMP $0B1F; **LINE LINK
+        BCC NOLINK
         LDY #$00
         LDA #$03
         STA ($FB),Y
-        INC $FB
-        JMP DEFINE;***AD LINK N GO
+        INC $FB; ***AD LINK N GO
+        JMP DEFINE
 NOLINK
         LDY #$00
-        LDA $FE
-        STA ($FB),Y;***STORE IT
+        LDA $FE; ***STORE IT
+        STA ($FB),Y
         INC $FB
         JSR SEND
         LDA $0B1E
-        CMP $0B67
-        BEQ WORDWRAP;**40 WRAP
-        CMP $0B20
-        BNE JPINLP;**OTHER WRAP
-;**MAIN WORD WRAP ROUTINE**
+        CMP $0B67; **40 WRAP
+        BEQ WORDWRAP
+        CMP $0B20; **OTHER WRAP
+        BNE JPINLP
+        ;**MAIN WORD WRAP ROUTINE**
 WORDWRAP
         LDA #$00
         STA $0B21
-        LDA $0B22
-        BNE NOTDUN;**WW FLAG=0
+        LDA $0B22; **WW FLAG=0
+        BNE NOTDUN
         LDA $0B63
         BEQ DUN40
         LDA $0B1E
@@ -712,21 +532,21 @@ DUN40
         STA $FE
         JMP DELETE
 NOTDUN
-        LDA $FB
-        STA $FD;**WORK VECTORS
+        LDA $FB; **WORK VECTORS
+        STA $FD
         LDA $FC
         STA $FE
         DEC $FD
         LDY #$00
         LDA ($FD),Y
-        CMP #$88
-        BEQ JPINLP;***DUN ALRDY
-        CMP #$20
-        BNE WRAPLOOP;**LAST=SPC
+        CMP #$88; ***DUN ALRDY
+        BEQ JPINLP
+        CMP #$20; **LAST=SPC
+        BNE WRAPLOOP
         LDA #$88
         STA ($FD),Y
-        LDA $0B63
-        BEQ CHKS1;**CHK COLS
+        LDA $0B63; **CHK COLS
+        BEQ CHKS1
         LDA $0B1E
         CMP #$30
         BCS CHKS1
@@ -734,20 +554,20 @@ NOTDUN
 CHKS1
         JMP DUNWRAP2
 WRAPLOOP
-        DEC $FD
-        BEQ TEN2;**FIND SPACE LP
+        DEC $FD; **FIND SPACE LP
+        BEQ TEN2
         INC $0B21
         LDA ($FD),Y
-        CMP #$20
-        BNE WRAPLOOP;***PUT THE H
+        CMP #$20; ***PUT THE H
+        BNE WRAPLOOP
 TEN2
         LDA #$88
         STA ($FD),Y
 CHKTEN
         LDA $0B21
         STA $0B00
-        CMP #$10
-        BCC NXTCHK;**OVR 10 CHARS
+        CMP #$10; **OVR 10 CHARS
+        BCC NXTCHK
         LDA $0B63
         BEQ CHKS1
         LDA $0B1E
@@ -755,20 +575,20 @@ CHKTEN
         BCS CHKS1
         JMP INPTLP
 NXTCHK
-        LDA $0B1E;**FIXING 80 LIMIT
+        LDA $0B1E; **FIXING 80 LIMIT
         CMP $0B20
         BEQ CONWRAP
         LDA $0B63
         BEQ CONWRAP
         LDA $0B20
-        SEC
-        SBC $0B21;**SETIN NEW 80COL WW
+        SEC; **SETIN NEW 80COL WW
+        SBC $0B21
         STA $0B20
         JMP INPTLP
 CONWRAP
         INC $0B21
 WRAPLP1
-        INY;**PUT CHARS IN BUFFER
+        INY; **PUT CHARS IN BUFFER
         CPY $0B21
         BEQ WRAPNXT
         LDA ($FD),Y
@@ -792,31 +612,13 @@ DUNWRAP
         STA ($FB),Y
         INC $FB
 DUNWRAP2
-        LDA #$0D
-        STA $FE;**CR
-        JSR SEND
-        JMP DEFINE;**GONE
-FIRSTCHK
-        LDA $0BA6
-        BEQ NOFST;**********FIRST
-        LDA $0B0F
-        BEQ NOFST
-        LDA $FB
-        BEQ NOFST
-        LDY #$00
-        DEC $FB
-        LDA ($FB),Y
-        INC $FB
-        CMP #$20
-        BEQ NOFST
-        LDA $FE
-        AND #$7F
+        LDA #$0D; **CR
         STA $FE
-NOFST
-        RTS
+        JSR SEND; **GONE
+        JMP DEFINE
 REST
-        LDA #$1F
-        STA $FC;***SET I$
+        LDA #$1F; ***SET I$
+        STA $FC
         LDA #$00
         STA $FB
         LDA $0B0C
@@ -863,7 +665,7 @@ NOONE
         LDA #$00
         STA $0B6C
         RTS
-;*****************SEND OUT ONE LINE OF O$*****************
+        ;*****************SEND OUT ONE LINE OF O$*****************
 BIGOUT
         LDY #$09
         LDX #$2F
@@ -884,8 +686,6 @@ BIGLOOP
         STA $FE
         LDA $0B6D
         BEQ BIGNXT
-        LDA $0B89
-        BNE BIGNXT
         LDA $FE
         CMP #$41
         BCC BIGNXT
@@ -894,13 +694,8 @@ BIGLOOP
         ORA #$80
         STA $FE
 BIGNXT
-        INC $0B8A
         JSR SEND
         INY
-        LDA #$00
-        STA $0B8A;**CHK MSGBAS
-        JMP DOMSGS
-NOMSG0
         CPY $FB
         BEQ BIGGON
         JMP BIGLOOP
@@ -917,98 +712,14 @@ RTNSEND
         STA $FE
         JSR SEND
         RTS
-MSAVE
-        STA $0B8B
-        STX $0B8C
-        STY $0B8D
-MLOAD
-        LDX $0B8C
-        LDY $0B8D
-        LDA $0B8B
-        RTS
-DOMSGS
-        JSR MSAVE
-        LDA $0B89
-        CMP #$02
-        BNE OUTMSGS
-        JSR MSGQUP
-        LDY #$00
-        STY $0B89
-        STY $0B8A
-MSGLP
-        LDA BTSS,Y
-        STA ($FB),Y
-        INY
-        CPY #$08
-        BNE MSGLP
-        LDY #$00
-        LDA #$3A
-        STA $1B00
-MSGLP2
-        LDA BYTS,Y
-        CMP $1B02
-        BEQ BEDUNWI
-        INY
-        CPY #$09
-        BNE MSGLP2
-        JMP OUTMSGS
-BEDUNWI
-        TYA
-        ASL
-        TAX
-        LDA MCMD,X
-        TAY
-        STA $1B01
-        INX
-        LDA MCMD,X
-        STA $1B02
-        CPY #$99
-        BNE MOUTFG
-        LDY #$00
-        LDA #$3B
-        STA ($FB),Y
-MOUTFG
-        LDA $3D
-        STA $0B69
-        LDA $3E
-        STA $0B6A
-        LDA #$00
-        LDX #$1B
-        STA $3D
-        STX $3E
-        JSR SWITCHO
-        JSR MSGQUP
-        RTS
-MSGFIX
-        LDA $0B69
-        STA $3D
-        LDA $0B6A
-        STA $3E
-        JSR CHANGO
-OUTMSGS
-        JSR MLOAD
-        BNE OUTMSGS2
-        JMP NOMSG0
-OUTMSGS2
-        JMP NOMSG1
-BTSS            BYTE 32,58,158,56,50,52,54,58
-BYTS            BYTE 83,71,77,63,75,87,80,70,36
-MCMD            BYTE 32,158;SYS
-                BYTE 32,141;GOSUB
-                BYTE 153,202;MID$
-                BYTE 153,32;PRINT
-                BYTE 161,249;GETKEY
-                BYTE 254,11;SLEEP
-                BYTE 153,194;PEEK
-                BYTE 153,184;FRE
-                BYTE 153,199;CHR$
-;******************SYSOP CHAT MODE******************
-ENTRANCE         BYTE "CHAT MODE"
-EXITIT          BYTE "RETURNING TO THE BBS"
+        ;******************SYSOP CHAT MODE******************
+ENTRANCE
+        ; .BYTE "CHAT MODE"
+EXITIT
+        ; .BYTE "RETURNING TO THE BBS"
 CHATMODE
-        JSR MSAVE
-        LDA $0B0E
-        BNE CHATGONE;*NOT IN TWICE
+        LDA $0B0E; *NOT IN TWICE
+        BNE CHATGONE
         LDA #$01
         STA $0B0E
         LDA #$0D
@@ -1032,8 +743,8 @@ CHATLP
         JSR GETINE
         LDA $0B23
         STA $0B09
-        LDA $FE
-        BEQ CHATLP;*NO NULL
+        LDA $FE; *NO NULL
+        BEQ CHATLP
         CMP #$1B
         BEQ CHATOT
         JSR SEND
@@ -1059,7 +770,6 @@ EXILOOP
 CHATGONE
         LDA #$00
         STA $FE
-        JSR MLOAD
         RTS
 IDENTIFY
         LDX #$05
@@ -1084,14 +794,13 @@ IDENTIFY
         JSR $FFD2
         JSR $FFCC
         RTS
-;******************SEND OUT FILE ROUTINE*******************
+        ;******************SEND OUT FILE ROUTINE*******************
 FILESEND
         LDA #$00
         STA $FD
         STA $FC
         STA $FF
         STA $0B2B
-        STA $0B92
         LDA $0B22
         STA $0B01
         LDA #$00
@@ -1102,12 +811,12 @@ FILES
         LDX #$00
 FILELOOP
         STX $1EFF
-        JSR $FFCF
+        JSR $EEEB
         LDX $1EFF
         CMP #$03
         BNE FILELP2
         STA $1E00,X
-        JSR $FFCF
+        JSR $EEEB
         LDX $1EFF
         JMP CSEND
 FILELP2
@@ -1120,12 +829,10 @@ FILELP2
 SKIPUP
         CMP #$0D
         BEQ CSEND
-        CMP #$01
-        BEQ LNKOUT;**EOF MARKER
-        LDA $90
-        BEQ NOCSOUT
-        JMP CSOUT;****
-NOCSOUT
+        CMP #$01; **EOF MARKER
+        BEQ LNKOUT
+        LDA $90; **EOF REAL
+        BNE CSOUT
         INX
         CPX #$FD
         BNE FILELOOP
@@ -1138,55 +845,24 @@ CSEND
 CSENT
         LDA $1E00,X
         STA $FE
-        CMP #$18
-        BNE CSNDN
-        INX
-        LDA $1E00,X
-        INX;***GET ACCESS
-        CMP $0BA2
-        BEQ CSENT
-        JMP FILES;*LOW
-CSNDN
-        CMP #$08
-        BNE CSNDN2;**40 COL
-        LDA $0B63
-        BNE CSNDN2;***80 COLS
-        LDA #$0D
-        STA $FE
         JSR SEND
-        JMP FILES;***EXIT IF 40
-CSNDN2
-        INC $0B8A
-        JSR SEND
-        LDA #$00
-        STA $0B8A
-        LDA #$01
-        JMP DOMSGS;**CHK MSGBAS
-NOMSG1
-        LDA $0B92
-        CMP $0BA8
-        BCC NOMSGY
-        JSR MOREBY
-NOMSGY
         LDA #$01
         STA $0B0F
         JSR GETINE
         LDA #$00
         STA $0B0F
-        LDA $FE
-        BEQ NOPAAS;*CHECK SPACEBAR
-        JMP HOTRTINE;*CHK SPACEBAR, HOTKEYS
+        LDA $FE; *CHECK SPACEBAR
+        BEQ NOPAAS
+        JMP HOTRTINE; *CHK SPACEBAR, HOTKEYS
 NOPAAS
         CPX $1EFF
-        BEQ JPFILES
+        BEQ FILES
         INX
         JMP CSENT
-JPFILES
-        JMP FILES
 LNKOUT
         STA $FF
         STX $0B11
-        JSR $FFCF
+        JSR $EEEB
         LDX $0B11
 CSOUT
         CPX #$00
@@ -1242,11 +918,6 @@ HOTLOOP
         BNE HOTCONT
         STA $0B2B
 FILEOTT
-        LDA #$00
-        STA $FC
-        LDA #$0E
-        STA $FE
-        JSR SEND
         JSR FILEGET
         JMP COQEND
 HOTCONT
@@ -1271,52 +942,27 @@ PAAPA
         BEQ PAAS
 OTPAAS
         RTS
-MOREBY
-        LDA $0B8F
-        BEQ NOMORE
-        LDA #$00
-        STA $0B92
-        LDY #$00
-MORELP
-        LDA MORE,Y
-        STA $FE
-        JSR SEND
-        INY
-        CPY #$07
-        BNE MORELP
-MOREWT
-        JSR PAAS
-        LDY #$00
-MORELP2 LDA #$14
-        STA $FE
-        JSR SEND
-        INY
-        CPY #$07
-        BNE MORELP2
-NOMORE
-        RTS
-MORE    BYTE "-PAUSE-"
-;******************GET ONE DISK LINK FILE******************
+        ;******************GET ONE DISK LINK FILE******************
 FILEGET
         LDA #$00
         STA $FD
         LDX #$02
         JSR $FFC6
 FGETLOOP
-        JSR $FFCF
+        JSR $EEEB
         STA $FE
-        LDA $90
+        LDA $90; **EOF REAL
         STA $FD
-        BNE FGETEND;**EOF REAL
+        BNE FGETEND
         LDA $FE
-        CMP #$01
-        BEQ FGETEND;FILE LINKER
+        CMP #$01; FILE LINKER
+        BEQ FGETEND
         JMP FGETLOOP
 FGETEND
-        JSR $FFCF
+        JSR $EEEB
         JSR $FFCC
         RTS
-;*****************PUT TOD CLOCK INTO I$******************
+        ;*****************PUT TOD CLOCK INTO I$******************
 TIMEVAR
         JSR REST
         LDA $DD0B
@@ -1330,16 +976,16 @@ TIMEVAR
         LSR
         LSR
         ADC #$30
-        LDY #$00
-        STA ($FB),Y;*1ST
+        LDY #$00; *1ST
+        STA ($FB),Y
         LDA $FD
         AND #$0F
         ADC #$30
+        INY; *2ND
+        STA ($FB),Y
+        LDA #$3A; *':'
         INY
-        STA ($FB),Y;*2ND
-        LDA #$3A
-        INY
-        STA ($FB),Y;*''
+        STA ($FB),Y
         LDA $FE
         AND #$F0
         LSR
@@ -1347,16 +993,16 @@ TIMEVAR
         LSR
         LSR
         ADC #$30
-        INY
-        STA ($FB),Y;*4TH
+        INY; *4TH
+        STA ($FB),Y
         LDA $FE
         AND #$0F
         ADC #$30
-        INY
-        STA ($FB),Y;*5TH
-        LDA #$4D
+        INY; *5TH
+        STA ($FB),Y
+        LDA #$4D; *'M'
         LDY #$06
-        STA ($FB),Y;*'M'
+        STA ($FB),Y
         LDA $FD
         AND #$80
         CMP #$00
@@ -1373,53 +1019,43 @@ NOTTHISM
 TIMDEF
         LDA #$07
         STA $FB
-        LDA $DD08
         JMP DEFINE
-;***************SEND OUT DIRECTORY FORMAT***************
+        ;***************SEND OUT DIRECTORY FORMAT***************
 DIREC
         LDX #$02
         JSR $FFC6
-        LDA #$00
-        CLC;***MASKS 4 LOC/OB
-        ADC $0B07
-        ADC $0B71
-        STA $0BA4
-        LDA $0B22
-        STA $0B37
-        JSR $FFCF
-        JSR $FFCF;*USELESS
+        JSR $EEEB; *USELESS
+        JSR $EEEB
 DRECLP
-        JSR $FFCF
-        JSR $FFCF
-        BNE NECOT;*EOF
-        JMP DRECOUT
-NECOT
-        JSR $FFCF
-        STA $FB;**LO BLKS
-        JSR $FFCF
-        STA $FC;**HI BLKS
-        LDA $0BA4
-        BNE SKPSW1
-        JSR SWITCHO
-SKPSW1
+        JSR $EEEB
+        JSR $EEEB; *EOF
+        BEQ DRECOUT
+        JSR $EEEB; **LO BLKS
+        STA $FB
+        JSR $EEEB; **HI BLKS
+        STA $FC
+        LDA #<BSOUT
+        STA $0326
+        LDA #>BSOUT
+        STA $0327
         LDA $FC
         LDX $FB
         JSR $8E32
-        LDA $0BA4
-        BNE SKPSW2
-        JSR CHANGO
-SKPSW2
+        LDA #$79
+        STA $0326
+        LDA #$EF
+        STA $0327
         LDA #$20
         STA $FE
         JSR SEND
-        LDX #$02
+        LDX #$02; *****
         JSR $FFC6
-        LDY #$00;*****
+        LDY #$00
 DRECLP2
-        JSR $FFCF
+        JSR $EEEB
         BEQ DRUB
-        CMP $FD
-        BEQ QCHAR;*CHAR MASK
+        CMP $FD; *CHAR MASK
+        BEQ QCHAR
 DRUM
         STA $1E00,Y
         INY
@@ -1429,21 +1065,13 @@ DRUB
         JSR $FFCC
         LDY #$00
 DRECLP3
-        LDA $1E00,Y;***********
+        LDA $1E00,Y; ***********
         STA $FE
         JSR SEND
-        LDA #$00
-        STA $0B22
         JSR GETINE
-        LDA $0B37
-        STA $0B22
         LDA $FE
         CMP #$20
         BEQ DREGOT
-        CMP #$13
-        BNE KPDRNG
-        JSR PAAS
-KPDRNG
         INY
         CPY $FC
         BNE DRECLP3
@@ -1464,21 +1092,21 @@ DRECOUT
 QCHAR
         LDA #$00
         JMP DRUM
-;**************GET I$ FROM DISK FILE**************
+        ;**************GET I$ FROM DISK FILE**************
 INLINE
         LDX #$02
         JSR $FFC6
-        JSR REST;*SET UP I$
+        JSR REST; *SET UP I$
         LDA #$00
         STA $FD
 INLOOP
-        JSR $FFCF
+        JSR $EEEB
         STA $FE
-        LDA $90
-        BNE ENDFIL;*EOF
-        LDA $FB
-        CMP #$F0
-        BEQ ENDFIL;*TOO LONG
+        LDA $90; *EOF
+        BNE ENDFIL
+        LDA $FB; *TOO LONG
+        CMP #$FD
+        BEQ ENDFIL
         LDA $FE
         CMP #$0D
         BEQ INOUT
@@ -1496,82 +1124,76 @@ ENDFIL
 INOUT
         JSR $FFCC
         JMP DEFINE
-;***************VARIOUS DIRECTORY NECESSITIES***************
+        ;***************VARIOUS DIRECTORY NECESSITIES***************
 BLOCKS
         LDX #$02
         JSR $FFC6
-        JSR $FFCF
-        JSR $FFCF
-        JSR $FFCF
-        JSR $FFCF
-        JSR $FFCF
-        JSR $FFCF;**USELESS
+        JSR $EEEB; **USELESS
+        JSR $EEEB
+        JSR $EEEB
+        JSR $EEEB
+        JSR $EEEB
+        JSR $EEEB
 BLOKLP
-        JSR $FFCF
+        JSR $EEEB; *NULL
         CMP #$00
-        BNE BLOKLP;*NU$L
-        JSR $FFCF
-        JSR $FFCF;*USELESS
-        JSR $FFCF
-        STA $0B26;*FILE BLOCKS
-        JSR $FFCF
+        BNE BLOKLP
+        JSR $EEEB; *USELESS
+        JSR $EEEB
+        JSR $EEEB; *FILE BLOCKS
+        STA $0B26
+        JSR $EEEB
         STA $0B27
 BLOKLP2
-        JSR $FFCF
+        JSR $EEEB
         CMP #$00
         BNE BLOKLP2
-        JSR $FFCF
-        JSR $FFCF;*USELESS
-        JSR $FFCF
-        STA $0B28;*DISK BLOCKS
-        JSR $FFCF
+        JSR $EEEB; *USELESS
+        JSR $EEEB
+        JSR $EEEB; *DISK BLOCKS
+        STA $0B28
+        JSR $EEEB
         STA $0B29
         JSR $FFCC
         RTS
-;******************FILE COUNTER*******************
+        ;******************FILE COUNTER*******************
 COUNTFILE
         LDA #$00
         STA $0B2A
-        STA $0B2B
         LDX #$02
         JSR $FFC6
-        JSR $FFCF
-        JSR $FFCF;*USELESS
+        JSR $EEEB; *USELESS
+        JSR $EEEB
 COUNTLP
-        JSR $FFCF
-        JSR $FFCF
-        JSR $FFCF
-        JSR $FFCF;*MORE USELESS
+        JSR $EEEB; *MORE USELESS
+        JSR $EEEB
+        JSR $EEEB
+        JSR $EEEB
 COUNTLP2
-        JSR $FFCF
-        LDX $90
-        BNE COUNTOUT;*EOF
-        CMP #$00
-        BNE COUNTLP2;*YES NULL
+        JSR $EEEB
+        LDX $90; *EOF
+        BNE COUNTOUT
+        CMP #$00; *YES NULL
+        BNE COUNTLP2
         INC $0B2A
-        BNE COUNTLP
-        INC $0B2B
         JMP COUNTLP
 COUNTOUT
-        SEC;***NO FREE OR HEADER
-        LDA $0B2A
-        SBC #$02
-        STA $0B2A
-        LDA $0B2B
-        SBC #$00
-        STA $0B2B
+        DEC $0B2A; *NO BLOCKS OR HEADER
+        DEC $0B2A
         JSR $FFCC
         RTS
-ASCMSG          BYTE "ASCII TERM"
-GFXMSG          BYTE "GRAPHICS TERM"
-;*******************ZAP TERM**********************
+ASCMSG
+        ; .BYTE "ASCII TERM"
+GFXMSG
+        ; .BYTE "GRAPHICS TERM"
+        ;*******************ZAP TERM**********************
 ZAPTERM
         JSR $FFCC
         JSR A80CHK
+        LDX #$00
         LDA #$0D
         STA $FE
         JSR SEND
-        LDX #$00
         LDA $0B0D
         BEQ ASCLP
 GFXLP
@@ -1597,110 +1219,85 @@ ZAPCON
 ZAPCONT
         JSR $3D0C
         JSR $EEEB
-        CMP #$0B
-        BNE ZAPBURP
+        CMP #$0D
+        BNE NO80CK
+        JSR A80CHK
         LDA #$0D
-ZAPBURP
+NO80CK
+        CMP #$00
+        BEQ NXTERM
         STA $FE
-        LDA $D3
-        AND #$08
-        BEQ N2TERM;*GFX CHANGE
-ALTLP
-        LDA $D3
-        BNE ALTLP
+        CMP #$09; *GFX CHANGE
+        BNE N2TERM
         LDA $0B0D
         EOR #$01
         STA $0B0D
         JMP ZAPTERM
 N2TERM
-        LDA $FE
-        CMP #$1B
-        BEQ EXI
-        LDA $FE
-        BEQ NXTERM
-        CMP #$0D
-        BNE NO80CK
-        JSR A80CHK
-NO80CK
-        LDA $DC00;**BUTTON CHK
-        CMP #$6F
-        BNE OTERM
-        LDA $D4
-        CMP #$58
-        BNE OTERM
-EXI 
-        RTS;***EXIT
-OTERM
-        LDA $FE
+        CMP #$1B; *EXIT
+        BNE N25TERM
+        RTS
+N25TERM
         CMP #$0A
         BNE N3TERM
-        LDA $0B1D
+        LDA $0B1D; *TGLE LINEFEEDS
         EOR #$01
         STA $0B1D
         JSR FEDSWCH
-        JMP ZAPCONT;*TGLE LINEFEEDS
+        JMP ZAPCONT
 N3TERM
-        LDA $0B0D
-        BNE N4TERM;*GFX
+        LDA $0B0D; *GFX
+        BNE N4TERM
         LDX $FE
-        LDA $3C00,X
+        LDA $1D00,X
         STA $FE
 N4TERM
-        JSR SLOWIT
+        SEI; *MODEM OUT
         LDX #$05
-        JSR $FFC9;*MODEM OUT
+        JSR $FFC9
         LDA $FE
         JSR $EF79
 NXTERM
+        SEI
         LDX #$05
         JSR $FFC6
-        JSR $EEEB
-        STA $FE;**MODEM IN
+        JSR $EEEB; **MODEM IN
+        STA $FE
         JSR $FFCC
+        CLI
         LDA $FE
         CMP #$00
-        BEQ JPZAPCO
+        BEQ ZAPCONT
         CMP #$03
-        BEQ JPZAPCO
+        BEQ ZAPCONT
         CMP #$0A
         BNE CON2
         LDA $0B1D
-        BEQ JPZAPCO
+        BEQ ZAPCONT
         LDA #$0A
 CON2
         LDA $0B0D
         BNE CONTERM
         LDX $FE
-        LDA $3B00,X
+        LDA $1C00,X
         STA $FE
-        JMP CONTERM
-JPZAPCO
-        JMP ZAPCONT
 CONTERM
         LDA #$00
         STA $F4
         STA $F5
         LDA $FE
-        CMP #$13
-        BNE CON3
-        LDA $0B68
-        CMP #$13
-        BEQ JPZAPCO
-CON3
-        LDA $FE
-        STA $0B68;**NO2HOMES
-        JSR SLOWIT
-        LDA $FE
         JSR $EF79
-        JMP ZAPCONT;**OUTPUT TO SCREEN, EXIT
+        JMP ZAPCONT
 A80CHK
         LDA $0B1D
         BEQ A80CHK1
+        SEI
         LDX #$05
         JSR $FFC9
         LDA #$0A
         JSR $EF79
         JSR $FFCC
+        CLI
 A80CHK1
         LDA $D7
         BNE A80CHK2
@@ -1712,9 +1309,9 @@ A80CHK2
         JSR $EF79
         RTS
 ONOFF
-                BYTE "ONOFF"
+        ; .BYTE "ONOFF"
 LINFED
-                BYTE "LINEFEEDS "
+        ; .BYTE "LINEFEEDS "
 FEDSWCH
         LDA #$0D
         STA $FE
@@ -1751,46 +1348,44 @@ FED3
         STA $FE
         JSR SEND
         RTS
-;************** SET RETURN ONLINE BASIC POINTERS *****************
+        ;************** SET RETURN ONLINE BASIC POINTERS *****************
 SETPOT
-        LDA $120B
-        LDX $120C;**TRAP VECTORS
-        STA $1B02
-        STX $1B03
-        LDA #$01
-        STA $0B4E
-        LDA $0B02
-        LDX $0B03;** LAST END OF BASIC POINTERS
-        STA $1B04
-        STX $1B05
+        LDA $120B; **TRAP VECTORS
+        LDX $120C
+        STA $3B02
+        STX $3B03
+        LDA $0B02; ** LAST END OF BASIC POINTERS
+        LDX $0B03
+        STA $3B04
+        STX $3B05
         LDX #$FF
 ZIN1
         INX
         LDA $00,X
-        STA $1B0A,X
-        CPX #$DB
-        BNE ZIN1;***ZERO PAGE
+        STA $3B0A,X
+        CPX #$DB; ***ZERO PAGE
+        BNE ZIN1
         PLA
-        STA $1B06
+        STA $3B06
+        PLA; **STORE CURRENT
+        STA $3B07
+        PLA; **BASIC POSITIONS
+        STA $3B08
         PLA
-        STA $1B07;**STORE CURRENT
-        PLA
-        STA $1B08;**BASIC POSITIONS
-        PLA
-        STA $1B09
+        STA $3B09
 PHARTINE
-        NOP;***REPLACE LAST LEFT
-        LDA $1B09
+        NOP; ***REPLACE LAST LEFT
+        LDA $3B09
         PHA
-        LDA $1B08
+        LDA $3B08
         PHA
-        LDA $1B07
+        LDA $3B07
         PHA
-        LDA $1B06
+        LDA $3B06
         PHA
         RTS
-;************ ONLINE PART OF ONLINE BASIC RTINES ****************
-;****GETIN**** $FFE4 *******
+        ;************ ONLINE PART OF ONLINE BASIC RTINES ****************
+        ;****GETIN**** $FFE4 *******
 GETIN
         LDA $99
         BEQ GET2
@@ -1801,7 +1396,7 @@ GET2
         LDA $FE
         CLC
         RTS
-;****BSOUT**** $FFD2 *******
+        ;****BSOUT**** $FFD2 *******
 BSOUT
         PHA
         LDA $9A
@@ -1824,9 +1419,9 @@ BSO2
         CLC
         RTS
 SLOWIT
-        LDA $0A1A
+        LDA $0A1A; ***SLOWS OUTPUT FOR MODEM SYNC
         CMP $0A1B
-        BNE SLOWIT;***SLOWS OUTPUT FOR MODEM SYNC
+        BNE SLOWIT
 SLOW2
         LDA $0A21
         BNE SLOW2
@@ -1834,7 +1429,7 @@ SLOW2
         AND #$03
         BNE SLOW2
         RTS
-;****BASIN**** $EF06 *******
+        ;****BASIN**** $FFCF *******
 BASIN
         LDA $99
         BEQ BSI2
@@ -1890,32 +1485,23 @@ BSI6
         JMP $C2BC
 BSI9
         JMP $C2A5
-;************ TURN ON ONLINE BASIC *************
+        ;************ TURN ON ONLINE BASIC *************
 SETBAS
         LDA #$01
         STA $0B71
-        LDA $33
-        LDX $34;**STRT FRE VARMEM
-        STA $2F
-        STX $30;**STRT OF VARS
-        STA $31
-        STX $32;**STRT ARRAYS
-        LDA $35
-        LDX $36;**BOTTOM STRINGS
-        STA $39
-        STX $3A;**TOP OF STRINGS
-        LDA #$FF
-        STA $120C;**NEW TRAP
-        JSR $F226;**CLOSE MOST FILES
-        LDA $0B4E
-        BEQ NOSWTCH
-        JSR SWITCHO
-        JMP NOSWTCH
-NOSWTCH
-        LDA #$01
-        STA $0B73
-        RTS
-SWITCHO
+        LDA $33; **STRT FRE VARMEM
+        LDX $34
+        STA $2F; **STRT OF VARS
+        STX $30
+        STA $31; **STRT ARRAYS
+        STX $32
+        LDA $35; **BOTTOM STRINGS
+        LDX $36
+        STA $39; **TOP OF STRINGS
+        STX $3A
+        LDA #$FF; **NEW TRAP
+        STA $120C
+        JSR $F226; **CLOSE MOST FILES
         LDA #<BASIN
         LDX #>BASIN
         STA $0324  
@@ -1928,220 +1514,47 @@ SWITCHO
         LDX #>GETIN
         STA $032A  
         STX $032B
-        LDA #$26   
-        LDX #$F2
-        STA $032C  
-        STX $032D
-        LDA #$00
-        STA $0B64
+        LDA #$26; **CLOSEALL
+        STA $032C
+        LDA #$01
+        STA $0B73
         RTS
-;***** TURN OFF ONLINE BASIC - RETURN TO WHERE YOU CAME FROM *****
+        ;***** TURN OFF ONLINE BASIC - RETURN TO WHERE YOU CAME FROM *****
 OFFBAS
         LDA #$00
         STA $0B71
-        STA $0B64
-        LDA #$80
-        STA $7F;**RUN MODE
-        LDA $1B02
-        LDX $1B03
-        STA $120B
-        STX $120C;**TRAP
-        LDA $1B04
-        LDX $1B05
-        STA $1210
-        STX $1211;**END OF PRG
-        JSR CHANGO
-        LDA #$00
-        STA $0B72;** NO AUTODO
-        LDX #$FF
+        LDA #$80; **RUN MODE
+        STA $7F
+        LDA $3B02
+        LDX $3B03
+        STA $120B; **TRAP
+        STX $120C
+        LDA $3B04
+        LDX $3B05
+        STA $1210; **END OF PRG
+        STX $1211
+        LDA #$22 ; **CLOSEALL
+        STA $032C
+        LDA #$06 
+        LDX #$EF
+        STA $0324
+        STX $0325
+        LDA #$79 
+        LDX #$EF
+        STA $0326
+        STX $0327
+        LDA #$EB 
+        LDX #$EE
+        STA $032A
+        STX $032B
+        LDA #$00; ** NO AUTODO
+        STA $0B72
+        LDX #$DB
 ZOT1
-        INX
-        LDA $1B0A,X
+        LDA $3B0A,X
         STA $00,X
-        CPX #$DB
+        DEX
         BNE ZOT1
         JMP PHARTINE
-CHANGO
-        LDY #$04
-CHA2
-        LDA $0B92,Y
-        STA $0323,Y
-        DEY
-        BNE CHA2
-        LDY #$04
-CHA3
-        LDA $0B96,Y
-        STA $0329,Y
-        DEY
-        BNE CHA3
-        RTS
-;******COPYFILE #2TO#3*********
-COPIFI
-        LDA #$00
-        LDX #$1C;**BFERS
-        STA $FB
-        STA $FD
-        STX $FC
-        STX $FE
-        JSR $FFCC;***CLEARIT
-        LDX #$02
-        JSR $FFC6
-FIGET
-        JSR $FFCF
-        LDY #$00
-        STA ($FD),Y;**STORE
-        INC $FD
-        BNE FIKP
-        INC $FE;***INC BUFFERS
-FIKP
-        LDA $90
-        BNE FIERR
-        LDA $FD
-        LDX $FE
-        CPX #$1F
-        BNE FIGET
-        CMP #$FE
-        BNE FIGET
-        LDA #$00;***SEND IT ON OUT
-FIERR
-        STA $FF
-        JSR $FFCC;***CLEAR EM AGAIN
-        LDX #$03
-        JSR $FFC9
-CKBEEF
-        LDA $FB
-        LDX $FC
-        CPX $FE
-        BNE FIKP2;**CHECK BFERS
-        CMP $FD
-        BNE FIKP2
-        JSR $FFCC
-        LDA $FF
-        BNE COPIXIT
-        JMP COPIFI
-COPIXIT
-        RTS;***LEAVEIT
-FIKP2
-        LDY #$00
-        LDA ($FB),Y;**SNDS
-        JSR $FFD2
-        INC $FB
-        BNE FIKP3
-        INC $FC
-FIKP3
-        JMP CKBEEF
-DRECFILE
-        JSR REST
-        JSR $FFCC
-        LDX #$02
-        JSR $FFC6
-        JSR $FFE4
-        JSR $FFE4;**BEGIN HERE
-        LDX $90
-        BNE DFOUT;**EOF
-        JSR $FFE4
-        STA $0B9F;**LO BLKS
-        JSR $FFE4
-        STA $0BA0;**HI BLKS
-        JSR $FFCC
-        LDX #$02
-        JSR $FFC6;****
-DFLOOP
-        JSR $FFE4
-        LDX $90
-        BNE DFOUT
-        CMP #$22
-        BNE DFLOOP
-DFLP2
-        JSR $FFE4
-        LDX $90
-        BNE DFOUT
-        CMP #$22
-        BEQ DFK2
-        CMP $FD
-        BEQ DFLP2;*CHAR MASK
-        LDY #$00
-        STA ($FB),Y
-        INC $FB
-        JMP DFLP2
-DFK2
-        JSR $FFE4
-        CMP #$20
-        BEQ DFK2
-        LDY #$00
-        TAX
-        LDA #$2C
-        STA ($FB),Y
-        TXA
-        INC $FB
-        STA ($FB),Y
-        INC $FB
-DFK22
-        JSR $FFE4
-        BNE DFK22
-        LDA #$00
-        STA $FE
-        JSR $FFCC
-        JMP DEFINE
-DFOUT
-        INC $FE
-        JSR $FFCC
-        RTS
-;****************  FIND RECORD LENGTH OF REL FILE O$*********************
-RELREC
-        LDY #$09
-        LDX #$2F
-        JSR LDAFAR2
-        STA $FB
-        INY
-        LDX #$2F
-        JSR LDAFAR2
-        STA $FC
-        INY
-        LDX #$2F
-        JSR LDAFAR2
-        STA $FD
-        LDX #$02
-        JSR $FFC6
-RELP
-        LDY #$00
-RELP2
-        LDX #$FC
-        JSR LDAFAR2
-        STA $FF
-        JSR $FFE4
-        LDX $90
-        BNE RELOT
-        CMP $FF
-        BNE RELP
-        INY
-        CPY $FB
-        BNE RELP2
-REC2
-        JSR $FFE4
-        INC $FB
-        LDX $FB
-        CPX #$13
-        BNE REC2
-RELOT2
-        STA $0BA1
-        JSR $FFCC
-        RTS
-RELOT
-        LDA #$00
-        JMP RELOT2
-CHKDRV
-        LDX #$02
-        JSR $FFC6
-        JSR $FFE4
-        LDA $90
-        STA $0B20
-        JSR $FFCC
-        LDA $0B20
-        STA $90
-        RTS
 PRINT
-        NOP
-        ;OPEN1,8,15,"S0:ML2000,V3.0 2000":CLOSE1:SAVE"ML2000",8
-
-
+        NOP; :OPEN1,8,15,"S0:ML2000,V1.0 2000":CLOSE1:SAVE"ML2000",8
