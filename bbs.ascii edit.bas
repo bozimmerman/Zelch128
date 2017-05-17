@@ -1,7 +1,7 @@
 !--------------------------------------------------
-!- Monday, May 15, 2017 3:00:45 AM
+!- Tuesday, May 16, 2017 10:26:53 PM
 !- Import of : 
-!- c:\src\zelch128\bbs.ascii edit.prg
+!- c:\src\zelch128next\bbs.ascii edit.prg
 !- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
 10 U=PEEK(186):D=0:PRINT"{ct n}{cyan}{clear}{down}{light blue}Would you like to load":PRINT"new ascii tables (y/n)? ";:GOSUB980:R$=CHR$(13)

@@ -1,11 +1,11 @@
 !--------------------------------------------------
-!- Monday, May 15, 2017 3:01:21 AM
+!- Tuesday, May 16, 2017 10:27:08 PM
 !- Import of : 
-!- c:\src\zelch128\bbs.create.prg
-!- Unknown Machine
+!- c:\src\zelch128next\bbs.create.prg
+!- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
 10 POKE53280,0:POKE53281,0:R$=CHR$(13):IFPEEK(215)THENFAST
-15 O$="0000000000000000{ct i*16}{ct a*16}":O$(0)="No ":O$(1)="Yes":DIMM$(20),N$(20):U1=8:D1=0
+15 O$="0000000000000000{ct i*16}{ct a*16}":O$(0)="No ":O$(1)="Yes":DIMM$(20),N$(20)
 16 READM:FORX=1TOM:READM$(X-1):NEXTX
 17 DATA 7,"Userfiles","Message Bases","U/D Bases","U/D Descriptions","Voting Booth","Networking","Miscellaneous"
 18 READN:FORX=1TON:READN$(X-1):NEXTX
@@ -45,9 +45,9 @@
 1006 GOSUB50000
 1010 GOSUB200:IFX=0THEN2000
 1030 PRINT"{clear}{down}Note: Maximum 500 userfiles.":PRINT"{down}Create how many? ";:GOSUB50200:PRINT"{clear}{down*2}Creating userfiles...":WHY=I
-1040 I=127:F$="sys.userfiles":GOSUB210:I$="{pink}{ct o}":GOSUB50100
-1050 A$="{pound}"+R$+"(NONE)"+R$+"(NONE)"+R$+"(XXX)/YYY-ZZZZ"+R$+"A"+R$+"0000000000"+R$+CHR$(0)+CHR$(0)+CHR$(0)+CHR$(0)+"0000000000"+R$:YY=0
-1060 A$=A$+"0"+R$+CHR$(0)+CHR$(0)+CHR$(0)+CHR$(0)+"0"+R$+"0"+R$+"0"+R$+"0"+R$+"0"
+1040 I=253:F$="sys.userfiles":GOSUB210:I$="{pink}{ct o}":GOSUB50100
+1050 A$="{pound}"+R$+"(NONE)"+R$+"(NONE)"+R$+"(XXX)/YYY-ZZZZ"+R$+"A"+R$+"0000000000"+R$+"00/00/00"+"0000000000"+R$:YY=0
+1060 FORI=1TO2:A$=A$+"00000000000000000000000000"+R$:NEXTI:FORI=1TO8:A$=A$+" 0"+R$:NEXTI
 1070 RECORD#2,WHY:PRINT#2,A$:YY=0:FORXX=1TOWHY-1:GOSUB1900
 1080 RECORD#2,XX:PRINT#2,A$:NEXTXX:CLOSE2:GOTO2000
 1900 YY=YY+1:I$=MID$("{pink}{yellow}{white}{cyan}{light blue}{blue}{purple}{red}",YY,1):GOSUB50100:IFYY>8THENYY=0
@@ -55,12 +55,12 @@
 2000 REM
 2010 GOSUB200:IFX=0THEN3000
 2020 PRINT"{clear}{down*2}Creating message bases..."
-2030 I=253:F$="sys.msg bases":GOSUB210:I$="{pink}{ct o}":GOSUB50100
-2040 A$=STR$(U)+R$+STR$(D)+R$+"10"+R$+"20"+R$+"10"+R$+"(none)"+R$+"00000000000000000000000000"+R$+"1"+R$+"2"+R$+"*":YY=0
+2030 I=253:F$="sys.mbases":GOSUB210:I$="{pink}{ct o}":GOSUB50100
+2040 A$=STR$(U)+R$+STR$(D)+R$+"10"+R$+"20"+R$+"10"+R$+"{sh @}(none)"+R$+"00000000000000000000000000"+R$+"1"+R$+"2"+R$+"*"+R$+"N"+R$+"6"+R$+"4"+R$+"Y":YY=0
 2050 RECORD#2,26:PRINT#2,A$:FORXX=1TO26:RECORD#2,XX:PRINT#2,A$:GOSUB1900:NEXTXX
 2060 CLOSE2
 2070 PRINT"{clear}{down*2}Creating message data..."
-2080 I=15:F$="sys.msg data":GOSUB210:I$="{pink}{ct o}":GOSUB50100
+2080 I=15:F$="sys.mdata":GOSUB210:I$="{pink}{ct o}":GOSUB50100
 2100 RECORD#2,1327:PRINT#2,"0000000000"+R$+"0":FORX=1TO1327:RECORD#2,X:PRINT#2,"0000000000"+R$+"0":NEXTX:FORX=51TO1327STEP51:RECORD#2,X:PRINT#2,"0"+R$+"1"
 2110 NEXTX:CLOSE2
 3000 REM
@@ -81,21 +81,21 @@
 5010 GOSUB200:IFX=0THEN6000
 5020 PRINT"{clear}{down*2}Creating voting booth..."
 5030 I=253:F$="sys.voting booth":GOSUB210:I$="{pink}{ct o}":GOSUB50100
-5040 A$="(none)"+R$+"00000000000000000000000000"+R$+"1"+R$+"09/08/91  08:11pm"+R$+"1":YY=0
+5040 A$="{pound}"+R$+"00000000000000000000000000"+R$+"1"+R$+"09/08/91  08:11pm"+R$+R$:YY=0
 5050 RECORD#2,26:PRINT#2,A$:FORXX=1TO26:RECORD#2,XX:PRINT#2,A$:GOSUB1900:NEXTXX
 5060 CLOSE2
 6000 REM
 6010 GOSUB200:IFX=0THEN7000
 6020 PRINT"{clear}{down*2}Creating networking file..."
-6030 I=64:F$="sys.network":GOSUB210:I$="{pink}{ct o}":GOSUB50100:YY=0
-6040 A$="{pound}"+R$+"(none)"+R$+"L6022976902"+R$+"L6027427319"+R$+"4"
+6030 I=127:F$="sys.network":GOSUB210:I$="{pink}{ct o}":GOSUB50100:YY=0
+6040 A$="{pound}"+R$+"(none)"+R$+"L0000000000"+R$+"L0000000000"+R$+"4"+R$+"00"+R$+"00000000000000000000000000"
 6050 RECORD#2,27:PRINT#2,A$:FORXX=1TO27:RECORD#2,XX:PRINT#2,A$:GOSUB1900:NEXTXX
 6060 CLOSE2
 7000 REM
 7010 GOSUB200:IFX=0THEN8000
 7020 PRINT"{clear}{down*2}Creating miscellaneous file..."
 7030 I=253:F$="sys.misc data":GOSUB210:I$="{pink}{ct o}":GOSUB50100
-7050 RECORD#2,24:PRINT#2,R$:RECORD#2,1:PRINT#2,"0"+R$+"0"+R$+"0"+R$+"0"+R$+"0"+R$+"Zelch 128 v2.0!":YY=0
+7050 RECORD#2,24:PRINT#2,R$:RECORD#2,1:PRINT#2,"0"+R$+"0"+R$+"0"+R$+"0"+R$+"0"+R$+"Zelch 128 v2.5!":YY=0
 7060 RECORD#2,2:A$="":FORI=1TO10:A$=A$+"key"+STR$(I)+R$:NEXTI:PRINT#2,A$:RECORD#2,3:PRINT#2,A$
 7070 FORXX=4TO24:RECORD#2,XX:PRINT#2,"(none)"+R$+"(AAA)/XXX-YYYY"+R$+"100"+R$+"{pound}"+R$+"{pound}":GOSUB1900:NEXTXX:CLOSE2
 8000 GOTO20

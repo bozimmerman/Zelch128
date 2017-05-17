@@ -1,5 +1,5 @@
 * = $2000
-;.D V2.0a 2000
+;.D V2.0 2000
         JMP GETIT;8192 / 1000 / GET A$
         JMP GETINE;8195 / 2000 / GET ONE CHARACTER
         JMP SEND; 8198 / 3000 / SEND ONE CHARACTER
@@ -24,6 +24,7 @@
         JMP COPIFI; 8255/17000/COPY#2 TO #3
         JMP DRECFILE; 8258/18000/DIRECTORY
         JMP RELREC; 8261/19000/RECORD LENTH
+        JMP CHKDRV; 8264/19500/CHECK DRIVE
 ;*********END OF JMP TABLE*********
 ;230,570,1250,2085,2086,2570,3245,3540,3615
 IDD1            BYTE 65
@@ -96,11 +97,13 @@ DEFFIX
 GETINE
         JSR SAVE
         JSR $3D0C
-        LDX #$00
+        LDX #$14
         JSR $FFC6
         JSR $EEEB
         CMP #$00
-        BEQ SYSNULL
+        BNE NOTNULL
+        JSR MOUSIT;**HANDLE JOYSTICK IO
+NOTNULL
         CMP #$01
         BEQ SYSNULL
         STA $FE;***STORE SYSOP KEY
@@ -117,8 +120,8 @@ NOCHAT
         LDA #$01
         STA $0B0B
         JMP EXOUT
-IDD4            BYTE 48
-IDD5            BYTE 49
+IDD4            BYTE 50
+IDD5            BYTE 48
 SYSNULL
         LDA $0B07
         BEQ USRCONT;SYSOP LOCAL
@@ -131,7 +134,7 @@ USRCONT
         JSR $FFC6;MODEM INPUT
         JSR $EEEB
         STA $FE;GET BYTE
-        LDX #$00
+        LDX #$14
         JSR $FFC6
         LDA $FE
         BEQ GONE;USER NULL
@@ -231,12 +234,40 @@ LOAD
         LDX $0B12
         RTS
 IDD6
-                BYTE 51
-
+                BYTE 49
+MOUSIT
+        LDA $D4
+        CMP #$58
+        BNE MOSNO
+        LDY #$00
+        LDA $DC00;**MOUSE-CRSR
+MOLOOP
+        CMP MASBIT,Y
+        BEQ MOGOOD
+        INY
+        CPY #$05
+        BNE MOLOOP
+MOSNO
+        LDA #$01
+        RTS
+MOGOOD
+        LDA MAMAS,Y;***GET THE KEY
+        CMP #$0D
+        BEQ MOUSOT
+MOLP
+        LDX $DC00
+        CPX #$7F
+        BNE MOLP
+MOUSOT
+        RTS;**EXIT MOUSIT
+MASBIT
+                BYTE 126,125,123,119,111
+MAMAS
+                 BYTE 145,17,157,29,13
 ;*****************SEND ONE CHARACTER OUT RTINE*******************
 SEND
         JSR SAVE
-        LDX #$00
+        LDX #$14
         JSR $FFC9
         JSR $3D0C
         LDA #$00
@@ -342,6 +373,7 @@ NOFRMT
 NOFRMT2
         CMP #$90
         BNE NOCYCL;*COLOR
+NOTCOLOR
         LDX $0B13
         INX
         CPX #$08
@@ -350,6 +382,7 @@ NOFRMT2
 NXTCOLOR
         STX $0B13
         LDA $0B14,X
+        BEQ NOTCOLOR
         STA $FE
 NOCYCL
         LDA $0B1C
@@ -386,7 +419,7 @@ USERSEND
         LDA #$0A
         JSR $EF79;***LINEFEEDS
 SYSSEND
-        LDX #$00
+        LDX #$14
         JSR $FFC9;***LOCAL SEND
         LDA $0B0D
         BNE NOTRANS;***GFX ON
@@ -410,7 +443,7 @@ BADDEST
         JSR BASRTINE
         JSR LOAD
         RTS
-IDD8            BYTE 49
+IDD8            BYTE 48
 BASRTINE
         LDA $0B71
         BNE BADGOOD
@@ -483,7 +516,7 @@ ANSG2
         LDA $0BA5
         STA $FE
 ANSG3
-        LDX #$00
+        LDX #$14
         JSR $FFC9
         RTS
 ANS2
@@ -531,6 +564,8 @@ INPT
         JSR $EF79
 INPTLP
         JSR GETINE;***GET A CHAR
+        LDA $0B4D
+        BNE THEEND
         LDA $0B0B
         BEQ NEND;**CHAR DROP
 THEEND
@@ -569,6 +604,7 @@ LIN80
         LDA #$4B
         STA $0B20
 NOLNM
+        JSR FIRSTCHK
         LDA $FE
         CMP #$0D
         BEQ COINPT;**PASS OVR CHK
@@ -758,6 +794,24 @@ DUNWRAP2
         STA $FE;**CR
         JSR SEND
         JMP DEFINE;**GONE
+FIRSTCHK
+        LDA $0BA6
+        BEQ NOFST;**********FIRST
+        LDA $0B0F
+        BEQ NOFST
+        LDA $FB
+        BEQ NOFST
+        LDY #$00
+        DEC $FB
+        LDA ($FB),Y
+        INC $FB
+        CMP #$20
+        BEQ NOFST
+        LDA $FE
+        AND #$7F
+        STA $FE
+NOFST
+        RTS
 REST
         LDA #$1F
         STA $FC;***SET I$
@@ -1067,7 +1121,8 @@ SKIPUP
         CMP #$01
         BEQ LNKOUT;**EOF MARKER
         LDA $90
-        BNE CSOUT
+        BEQ NOCSOUT
+        JMP CSOUT;****
 NOCSOUT
         INX
         CPX #$FD
@@ -1107,7 +1162,7 @@ CSNDN2
         JMP DOMSGS;**CHK MSGBAS
 NOMSG1
         LDA $0B92
-        CMP #$17
+        CMP $0BA8
         BCC NOMSGY
         JSR MOREBY
 NOMSGY
@@ -1557,15 +1612,24 @@ ALTLP
         JMP ZAPTERM
 N2TERM
         LDA $FE
+        CMP #$1B
+        BEQ EXI
+        LDA $FE
         BEQ NXTERM
         CMP #$0D
         BNE NO80CK
         JSR A80CHK
-        LDA $FE
-NO80CK  CMP #$1B
+NO80CK
+        LDA $DC00;**BUTTON CHK
+        CMP #$6F
         BNE OTERM
-        RTS
+        LDA $D4
+        CMP #$58
+        BNE OTERM
+EXI 
+        RTS;***EXIT
 OTERM
+        LDA $FE
         CMP #$0A
         BNE N3TERM
         LDA $0B1D
@@ -1593,13 +1657,13 @@ NXTERM
         JSR $FFCC
         LDA $FE
         CMP #$00
-        BEQ ZAPCONT
+        BEQ JPZAPCO
         CMP #$03
-        BEQ ZAPCONT
+        BEQ JPZAPCO
         CMP #$0A
         BNE CON2
         LDA $0B1D
-        BEQ ZAPCONT
+        BEQ JPZAPCO
         LDA #$0A
 CON2
         LDA $0B0D
@@ -1607,10 +1671,22 @@ CON2
         LDX $FE
         LDA $3B00,X
         STA $FE
+        JMP CONTERM
+JPZAPCO
+        JMP ZAPCONT
 CONTERM
         LDA #$00
         STA $F4
         STA $F5
+        LDA $FE
+        CMP #$13
+        BNE CON3
+        LDA $0B68
+        CMP #$13
+        BEQ JPZAPCO
+CON3
+        LDA $FE
+        STA $0B68;**NO2HOMES
         JSR SLOWIT
         LDA $FE
         JSR $EF79
@@ -1679,6 +1755,8 @@ SETPOT
         LDX $120C;**TRAP VECTORS
         STA $1B02
         STX $1B03
+        LDA #$01
+        STA $0B4E
         LDA $0B02
         LDX $0B03;** LAST END OF BASIC POINTERS
         STA $1B04
@@ -1827,6 +1905,8 @@ SETBAS
         LDA #$FF
         STA $120C;**NEW TRAP
         JSR $F226;**CLOSE MOST FILES
+        LDA $0B4E
+        BEQ NOSWTCH
         JSR SWITCHO
 NOSWTCH
         LDA #$01
@@ -2047,8 +2127,16 @@ RELOT2
 RELOT
         LDA #$00
         JMP RELOT2
+CHKDRV
+        LDX #$02
+        JSR $FFC6
+        JSR $FFE4
+        LDA $90
+        STA $0B20
+        JSR $FFCC
+        LDA $0B20
+        STA $90
+        RTS
 PRINT
         NOP
-        ;OPEN1,8,15,"S0:ML2000,V3.0 2000":CLOSE1:SAVE"ML2000",8
-
-
+        ;OPEN1,8,15,"S0:ML2000,V2.0 2000":CLOSE1:SAVE"ML2000",8

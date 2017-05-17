@@ -1,7 +1,7 @@
 !--------------------------------------------------
-!- Monday, May 15, 2017 3:01:12 AM
+!- Tuesday, May 16, 2017 10:27:03 PM
 !- Import of : 
-!- c:\src\zelch128\bbs.copy.prg
+!- c:\src\zelch128next\bbs.copy.prg
 !- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
 10 IFPEEK(215)THENFAST
@@ -11,20 +11,30 @@
 70 PRINT"{clear}{down}{ct n}{yellow}Zelch 128 File Copier":PRINTCHR$(27)+"e";
 80 PRINT"{pink}{cm t*21}":PRINT"{cyan}Source drive:{white}"STR$(U)","MID$(STR$(D),2):PRINT"{cyan}Destination :{white}"STR$(U1)","MID$(STR$(D1),2)
 90 PRINT"{down}{cyan}Copy mode   : {white}"M$(CM):PRINT"{down}{yellow}[{white}M{yellow}] {cyan}Copy mode":PRINT"{yellow}[{white}S{yellow}] {cyan}Change source drive"
-100 PRINT"{yellow}[{white}D{yellow}] {cyan}Change destination drive":PRINT"{yellow}[{white}${yellow}] {cyan}Directory (source drive)":PRINT"{yellow}[{white}C{yellow}] {cyan}Copy files":PRINT"{yellow}[{white}Q{yellow}] {cyan}Quit"
-110 PRINT"{down}{yellow}[{white}M{yellow},{white}S{yellow},{white}D{yellow},{white}${yellow},{white}C{yellow},{white}Q{yellow}] Command: {white}";
-120 GETKEYA$:A$=CHR$(ASC(A$)OR128):IFA$=CHR$(164)THENA$="$"
-130 I=INSTR("MSD$CQ",A$):IFITHENPRINTA$:ONIGOTO200,300,400,500,600,150
+100 PRINT"{yellow}[{white}D{yellow}] {cyan}Change destination drive":PRINT"{yellow}[{white}${yellow}] {cyan}Directory (source drive)":PRINT"{yellow}[{white}C{yellow}] {cyan}Copy files":PRINT"{yellow}[{white}@{yellow}] {cyan}DOS command"
+108 PRINT"{yellow}[{white}Q{yellow}] {cyan}Quit"
+110 PRINT"{down}{yellow}[{white}M{yellow},{white}S{yellow},{white}D{yellow},{white}${yellow},{white}C{yellow},{white}@{yellow},{white}Q{yellow}] Command: {white}";
+120 GETKEYA$:A$=CHR$(ASC(A$)OR128):IFA$=CHR$(164)THENA$="$":ELSEIFA$=CHR$(192)THENA$="@"
+130 I=INSTR("MSD$CQ@",A$):IFITHENPRINTA$:ONIGOTO200,300,400,500,600,150,160
 140 GOTO120
 150 END
+160 PRINT"{down}{cyan}Work on {white}Source{cyan} or"+CHR$(13)+"{white}Destination{cyan} drive: {white}S{left}";:X=U
+170 GETKEYA$:IFA$<>CHR$(13)ANDA$<>"d"ANDA$<>"D"THEN170:ELSEIFA$<>CHR$(13)THENPRINTCHR$(ASC(A$)OR128):X=U1:ELSEPRINT
+180 PRINT:PRINT"{cyan}>";:GOSUB420:IFI$<>""THENOPEN1,X,15,I$:ELSE70
+185 INPUT#1,E,E$,E1,E2:PRINT"{down}{white}";E;"{cyan},{white}";E$;"{cyan},{white}";E1;"{cyan},{white}";E2;:CLOSE1:GETKEYA$:PRINT:GOTO70
+199 END
 200 PRINT"{down}{yellow}[{white}0{yellow}] {cyan}Prompt filenames and replaces":PRINT"{yellow}[{white}1{yellow}] {cyan}Prompt for names, but auto-replace"
 210 PRINT"{yellow}[{white}2{yellow}] {cyan}Complete auto, no prompts":PRINT"{yellow}[{white}3{yellow}] {cyan}Ramload marked files"
 220 PRINT"{down}{yellow}[{white}0{yellow},{white}1{yellow},{white}2{yellow},{white}3{yellow}] Copy mode: {white}";
 230 GETKEYA$:A$=CHR$(ASC(A$)AND127):I=INSTR("0123",A$):IFITHENPRINTA$:CM=I-1:GOTO70:ELSE230
 300 PRINT"{down}{cyan}Source device: {white}";:GOSUB450:IFI<8ORI>30THEN70:ELSEU=I
-310 PRINT"{cyan}     drive/lu: {white}";:GOSUB450:IFI<0ORI>255THEN70:ELSED=I:IFU=U1ANDD=D1THENPRINT"{down}No single drive copies!":GOTO300:ELSE70
+310 PRINT"{cyan}     drive/lu: {white}";:GOSUB450:IFI<0ORI>255THEN70:ELSED=I:IFU<>U1ORD<>D1THEN70:ELSEPRINT"{down}No single drive copies!"
 400 PRINT"{down}{cyan}Destination device: {white}";:GOSUB450:IFI<8ORI>30THEN70:ELSEU1=I
 410 PRINT"{cyan}          drive/lu: {white}";:GOSUB450:IFI<0ORI>255THEN70:ELSED1=I:IFU1=UANDD1=DTHENPRINT"{down}No single drive copies!":GOTO300:ELSE70
+420 I$=""
+425 GETKEYA$:IFA$=CHR$(13)THENPRINT:RETURN:ELSEIFA$<>CHR$(20)THEN435
+430 IFLEN(I$)=0THEN425:ELSEI$=LEFT$(I$,LEN(I$)-1):PRINTA$;:GOTO425
+435 IFLEN(I$)<(37+(PEEK(215)*40))THENI$=I$+A$:PRINTA$;:GOTO425:ELSEPRINT"{ct g}";:GOTO425
 450 I$=""
 455 GETKEYA$:IFINSTR("0123456789"+CHR$(20)+CHR$(13),A$)=0THEN455
 460 IFA$=CHR$(13)THENPRINT:I=VAL(I$):RETURN
@@ -50,7 +60,7 @@
 700 IFCM=3ANDLEFT$(I$,3)="---"THENY=ABS(Y-1):GOTO630
 710 IFCM=3ANDY=0THEN630
 720 X=X+1:TT$(X)=I$:GOTO630
-800 CLOSE2:CLOSE3:IFX=0ORU=U1THENRETURN
+800 CLOSE2:CLOSE3:IFX=0OR(U=U1ANDD=D1)THENRETURN
 810 OPEN1,U,15:OPEN15,U1,15:PRINTCHR$(13)"{down}{cyan}Copying files...":PRINT
 820 FORY=1TOX:IFRIGHT$(TT$(Y),2)=",r"THEN900
 830 GOSUB999

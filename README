@@ -20,7 +20,7 @@ bbs.ascii edit,p
 bbs.copy,p
 bbs.create,p
 raminstall,p
- ramdos128,p (** note the preceding space!)
+ramdos128,p
 v3.0 2000,p
 v3.0 3d00,p
 crsr 0e00,p
@@ -65,7 +65,7 @@ To build the files for these disks, you'll need three programs.  One, obviously,
 
 The first step is to load CBM prg studio.  Starting with the BASIC files, open up each file so you can see the code.  Then Click the little PRG button to "Generate .prg (current file)"  or select Build->Program->To File from the menu.  After all the BASIC files are built, and the prg files saved, then do the Assembly files the same way.  The Assembly files will give you an extra window "Assembly Dump", but you can just hit the X to close this and ignore it.
 
-The next step is to copy the files for the boot disk into a .D71 image, in the order shown above.  Please note that some of the files will need to be renamed after they are copied into the image.  These are: "ramdos128" (add a space to the beginning), "prg.u - d bases," which should be renamed to "prg.u/d bases", "main ml" which should be renamed to "v3.0 2000", "interrupts" which should be renamed to "v3.0 3d00", "ansi" should be renamed to "ansi 3a00", and "ascii" renamed to "ascii 3b00".  Also, the SEQ (,s) files mentioned above can be found in the project "data" directory, such as sys.text and sys.variables, and copied in as-is.
+The next step is to copy the files for the boot disk into a .D71 image, in the order shown above.  Please note that some of the files will need to be renamed after they are copied into the image.  These are: "prg.u - d bases," which should be renamed to "prg.u/d bases", "main ml" which should be renamed to "v3.0 2000", "interrupts" which should be renamed to "v3.0 3d00", "ansi" should be renamed to "ansi 3a00", and "ascii" renamed to "ascii 3b00".  Also, the SEQ (,s) files mentioned above can be found in the project "data" directory, such as sys.text and sys.variables, and copied in as-is.
 
 Next is to build the files for the configuration disk into a different .D71 image.  Once again, copy the files in the order shown above, grabbing the SEQ (,s) files from the projects data directory.
 

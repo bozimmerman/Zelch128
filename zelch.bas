@@ -1,16 +1,16 @@
 !--------------------------------------------------
-!- Monday, May 15, 2017 3:04:48 AM
+!- Tuesday, May 16, 2017 10:51:08 PM
 !- Import of : 
-!- c:\src\zelch128\zelch.prg
-!- Commodore 128 BASIC 7/7.1
+!- c:\src\zelch128next\zelch.prg
+!- Unknown Machine
 !--------------------------------------------------
 10 U=PEEK(186):IFPEEK(2960)=42THEN400
-11 GRAPHICCLR:A=RGR(0):GRAPHIC1,1:GRAPHICA:POKE53280,0:POKE53281,0:FORI=2816TO3071:POKEI,0:NEXT
+11 GRAPHICCLR:A=RGR(0):GRAPHIC1,1:GRAPHICA:POKE53280,0:POKE53281,0:FORI=2816TO3071:POKEI,0:NEXT:R$=CHR$(13)
 15 POKE57093,10:IFPEEK(57093)<>10THEN80
 20 OPEN1,U,15:OPEN2,U,2,"ramdos128,p,r":INPUT#1,E:CLOSE2:CLOSE1:IFETHEN80
 40 PRINT"loading ramdos...":BLOAD"ramdos128",U(U):POKE2961,PEEK(16128):SYS65418:SYS8972:POKE6,PEEK(2961):POKE7,15
-60 OPEN1,0:PRINT"{down}format and reload ram (y/n)? {white}n{left}";:INPUT#1,A$:PRINT:CLOSE1
-70 IFCHR$(ASC(A$)AND127)="n"THENSYS8969:ELSESYS8966:POKE2960,42
+60 PRINT"{down}format and reload ram (y/n)? {reverse on}{white}n{left}";:TI$="000000":DO:GETA$:LOOPUNTILA$=R$ORA$="n"ORA$="y"ORVAL(TI$)>180:IFVAL(TI$)>180ORA$=R$THENA$="n"
+70 PRINT"{reverse off}";A$:IFCHR$(ASC(A$)AND127)="n"THENSYS8969:ELSESYS8966:POKE2960,42
 80 GRAPHICCLR:GRAPHIC1,1:GRAPHICA
 100 IFPEEK(238)=79THENFAST:PRINTCHR$(27)"m{home*2}{clear}{cyan}";:FORX=1TO25:PRINTTAB(39)"{cm g}":NEXTX:PRINTCHR$(27)"l";:WINDOW0,0,38,24
 110 PRINT"{142}{clear}{down}{red}{cm asterisk}{reverse on}{cm asterisk}{reverse off}           {cm asterisk}{reverse on}{cm asterisk}{reverse off}           {cm asterisk}{reverse on}{cm asterisk}{reverse off}
@@ -68,7 +68,8 @@
 610 PRINT"    {reverse on}{purple}{cm k}  B  {cm l}{reverse off}  {yellow}({reverse on}{cm q}{reverse off})1991  bill fink
 620 PRINT"  {reverse on}{white}O{cm t*3}P{purple}B{white}O{cm t*3}P{reverse off} {yellow}{cm t}      bo zimmerman
 630 WINDOW0,0,PEEK(238),24
-640 GETKEYA$:IFA$="q"THENPRINT"{clear}{down}{142}{pink}z{yellow}e{white}l{cyan}c{light blue}h {white}128 v2.0 copyright (c)1991":PRINT"bill fink and bo zimmerman{cyan}":END
+640 TI$="000000":DO:GETA$:LOOPUNTILINSTR("q12345",A$)ORVAL(TI$)>120:IFVAL(TI$)>120THENA$="1"
+643 IFA$="q"THENPRINT"{clear}{down}{142}{pink}z{yellow}e{white}l{cyan}c{light blue}h {white}128 v2.0 copyright (c)1991":PRINT"bill fink and bo zimmerman{cyan}":END
 645 X=VAL(A$):IFX<1ORX>5THEN640
 650 IFX=1THENF$="bbs.main":I$="1. boot bbs       "
 660 IFX=2THENF$="bbs.editor":I$="{down}2. system editor  "

@@ -1,214 +1,216 @@
-* =$1300
+* = $1300
+;.D L-XFER 1300
+        JMP BITLIST
+        JMP BITEDIT
+LDAFAR2
+        TXA
+        LDX #$01
+        JSR $FF74
+        RTS
+BITLIST
+        JSR $FFCC
+        LDY #$09
+        LDX #$2F
+        JSR LDAFAR2
+        CMP $FB
+        BCS BITBURP
+        STA $FB
+BITBURP
+        INY
+        LDX #$2F
+        JSR LDAFAR2
+        STA $FC
+        INY
+        LDX #$2F
+        JSR LDAFAR2
+        STA $FD
+        LDY #$00
+BITLOOP
+        LDX #$FC
+        JSR LDAFAR2
+        LDX #$01
+        STX $F5
+        STA $1F00,Y
+        JSR $FFD2
+        LDA #$00
+        STA $F5
+        STA $F4
+        INY
+        CPY $FB
+        BNE BITLOOP
+        RTS
+BITEDIT
+        JSR $FFCC
+        JSR $2039
+        LDY #$09
+        LDX #$2F
+        JSR LDAFAR2
+        STA $FB
+        JSR BITLIST
+        LDA $FA
+        BNE BITSHIT
+        LDA #$F0
+BITSHIT
+        STA $FA
+        LDY $FB
+DELOP
+        LDA #$9D
+        JSR $FFD2
+        DEY
+        BNE DELOP
+        LDA #$00
+        STA $FE
+GETKEY
+        JSR $FFE4
+        STA $FC
+        JSR $3D0C
+        LDA $FC
+        BEQ GETKEY
+        CMP #$22
+        BNE NOKOTE
+        LDA #$87
+        STA $FC
+NOKOTE
+        CMP #$0D
+        BNE NOGO
+GOGO 
+        JMP OUTGOGO
+NOGO
+        LDA $0B4D
+        BNE GOGO
+        LDA $D4
+        CMP #$53
+        BCC NOT212
+        CMP #$57
+        BCS NOT212
+        JMP NOTFIV
+NOT212
+        LDA $FC
+        CMP #$9D
+        BEQ THIS1
+        CMP #$11
+        BNE NOTBK
+THIS1
+        LDA $FE
+        BEQ GETKEY
+        DEC $FE
+        LDA #$9D
+        JSR $FFD2
+        JMP GETKEY
+NOTBK
+        LDA $FC
+        CMP #$1D
+        BEQ THIS2
+        CMP #$91
+        BNE NOTUP
+THIS2
+        LDA $FE
+        CMP $FB
+        BCC DOIT
+        JMP GETKEY
+DOIT
+        INC $FE
+        LDA #$1D
+        JSR $FFD2
+        JMP GETKEY
+NOTUP
+        LDA $FC
+        CMP #$14
+        BEQ DELETE
+        CMP #$94
+        BNE NOINST
+        JMP INSERT
+NOINST
+        LDA $D3
+        CMP #$05
+        BNE NOTFIV
+        LDA $FC
+        ORA #$80
+        STA $FC
+NOTFIV
+        LDX $FE
+        INX
+        CPX $FB
+        BCC NOSHIT
+        BEQ NOSHIT
+        CPX $FA
+        BCS JPGT
+        LDY $FB
+        LDA $FC
+        STA $1F00,Y
+        INY
+        STY $FB
+PRINT
+        LDA #$01
+        STA $F4
+        LDA $FC
+        JSR $FFD2
+        LDA #$00
+        STA $F4
+        STA $F5
+        INC $FE
+        JMP GETKEY
+NOSHIT
+        LDX $FE
+        CPX $FA
+        BCS JPGT
+        LDY $FE
+        LDA $FC
+        STA $1F00,Y
+        JMP PRINT
+OUTGOGO
+        LDA #$0D
+        JSR $FFD2
+        LDA #$0D
+        JSR $FFD2
+        LDA #$1F
+        STA $FC
+        JMP $203C
+JPGT
+        JMP GETKEY
+DELETE
+        LDA $FB
+        BEQ JPGT
+        LDA $FE
+        BEQ JPGT
+        LDA $FC
+        JSR $FFD2
+        DEC $FE
+        DEC $FB
+        LDY $FE
+LOOP2 
+        INY
+        LDA $1F00,Y
+        DEY
+        STA $1F00,Y
+        INY
+        CPY $FB
+        BCC LOOP2
+        JMP GETKEY
+INSERT
+        LDA $FB
+        CMP $FA
+        BCS JPGT
+        LDA $FC
+        JSR $FFD2
+        LDA #$00
+        STA $F4
+        STA $F5
+        INC $FB
+        LDY $FB
+LOOP3 
+        DEY
+        LDA $1F00,Y
+        INY
+        STA $1F00,Y
+        DEY
+        CPY $FE
+        BNE LOOP3
+        LDA #$20
+        STA $1F00,Y
+        JMP GETKEY
+PRINT2
+        NOP
+        ;OPEN1,8,15,"S0:ML1300L,L-XFER 1300":CLOSE1:SAVE"ML1300L",8
 
-                    ; assembly source for zelch 2.0a
-                        ; no idea what this does.  It's booted at init
-                        ; time by zelch.prg, logon.bas when sysop local
-                        ; local mode is set, and then
-                        ; online utils ensures its loaded always.
 
-kCHKIN = $FFC6
-kCHKOUT = $FFC9
-kCLRCHN = $FFCC
-kCHRIN = $FFCF
-kGETIN = $FFE4
-kCHROUT = $FFD2
-kRDTIM = $FFDE
-kREADST = $FFB7
-
-L1300               jmp L130d
-                    
-L1303               jmp L134a
-                    
-S1306               txa 
-                    ldx #$01
-                    jsr $ff74
-                    rts 
-                    
-L130d               jsr kCLRCHN
-                    ldy #$09
-                    ldx #$2f
-                    jsr S1306
-                    cmp $fb
-                    bcs L131d
-                    sta $fb
-L131d               iny 
-                    ldx #$2f
-                    jsr S1306
-                    sta $fc
-                    iny 
-                    ldx #$2f
-                    jsr S1306
-                    sta $fd
-                    ldy #$00
-L132f               ldx #$fc
-                    jsr S1306
-                    ldx #$01
-                    stx $f5
-                    sta $1f00,y
-                    jsr kCHROUT
-                    lda #$00
-                    sta $f5
-                    sta $f4
-                    iny 
-                    cpy $fb
-                    bne L132f
-                    rts 
-                    
-L134a               jsr kCLRCHN
-                    jsr $2039
-                    ldy #$09
-                    ldx #$2f
-                    jsr S1306
-                    sta $fb
-                    jsr L130d
-                    lda $fa
-                    bne L1362
-                    lda #$f0
-L1362               sta $fa
-                    ldy $fb
-L1366               lda #$9d
-                    jsr kCHROUT
-                    dey 
-                    bne L1366
-                    lda #$00
-                    sta $fe
-L1372               jsr kGETIN
-                    sta $fc
-                    jsr $3d0c
-                    lda $fc
-                    beq L1372
-                    cmp #$22
-                    bne L1386
-                    lda #$87
-                    sta $fc
-L1386               cmp #$0d
-                    bne L138d
-                    jmp L1423
-                    
-L138d               lda $d4
-                    cmp #$53
-                    bcc L139a
-                    cmp #$57
-                    bcs L139a
-                    jmp L13e8
-                    
-L139a               lda $fc
-                    cmp #$9d
-                    beq L13a4
-                    cmp #$11
-                    bne L13b2
-L13a4               lda $fe
-                    beq L1372
-                    dec $fe
-                    lda #$9d
-                    jsr kCHROUT
-                    jmp L1372
-                    
-L13b2               lda $fc
-                    cmp #$1d
-                    beq L13bc
-                    cmp #$91
-                    bne L13cf
-L13bc               lda $fe
-                    cmp $fb
-                    bcc L13c5
-                    jmp L1372
-                    
-L13c5               inc $fe
-                    lda #$1d
-                    jsr kCHROUT
-                    jmp L1372
-                    
-L13cf               lda $fc
-                    cmp #$14
-                    beq L1437
-                    cmp #$94
-                    bne L13dc
-                    jmp L145a
-                    
-L13dc               lda $d3
-                    cmp #$05
-                    bne L13e8
-                    lda $fc
-                    ora #$80
-                    sta $fc
-L13e8               ldx $fe
-                    inx 
-                    cpx $fb
-                    bcc L1413
-                    beq L1413
-                    cpx $fa
-                    bcs L1434
-                    ldy $fb
-                    lda $fc
-                    sta $1f00,y
-                    iny 
-                    sty $fb
-L13ff               lda #$01
-                    sta $f4
-                    lda $fc
-                    jsr kCHROUT
-                    lda #$00
-                    sta $f4
-                    sta $f5
-                    inc $fe
-                    jmp L1372
-                    
-L1413               ldx $fe
-                    cpx $fa
-                    bcs L1434
-                    ldy $fe
-                    lda $fc
-                    sta $1f00,y
-                    jmp L13ff
-                    
-L1423               lda #$0d
-                    jsr kCHROUT
-                    lda #$0d
-                    jsr kCHROUT
-                    lda #$1f
-                    sta $fc
-                    jmp $203c
-                    
-L1434               jmp L1372
-                    
-L1437               lda $fb
-                    beq L1434
-                    lda $fe
-                    beq L1434
-                    lda $fc
-                    jsr kCHROUT
-                    dec $fe
-                    dec $fb
-                    ldy $fe
-L144a               iny 
-                    lda $1f00,y
-                    dey 
-                    sta $1f00,y
-                    iny 
-                    cpy $fb
-                    bcc L144a
-                    jmp L1372
-                    
-L145a               lda $fb
-                    cmp $fa
-                    bcs L1434
-                    lda $fc
-                    jsr kCHROUT
-                    lda #$00
-                    sta $f4
-                    sta $f5
-                    inc $fb
-                    ldy $fb
-L146f               dey 
-                    lda $1f00,y
-                    iny 
-                    sta $1f00,y
-                    dey 
-                    cpy $fe
-                    bne L146f
-                    lda #$20
-                    sta $1f00,y
-                    jmp L1372
-                    
-                    byte $ea 
