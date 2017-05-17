@@ -1,7 +1,7 @@
         
         
 * = $3D00
-        ; .D V1.0 3D00
+        ; .D V2.0a 3D00
         ; *** INTERRUPT/ MISC ROUTINES.
         JMP SETUP; 15616 / 1000 / SETUP INITIAL POINTERS/INITIALIZE INTERRUPTS
         JMP LOCKUPS; 15619 / 2000 / INTERRUPTS
@@ -77,6 +77,13 @@ LOCHK
         LDA $DD0A
         BNE NOCHK2
         LDA $DD0B
+        CMP $0B90
+        BNE LICHK
+        LDA $0B91
+        BNE LICHK
+        LDA #$01
+        STA $0B91
+LICHK
         CMP #$12
         BNE NOCHK2
         LDA $0B40
@@ -123,7 +130,13 @@ INRC
         LDA $DD0A
         STA $0B0A
         DEC $0B09; LOSE ONE TICK
-        JMP INRR
+        LDA $0B9E
+        BEQ INRR
+        LDA $0B07
+        BNE INRR
+        DEC $0B9D
+        BNE INRR
+        JMP TIMEUP
         ;**************SET UP BASIC OVERLAY POINTERS****************
 OVERLAY
         LDA $0B05
@@ -281,7 +294,8 @@ CLRLP
         LDA #$84
         STA $032D
         RTS
-        STA $7D
+
+MYSTERY STA $7D
         STY $7E
         JSR $5AE1
         LDX #$1B
