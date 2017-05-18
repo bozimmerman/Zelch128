@@ -7,7 +7,7 @@
 10 IFPEEK(215)THENFAST
 20 CLR:A$="":O$="":I$="":C$="":U=PEEK(186):D=0:U1=U+1:D1=0:DIMTT$(400):DL$="":FORI=1TO80:DL$=DL$+CHR$(20):NEXTI
 30 M$(0)="Query":M$(1)="Auto-Replace":M$(2)="Complete Auto":M$(3)="Ramload"
-40 IFPEEK(2960)=42THENPRINT"{clear}{down}{ct n}{cyan}Zelch Auto Ramloader v1.0":U1=PEEK(2961):CM=3:I$="*":GOTO610
+40 IFPEEK(2960)=42THENPRINT"{clear}{down}{ct n}{cyan}Zelch Auto Ramloader v1.0":U1=PEEK(2985):CM=3:I$="*":GOTO610
 70 PRINT"{clear}{down}{ct n}{yellow}Zelch 128 File Copier":PRINTCHR$(27)+"e";
 80 PRINT"{pink}{cm t*21}":PRINT"{cyan}Source drive:{white}"STR$(U)","MID$(STR$(D),2):PRINT"{cyan}Destination :{white}"STR$(U1)","MID$(STR$(D1),2)
 90 PRINT"{down}{cyan}Copy mode   : {white}"M$(CM):PRINT"{down}{yellow}[{white}M{yellow}] {cyan}Copy mode":PRINT"{yellow}[{white}S{yellow}] {cyan}Change source drive"

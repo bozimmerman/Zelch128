@@ -5,9 +5,9 @@
 !- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
 10 POKE53280,0:POKE53281,0:R$=CHR$(13):IFPEEK(215)THENFAST
-15 O$="0000000000000000{ct i*16}{ct a*16}":O$(0)="No ":O$(1)="Yes":DIMM$(20),N$(20)
+15 O$="0000000000000000{ct i*16}{ct a*16}":O$(0)="No ":O$(1)="Yes":DIMM$(20),N$(20):U1=8:D1=0
 16 READM:FORX=1TOM:READM$(X-1):NEXTX
-17 DATA 7,"Userfiles","Message Bases","U/D Bases","U/D Descriptions","Voting Booth","Networking","Miscellaneous"
+17 DATA 6,"Userfiles","Message Bases","U/D Bases","Voting Booth","Networking","Miscellaneous"
 18 READN:FORX=1TON:READN$(X-1):NEXTX
 19 DATA 4,"The Zelch BBS","The Elite BBS","Simplicity BBS","Quit to previous menu"
 20 PRINT"{home*2}{clear}{cyan}{ct n}"LEFT$("BBS File Creation Utilities                                      Zelch 128 v2.0",PEEK(238))"{light blue}":IFPEEK(215)THENPRINT"{dark gray}";
@@ -38,7 +38,7 @@
 150 PRINT"Device number     : ";:GOSUB50200:IFI$<>""THENMID$(O$,16+A,1)=CHR$(I+1)
 160 PRINT"Drive/LU          : ";:GOSUB50200:IFI$<>""THENMID$(O$,32+A,1)=CHR$(I+1)
 170 GOSUB50060:GOTO40
-200 C=C+1:U=U1:D=D1:X=VAL(MID$(O$,C,1)):IFC=1ORC=4THENU=ASC(MID$(O$,16+C,1))-1:D=ASC(MID$(O$,32+C,1))-1:RETURN:ELSERETURN
+200 C=C+1:U=U1:D=D1:X=VAL(MID$(O$,C,1)):IFC=1THENU=ASC(MID$(O$,16+C,1))-1:D=ASC(MID$(O$,32+C,1))-1:RETURN:ELSERETURN
 210 OPEN2,U,2,MID$(STR$(D),2)+":"+F$+",l,"+CHR$(I):RETURN
 1000 REM
 1005 X=4:Y=5:W=30:H=5:IFPEEK(215)THENX=21:Y=6:W=30
@@ -46,7 +46,7 @@
 1010 GOSUB200:IFX=0THEN2000
 1030 PRINT"{clear}{down}Note: Maximum 500 userfiles.":PRINT"{down}Create how many? ";:GOSUB50200:PRINT"{clear}{down*2}Creating userfiles...":WHY=I
 1040 I=253:F$="sys.userfiles":GOSUB210:I$="{pink}{ct o}":GOSUB50100
-1050 A$="{pound}"+R$+"(NONE)"+R$+"(NONE)"+R$+"(XXX)/YYY-ZZZZ"+R$+"A"+R$+"0000000000"+R$+"00/00/00"+"0000000000"+R$:YY=0
+1050 A$="{pound}"+R$+"(NONE)"+R$+"(NONE)"+R$+"(XXX)/YYY-ZZZZ"+R$+"A"+R$+"0000000000"+R$+"00/00/00"+R$+"0000000000"+R$:YY=0
 1060 FORI=1TO2:A$=A$+"00000000000000000000000000"+R$:NEXTI:FORI=1TO8:A$=A$+" 0"+R$:NEXTI
 1070 RECORD#2,WHY:PRINT#2,A$:YY=0:FORXX=1TOWHY-1:GOSUB1900
 1080 RECORD#2,XX:PRINT#2,A$:NEXTXX:CLOSE2:GOTO2000
@@ -64,19 +64,12 @@
 2100 RECORD#2,1327:PRINT#2,"0000000000"+R$+"0":FORX=1TO1327:RECORD#2,X:PRINT#2,"0000000000"+R$+"0":NEXTX:FORX=51TO1327STEP51:RECORD#2,X:PRINT#2,"0"+R$+"1"
 2110 NEXTX:CLOSE2
 3000 REM
-3010 GOSUB200:IFX=0THEN4000
+3010 GOSUB200:IFX=0THEN5000
 3020 PRINT"{clear}{down*2}Creating transfer bases..."
-3030 I=253:F$="sys.u/d bases":GOSUB210:I$="{pink}{ct o}":GOSUB50100
-3040 A$=STR$(U)+R$+STR$(D)+R$+"(none)"+R$+"00000000000000000000000000"+R$+"1"+R$+"50"+R$+"2"+R$+"0":YY=0
+3030 I=253:F$="sys.ubases":GOSUB210:I$="{pink}{ct o}":GOSUB50100
+3040 A$="{sh @}(none)"+R$+"00000000000000000000000000"+R$+"*"+R$+STR$(U)+R$+STR$(D)+R$+"200"+R$+"2"+R$+"42"+R$+STR$(50)+R$+"*"+R$+"0":YY=0
 3050 RECORD#2,26:PRINT#2,A$:FORXX=1TO26:RECORD#2,XX:PRINT#2,A$:GOSUB1900:NEXTXX
 3060 CLOSE2
-4000 REM
-4010 GOSUB200:IFX=0THEN5000
-4030 PRINT"{clear}{down}Note: Max. 1440 u/d records.":PRINT"{down}Create how many? ";:GOSUB50200:PRINT"{clear}{down*2}Creating descriptions...":WHY=I:YY=0
-4040 I=127:F$="sys.u/d desc":GOSUB210:I$="{pink}{ct o}":GOSUB50100
-4050 A$="":B$="..........":FORI=1TO12:A$=A$+B$:NEXTI
-4070 RECORD#2,WHY+12:PRINT#2,A$:YY=0:FORXX=1TOWHY+12:GOSUB1900:IFXX>12THENA$="0"
-4080 RECORD#2,XX:PRINT#2,A$:NEXTXX:CLOSE2
 5000 REM
 5010 GOSUB200:IFX=0THEN6000
 5020 PRINT"{clear}{down*2}Creating voting booth..."
@@ -95,9 +88,10 @@
 7010 GOSUB200:IFX=0THEN8000
 7020 PRINT"{clear}{down*2}Creating miscellaneous file..."
 7030 I=253:F$="sys.misc data":GOSUB210:I$="{pink}{ct o}":GOSUB50100
-7050 RECORD#2,24:PRINT#2,R$:RECORD#2,1:PRINT#2,"0"+R$+"0"+R$+"0"+R$+"0"+R$+"0"+R$+"Zelch 128 v2.5!":YY=0
+7050 RECORD#2,25:PRINT#2,R$:RECORD#2,1:PRINT#2,"0"+R$+"0"+R$+"0"+R$+"0"+R$+"0"+R$+"Zelch 128 v2.5!"+R$+"00000000000000000000000000":YY=0
 7060 RECORD#2,2:A$="":FORI=1TO10:A$=A$+"key"+STR$(I)+R$:NEXTI:PRINT#2,A$:RECORD#2,3:PRINT#2,A$
-7070 FORXX=4TO24:RECORD#2,XX:PRINT#2,"(none)"+R$+"(AAA)/XXX-YYYY"+R$+"100"+R$+"{pound}"+R$+"{pound}":GOSUB1900:NEXTXX:CLOSE2
+7070 FORXX=4TO24:RECORD#2,XX:PRINT#2,"(none)"+R$+"(AAA)/XXX-YYYY"+R$+"100"+R$+"{pound}"+R$+"{pound}":GOSUB1900:NEXTXX
+7080 RECORD#2,25:A$="":FORI=1TO26:A$=A$+"(empty) "+R$:NEXTI:PRINT#2,A$;:CLOSE2
 8000 GOTO20
 10000 X=1:Y=3:W=37:H=M+3:GOSUB50000:PRINT"{down}{yellow}   Configurations{down}":FORI=1TON
 10010 PRINTUSING"{white}#{yellow}) {cyan}##########################";CHR$(I+192),N$(I-1);
@@ -128,7 +122,7 @@
 10460 SYS8222:IFPEEK(253)THENCLOSE3:CLOSE2:CLOSE1:CLOSE15:GOTO20
 10470 IFI$<>CHR$(1)THENPRINT#3,I$:GOTO10460
 10480 SYS8222:IFINSTR(I$,"{ct x}")<>1THENPRINT#3,"{ct a}":PRINT#3,I$:GOSUB1900:GOTO10460
-10500 CLOSE3:PRINT"{cyan}{clear}{down}Creating: {white}"+CHR$(13)+CHR$(34)+MID$(I$,2)+CHR$(34):FF$=MID$(I$,2)
+10500 CLOSE3:PRINT"{cyan}{clear}{down}Creating: {white}"+CHR$(13)+CHR$(34)+MID$(I$,2)+CHR$(34):FF$=MID$(I$,2):OPEN1,U1,15,"s"+MID$(STR$(D1),2)+":"+FF$:CLOSE1
 10510 OPEN3,U1,3,MID$(STR$(D1),2)+":"+FF$+",s,w":INPUT#15,E:IFETHENCLOSE3:SYS8213:CLOSE2:CLOSE1:CLOSE15:RUN
 10520 GOTO10460
 10999 GOTO10000

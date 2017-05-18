@@ -1,5 +1,5 @@
 !--------------------------------------------------
-!- Tuesday, May 16, 2017 10:30:22 PM
+!- Wednesday, May 17, 2017 12:21:18 AM
 !- Import of : 
 !- c:\src\zelch128next\prg.new user.prg
 !- Unknown Machine
@@ -9,8 +9,8 @@
 30100 U$(8)=RIGHT$(STR$(M(1)),1)+"0"+RIGHT$(STR$(M(12)),1)+"001008O":U(4)=0:U(5)=0:U(6)=1:U(7)=25
 30200 X=M(14)+1:DO:X=X-1:LOOPUNTILUI$(X)=""ORUI$(X)="^"ORX=1:IFX=1THENO$=T$(43):GOSUB4:GOTO600
 30300 GOSUB30400:GOSUB30700:GOSUB30900:GOSUB31100:GOSUB31300:GOSUB34400:GOSUB34200:GOSUB34300
-30305 IFINSTR("CD",MID$(U$(8),10,1))THENO$(23)="Punter":O(19)=0:ELSEO$(23)="Xmodem":O(19)=1
-30310 BLOAD(MID$("px",O(19)+1,1)+"-xfer 1300"),U(D(0,0)),D(D(0,1))
+30305 IFINSTR("CD",MID$(U$(8),10,1))THENO$(23)=PR$(1,0):O(19)=1:ELSEO$(23)=PR$(2,0):O(19)=2
+30310 BLOAD(PR$(O(19),1)),U(D(0,0)),D(D(0,1))
 30399 GOTO31500
 30400 O$=T$(44):GOSUB4:X=16:GOSUB5:IFLEN(I$)<2ORI$="NEW"ORI$="New"ORVAL(I$)>0THEN30400:ELSEU$(1)=I$
 30450 IFRIGHT$(U$(1),1)=" "THENU$(1)=LEFT$(U$(1),LEN(U$(1))-1):GOTO30450
@@ -18,8 +18,7 @@
 30600 O$=R$:GOSUB9:RETURN
 30700 O$=T$(47):GOSUB4:X=16:GOSUB5:IFI$=""THEN30700:ELSEU$(3)=I$
 30800 RETURN
-30900 O$=T$(48):GOSUB4:X=10:GOSUB5:IFLEN(I$)<>10THEN30900
-31000 U$(4)="("+LEFT$(I$,3)+")/"+MID$(I$,4,3)+"-"+RIGHT$(I$,4):RETURN
+30900 O$=T$(48):GOSUB4:W7$="(XXX)/XXX-XXXX":GOSUB40000:U$(4)=I$:RETURN
 31100 O$=T$(49):GOSUB4:X=10:GOSUB5:IFI$=""THEN31100
 31200 U$(2)=I$:RETURN
 31300 O$=T$(50):GOSUB4:C$="YN":GOSUB28:IFI=2THENI=0
@@ -73,6 +72,10 @@
 34200 O$="{ct k}{black}Computer type:{ct k*2}{black}A) Commodore Amiga{ct k}{black}C) Commodore 64{ct k}{black}D) Commodore 128{ct k}{black}E) Apple 8-bit{ct k}{black}I) IBM or Clone":GOSUB4
 34210 O$="{black}M) Apple Macintosh{ct k}{black}T) Atari{ct k}{black}P) CP/M based machine{ct k}{black}O) Other/Unlisted{ct k*2}{black}What computer are you using? {ct c}":GOSUB4
 34220 C$="ACDEIMTPO":GOSUB28:MID$(U$(8),10,1)=A$:RETURN
-34300 O$="{ct k}{black}Enter your birthdate in MM/DD/YY format{ct k}: {ct c}":GOSUB4:X=8:GOSUB5:IFMID$(I$,3,1)<>"/"ORMID$(I$,6,1)<>"/"THEN34300:ELSEU$(7)=I$:RETURN
+34300 O$="{ct k}{black}Enter your birthdate in MM/DD/YY format{ct k}: {ct c}":GOSUB4:W7$="XX/XX/XX":GOSUB40000:U$(7)=I$:RETURN
 34400 O$="{ct k}{black}How many lines per screen can your{f7}terminal display? {ct c}":GOSUB4:GOSUB10:IFI<10ORI>100THENRETURN:ELSEU(7)=I:POKE2984,I-2:RETURN
+40000 W7=1:I$=W7$:DO:A$=MID$(W7$,W7,1):IFA$<>""ANDA$<>"X"THENO$=A$:GOSUB9:W7=W7+1:I=0:GOTO40040
+40010 C$="0123456789"+R$+CHR$(20):GOSUB32:IFI<11ANDW7<=LEN(W7$)THENO$=A$:GOSUB9:MID$(I$,W7,1)=A$:W7=W7+1:GOTO40040
+40020 IFI=12ANDW7>1THENDO:W7=W7-1:O$=A$:GOSUB9:LOOPUNTILMID$(W7$,W7,1)="X"ORW7=1
+40040 LOOPUNTILI=11ANDW7=LEN(W7$)+1:O$=R$:GOTO9
 55555 A=PEEK(186):OPEN1,A,15,"s0:prg.new user":CLOSE1:DSAVE"prg.new user",U(A)

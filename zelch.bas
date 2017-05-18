@@ -8,7 +8,7 @@
 11 GRAPHICCLR:A=RGR(0):GRAPHIC1,1:GRAPHICA:POKE53280,0:POKE53281,0:FORI=2816TO3071:POKEI,0:NEXT:R$=CHR$(13)
 15 POKE57093,10:IFPEEK(57093)<>10THEN80
 20 OPEN1,U,15:OPEN2,U,2,"ramdos128,p,r":INPUT#1,E:CLOSE2:CLOSE1:IFETHEN80
-40 PRINT"loading ramdos...":BLOAD"ramdos128",U(U):POKE2961,PEEK(16128):SYS65418:SYS8972:POKE6,PEEK(2961):POKE7,15
+40 PRINT"loading ramdos...":BLOAD"ramdos128",U(U):POKE2985,PEEK(16128):SYS65418:SYS8972:POKE6,PEEK(2985):POKE7,15
 60 PRINT"{down}format and reload ram (y/n)? {reverse on}{white}n{left}";:TI$="000000":DO:GETA$:LOOPUNTILA$=R$ORA$="n"ORA$="y"ORVAL(TI$)>180:IFVAL(TI$)>180ORA$=R$THENA$="n"
 70 PRINT"{reverse off}";A$:IFCHR$(ASC(A$)AND127)="n"THENSYS8969:ELSESYS8966:POKE2960,42
 80 GRAPHICCLR:GRAPHIC1,1:GRAPHICA
@@ -36,11 +36,11 @@
 310 PRINT"       {red}{cm asterisk}{reverse on}{cm asterisk}{reverse off}           {cm asterisk}{reverse on}{cm asterisk}{reverse off}           {cm asterisk}{reverse on}{cm asterisk}{reverse off}
 320 PRINT"        {cm asterisk}{reverse on}{cm asterisk}{reverse off}           {cm asterisk}{reverse on}{cm asterisk}{reverse off}           {cm asterisk}{reverse on}{cm asterisk}{reverse off}
 330 PRINT"         {cm asterisk}{reverse on}{cm asterisk}{reverse off}           {cm asterisk}{reverse on}{cm asterisk}{reverse off}           {cm asterisk}{reverse on}{cm asterisk}{reverse off}
-340 BLOAD"p-xfer 1300",U(U),B0,P4864
-350 BLOAD"v2.0 2000",U(U),P8192
+340 BLOAD"l-xfer 1300",U(U),B0,P4864
+350 BLOAD"v3.0 2000",U(U),P8192
 355 BLOAD"ansi 3a00",U(U),P14848
 360 BLOAD"ascii 3b00",U(U),P15104
-370 BLOAD"v2.0 3d00",U(U),B15,P15616
+370 BLOAD"v3.0 3d00",U(U),B15,P15616
 380 BLOAD"crsr 0e00",U(U),P3584
 390 IFPEEK(238)=79THENWINDOW40,0,79,24
 395 IFPEEK(2960)=42THENX=4:F$="bbs.copy":GOTO711

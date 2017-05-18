@@ -1,5 +1,5 @@
 !--------------------------------------------------
-!- Tuesday, May 16, 2017 10:27:14 PM
+!- Wednesday, May 17, 2017 12:20:07 AM
 !- Import of : 
 !- c:\src\zelch128next\bbs.editor.prg
 !- Commodore 128 BASIC 7/7.1
@@ -8,9 +8,9 @@
 3 H1=800:REM HIGHEST OP-CODE
 5 POKE2823,1:POKE2983,255:POKE2825,255:POKE2824,1:POKE2827,0:POKE2844,0:POKE2845,0:POKE2850,0:POKE2915,SGN(PEEK(215)):POKE2917,0:U=PEEK(186):OPEN5,2,0,CHR$(6)
 8 FORI=0TO3:POKE2963+I,PEEK(804+I):POKE2967+I,PEEK(810+I):NEXTI:POKE2982,0:POKE2829,1
-10 CLOSE8:CLOSE2:CLOSE15:DIMLN$(1001),MD$(10),ME$(50,4),MH$(100),DX$(H1),DX(H1),OP(50),DF$(50,5),OT$(12),D(20,1),MT$(40),M$(40),CT(26,3),F$(10)
+10 CLOSE8:CLOSE2:CLOSE15:DIMLN$(1001),MD$(10),ME$(50,4),MH$(100),DX$(H1),DX(H1),OP(50),DF$(50,5),OT$(12),D(20,1),D$(20),MT$(40),M$(40),CT(26,3),F$(10)
 20 OPEN15,U,15:OPEN2,U,2,"0:sys.variables,s,r":INPUT#15,A:IFA=0THENGOSUB4520:GOTO30:ELSECLOSE2:CLOSE15:PRINT"{clear}{ct n}":GOSUB4500
-30 FAST:IFA=0THEN50:ELSEFORX=1TO20:D(X,0)=8:D(X,1)=0:NEXTX:M$(0)="U"
+30 FAST:IFA=0THEN50:ELSEFORX=0TO20:D(X,0)=8:D(X,1)=0:D$(X)="i0":NEXTX:M$(0)="U"
 40 FORX=1TO19:M$(X)="0":NEXTX:M$(10)="1200":MT$(1)="X":MT$(2)="e0m0q0v0x1s0=1":MT$(3)="s7=50s11=50":MT$(8)="00000000000000000000000000":MT$(9)=MT$(8)
 45 MT$(4)="menu.main":MT$(5)="menu.sysop":MT$(6)="{cyan}":MT$(7)="menu.all":FORX=1TO26:CT(X,0)=X:CT(X,1)=45:NEXTX:CC$="{light green}{cyan}{light blue}{blue}{purple}{red}{pink}{yellow}"
 50 C=1:U1=U:W$(0)="off":W$(1)="on ":FORX=1TO6:READTT$(X):NEXTX:FORX=1TO12:READOT$(X):NEXTX:FORX=1TO8:POKE2835+X,ASC(MID$(CC$,X,1)):NEXTX:POKE2835,1:GOTO60
@@ -35,9 +35,9 @@
 210 DATA "000000000Read new messages",0,"600000000Global new",1,"000000000Post a message",0,"200000000Scan messages",1
 220 DATA "000000000Check current subop flag",0,"000000000Edit current sub intro",0,"000000000Join/Drop current sub",0,"200000000Scan new messages",1
 225 DATA "000000000Toggle read mode",0
-230 DATA 201,212,"600000000Select a UD sub",1,"660000000List UD subs",2,"123400000Upload file",4
-240 DATA "123400000Download file",4,"234000000Multi-upload",3,"234000000Multi-download",3,"000000000Check UD subop access",0
-250 DATA "000000000Blocks free",0,"000000000Edit current sub intro",0,"200000000Change protocols",1,"000000000Reconfigure records",0,"000000000List w/desc",0
+230 DATA 201,211,"600000000Select a UD sub",1,"660000000List UD subs",2,"123400000Upload file",4
+240 DATA "123400000Download file",4,"120000000Add filename",3,"120000000Delete filename",3,"000000000Check UD subop access",0
+250 DATA "000000000Blocks free",0,"000000000Edit current sub intro",0,"200000000Change protocols",1,"000000000List Dir. files",0
 260 DATA 301,306,"620000000Create/Edit a topic",2,"600000000Delete a topic",1
 270 DATA "600000000Reset topic results",1,"600000000Vote on topic",1,"266000000List topics",3,"690000000Validate topic",2
 280 DATA 401,409,"000000000View user info",0,"000000000Edit user info",0,"600000000Edit subboard data",1
@@ -270,7 +270,7 @@
 3280 IFLEN(I$)>16THENPRINT"{up*2}{white}16 characters maximum.":GOTO3270:ELSERETURN
 3290 PRINT"{cyan}Device number: "CL$;:GOSUB720:IFI$=""ORI$="*"ORLEFT$(I$,1)="#"THENRETURN
 3300 U2=VAL(I$):I$=MID$(STR$(U2),2):IFU2<8ORU2>30THENPRINT"{up*2}{white}Must be between 8 and 30.":GOTO3290:ELSERETURN
-3310 PRINT"{cyan}Drive/LU     : "CL$;:GOSUB720:IFI$=""{pi}I$="*"ORI$="#"THENRETURN
+3310 PRINT"{cyan}Drive/LU     : "CL$;:GOSUB720:IFI$=""ORI$="*"ORI$="#"THENRETURN
 3320 D2=VAL(I$):I$=MID$(STR$(D2),2):IFD2<0ORD2>254THENPRINT"{up*2}{white}Must be between 0 and 254.":GOTO3310:ELSERETURN
 3325 PRINT"Data: "CL$;:POKE2831,1:GOSUB720:IFI$=""ORI$="*"THENRETURN
 3326 IFVAL(I$)ORLEFT$(I$,1)="#"THENRETURN:ELSEI=(ASC(I$)-192):IFI<1ORI>26THENPRINT"{up*2}{white}Invalid entry.":GOTO3325:ELSERETURN
@@ -392,7 +392,7 @@
 4490 IFPEEK(215)THENWINDOW0,1,39,24:RETURN:ELSEWINDOW0,X,39,24:RETURN
 4500 PRINT"Insert "CHR$(34)"sys.variables"CHR$(34)" disk.":PRINT"Drive, Device/lu = 8,0{left*3}";:OPEN1,0:INPUT#1,X,Y:CLOSE1:PRINT
 4510 PRINT"{down}Loading...";:CLOSE2:CLOSE15:OPEN15,X,15:OPEN2,X,2,STR$(Y)+":sys.variables,s,r":INPUT#15,A:IFA>0THENPRINT"Not found.":CLOSE2:CLOSE15:RETURN
-4520 FORX=1TO12:INPUT#2,D(X,0),D(X,1):NEXTX:FORX=0TO19:SYS8222:M$(X)=I$:NEXTX:FORX=1TO9:SYS8222:MT$(X)=I$:NEXTX
+4520 FORX=0TO17:INPUT#2,D(X,0),D(X,1),D$(X):NEXTX:FORX=0TO19:SYS8222:M$(X)=I$:NEXTX:FORX=1TO9:SYS8222:MT$(X)=I$:NEXTX
 4530 FORX=1TO26:INPUT#2,CT(X,0),CT(X,1),CT(X,2),CT(X,3):NEXTX:SYS8222:F$(0)=I$:INPUT#2,CC$:CLOSE2:CLOSE15:RETURN
 4600 I=INSTR(I$,","):IFI=0THENU=8:D=0:RETURN
 4610 X=VAL(LEFT$(I$,I)):Y=VAL(MID$(I$,I+1)):RETURN
@@ -411,22 +411,20 @@
 5110 PRINT"{down*2}{cyan}Press the color to change: "CHR$(27)"q";:GETKEYA$:X=INSTR(CC$,A$):IFX=0ORX>M6THENPRINT"{clear}";:GOTO5530
 5120 PRINT"                     Change to: ";:GETKEYB$:IFINSTR("{white}{red}{cyan}{purple}{green}{blue}{yellow}{orange}{brown}{pink}{dark gray}{gray}{light green}{light blue}{light gray}",B$)=0THENPRINT"{clear}";:GOTO5530
 5130 MID$(CC$,X,1)=B$:GOTO5090
-5140 PRINT"{clear}{down}Drive configuration{down}":GOSUB5520
-5150 PRINT"{yellow}System prg.files : {white}";:X=D(1,0):Y=D(1,1):GOSUB4620:GOSUB2010:GOSUB4600:D(1,0)=X:D(1,1)=Y
-5160 PRINT"{up}{yellow}System data files: {white}";:X=D(2,0):Y=D(2,1):GOSUB4620:GOSUB2010:GOSUB4600:D(2,0)=X:D(2,1)=Y
-5170 PRINT"{up}{yellow}Voting topics    : {white}";:X=D(3,0):Y=D(3,1):GOSUB4620:GOSUB2010:GOSUB4600:D(3,0)=X:D(3,1)=Y
-5180 PRINT"{up}{yellow}Temp usage drive : {white}";:X=D(4,0):Y=D(4,1):GOSUB4620:GOSUB2010:GOSUB4600:D(4,0)=X:D(4,1)=Y
-5190 PRINT"{up}{yellow}User data files  : {white}";:X=D(5,0):Y=D(5,1):GOSUB4620:GOSUB2010:GOSUB4600:D(5,0)=X:D(5,1)=Y
-5195 PRINT"{up}{yellow}User definable   : {white}";:X=D(12,0):Y=D(12,1):GOSUB4620:GOSUB2010:GOSUB4600:D(12,0)=X:D(12,1)=Y
-5200 PRINT"{up}{yellow}Email drive      : {white}";:X=D(6,0):Y=D(6,1):GOSUB4620:GOSUB2010:GOSUB4600:D(6,0)=X:D(6,1)=Y
-5205 PRINT"{up}{yellow}Menus drive      : {white}";:X=D(10,0):Y=D(10,1):GOSUB4620:GOSUB2010:GOSUB4600:D(10,0)=X:D(10,1)=Y
-5207 PRINT"{up}{yellow}U/D descriptions : {white}";:X=D(11,0):Y=D(11,1):GOSUB4620:GOSUB2010:GOSUB4600:D(11,0)=X:D(11,1)=Y
-5210 PRINT"{up}{yellow}Feedback drive   : {white}";:X=D(7,0):Y=D(7,1):GOSUB4620:GOSUB2010:GOSUB4600:D(7,0)=X:D(7,1)=Y:PRINT"{clear}";:GOTO5530
+5140 PRINT"{clear}{down}Drive configuration{down*2}":OPEN1,0:GOSUB5520
+5150 RESTORE5200:FORT=0TO6:READO$:GOSUB5245:NEXTT:FORT=9TO17:READO$:GOSUB5245:IFT>=10THENRESTORE5210
+5160 NEXTT:GOTO5249
+5200 DATA"System prg files","System data files","Voting topics","Temp Usage","User data file","E-mail drive","Feedback file","Menus drive","Network files"
+5210 DATA"User definable"
+5245 PRINT"{up}{yellow}("RIGHT$(STR$(T),2)") "O$;SPC(17-LEN(O$));": {white}";:X=D(T,0):Y=D(T,1):GOSUB4620:GOSUB2010:GOSUB4600:D(T,0)=X:D(T,1)=Y
+5248 PRINT"{up}{yellow}   Init for this drive: {white}";D$(T);CHR$(13);"{up}";SPC(24);:INPUT#1,D$(T):PRINT:PRINT"{down}":RETURN
+5249 CLOSE1:PRINT:PRINT"{clear}";:GOTO5530
 5250 PRINT"{clear}":OPEN1,0:GOSUB5520
-5260 PRINT"0 = 1670, 1 = 1670, 2 = Hayes":PRINT"3 = 1650, 4 = 1660: Type: ";M$(1)+"{left}";
+5260 PRINT"0 = 1670, 1 = 1670, 2 = Hayes":PRINT"3 = 1650, 4 = 1660, 5=NULL:";CHR$(13);"Type: ";M$(1)+"{left}";
 5270 INPUT#1,M$(1):PRINT
 5280 W1=0:W2=0:W3=0:W4=0:IFVAL(M$(1))=3THENW2=32:W3=2:W4=6
 5290 IFVAL(M$(1))=4THENW1=32:W4=38
+5295 IFVAL(M$(1))=5THENW2=32:W3=6:W4=6
 5300 PRINT"{down}Hangup bit (usually 16)":PRINT"Hangup bit: "+M$(5)+CHR$(13)+"{up}{right*12}";:INPUT#1,M$(5):PRINT
 5310 PRINT"{down}Hangup poke 56577 (should be"+STR$(W1)+")":PRINT"Hangup poke: "+M$(6)+CHR$(13)+"{up}{right*13}";:INPUT#1,M$(6):PRINT
 5320 PRINT"{down}Hangup poke 56579 (should be"+STR$(W2)+")":PRINT"Hangup poke: "+M$(7)+CHR$(13)+"{up}{right*13}";:INPUT#1,M$(7):PRINT
@@ -446,6 +444,7 @@
 5440 PRINT"{down}Number of block credits to":PRINT"give new users: "M$(11)CHR$(13)"{up}"TAB(16);:INPUT#1,M$(11):PRINT
 5450 PRINT"{down}Number of system credits to":PRINT"give new users: "M$(12)CHR$(13)"{up}"TAB(16);:INPUT#1,M$(12):PRINT
 5460 PRINT"{down}Default weed protect for new":PRINT"users (0=off, 1=protected): "M$(13)"{left}";:INPUT#1,M$(13):PRINT
+5470 PRINT"{down}Permanently file all new user":PRINT"applications (0=no, 1=yes): "M$(14)"{left}";:INPUT#1,M$(14):PRINT
 5480 W1=VAL(M$(15)):PRINT"{down}Max users (0-500): "M$(15)CHR$(13)"{up}"TAB(19);:INPUT#1,M$(15):PRINT
 5485 PRINT"{down}Hotkey BBS (0=yes, 1=no): "M$(19)"{left}";:INPUT#1,M$(19):PRINT
 5490 PRINT"{down}Number of color cycle colors":PRINT"used: "M$(16)CHR$(13)"{up}"TAB(6);:INPUT#1,M$(16):PRINT
@@ -470,7 +469,7 @@
 5585 PRINT"Insert disk containing "CHR$(34)"sys.variables"CHR$(34):PRINT"Drive, Device/lu = 8,0{left*3}";:OPEN1,0:INPUT#1,X,Y:CLOSE1:PRINT
 5590 CLOSE15:OPEN15,X,15:PRINT#15,"s"+CHR$(Y)+":sys.variables"
 5600 PRINT"{down}Saving...";:CLOSE2:OPEN2,X,2,STR$(Y)+":sys.variables,s,w":INPUT#15,A:IFA>0THENPRINT"Error.":SLEEP2:CLOSE2:CLOSE15:RETURN
-5610 FORX=1TO12:PRINT#2,D(X,0):PRINT#2,D(X,1):NEXTX:FORX=0TO19:PRINT#2,M$(X):NEXTX:FORX=1TO9:PRINT#2,MT$(X):NEXT
+5610 FORX=0TO17:PRINT#2,D(X,0):PRINT#2,D(X,1):PRINT#2,D$(X):NEXTX:FORX=0TO19:PRINT#2,M$(X):NEXTX:FORX=1TO9:PRINT#2,MT$(X):NEXT
 5620 FORX=1TO26:PRINT#2,CT(X,0):PRINT#2,CT(X,1):PRINT#2,CT(X,2):PRINT#2,CT(X,3):NEXTX:PRINT#2,F$(0)
 5630 PRINT#2,CC$:CLOSE2:CLOSE15:PRINT"done.":RETURN
 5640 IFPEEK(238)=79THENWINDOW45,1,79,24,1:ELSEWINDOW5,1,39,24,1

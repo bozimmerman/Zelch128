@@ -1,7 +1,7 @@
 
 
 * = $3D00
-;.D V2.0 3D00
+;.D V3.0 3D00
 ; *** INTERRUPT/ MISC ROUTINES.
         JMP SETUP; 15616 / 1000 / SETUP INITIAL POINTERS/INITIALIZE INTERRUPTS
         JMP LOCKUPS; 15619 / 2000 / INTERRUPTS
@@ -22,6 +22,7 @@ SETUP
         STA $0314
         LDA #$3D
         STA $0315; REPLACE WITH NEW IRQ
+        LDX $0BA9; * SAVE RAMDOS DRIVE
         LDY #$00
         TYA;***CLEAR POINTER AREA
 CLRLOP
@@ -29,6 +30,7 @@ CLRLOP
         INY
         CPY #$F0
         BNE CLRLOP
+        STX $0BA9; * RESTORE RAMDOS DRIVE
         LDA $D7
         CMP #$80
         BEQ CUR80; CHECK COLUMNS
@@ -114,6 +116,13 @@ NOCHK2
         LDA $D3
         AND #$08;***CHECK ALT
         STA $0B4D
+        BEQ NOALT
+        LDA $0B71
+        BEQ NOALT
+        LDA $0B72
+        BNE NOALT
+        JSR LOCKALT
+NOALT
         LDA $DC00
         CMP #$6F
         BNE INRR
@@ -180,7 +189,19 @@ OVRCONT
         LDA #$01
         STA $0B06
         RTS
+LOCKALT
+        LDY #$00
+ALP 
+        LDA BIXIT,Y
+        STA $034A,Y
+        INY
+        CPY #$08
+        BNE ALP
+        STY $D0
+        RTS
 
+BIXIT   
+        BYTE 83,89,83,56,50,52,51,13
 ;**********RESTORE OLD BASIC POINTERS***************
 UNDERLAY
         LDA $0B06
@@ -351,6 +372,6 @@ CLRLP2
 PRINT
         NOP
         ;
-        ;'OPEN1,8,15,"S0:ML3D00,V2.0 3D00":CLOSE1:SAVE"ML3D00",8
+        ;'OPEN1,8,15,"S0:ML3D00,V3.0 3D00":CLOSE1:SAVE"ML3D00",8
 
 

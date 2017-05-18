@@ -1,11 +1,11 @@
 !--------------------------------------------------
-!- Tuesday, May 16, 2017 10:29:47 PM
+!- Wednesday, May 17, 2017 12:20:47 AM
 !- Import of : 
 !- c:\src\zelch128next\prg.monster.prg
-!- Unknown Machine
+!- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
 30000 SYS15625:REM =========== AUTO-MAINTENANCE W/SCRIPT =========== 06/29/91 =
-30010 IFPEEK(2961)<2THENPOKE2829,1:POKE2823,1:POKE2961,2:GOSUB18:PRINT"{clear}{down}{ct n}{cyan}Monster Mode v2.0--Loading script...";:X=-1:ELSE30210
+30010 IFPEEK(2961)<2THENPOKE2829,1:POKE2823,1:POKE2961,2:PRINT"{clear}{down}{ct n}{cyan}Monster Mode v2.0--Loading script...";:X=-1:ELSE30210
 30020 POKE2825,255:POKE2824,1:POKE2827,0:O$="Monster Mode v2.0":GOSUB250:P0=1
 30030 OPEN1,D(1,0),15:OPEN2,D(1,0),2,MID$(STR$(D(1,1)),2)+":sys.script,s,r":INPUT#1,A:IFATHENPRINT"{left*17}Default script.  ":CLOSE1:CLOSE2:GOTO30050
 30040 X=X+1:SYS8222:TT$(X)=I$:IFPEEK(253)=0THEN30040:ELSETT$(X+1)="{pound}":CLOSE2:CLOSE1:PRINT:GOTO30110
@@ -39,7 +39,7 @@
 30380 IFINSTR(I$,"display")ORINSTR(I$,"file")THENGOSUB26:GOTO30210
 30390 IFINSTR(I$,"hard")THEN31410
 30400 IFINSTR(I$,"clear")ORINSTR(I$,"reset")THEN31510
-30410 IFINSTR(I$,"modem")ORINSTR(I$,"hayes")THENA$=F$:GOSUB2:GOTO30210
+30410 IFINSTR(I$,"modem")ORINSTR(I$,"hayes")THENPRINT#5,R$F$:GOTO30210
 30420 IFINSTR(I$,"network")THENW1=.2:I$="prg.network":U=D(0,0):D=D(0,1):GOTO23
 30590 GOTO30210
 30600 REM ----------- USER WEED ROUTINES --------------------------------------

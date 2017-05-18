@@ -1,5 +1,5 @@
 * = $2000
-;.D V2.0 2000
+;.D V3.0 2000
         JMP GETIT;8192 / 1000 / GET A$
         JMP GETINE;8195 / 2000 / GET ONE CHARACTER
         JMP SEND; 8198 / 3000 / SEND ONE CHARACTER
@@ -109,6 +109,8 @@ NOTNULL
         STA $FE;***STORE SYSOP KEY
         CMP #$1B
         BNE NOCHAT
+        LDA $0B07
+        BNE NOCHAT;NO LOCAL CHAT
         LDA $0B0E
         BEQ CH1
         JMP EXOUT
@@ -1908,6 +1910,7 @@ SETBAS
         LDA $0B4E
         BEQ NOSWTCH
         JSR SWITCHO
+        JMP NOSWTCH
 NOSWTCH
         LDA #$01
         STA $0B73
@@ -2139,4 +2142,6 @@ CHKDRV
         RTS
 PRINT
         NOP
-        ;OPEN1,8,15,"S0:ML2000,V2.0 2000":CLOSE1:SAVE"ML2000",8
+        ;OPEN1,8,15,"S0:ML2000,V3.0 2000":CLOSE1:SAVE"ML2000",8
+
+
