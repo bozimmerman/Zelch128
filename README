@@ -65,6 +65,15 @@ The first step is to load CBM prg studio.  Starting with the BASIC files, open u
 
 The next step is to copy the files for the boot disk into a .D71 image, in the order shown above.  Please note that some of the files will need to be renamed after they are copied into the image.  These are: "prg.u - d bases," which should be renamed to "prg.u/d bases", "main ml" which should be renamed to "v3.0 2000", "interrupts" which should be renamed to "v3.0 3d00", "ansi" should be renamed to "ansi 3a00", and "ascii" renamed to "ascii 3b00".  Also, the SEQ (,s) files mentioned above can be found in the project "data" directory, such as sys.text and sys.variables, and copied in as-is.
 
-Next is to build the files for the configuration disk into a different .D71 image.  Once again, copy the files in the order shown above, grabbing the SEQ (,s) files from the projects data directory.
+Next is to build the files for the configuration disk into a different .D71 image.  Most of the "prg.*" files can be built from the other CBM Prg Studio in the "extras" directory.  Load the "Zelch 128 Extras" project from that directory and built the specific programs shown in the configurations disk above.  For the SEQ files, once again, you can copy the from the main projects "data" directory.
 
-The last step is to either load up your emulator, or copy the images to real floppies, and get to work.  Instructions from here on are covered by the documentation in the projects docs directory.
+The last step is to either load up your emulator, or copy the images to real floppies, and get to work.  Instructions from here on are covered by the documentation in the projects docs directory.  
+
+----------------------
+
+The main program disk and the configurations disk are really all you need to get started, but there are numerous optional programs in the "extras" directory off the main project.  These are built from the Zelch 128 Extras CBM Prg Studio project.  Several of these extra programs also have data files of their own, which are located in the data directory off the extras directory.
+
+Most of the programs in the extras can be used as-is, either as Online-BASIC programs, or as Zelch-Specific modules.  Which are which is listed here, along with some specific details on using some of the special ones.
+
+
+
