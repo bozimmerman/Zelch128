@@ -19,8 +19,6 @@ bbs.setup,p
 bbs.ascii edit,p
 bbs.copy,p
 bbs.create,p
-raminstall,p
-ramdos128,p
 v3.0 2000,p
 v3.0 3d00,p
 crsr 0e00,p
