@@ -59,10 +59,8 @@
         <FileName>prg.u - d bases.bas</FileName>
         <FileName>prg.voting booth.bas</FileName>
         <FileName>prg.zapterm.bas</FileName>
-        <FileName>raminstall.bas</FileName>
         <FileName>zelch.bas</FileName>
         <FileName>ansi.asm</FileName>
-        <FileName>ramdos128.asm</FileName>
         <FileName>x-xfer.asm</FileName>
         <FileName>l-xfer.asm</FileName>
         <FileName>k-xfer.asm</FileName>
@@ -357,28 +355,6 @@
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>ramdos128.asm</Name>
-            <PrgName />
-            <FileType>2</FileType>
-            <IncludeInBuild>True</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>raminstall.bas</Name>
-            <PrgName />
-            <FileType>1</FileType>
-            <IncludeInBuild>True</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
-        </SourceFile>
-        <SourceFile>
             <Name>x-xfer.asm</Name>
             <PrgName />
             <FileType>2</FileType>
@@ -397,7 +373,7 @@
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>False</Topmost>
+            <Topmost>True</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
     </SourceFiles>
