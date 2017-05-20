@@ -1,0 +1,43 @@
+!--------------------------------------------------
+!- Saturday, May 20, 2017 1:35:23 AM
+!- Import of : 
+!- c:\src\zelch128\extras\gam.hangman.prg
+!- Commodore 128 BASIC 7/7.1
+!--------------------------------------------------
+10 PRINT:PRINT"{reverse on}{pink}H{yellow}a{white}n{cyan}g{light blue}m{blue}a{purple}n{reverse off} {red}v1.0"
+20 B$(1)="O":B$(2)="#":B$(3)="[":B$(4)="]":B$(5)="<":B$(6)=">"
+30 PRINT:PRINT"Finding a puzzle...";:11111111111:PRINT:M=0
+40 READX:V=INT(RND(0)*X)+1:FORX=1TOV:READP$:NEXT
+50 D$="":G$="":FORX=1TOLEN(P$):D$=D$+"?":NEXT
+60 C=0:PRINT:PRINT"{yellow}";D$:PRINT"{cyan}Letters used: {white}";G$
+70 PRINT:PRINT"{pink}Next guess: ";:GETKEYA$:PRINTA$
+80 FORX=1TO26:IFA$=MID$("abcdefghijklmnopqrstuvwxyz",X,1)THEN120
+90 NEXTX:FORX=1TO26:IFA$=MID$("ABCDEFGHIJKLMNOPQRSTUVWXYZ",X,1)THEN130
+100 NEXTX:IFA$="*"THENPRINT:PRINT"{yellow}Thanks for playing hangman!":END
+110 PRINT:PRINT"{light green}Invalid letter, press * to quit.":GOTO60
+120 A$=MID$("ABCDEFGHIJKLMNOPQRSTUVWXYZ",X,1)
+130 FORX=1TOLEN(G$):IFMID$(G$,X,1)=A$THENPRINT:PRINT"{white}You've already picked ";A$;"!":GOTO170
+140 NEXTX:G$=G$+A$:FORX=1TOLEN(P$):IFMID$(P$,X,1)=A$THENMID$(D$,X,1)=A$:IFC<1THENPRINT:PRINT"{light gray}There is a(n) ";A$;"!":C=1
+150 NEXTX:FORX=1TOLEN(D$):IFMID$(D$,X,1)="?"THEN170
+160 NEXTX:PRINT:PRINT"{yellow}You guessed it!":PRINT:PRINT"The puzzle was ";P$;"!":END
+170 IFC=1THEN60:ELSEM=M+1:PRINT:PRINT"{down}{purple} ,----+"
+173 IFM>0THENPRINT" {yellow}"B$(1);
+174 GOSUB190:IFM>4THENPRINT"{yellow}"B$(5);:ELSEPRINT" ";
+175 IFM>1THENPRINT"{yellow}"B$(2);:ELSEPRINT" ";
+176 IFM>5THENPRINT"{yellow}"B$(6);:ELSEPRINT" ";
+177 GOSUB190:IFM>2THENPRINT"{yellow}"B$(3)" ";:ELSEPRINT"  ";
+178 IFM>3THENPRINT"{yellow}"B$(4);:ELSEPRINT" ";
+179 GOSUB190:GOSUB190:PRINT"{purple} -----+--{down}":PRINT:IFM<6THEN60
+180 PRINT:PRINT"{yellow}You're hung! Better luck next time.":END
+190 PRINTTAB(6);"{purple}!":RETURN
+500 DATA 51 : REM NUMBER OF PUZZLES
+8323 "COMPUTER","LIGHTNING","BARNYARD","BICYCLE","DICTIONARY","CIRCUS"
+520 DATA "HAMBURGER","MACHINE","AIRPLANE","SCIENTIST","AMATEUR"
+630 DATA "CONGRESS","RIFLE","ARTIST","BEDROOM","HOTEL","REFRIGERATOR"
+640 DATA "UNIVERSITY","IMAGINATION","FRUSTRATION","MIRROR"
+650 DATA "ELEVATOR","JAVELINA","VANILLA","CHALLENGER","CENTIPEDE"
+660 DATA "ELECTRICITY","COUGH","ALBUM","CASSETTE","INTELLIGENCE"
+670 DATA "LANTERN","PUMPKIN","STRAWBERRY","BOUQUET","FLORAL","BALANCE"
+680 DATA "WATERMELON","COUNTDOWN","BEGINNING","JOYSTICK","SHELVES"
+690 DATA "OCCUPATION","CALENDAR","ASTRONAUT","ATMOSPHERE","MONSTER"
+700 DATA "GRAVEYARD","EMPEROR","PAJAMAS","EVERGREEN": REM 51 PUZZ
