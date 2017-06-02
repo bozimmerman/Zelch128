@@ -7,11 +7,11 @@
     <Executable>zelch.prg</Executable>
     <StartAddress>7169</StartAddress>
     <FilesGlobal>False</FilesGlobal>
-    <BatchMode>False</BatchMode>
+    <BatchMode>True</BatchMode>
     <AppendToDisk>False</AppendToDisk>
-    <GenToDisk>True</GenToDisk>
-    <BuildToPrgFile>False</BuildToPrgFile>
-    <d64Name>c:\tmp\blah.d81</d64Name>
+    <GenToDisk>False</GenToDisk>
+    <BuildToPrgFile>True</BuildToPrgFile>
+    <d64Name />
     <Comments />
     <Author />
     <AutoLaunchName>zelch.prg</AutoLaunchName>
@@ -70,7 +70,7 @@
     <SourceFiles>
         <SourceFile>
             <Name>ansi.asm</Name>
-            <PrgName />
+            <PrgName>ansi.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -81,7 +81,7 @@
         </SourceFile>
         <SourceFile>
             <Name>ascii.asm</Name>
-            <PrgName />
+            <PrgName>ascii.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -92,7 +92,7 @@
         </SourceFile>
         <SourceFile>
             <Name>bbs.ascii edit.bas</Name>
-            <PrgName />
+            <PrgName>bbs.ascii edit.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -103,7 +103,7 @@
         </SourceFile>
         <SourceFile>
             <Name>bbs.copy.bas</Name>
-            <PrgName />
+            <PrgName>bbs.copy.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -114,7 +114,7 @@
         </SourceFile>
         <SourceFile>
             <Name>bbs.create.bas</Name>
-            <PrgName />
+            <PrgName>bbs.create.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -125,7 +125,7 @@
         </SourceFile>
         <SourceFile>
             <Name>bbs.editor.bas</Name>
-            <PrgName />
+            <PrgName>bbs.editor.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -136,7 +136,7 @@
         </SourceFile>
         <SourceFile>
             <Name>bbs.main.bas</Name>
-            <PrgName />
+            <PrgName>bbs.main.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -147,7 +147,7 @@
         </SourceFile>
         <SourceFile>
             <Name>bbs.setup.bas</Name>
-            <PrgName />
+            <PrgName>bbs.setup.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -158,7 +158,7 @@
         </SourceFile>
         <SourceFile>
             <Name>crsr 0e00.asm</Name>
-            <PrgName />
+            <PrgName>crsr 0e00.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -169,7 +169,7 @@
         </SourceFile>
         <SourceFile>
             <Name>interrupts.asm</Name>
-            <PrgName />
+            <PrgName>interrupts.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -180,7 +180,7 @@
         </SourceFile>
         <SourceFile>
             <Name>k-xfer.asm</Name>
-            <PrgName />
+            <PrgName>k-xfer.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -191,7 +191,7 @@
         </SourceFile>
         <SourceFile>
             <Name>l-xfer.asm</Name>
-            <PrgName />
+            <PrgName>l-xfer.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -202,7 +202,7 @@
         </SourceFile>
         <SourceFile>
             <Name>main ml.asm</Name>
-            <PrgName />
+            <PrgName>main ml.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -213,7 +213,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.logon.bas</Name>
-            <PrgName />
+            <PrgName>prg.logon.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -224,7 +224,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.misc.bas</Name>
-            <PrgName />
+            <PrgName>prg.misc.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -235,7 +235,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.monster.bas</Name>
-            <PrgName />
+            <PrgName>prg.monster.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -246,7 +246,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.msg bases.bas</Name>
-            <PrgName />
+            <PrgName>prg.msg bases.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -257,7 +257,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.network.bas</Name>
-            <PrgName />
+            <PrgName>prg.network.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -268,7 +268,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.new user.bas</Name>
-            <PrgName />
+            <PrgName>prg.new user.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -279,7 +279,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.news.bas</Name>
-            <PrgName />
+            <PrgName>prg.news.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -290,7 +290,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.online utils.bas</Name>
-            <PrgName />
+            <PrgName>prg.online utils.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -301,7 +301,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.sysop.bas</Name>
-            <PrgName />
+            <PrgName>prg.sysop.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -312,7 +312,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.u - d bases.bas</Name>
-            <PrgName />
+            <PrgName>prg.u - d bases.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -323,7 +323,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.voting booth.bas</Name>
-            <PrgName />
+            <PrgName>prg.voting booth.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -334,7 +334,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.zapterm.bas</Name>
-            <PrgName />
+            <PrgName>prg.zapterm.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -345,7 +345,7 @@
         </SourceFile>
         <SourceFile>
             <Name>p-xfer.asm</Name>
-            <PrgName />
+            <PrgName>p-xfer.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -356,7 +356,7 @@
         </SourceFile>
         <SourceFile>
             <Name>x-xfer.asm</Name>
-            <PrgName />
+            <PrgName>x-xfer.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -367,7 +367,7 @@
         </SourceFile>
         <SourceFile>
             <Name>zelch.bas</Name>
-            <PrgName />
+            <PrgName>zelch.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />

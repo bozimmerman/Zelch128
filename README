@@ -61,7 +61,7 @@ conf.simple,s
 
 To build the files for these disks, you'll need three programs.  One, obviously, is CBM prg studio.  The other is DirMaster, or some other program that lets you copy files into a blank .D71 image.  The last is either an emulator to run the disks on, or a program to copy the images to real floppies.
 
-The first step is to load CBM prg studio.  Starting with the BASIC files, open up each file so you can see the code.  Then Click the little PRG button to "Generate .prg (current file)"  or select Build->Program->To File from the menu.  After all the BASIC files are built, and the prg files saved, then do the Assembly files the same way.  The Assembly files will give you an extra window "Assembly Dump", but you can just hit the X to close this and ignore it.
+The first step is to load CBM prg studio.  Then click on the menu options Build->Project->To File to Generate .prg files. If any Assembly files give you an extra window "Assembly Dump", you can just hit the X to close this and ignore it.
 
 The next step is to copy the files for the boot disk into a .D71 image, in the order shown above.  Please note that some of the files will need to be renamed after they are copied into the image.  These are: "prg.u - d bases," which should be renamed to "prg.u/d bases", "main ml" which should be renamed to "v3.0 2000", "interrupts" which should be renamed to "v3.0 3d00", "ansi" should be renamed to "ansi 3a00", and "ascii" renamed to "ascii 3b00".  Also, the SEQ (,s) files mentioned above can be found in the project "data" directory, such as sys.text and sys.variables, and copied in as-is.
 
