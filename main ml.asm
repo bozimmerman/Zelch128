@@ -1003,7 +1003,7 @@ MCMD            BYTE 32,158;SYS
                 BYTE 153,184;FRE
                 BYTE 153,199;CHR$
 ;******************SYSOP CHAT MODE******************
-ENTRANCE         BYTE "chat mode"
+ENTRANCE        BYTE "chat mode"
 EXITIT          BYTE "returning to the bbs"
 CHATMODE
         JSR MSAVE
