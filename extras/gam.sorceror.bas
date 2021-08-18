@@ -133,7 +133,7 @@
 990 IFNO<>8THENPRINTS2$:GOTO60
 1000 PRINT"It is already razor sharp.":GOTO60
 1010 IFOB(NO,0)<>-1THENPRINT"tu ne le portes pas(you're not carrying it.":GOTO60
-64764 UNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTILUNTIL{ct c}IFNO<>19THENPRINT"How?":GOTO60
+1020 ifno<>19thenprint"how?":goto60
 1030 PRINT"Very good! Now you can go to the second grade!":GOTO60
 1040 PRINT"Try drop.":GOTO60
 1050 PRINT"I can only tell you what is in the room with you, sorry."
@@ -223,7 +223,7 @@
 1760 P$(8)="in a splendid chamber 30 feet high.":DATA1,11,0,10
 1770 P$(9)="in a damp, musty library.":DATA0,10,0,0
 1780 P$(10)="in the master bedroom.":DATA9,0,8,0
-20560 PPPP$="in a vast corridor stretching outof sight to the ":P$(11)=P$+"south."
+1790 p$="in a vast corridor stretching outof sight to the ":p$(11)=p$+"south."
 1795 DATA 8,12,14,0
 1800 P$(12)=P$+"north and south.":DATA11,13,15,0
 1810 P$(13)=P$+"north.":DATA12,0,16,17
@@ -294,9 +294,13 @@
 2195 C$(0)=C$(0)+"if you do you'll be un-mazed."
 2200 C$(1)="gulp gulp gulp, drink it down, I'm not  such a stupid clown!"
 2210 C$(2)="out a window you may fall, just look out, that is all!"
-44204 **************************************************************************{ct h}C$(3)="the knights can't be killed, as far as iknow, if you find they can"
+2220 c$(3)="the knights can't be killed, as far as iknow, if you find they can"
 2225 C$(3)=C$(3)+" please tell  me so!"
 2230 C$(4)="don't bring the sword to the sorcerers  place.  if you do, he might"
 2235 C$(4)=C$(4)+" confront youface to face!"
 2240 C$(5)="hocus pocus, alakazam! don't read the book or you'll be sorry!"
-2250 C$(6)="passages that all seem alike can seem quite different, just ho
+2250 C$(6)="passages that all seem alike can seem quite different, just hope"
+2255 c$(6)=c$(6)+" you're right!"
+2260 c$(7)="not all treasure lies under a roof, some might be under a tree!"
+2270 goto2
+

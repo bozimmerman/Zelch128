@@ -1,10 +1,10 @@
 !--------------------------------------------------
-!- Saturday, May 20, 2017 1:34:24 AM
+!- Wednesday, August 18, 2021 12:28:06 AM
 !- Import of : 
-!- c:\src\zelch128\extras\gal.empire.prg
+!- c:\tmp\newproject\gal.empire.prg
 !- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
-10 U1=PEEK(186):A=RND(-TI):R$=CHR$(13):ZC$="{red}{purple}{green}{blue}{yellow}{orange}{brown}{pink}{light green}{light blue}":GOTO1000
+10 U1=9:A=RND(-TI):R$=CHR$(13):ZC$="{red}{purple}{green}{blue}{yellow}{orange}{brown}{pink}{light green}{light blue}":GOTO1000
 20 PRINT#1,"p"CHR$(98)CHR$(I)CHR$(0)CHR$(0):RETURN
 30 GOTO500
 40 IFEN$<>" "ANDEN$<>"{home}"THENGETEN$
@@ -59,8 +59,8 @@
 470 A=.:RETURN
 499 REM ****GALAXY MAP
 500 PRINT"{clear}{cyan} Space - Abort / (0) Independent world";
-20037 $="":OT$="":FORY=1TO20:IFEN$=" "THENOT$=R$:GOTO570
-520 PRINTR$"{white}  ";:FL=0:FORX=1TO35:IFFLTHENFL=0:GOTO565
+510 EN$="":OT$="":FORY=1TO20:IFEN$=" "THENOT$=R$:GOTO570
+520 PRINTR$"{white}{space*2}";:FL=0:FORX=1TO35:IFFLTHENFL=0:GOTO565
 525 IFGX(X,Y)=0THENPR$=".":GOTO560
 530 C$=CHR$(64+G2(X,Y)):FL=1
 550 ZZ=GX(X,Y):PR$="{cyan}0"+C$+"{white}":IFZZ>0THENPR$=MID$(ZC$,ZZ,1)+CHR$(192+ZZ)+C$+"{white}"
@@ -196,7 +196,7 @@
 3100 TL(I,0)=0:PRINT"{down}{pink}Scout ships reach {white}"PL$(D)" ("A$"){pink}"
 3102 X=D:GOSUB400:X=RND(TI):Y=0:IFAANDMS(A,0)=4ANDMS(A,1)>=(SH*20)THENY=1
 3110 IFX>.95ORYTHENPRINT"They were eliminated before transmission.":GOTO3980
-3120 PRINT"Report: {light blue}Ships:"PL(D,4)R$"         Prod:"PL(D,3):GOTO3980
+3120 PRINT"Report: {light blue}Ships:"PL(D,4)R$"{space*9}Prod:"PL(D,3):GOTO3980
 3200 PRINT"{down}{pink}Patrol ships reach {white}"PL$(D) " ("A$"){pink}"
 3205 X=D:Y=0:GOSUB400:IFAANDTY<>9THENIFMS(A,5)=RDTHENY=A
 3207 IFYTHENPRINT"Reinforcement acknowledged.":MS(Y,1)=MS(Y,1)+SH:GOTO3980
@@ -208,7 +208,7 @@
 3226 GOTO3980
 3230 PRINT"Patrol skirmishes commence!"R$TAB(5)"{pink}You"TAB(11)"{blue}Them"
 3235 KK=INT(RND(TI)*INT((SH+MS(A,1))/25))+10
-3240 PRINTTAB(5)"{pink}"SH;TAB(11)"{blue}"MS(A,1)"  ";
+3240 PRINTTAB(5)"{pink}"SH;TAB(11)"{blue}"MS(A,1)"{space*2}";
 3250 SH=SH-(INT(RND(TI)*KK)+8):IFSH<0ORSH*10<MS(A,1)THEN3280
 3260 MS(A,1)=MS(A,1)-(INT(RND(TI)*KK)+8):IFMS(A,1)<0ORMS(A,1)*10<SHTHEN3290
 3270 PRINTCHR$(20);:IFPOS(0)>5THEN3270
@@ -238,7 +238,7 @@
 3517 PRINT"{down}{yellow}Patrol forces clip{white}"+STR$(X):PRINT"{yellow}ships from your fleet."
 3519 PRINT"{down}{red}"EM$(RD,2)" attack ships engage"R$"enemy defenses at {white}"PL$(D);
 3520 PRINT" ("A$")"R$"{red}Battles commence:"R$TAB(5)"{pink}"PL$(D)TAB(6+AA)"{light blue}"EM$(RD,2)
-3530 PRINTTAB(5)"{pink}"PL(D,4)TAB(6+AA)"{light blue}"SH;"  ";
+3530 PRINTTAB(5)"{pink}"PL(D,4)TAB(6+AA)"{light blue}"SH;"{space*2}";
 3540 KK=INT((SH+PL(D,4))/50)+8:K1=INT(RND(TI)*KK)+4:K2=INT(RND(TI)*KK)+6
 3550 SH=SH-K2:IFSH<0ORSH*10<PL(D,4)THEN3590
 3560 PL(D,4)=PL(D,4)-K1:IFPL(D,4)<0ORPL(D,4)*10<SHTHEN3610
@@ -298,7 +298,7 @@
 3999 REM ******************************
 4000 FORI=1TO10:D=0:IFVAL(EM$(I,0))=0THEN4040
 4010 PRINT"{cyan}"CHR$(192+I)">{white}"EM$(I,2);:Q=VAL(EM$(I,4))
-4020 PRINTTAB(20)"  {light blue}Planets:{white}";Q
+4020 PRINTTAB(20)"{space*2}{light blue}Planets:{white}";Q
 4030 IFQ=0THENEM$(I,0)=" 0":EM$(I,2)="^":EM$(I,4)="0"
 4040 Q=0:NEXTI:PRINT:PRINT:RETURN
 4300 PRINT"{cyan}"+P$+" {white}";
@@ -306,12 +306,12 @@
 4320 IFA$="?"THENGOSUB30:GOTO4300
 4330 IFA$="*"THENPRINT:GOSUB4000:GOTO4300
 4340 IFA$="!"THENPRINT:X=RD:GOSUB5500:GOTO4300
-35723 IFIFIFIFIFIFIFIFIFIFIFIFIFIFA$=""THENRETURN
+4350 IFA$=""THENRETURN
 4360 IFIN=0THEN4300
 4370 RETURN
 4500 FL=0:GOSUB30
-4510 PRINTR$"{green}?) Galactic chart   {light green}*) Other Empires"
-4520 PRINT"{white}!) Your Empire      {cyan}Note: Lowercase"
+4510 PRINTR$"{green}?) Galactic chart{space*3}{light green}*) Other Empires"
+4520 PRINT"{white}!) Your Empire{space*6}{cyan}Note: Lowercase"
 4530 PRINT"letters to the right identify worlds!"
 4540 P$=R$+"(a-y) Source world:":GOSUB4300:IFA$=""THENRETURN
 4550 A=IN:IFPL(A,0)<>RDTHENPRINT"{white} -- Not under your control!":GOTO4510
@@ -323,8 +323,7 @@
 4595 IFTY=1THENIFSH<20THENPRINT:PRINT"At LEAST 20 ships!":RETURN
 4600 I=0:IFSH<1THENRETURN
 4610 Y1=ABS(PL(S,1)-PL(D,1)):Y2=ABS(PL(S,2)-PL(D,2)):Y=YR+INT((Y1+Y2)/2):I=1
-4620 IFTL(I,0)THENI=I+1:IFI<21THEN4620
-4625 IFI>20THENPRINT"{down}{pink}Sorry, mission slots are full!":RETURN
+4620 IFTL(I,0)THENI=I+1:GOTO4620
 4630 TL(I,0)=TY:TL(I,1)=Y:TL(I,2)=SH:TL(I,3)=S:TL(I,4)=D:PL(S,4)=PL(S,4)-SH
 4640 B$="to":IFTY=2THENA$="attack":B$="against"
 4650 IFTY=3THENA$="reinforcement"
@@ -376,11 +375,11 @@
 5035 FORA=0TO200:GOSUB440:NEXTA
 5040 OPEN8,U1,8,"gal.prevs,s,r":INPUT#1,E:IFE=0THEN5060
 5050 CLOSE8:OPEN8,U1,8,"gal.prevs,s,w":PRINT#8,"Previous Emperors-{down}"
-5060 CLOSE8:CLOSE1:OPEN8,U1,8,"gal.prevs,s,a":PRINT#8,EM$(RD,2)+"      "+DT$
+5060 CLOSE8:CLOSE1:OPEN8,U1,8,"gal.prevs,s,a":PRINT#8,EM$(RD,2)+"{space*6}"+DT$
 5070 CLOSE8:CLOSE1:I$=EM$(RD,2)+" controls the galaxy!":GOSUB80
 5080 FORA=0TO4:EM$(RD,0)="0":NEXTA:GOTO220
 5500 PRINTR$"{cyan}Planets in {white}"+EM$(X,2)+" ("+CHR$(X+192)+")"+R$
-5505 PRINT"{light gray}{reverse on}    Planet          Ships  Prod. ":FORI=1TO25
+5505 PRINT"{light gray}{reverse on}{space*4}Planet{space*10}Ships{space*2}Prod. ":FORI=1TO25
 5510 IFPL(I,0)<>X OR(INT(RND(TI)*100)+1)>S%THEN5540
 5520 PRINT"{light gray}{reverse on} "CHR$(64+G2(PL(I,1),PL(I,2)))" {reverse off}"TAB(4)"{white}"PL$(I)"{yellow}"TAB(20)PL(I,4);
 5530 PRINT"{pink}"TAB(27)PL(I,3)
@@ -420,7 +419,7 @@
 6353 FORA=1TO200:IFMS(A,0)<>7THEN6390
 6355 IFMS(A,4)<>RDANDMS(A,5)<>RDTHEN6390
 6357 I=5:A$="Ships received":IFMS(A,5)=RDTHENA$="Ships sent":I=4
-6360 PRINT"{down}{yellow}"+CHR$(MS(A,I)+192)+"{white}) {light green}"+EM$(MS(A,I),2)+"   {yellow}"A$":{white}";MS(A,1)
+6360 PRINT"{down}{yellow}"+CHR$(MS(A,I)+192)+"{white}) {light green}"+EM$(MS(A,I),2)+"{space*3}{yellow}"A$":{white}";MS(A,1)
 6370 IFA$="Ships received"THENPRINT"{yellow}This is a binding treaty."
 6390 NEXTA:GOTO6300
 6400 PRINT"{down}{light green}Send to which empire (A-J): {white}";
@@ -428,4 +427,5 @@
 6420 C=IN:PRINTR$"{light green}Message to send"+R$+": {white}";
 6430 GOSUB640:IFIN$=""THEN2000
 6440 OU$="Message from "+EM$(RD,2)+R$+IN$:GOSUB600:GOTO2000
-10200 :::::::::::::::::::::::::::::::::::::PRINTCHR$(27)"s";:I=36:GOSUB20:IFID=1THENID=2:
+10200 FAST:PRINTCHR$(27)"s";:I=36:GOSUB20:IFID=1THENID=2:PRINT#2,ID;R$;"0":ELSEID=1:PRINT#2,ID;R$;"0"
+10210 V1=1:RETURN

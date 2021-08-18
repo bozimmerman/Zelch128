@@ -68,7 +68,7 @@
 480 IFK<1THENRETURN
 490 IFC$="{white}Docked"THENPRINT"Starbase protects enterprise":RETURN
 500 FORI=0TO7:IFK3(I)<=0THENNEXT:RETURN
-45640 K3(I)*.4*RND(1):K3(I)=K3(I)-H:H=H/(FND(0)^.4):E=E-H
+510 H=K3(I)*.4*RND(1):K3(I)=K3(I)-H:H=H/(FND(0)^.4):E=E-H
 520 E$="Enterprise from":N=E:GOSUB530:NEXT:GOSUB4000:RETURN
 530 PRINT"{down*2}{red}";H" Unit hit on ";E$
 535 PRINT" Sector";K1(I)+1;"-";K2(I)+1;
@@ -174,7 +174,7 @@
 1420 PRINT"Rating:";INT(Z/(T-T0)*1000)
 1421 GOTO9999
 4000 PRINT"{down}{purple}":FORI=0TO7:FORJ=0TO7:PRINT"{purple}";MID$(Q$,S(I,J),1);   ;:NEXTJ
-39321 PRINTPRINTPRINTPRINTPRINTPRINTPRINTPRINTPRINTPRINTPRINTPRINTPRINTPRINT" ";:ONIGOTO4380,4390,4400,4410,4420,4430,4440
+4350 print" ";:onigoto4380,4390,4400,4410,4420,4430,4440
 4360 PRINT"{light blue}Years    :{white}";T9-T
 4370 NEXT:GOTO4442
 4380 PRINT"{light blue}Stardate :{white}";T;TAB(29);"{white}{sh -}";DA$(0):GOTO4370
@@ -185,4 +185,5 @@
 4430 PRINT"{light blue}Torpedos :{white}";P;TAB(29);"{white}{sh -}";DA$(5):GOTO4370
 4440 PRINT"{light blue}Klingons :{white}";K9"{left} {left}":GOTO4370
 4442 PRINT"{light blue}Klingons at start :{white}"O%;" {light blue}Star bases:{white}";B9
-4500 
+4500 RETURN
+9999 END

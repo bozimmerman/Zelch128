@@ -66,7 +66,7 @@
 480 WV=-3*(O$="s")-2*(O$="m")-(O$="d"):IFWV>0THEN500
 490 PRINT:PRINT"{white}** Is your iq really"IQ:PRINT"? Type S, M, D, or N":PRINT:GOTO460
 500 GP=GP-WV*10:PRINT"{clear}":IFGP<20THEN540
-8857 CLRTRAPANT TO BUY A LAMP FOR 20 GP'S ";:{141}3290
+510 PRINT"WANT TO BUY A LAMP FOR 20 GP'S ";:{141}3290
 520 IFO$="y"THENLF=1:GP=GP-20:GOTO540
 530 IFO$<>"n"THENPRINT:PRINTY$:PRINT:GOTO510
 540 PRINT"{clear}":IFGP<1THENQ=0:GOTO600
@@ -203,7 +203,7 @@
 1760 X=FNA(8):Y=FNA(8):Z=FNA(8):GOTO1670
 1770 IFQ=10THENZ=FNB(Z+1):GOTO1670
 1780 IFQ>25ANDQ<34THENPRINT:PRINT"Its yours":T(Q-25)=1:TC=TC+1:GOTO1420
-16705 AAAA=PEEK(FND(Z))-12:WC=0:IF(A<13)OR(VF=1)THEN2300
+1790 A=PEEK(FND(Z))-12:WC=0:IF(A<13)OR(VF=1)THEN2300
 1800 PRINT:PRINT"{blue}You may trade with, Attack, or Ignore"+CHR$(13)+"the vendor"
 1810 GOSUB3280:IFO$="i"THEN620
 1820 IFO$="a"THENVF=1:PRINT:PRINT"{white}You'll be sorry you did that":GOTO2300
@@ -256,7 +256,7 @@
 2290 GOTO620
 2300 Q1=1+INT(A/2):Q2=A+2:Q3=1
 2310 IF(C(1,4)>T(1))OR(BL=1)OR(DX<FNA(9)+FNA(9))THEN2690
-4112 {ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct p}{ct i}PRINT:PRINT"{red}You're facing ";C$(A+12):PRINT:PRINT"You may attack or retreat";
+2320 PRINT:PRINT"{red}You're facing ";C$(A+12):PRINT:PRINT"You may attack or retreat";
 2330 IFQ3=1THENPRINT", or bribe":IFIQ>14THENPRINT"or cast a spell"
 2340 PRINT:PRINT"{pink}Your STRENGTH is"SG"and DEXTERITY is"DX:PRINT:GOSUB3280
 2350 IFO$<>"a"THEN2480
@@ -285,7 +285,7 @@
 2580 IFO$<>"d"THENPRINT:PRINT"{white}** Try one of the options given":GOTO2320
 2590 PRINT"death - - - ";:IFIQ<15+FNA(4)THENPRINT"yours":IQ=0:GOTO2840
 2600 PRINT"his":PRINT:Q2=0:GOTO2420
-12850 2222222222222222222222222222222222222222222222222222222222222222222222{ct j}IFO$<>"b"ORQ3>1THENPRINT"{white}Choose one of the listed options":GOTO2320
+2610 IFO$<>"b"ORQ3>1THENPRINT"{white}Choose one of the listed options":GOTO2320
 2620 IFTC=0THENPRINT:PRINT"{light green}'all i want is your life!'":GOTO2690
 2630 Q=FNA(8):IFT(Q)=0THEN2630
 2640 PRINT:PRINT"{light gray}I want ";C$(Q+25);", will you give":PRINT"it to me ";
@@ -331,7 +331,7 @@
 3040 PRINT"{blue}Maybe dumb ";R$(RC);" not so":PRINT"dumb after all":PRINT:END
 3050 PRINT:PRINT"{yellow}GREAT UNMITIGATED ZOT!"
 3060 PRINT:PRINT"You just found the orb of zot!":PRINT
-39321 PRINTPRINTPRINTPRINTPRINTPRINTPRINTPRINTPRINT"The runestaff is gone":RF=0:OF=1:O(1)=0:GOTO1420
+3070 PRINT"The runestaff is gone":RF=0:OF=1:O(1)=0:GOTO1420
 3080 DATA AN EMPTY ROOM,"+",THE ENTRANCE,"{reverse on}E{reverse off}",STAIRS GOING UP,U
 3090 DATA STAIRS GOING DOWN,D,A POOL,"W",A CHEST,"{cm pound}",GOLD PIECES,$
 3100 DATA FLARES,"'",A WARP,W,A SINKHOLE,S,A CRYSTAL ORB,"O"
@@ -366,4 +366,10 @@
 3370 PRINT:PRINT"{purple}Want to but a potion of ";Z$:PRINT"for 1000 gp's";:GOTO3290
 3380 PRINT:PRINT"Your ";Z$;" is now"Q:RETURN
 3390 PRINT"{white}Here is a list of ";Z$;" you can"+CHR$(13)+"buy (with cost in <>)":PRINT:RETURN
-3400 X7$=MID$(STR$(X),2):
+3400 x7$=mid$(str$(x),2):y7$=mid$(str$(y),2):l7$="("+x7$+","+y7$+")"
+3410 print"you are at ";l7$;" - level";z:return
+3500 print"hit any key to begin"
+3510 poke158,0
+3520 geta$:on(a$="")+2goto3520,3530
+3530 return
+

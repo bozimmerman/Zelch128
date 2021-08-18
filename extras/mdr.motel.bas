@@ -1,8 +1,8 @@
 !--------------------------------------------------
-!- Saturday, May 20, 2017 1:37:48 AM
+!- Wednesday, August 18, 2021 12:27:24 AM
 !- Import of : 
-!- c:\src\zelch128\extras\mdr.motel.prg
-!- Commodore 128 BASIC 7/7.1
+!- c:\tmp\newproject\mdr.motel.prg
+!- Unknown Machine
 !--------------------------------------------------
 5 U=PEEK(186):D=0:PRINT"{ct n}":R$=CHR$(13):TRAP11000
 10 DIMW$(100),W(100),D(100),D$(100),PL(30,8),PL$(30),M$(99,6),TT$(10),FF(30),TT(10)
@@ -13,31 +13,31 @@
 54 GOTO56
 55 U=PEEK(186):OPEN1,U,15,"s0:mdr.motel":CLOSE1:DSAVE"mdr.motel",U(U):STOP
 56 REM
-60 OPEN3,U,3,"0:mdr.losers":##################3,1:RETURN
-70 OPEN4,U,4,"0:mdr.stuff":##################4,1:RETURN
+60 OPEN3,U,3,"0:mdr.losers":RECORD#3,1:RETURN
+70 OPEN4,U,4,"0:mdr.stuff":RECORD#4,1:RETURN
 100 PRINT"{yellow}Murder Motel"+R$+"Zelch 128 version"+R$+"(c)1991 Elite Software"+R$+"{white}{down}Written by Bo Zimmerman"+R$+"Structure by Sean D Wagle"
 101 RESTORE102:FORI=1TO6:READDR$(I):NEXTI
 102 DATA EAST,NORTH,WEST,SOUTH,UP,DOWN
 103 RESTORE104:FORI=1TO5:READAA$(I):NEXTI
-104 DATA"You draw back your glinting blade","You take careful aim","You fill thetanks, aim,","You light the weapon, aim,","You load your sprayer, aim,"
+104 DATA"You draw back your glinting blade ","You take careful aim ","You fill the tanks, aim, ","You light the weapon, aim, ","You load your sprayer, aim, "
 105 RESTORE106:FORI=1TO5:READDC$(I):NEXTI
 106 DATA"it bounces off his shield!","Phump! Right into his flak jacket!","he quickly uses his gas mask!","he extinguishes your weapon!","his lye protects him!"
 107 RESTORE108:FORI=1TO6:READKK$(I):NEXTI
 108 DATA"relieve him of his head!","bullets penetrate his flesh!","watch him chokes from the fumes!","quickly overcook him!","melt him to a bubbling mass!"
 110 PRINT"{down*2}{pink}Opening the gates...";
 120 OPEN1,U,15
-130 OPEN2,U,2,"0:mdr.rooms":FORI=1TO99:##################2,I:IFI/2=INT(I/2)THENPRINT".";
+130 OPEN2,U,2,"0:mdr.rooms":FORI=1TO99:RECORD#2,I:IFI/2=INT(I/2)THENPRINT".";
 135 FORX=0TO6:INPUT#2,M$(I,X):NEXTX:NEXTI:CLOSE2:PRINT
 140 PRINT"{down}Making the beds...";:GOSUB70
-150 FORI=1TOTW:RESTORE160:FORX=1TO10:READW$(((I-1)*10)+X):##################4,((I-1)*10)+X:INPUT#4,W(((I-1)*10)+X):NEXTX:PRINT".";:NEXTI
+150 FORI=1TOTW:RESTORE160:FORX=1TO10:READW$(((I-1)*10)+X):RECORD#4,((I-1)*10)+X:INPUT#4,W(((I-1)*10)+X):NEXTX:PRINT".";:NEXTI
 160 DATA AXE HANDLE,PISTOL,CHLORINE GAS,FLAME THROWER,INDUSTRIAL ACID,AXE BLADE,BULLETS,GAS SPRAYER,LIGHTER FLUID,ACID SPRAYER
-170 FORI=1TOTD:RESTORE180:FORX=1TO5:READD$(((I-1)*10)+X):A=((I-1)*10)+X:##################4,A+100:INPUT#4,D(A):NEXTX:PRINT".";:NEXTI:##################4,100:PRINT
-171 RESTORE172:FORI=1TO3:FORX=6TO8:D=((I-1)*10)+X:READD$(D):##################4,100+D:INPUT#4,D(D):NEXTX:NEXTI:CLOSE4
+170 FORI=1TOTD:RESTORE180:FORX=1TO5:READD$(((I-1)*10)+X):A=((I-1)*10)+X:RECORD#4,A+100:INPUT#4,D(A):NEXTX:PRINT".";:NEXTI:RECORD#4,100:PRINT
+171 RESTORE172:FORI=1TO3:FORX=6TO8:D=((I-1)*10)+X:READD$(D):RECORD#4,100+D:INPUT#4,D(D):NEXTX:NEXTI:CLOSE4
 172 DATA A ROTTEN BANANA,A DIRTY MAGAZINE,ICKY SMURFGUTS,YELLOW TOEFUZZ,POCKET LINT,AN EYEBALL,MEATLOAF SURPRISE,A DEAD SQUIRREL,SOME BROWN MUSHY STUFF
 180 DATA RIOT SHIELD,FLAK JACKET,GAS MASK,FIRE EXTINGUISHER,LYE
 190 PRINT"{down}Counting the bodies...";:GOSUB60
-200 FORI=1TO30:##################3,I:INPUT#3,PL(I,1),PL$(I):FORX=2TO7:INPUT#3,PL(I,X):NEXTX:PRINT".";:NEXTI
-210 ##################3,31:INPUT#3,ID,NA$,DT:##################3,1:CLOSE3:PRINT:CD=0:FORI=1TO30:IFPL(I,1)=IDTHENCD=I
+200 FORI=1TO30:RECORD#3,I:INPUT#3,PL(I,1),PL$(I):FORX=2TO7:INPUT#3,PL(I,X):NEXTX:PRINT".";:NEXTI
+210 RECORD#3,31:INPUT#3,ID,NA$,DT:RECORD#3,1:CLOSE3:PRINT:CD=0:FORI=1TO30:IFPL(I,1)=IDTHENCD=I
 220 NEXTI:GOSUB70:IFCDANDDT>PL(CD,5)THENPL(CD,5)=DT:PL(CD,4)=40
 230 PRINT:PRINT:F$="mdr.menu":GOSUB30
 1000 D=0:PRINT:PRINT"{cyan}Time:{white}"+STR$(PEEK(2825)):PRINT"{cyan}<?>Register: {white}";:
@@ -106,8 +106,8 @@
 3030 LO=PL(CD,2)
 3100 PRINT"{clear}{down}{cyan}You are now {white}"+M$(LO,0):PRINT" {cyan}(ROOM #{white}"+STR$(LO)+"{cyan})"
 3110 PRINT"{down}Exits are: {white}";:FORI=1TO6:IFVAL(M$(LO,I))>0THENPRINTDR$(I)+", ";
-3120 NEXTI:PRINT"{left*2}  ":PL(CD,2)=LO:SP$="          "
-3150 GOSUB3800:FORI=1TO30:IFPL(I,2)<>LOORI=CD ORPL$(I)="empty"THEN3170:ELSEPRINTPL$(I)+" {cyan}#{white}"+STR$(I)+"{cyan}  >{white}";:A$="Dead.":IFPL(I,3)THENA$="Alive!"
+3120 NEXTI:PRINT"{left*2}{space*2}":PL(CD,2)=LO:SP$="{space*10}"
+3150 GOSUB3800:FORI=1TO30:IFPL(I,2)<>LOORI=CD ORPL$(I)="empty"THEN3170:ELSEPRINTPL$(I)+" {cyan}#{white}"+STR$(I)+"{cyan}{space*2}>{white}";:A$="Dead.":IFPL(I,3)THENA$="Alive!"
 3160 PRINTA$
 3170 NEXT:IFX=12THENPRINT"{down*2}{yellow}Commands: {white}N){cyan}orth{white}, S){cyan}outh{ct k}"SP$"{white}E){cyan}ast{white}, W){cyan}est{white}, U){cyan}p{ct k}"SP$"{white}D){cyan}own{white}, K){cyan}ill{white}, Q){cyan}uit{ct k}"SP$"{white}T){cyan}ake{white}, L){cyan}eave{white}, I){cyan}nventory"
 3200 PRINT:PRINT"{yellow}Time left:{white}"+STR$(PEEK(2825))
@@ -125,15 +125,15 @@
 3330 IFD(I)=CD+100THEND=D+1
 3340 NEXTI:IFO+D>=4THENPRINT"{cyan}You may carry up to four items!":GOTO3200
 3345 IFD>=2ANDIN>100THENPRINT"{cyan}You may only carry 2 defenses!":GOTO3200
-3350 IFIN>100THEN3360:ELSEW(IN)=CD+100:##################4,IN:PRINT#4,W(IN):GOTO3390
-3360 D(IN-100)=CD+100:##################4,IN:PRINT#4,D(IN-100):GOTO3390
-3390 ##################4,1:PRINT:PRINT"{light green}Taken!":GOTO3200
+3350 IFIN>100THEN3360:ELSEW(IN)=CD+100:RECORD#4,IN:PRINT#4,W(IN):GOTO3390
+3360 D(IN-100)=CD+100:RECORD#4,IN:PRINT#4,D(IN-100):GOTO3390
+3390 RECORD#4,1:PRINT:PRINT"{light green}Taken!":GOTO3200
 3400 PRINT:IN$="":IN=0:INPUT"{white}<?>{yellow}Leave what item #";IN$:IFIN$="?"THENQP=1:GOSUB1260:GOTO3400
 3405 IN=VAL(IN$):IFIN=0ORIN>199THEN3200:ELSEIFIN<100THENIFW(IN)<>CD+100THENPRINT"{pink}{down}Huh?!?!":GOTO3200
 3410 IFIN>100THENIFD(IN-100)<>CD+100THENPRINT"{pink}{down}Huh?!?!":GOTO3200
-3450 IFIN>100THEN3460:ELSEW(IN)=LO:##################4,IN:PRINT#4,W(IN):GOTO3490
-3460 D(IN-100)=LO:##################4,IN:PRINT#4,D(IN-100):GOTO3490
-3490 ##################4,1:PRINT:PRINT"{light green}Dropped!":GOTO3200
+3450 IFIN>100THEN3460:ELSEW(IN)=LO:RECORD#4,IN:PRINT#4,W(IN):GOTO3490
+3460 D(IN-100)=LO:RECORD#4,IN:PRINT#4,D(IN-100):GOTO3490
+3490 RECORD#4,1:PRINT:PRINT"{light green}Dropped!":GOTO3200
 3500 PRINT:KH$="":KH=0:INPUT"{cyan}Kill whom #";KH$:KH=VAL(KH$):IFKH=0ORKH>30THEN3200:ELSEIFPL(KH,2)<>LOTHENPRINT"{pink}Say What?!?!":GOTO3200
 3510 IFPL(CD,6)<>KHTHENPRINT"{pink}You may only slay your target!":GOTO3200
 3520 PRINT"{down}{cyan}1- Axe":PRINT"2- Pistol":PRINT"3- Gas Sprayer":PRINT"4- Flame Thrower":PRINT"5- Acid Sprayer":INPUT"{down}Kill him with what";KW$
@@ -144,18 +144,18 @@
 3560 PRINTAA$(KW);
 3570 F=0:FORI=1TO100:IFRIGHT$(STR$(I),1)=MID$(STR$(KW),2)ANDD(I)=KH+100THENF=1
 3580 NEXTI:IFFTHENPRINT" but-":PRINTDC$(KW):PRINT"{down*2}{cyan}Whoosh! You're off!":LO=INT(RND(TI)*99)+1:GOTO3200
-3590 PRINT" and-":PRINTKK$(KW):PL(KH,3)=0:PL(CD,7)=PL(CD,7)+1:WH=KH:GOSUB14000:FORI=1TO100:IFW(I)=KH+100THEN##################4,I:PRINT#4,INT(RND(TI)*99)+1
-3592 NEXTI:FORI=1TO100:IFD(I)=KH+100THEN##################4,I+100:PRINT#4,INT(RND(TI)*99)+1
+3590 PRINT" and-":PRINTKK$(KW):PL(KH,3)=0:PL(CD,7)=PL(CD,7)+1:WH=KH:GOSUB14000:FORI=1TO100:IFW(I)=KH+100THENRECORD#4,I:PRINT#4,INT(RND(TI)*99)+1
+3592 NEXTI:FORI=1TO100:IFD(I)=KH+100THENRECORD#4,I+100:PRINT#4,INT(RND(TI)*99)+1
 3594 NEXTI:CLOSE4:GOSUB60:F=0:FORI=1TO30:IFPL(I,1)ANDPL(I,3)ANDCD<>ITHENF=1
 3595 FORD=1TO30:IFPL(D,6)=KHANDPL(D,3)ANDPL(D,1)ANDCD<>DTHENDO:QQ=INT(RND(TI)*30)+1:LOOPUNTILPL(QQ,1)ANDPL(QQ,3):PL(D,6)=QQ:PL(D,3)=-1:WH=D:GOSUB15000
 3596 NEXTD
 3600 NEXTI:CLOSE3:GOSUB70:IFF=0THEN3610:ELSEGOSUB2500:GOTO3200
 3610 PRINT"{down*2}{purple}You've won the game!!!!!":R$=CHR$(13)
 3620 PRINT"{down}Adding your name...":OPEN2,U,2,"0:mdr.help 5,s,w":INPUT#1,E:IFETHENCLOSE2:OPEN2,U,2,"0:mdr.help 5,s,a":ELSEPRINT#2,"{clear}{down*2}{cyan}Previous champs:":PRINT#2,R$
-3630 PRINT#2,"{cyan}"+PL$(CD)+"   {white}Kills: {cyan}"+STR$(PL(CD,7))
+3630 PRINT#2,"{cyan}"+PL$(CD)+"{space*3}{white}Kills: {cyan}"+STR$(PL(CD,7))
 3640 DT$=MID$(STR$(DT),2):PRINT#2,"{cyan}Date: {white}"+MID$(DT$,3,2)+"/"+MID$(DT$,5,2)+"/"+MID$(DT$,1,2):PRINT#2,R$:CLOSE2
 3650 CLOSE4:GOSUB60:PRINT"{down}Killing the players...":FORD=1TO30:PL$(D)="empty":PL(D,1)=0:PL(D,3)=0:WH=D:GOSUB15000:NEXTD:CD=0:CLOSE3:GOSUB70
-3660 PRINT"{down}Reshuffling the items...":FORI=1TO200:##################4,I:PRINT#4,INT(RND(TI)*99)+1:NEXTI:GOTO10000
+3660 PRINT"{down}Reshuffling the items...":FORI=1TO200:RECORD#4,I:PRINT#4,INT(RND(TI)*99)+1:NEXTI:GOTO10000
 3800 PRINT"{down}{cyan}Visible items:{white}":FORI=1TO100:IFW(I)=LOTHENPRINTW$(I)+" {cyan}#{white}"+STR$(I)
 3810 IFD(I)=LOTHENPRINTD$(I)+" {cyan}#{white}"+STR$(I+100)
 3820 NEXT:RETURN
@@ -166,17 +166,22 @@
 4020 IFYN$=R$THENRETURN
 4050 IFPL(CD,4)<10THENPRINT"Not enough moves left! Try tomorrow!":RETURN:ELSEPL(CD,4)=PL(CD,4)-10:PRINT:PRINT"{cyan}Last 10 squeals:"
 4060 OPEN2,U,2,"0:mdr.squeals"
-4070 FORI=1TO10:##################2,I:INPUT#2,TT$(I):IFYN$="r"THENPRINTLEFT$(TT$(I),INSTR(TT$(I),"{ct x}"))
+4070 FORI=1TO10:RECORD#2,I:INPUT#2,TT$(I):IFYN$="r"THENPRINTLEFT$(TT$(I),INSTR(TT$(I),"{ct x}"))
 4080 NEXTI:CLOSE2:IFYN$="r"THENRETURN
 4090 PN=0:INPUT"{yellow}{down}Squeal on player number";PN:IFPN=0ORPN=CDTHENRETURN
 4100 IFPL(PN,1)THEN4110:ELSEPRINT"{down}Unregistered player!":RETURN
 4110 PR=0:INPUT"Player is in which room";PR:IFPR=0ORPR>99THENPRINT"{down}Unrecognized room":RETURN
 4113 A$="Dead":IFPL(PN,3)THENA$="Alive!"
-4115 TT$="{cyan}"+PL$(PN)+" ("+STR$(PN)+")  is "+A$+" in room #"+STR$(PR)+"{ct x}"+STR$(CD)
+4115 TT$="{cyan}"+PL$(PN)+" ("+STR$(PN)+"){space*2}is "+A$+" in room #"+STR$(PR)+"{ct x}"+STR$(CD)
 4120 RR=0:FORI=1TO10:IFTT$=TT$(I)THENPRINT"You've said that before!":RR=1
 4123 NEXTI:IFRRTHENRETURN
 4125 IFPL(PN,2)=PRTHENPL(CD,4)=PL(CD,4)+10:GOTO4140
 4130 PRINT"{cyan}{down*2}Liar!!!":IFPL(CD,4)>5THENPL(CD,4)=PL(CD,4)-5:ELSEPRINT"You must have at least 5 plays to lie!":RETURN
 4140 OPEN2,U,2,"0:mdr.squeals"
-4150 FORI=1TO9:##################2,I:PRINT#2,TT$(I+1):NEXTI:##################2,10:PRINT#2,TT$:CLOSE2:RETURN
-9999 PRINT:PRINT"Are you sure (y/n)? ";:
+4150 FORI=1TO9:RECORD#2,I:PRINT#2,TT$(I+1):NEXTI:RECORD#2,10:PRINT#2,TT$:CLOSE2:RETURN
+9999 PRINT:PRINT"Are you sure (y/n)? ";:GETKEYA$:PRINTA$:IFA$<>"y"THENRETURN
+10000 IFCD=0THEN10010:ELSECLOSE4:GOSUB60:PL(CD,5)=DT:PRINT"{down}Saving your life...":WH=CD:GOSUB15000
+10010 CLOSE3:CLOSE4:CLOSE2:CLOSE1:END
+11000 FORI=1TO4:CLOSEI:NEXTI:PRINT:PRINT:PRINTERR$(ERR)+"{space*5}#"+STR$(EL):PRINT"Report these error codes to the SysOp at once!":GOTO10000
+14000 CLOSE4:GOSUB60:GOSUB15000:RECORD#3,WH:CLOSE3:GOSUB70:RETURN
+15000 A$=STR$(PL(WH,1))+R$+PL$(WH)+R$:FORI=2TO7:A$=A$+STR$(PL(WH,I))+R$:NEXTI:RECORD#3,WH:PRINT#3,A$;:RETURN

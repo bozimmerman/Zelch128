@@ -1,10 +1,10 @@
 !--------------------------------------------------
-!- Saturday, May 20, 2017 1:34:30 AM
+!- Wednesday, August 18, 2021 12:28:41 AM
 !- Import of : 
-!- c:\src\zelch128\extras\gal.maint.prg
+!- c:\tmp\newproject\gal.maint.prg
 !- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
-10 U1=PEEK(186):ND=15:R$=CHR$(13):GOTO170
+10 U1=9:ND=15:R$=CHR$(13):GOTO170
 20 PRINT#1,"p"CHR$(98)CHR$(I)CHR$(0)CHR$(0):RETURN
 30 OPEN1,U1,15:OPEN2,U1,2,"0:gal.galaxy":A$=""
 40 EM$(RD,1)=DT$:FORI=1TO10:A$="":GOSUB20:FORX=0TO4:A$=A$+EM$(I,X)+R$:NEXTX
@@ -54,4 +54,5 @@
 480 FORA=1TO200:IFMS(A,0)THENIFMS(A,4)=IORMS(A,5)=ITHENGOSUB130
 490 NEXTA
 500 NEXTI:RD=0:IFETHEN30
-128 
+510 END
+55555 U=PEEK(186):OPEN1,U,15,"s0:gal.maint":CLOSE1:SAVE"gal.maint",U

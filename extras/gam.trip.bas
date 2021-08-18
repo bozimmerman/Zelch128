@@ -82,7 +82,7 @@
 480 IFNO=19ANDOB(18,0)=CPTHENPRINT"squid";M2$:GOTO30
 490 IFNO=35ANDOB(36,0)=CPTHENPRINT"octopus";M2$:GOTO30
 500 IFOB(10,0)=CPTHENPRINT"eel";M2$:GOTO30
-20107 O=44ANDOB(42,0)=CPTHENPRINT"minotaur";M2$:GOTO30
+510 IFO=44ANDOB(42,0)=CPTHENPRINT"minotaur";M2$:GOTO30
 520 IFNO=32THENPRINT"It is beyond my reach.":GOTO30
 530 IFZZ+1>7THENPRINT"I'm carrying too much.":GOTO30
 540 IFOB(NO,1)>0ANDCP=1THENTS=TS-1
@@ -249,7 +249,7 @@
 1784 P$(19)="the drawing room"
 1786 P$(20)="the royal colliseum"
 1788 DATA 23,14,18,16,24,0,19,17,25,0,20,18,0,0,21,19
-20560 PPPP$(21)="a temple"
+1789 P$(21)="a temple"
 1792 P$(22)="a hallway"
 1794 P$(23)="an old library"
 1796 P$(24)="the clam room. the walls are made of clamshell"
@@ -293,7 +293,7 @@
 1868 DATA 0,0,0,0,0,00,12
 1870 FORI=9TO39:READOB$(I):NEXTI:FORI=9TO39:READOB(I,0),OB(I,1):NEXTI
 1872 REM
-21074 RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR{ct g}REM
+1874 REM
 1876 REM
 1878 REM
 1880 D$(0)="north":D$(1)="south":D$(2)="east":D$(3)="west"
@@ -343,7 +343,7 @@
 2042 DATA "{yellow}{cm @*9}","{up}{cm p*9}","{up}{cm i*9}","{up}{sh asterisk*9}","{up}{cm u*9}"
 2043 DATA "{up}{cm y*9}","{up}{cm t*9}","{up}         "
 2045 FORI=1TO17:PRINTTAB(20-(LEN(IN$(I))/2));IN$(I)
-35723 IFIFIFIFIFI>9THENFORD=1TO125:NEXTD
+2046 IFI>9THENFORD=1TO125:NEXTD
 2047 NEXTI
 2050 PRINT:PRINT:PRINT:PRINT:PRINT:PRINT:PRINT
 2060 PRINT"{white}         {reverse on}Hit return to continue{reverse off}";
@@ -356,7 +356,7 @@
 2090 PRINT"and hands during the adventure. Direct"
 2095 PRINT"me with ordinary english sentences of"
 2100 PRINT"one or two words. Some examples:"
-14649 999999999999999999999999999999999999999999999999999999999999999999999999999999{ct h}PRINTQ$"get tank"Q$" , "Q$"inventory"Q$" , "Q$"kill manta"Q$
+2105 PRINTQ$"get tank"Q$" , "Q$"inventory"Q$" , "Q$"kill manta"Q$
 2130 PRINT
 2140 PRINT"Use any noun/verb combination you can"
 2145 PRINT"think of, because in this game, "
@@ -367,4 +367,9 @@
 2170 PRINT
 2175 PRINT
 2180 PRINT"Press the space bar to begin...";
-2190 GETA$:IFA$
+2190 GETA$:IFA$<>" "THEN2190
+2195 return
+2200 print"i can only repeat the instructions."
+2205 print"would you like that";:input"  y{left}{left}{left}";qq$
+2210 ifleft$(qq$,1)="n"thenprint"okay.":goto30
+2222 gosub2020:goto2

@@ -7,12 +7,12 @@
 30000 SYS15625:REM =============== DATING MODULE ==============================
 30010 O$="{black}{ct k}Zelch Dating Module v1.0{ct k*2}{black}By Elite Software{ct k}   2968 W. Ina Rd. Suite 140{ct k}   Tucson, Az 85741{black}":GOSUB4:D1=U:D2=D
 30020 OPEN1,U,15:OPEN2,U,2,MID$(STR$(D),2)+":dat.users":INPUT#1,A:IFATHENCLOSE1:CLOSE2:O$="{ct k}Error, dating not configured.":GOSUB4:GOTO920
-30030 ##################2,1:SYS8222:W0=VAL(I$):SYS8222:W5=VAL(I$):SYS8222:U0=VAL(I$):SYS8222:D0=VAL(I$)
+30030 RECORD#2,1:SYS8222:W0=VAL(I$):SYS8222:W5=VAL(I$):SYS8222:U0=VAL(I$):SYS8222:D0=VAL(I$)
 30040 O$="{ct k}Searching for your dating file...{ct c}":GOSUB4:X=1
-30050 X=1:DO:X=X+1:##################2,X:SYS8222:A=VAL(I$):SYS8222:LOOPUNTIL A=ID OR LEN(I$)=1
+30050 X=1:DO:X=X+1:RECORD#2,X:SYS8222:A=VAL(I$):SYS8222:LOOPUNTIL A=ID OR LEN(I$)=1
 30060 IFA=IDANDUI$(ID)=I$THENW6=X:SYS8222:W7=VAL(LEFT$(I$,1)):W8=VAL(RIGHT$(I$,1)):FORX=1TO3:SYS8222:NEXTX:W0$=I$:O$=R$:GOSUB9:GOTO31000
 30070 CLOSE1:CLOSE2:O$=" Not found.{ct k}":GOSUB4:F$="dat.verify":GOSUB26:O$="{black}Do you wish to continue (y/n)? {ct c}":GOSUB4:C$="YN"+R$:GOSUB28:IFI>1THEN920
-30080 F$="dat.intro":GOSUB25:OPEN2,U,2,MID$(STR$(D),2)+":dat.users":W6=1:DO:W6=W6+1:##################2,W6:INPUT#2,I:INPUT#2,I$:IFI=0ORI$<>UI$(I)THENEXIT
+30080 F$="dat.intro":GOSUB25:OPEN2,U,2,MID$(STR$(D),2)+":dat.users":W6=1:DO:W6=W6+1:RECORD#2,W6:INPUT#2,I:INPUT#2,I$:IFI=0ORI$<>UI$(I)THENEXIT
 30090 LOOPUNTILW6>W0:CLOSE2:CLOSE1:IFW6>W0THENO$="{ct k}{black}Sorry, no open dating slots.{f7}Try again later.":GOSUB4:GOTO920
 30200 RESTORE:W0$="":DO:READO$:IFO$="{pound}"THENEXIT
 30210 O$="{ct k}{black}"+O$+"{ct k}":GOSUB4:READA$:READX:FORI=1TOX:READO$:O$=" "+RIGHT$(STR$(I),1)+") "+O$:GOSUB4:NEXTI
@@ -21,7 +21,7 @@
 30240 O$="{black}{ct k}Make your real name and phone number{f7}available to interested users (y/n)? {ct c}":GOSUB4:C$="NY":GOSUB28:W7=I-1:IFW5=0THEN30270
 30250 O$="{black}{ct k}Would you like to fill out a resume{f7}for others to browse (y/n)? {ct c}":GOSUB4:GOSUB28:W8=I-1
 30260 IFI=2THENF$="dat.resume"+STR$(W6):O(12)=1:U=U0:D=D0:GOSUB1000:U=D1:D=D2:IFO(11)THENW8=0
-30270 OPEN2,U,2,MID$(STR$(D),2)+":dat.users":##################2,W6:PRINT#2,STR$(ID)+R$+U$(1)+R$+MID$(STR$(W7),2)+MID$(STR$(W8),2)+R$+U$(3)+R$+U$(4)+R$+W0$
+30270 OPEN2,U,2,MID$(STR$(D),2)+":dat.users":RECORD#2,W6:PRINT#2,STR$(ID)+R$+U$(1)+R$+MID$(STR$(W7),2)+MID$(STR$(W8),2)+R$+U$(3)+R$+U$(4)+R$+W0$
 30280 O$="{ct k}{black}Your stats are now on file.":GOSUB4:GOTO30050
 31000 CLOSE1:CLOSE2:O$="{ct k}{black}Dating Command {black}[ ]{white}{left*2}{ct c}":GOSUB4:C$="QYRLEXVMS?":GOSUB28:RESTORE:ONIGOTO920,32000,33000,34000,35000,36000,37000,38000,39000
 31010 F$="dat.menu":U=D1:D=D2:GOSUB25:GOTO31000
@@ -35,24 +35,24 @@
 32050 READO$,X:FORI=1TOX:READTT$(I):NEXTI:X=VAL(MID$(W0$,Y,1)):IFX=0THENX=10
 32060 O$=O$+": "+TT$(X):GOSUB31500:LOOP:O$="":GOSUB4:GOTO31000
 33000 O$="{ct k}{black}Enter the user's{f7}dating ID number: {white}{ct c}":GOSUB4:GOSUB10:IFI<2ORI>500THEN31000
-33010 OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":##################2,I:INPUT#2,X,C$:CLOSE2:IFUI$(X)<>C$THENO$="{ct k}{black}No user with dating number"+STR$(I):GOSUB4:GOTO31000
+33010 OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":RECORD#2,I:INPUT#2,X,C$:CLOSE2:IFUI$(X)<>C$THENO$="{ct k}{black}No user with dating number"+STR$(I):GOSUB4:GOTO31000
 33020 O$="{white}{clear}{ct k}>> {yellow}"+UI$(X)+"{white} (ID#"+STR$(X)+")":GOSUB4
 33030 OPEN1,U0,15:OPEN2,U0,2,MID$(STR$(D0),2)+":dat.resume"+STR$(I)+",s,r":GET#2,A$:CLOSE2:INPUT#1,E:CLOSE1:IFETHENO$="{ct k}{black}No resume on file.":GOSUB4:GOTO31000
 33040 F$="dat.resume"+STR$(I):U=U0:D=D0:GOSUB26:GOTO31000
-34000 O$="{ct k}{black}Dating participants:{ct k}":GOSUB4:OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":Y=1:DO:Y=Y+1:##################2,Y
+34000 O$="{ct k}{black}Dating participants:{ct k}":GOSUB4:OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":Y=1:DO:Y=Y+1:RECORD#2,Y
 34010 INPUT#2,X,C$,A$
 34020 IFUI$(X)=C$THENO$="{black}"+RIGHT$("   "+STR$(Y),3)+" "+C$+LEFT$(SP$,18-LEN(C$)):IFMID$(A$,2,1)="1"THENO$=O$+"(resume)
 34030 IFUI$(X)=C$THENGOSUB4
 34040 LOOPUNTILLEN(C$)=1ORY>W0:CLOSE2:CLOSE1:GOTO31000
 35000 O$="{ct k}{black}Enter the user's{f7}dating ID number: {white}{ct c}":GOSUB4:GOSUB10:IFI<2ORI>500THEN31000
-35010 OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":##################2,I:INPUT#2,X,C$:CLOSE2:IFUI$(X)<>C$THENO$="{ct k}{black}No user with dating number"+STR$(I):GOSUB4:GOTO31000
+35010 OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":RECORD#2,I:INPUT#2,X,C$:CLOSE2:IFUI$(X)<>C$THENO$="{ct k}{black}No user with dating number"+STR$(I):GOSUB4:GOTO31000
 35020 A=X:I$="":GOSUB8090:IFA=0THEN31000
 35030 GOSUB8120:GOTO31000
 36000 O$="{black}{ct k}Edit or delete your dating account{f7}(e/d/abort)? {ct c}":GOSUB4:C$="EAD":GOSUB28:ONIGOTO30200,31000
 36010 O$="{black}{ct k}Delete your dating account (y/n)? {ct c}":GOSUB4:C$="YN":GOSUB28:IFI=2THEN31000:ELSEOPEN1,U0,15,"s"+MID$(STR$(D0),2)+":dat.resume"+STR$(W6):CLOSE1
-36020 OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":##################2,W6:X=0:PRINT#2,"0"+R$+"^^"+R$+"00"+R$+"{pound}"+R$+"000-0000"+R$+"0000":CLOSE2:GOTO920
+36020 OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":RECORD#2,W6:X=0:PRINT#2,"0"+R$+"^^"+R$+"00"+R$+"{pound}"+R$+"000-0000"+R$+"0000":CLOSE2:GOTO920
 37000 O$="{ct k}{black}Enter the user's{f7}dating ID number: {white}{ct c}":GOSUB4:GOSUB10:IFI<2ORI>500THEN31000
-37010 OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":##################2,I:INPUT#2,X,C$:IFUI$(X)<>C$THENCLOSE2:O$="{ct k}{black}No user with dating number"+STR$(I):GOSUB4:GOTO31000
+37010 OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":RECORD#2,I:INPUT#2,X,C$:IFUI$(X)<>C$THENCLOSE2:O$="{ct k}{black}No user with dating number"+STR$(I):GOSUB4:GOTO31000
 37020 O$="{clear}{ct k}{white}>> {yellow}"+C$+" {white}(ID#"+STR$(X)+")":SYS8222:IFRIGHT$(I$,1)="1"THENO$=O$+"{f7}   {cyan}* Resume on file *"
 37030 O$=O$+"{ct k}":GOSUB4:IFLEFT$(I$,1)="1"THENSYS8222:O$="   "+I$:SYS8222:O$=O$+"{ct k}   "+I$+"{ct k}":GOSUB4:ELSESYS8222:SYS8222
 37040 SYS8222:CLOSE2:RESTORE:Y=0:DO:Y=Y+1:READO$:IFO$="{pound}"THENEXIT
@@ -60,7 +60,7 @@
 37060 O$=O$+": "+TT$(X):GOSUB31500:LOOP:O$="":GOSUB4:GOTO31000
 38000 O$="{ct k}{black}Enter the lowest percentage{f7}desired for a match: {white}{ct c}":GOSUB4:GOSUB10:IFI<1ORI>100THEN31000:ELSEO$="{black}{ct k}Searching...{ct k}":GOSUB4
 38010 A=I:OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":Y=1:DO:Y=Y+1:IFY=W6THEN38500
-38020 ##################2,Y:INPUT#2,X,C$:IFUI$(X)<>C$THEN38500
+38020 RECORD#2,Y:INPUT#2,X,C$:IFUI$(X)<>C$THEN38500
 38030 FORI=1TO4:SYS8222:NEXTI:IFMID$(W0$,2,1)="1"ANDMID$(W0$,1,1)=MID$(I$,1,1)THEN38500
 38035 IFMID$(W0$,14,1)="1"ANDMID$(I$,14,1)="2"THEN38500
 38036 IFMID$(W0$,14,1)="2"ANDMID$(I$,14,1)="1"THEN38500
@@ -83,7 +83,7 @@
 39100 O$="{ct k}{black}Are all of your choices correct (y/n)? {ct c}":GOSUB4:C$="YN":GOSUB28:IFI=2THEN39000
 39110 O$="{ct k}{black}Checking...{ct k}":GOSUB4
 39120 OPEN2,D1,2,MID$(STR$(D2),2)+":dat.users":Y=1:DO:Y=Y+1:IFY=W6THEN39500
-39130 ##################2,Y:INPUT#2,X,A$:IFUI$(X)<>A$THEN39500
+39130 RECORD#2,Y:INPUT#2,X,A$:IFUI$(X)<>A$THEN39500
 39140 FORI=1TO4:SYS8222:NEXTI:I=0:FORX=1TO22:IFMID$(W1$,X,1)<>"*"ANDMID$(W1$,X,1)<>MID$(I$,X,1)THENI=1
 39150 NEXTX:IFI=0THENO$="{black}"+RIGHT$(SP$+STR$(Y),3)+"  "+A$+" is a match.":GOSUB4
 39500 LOOPUNTILLEN(A$)=1ORY>=W0:CLOSE2:CLOSE1:GOTO31000

@@ -1,7 +1,7 @@
 !--------------------------------------------------
-!- Saturday, May 20, 2017 1:37:30 AM
+!- Wednesday, August 18, 2021 12:27:14 AM
 !- Import of : 
-!- c:\src\zelch128\extras\mdr.maker.prg
+!- c:\tmp\newproject\mdr.maker.prg
 !- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
 5 I=RND(-TI)
@@ -11,24 +11,24 @@
 54 GOTO100
 55 U=PEEK(186):D=0:F$="mdr.maker":GOSUB56:SAVE"mdr.maker",U:STOP
 56 OPEN1,U,15,"s"+MID$(STR$(D),2)+":"+F$:CLOSE1:RETURN
-57 OPEN2,U,2,MID$(STR$(D),2)+":"+F$+",l,"+CHR$(X):##################2,Y+1:PRINT#2,"Burp!":RETURN
+57 OPEN2,U,2,MID$(STR$(D),2)+":"+F$+",l,"+CHR$(X):RECORD#2,Y+1:PRINT#2,"Burp!":RETURN
 100 RESTORE
 110 PRINT"{clear}{down*2}{yellow}Murder Motel file creation program."
 120 PRINT"Written by Bo Zimmerman for Elite Software"
 130 PRINT"{down*2}--Hotel structure and data by Sean D. Wagle"
-140 INPUT"{down*4}Save files on what drive   8,0{left*5}";U,D
+140 INPUT"{down*4}Save files on what drive{space*3}8,0{left*5}";U,D
 200 F$="mdr.rooms":GOSUB20:ONYNGOTO210,300
 210 GOSUB56:X=50:Y=99:GOSUB57
-220 FORI=1TO99:A$="":FORX=0TO6:READB$:A$=A$+B$+CHR$(13):NEXTX:##################2,I:PRINT#2,A$:NEXTI:CLOSE2
+220 FORI=1TO99:A$="":FORX=0TO6:READB$:A$=A$+B$+CHR$(13):NEXTX:RECORD#2,I:PRINT#2,A$:NEXTI:CLOSE2
 300 F$="mdr.stuff":GOSUB20:ONYNGOTO310,400
 310 GOSUB56:X=5:Y=200:GOSUB57
-320 FORI=1TO200:##################2,I:PRINT#2,INT(RND(TI)*99)+1:NEXTI:CLOSE2
+320 FORI=1TO200:RECORD#2,I:PRINT#2,INT(RND(TI)*99)+1:NEXTI:CLOSE2
 400 F$="mdr.losers":GOSUB20:ONYNGOTO410,500
 410 GOSUB56:X=100:Y=31:GOSUB57
-420 FORI=1TO31:##################2,I:R$=CHR$(13):PRINT#2,"0"+R$+"empty"+R$+"0"+R$+"0"+R$+"0"+R$+"910800"+R$+"0"+R$+"0":NEXTI:CLOSE2
+420 FORI=1TO31:RECORD#2,I:R$=CHR$(13):PRINT#2,"0"+R$+"empty"+R$+"0"+R$+"0"+R$+"0"+R$+"910800"+R$+"0"+R$+"0":NEXTI:CLOSE2
 500 F$="mdr.squeals":GOSUB20:ONYNGOTO510,600
-13709 6:X=100:Y=11:GOSUB57
-520 FORI=1TO10:##################2,I:PRINT#2,"empty":NEXTI:CLOSE2
+510 GOSUB56:X=100:Y=11:GOSUB57
+520 FORI=1TO10:RECORD#2,I:PRINT#2,"empty":NEXTI:CLOSE2
 600 PRINT"{down*2}Yer all done!":END
 61102 DATA "falling! Yiiiii!!!!",0,0,0,0,0,41
 61105 DATA IN THE UP ONLY ELEVATOR,15,0,0,23,3,0
@@ -127,4 +127,5 @@
 61384 DATA IN THE HEXAGON'S CIRCLE,0,94,0,96,0,0
 61387 DATA IN THE ANGULAR PRISM,0,95,0,83,0,0
 61390 DATA "in the fireplace",94,0,0,0,0,0
-61393 DATA HANGING OUT
+61393 DATA HANGING OUT THE WINDOW,0,84,0,0,0,99
+61396 DATA ON THE ROOF OF THE PORCH,0,62,63,0,0,0
