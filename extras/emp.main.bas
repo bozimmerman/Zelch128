@@ -3,6 +3,7 @@
 !- Import of : 
 !- c:\src\zelch128\extras\emp.main.prg
 !- Unknown Machine
+!- *************** CURRPT -- MISSING BOTTOM STUFF AND JUST CORRUPT -- SAVE ME!!
 !--------------------------------------------------
 10 REM*********** CLASSIC EMPIRE -- AUTHOR UNKNOWN.
 20 REM*********** CONVERTED TO ZELCH 128 FORMAT BY ELITE SOFTWARE.

@@ -3,6 +3,7 @@
 !- Import of : 
 !- c:\src\zelch128\extras\dat.main.prg
 !- Commodore 128 BASIC 7/7.1
+!- ***************PROBABLY CURRPT -- MISSING BOTTOM STUFF
 !--------------------------------------------------
 30000 SYS15625:REM =============== DATING MODULE ==============================
 30010 O$="{black}{ct k}Zelch Dating Module v1.0{ct k*2}{black}By Elite Software{ct k}   2968 W. Ina Rd. Suite 140{ct k}   Tucson, Az 85741{black}":GOSUB4:D1=U:D2=D
