@@ -372,4 +372,4 @@
 2200 print"i can only repeat the instructions."
 2205 print"would you like that";:input"  y{left}{left}{left}";qq$
 2210 ifleft$(qq$,1)="n"thenprint"okay.":goto30
-2222 gosub2020:goto2
+2222 gosub2020:goto29
