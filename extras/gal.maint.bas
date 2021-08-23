@@ -4,7 +4,7 @@
 !- c:\tmp\newproject\gal.maint.prg
 !- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
-10 U1=9:ND=15:R$=CHR$(13):GOTO170
+10 U1=8:ND=15:R$=CHR$(13):GOTO170
 20 PRINT#1,"p"CHR$(98)CHR$(I)CHR$(0)CHR$(0):RETURN
 30 OPEN1,U1,15:OPEN2,U1,2,"0:gal.galaxy":A$=""
 40 EM$(RD,1)=DT$:FORI=1TO10:A$="":GOSUB20:FORX=0TO4:A$=A$+EM$(I,X)+R$:NEXTX

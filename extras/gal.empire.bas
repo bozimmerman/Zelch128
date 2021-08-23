@@ -4,7 +4,7 @@
 !- c:\tmp\newproject\gal.empire.prg
 !- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
-10 U1=9:A=RND(-TI):R$=CHR$(13):ZC$="{red}{purple}{green}{blue}{yellow}{orange}{brown}{pink}{light green}{light blue}":GOTO1000
+10 U1=8:A=RND(-TI):R$=CHR$(13):ZC$="{red}{purple}{green}{blue}{yellow}{orange}{brown}{pink}{light green}{light blue}":GOTO1000
 20 PRINT#1,"p"CHR$(98)CHR$(I)CHR$(0)CHR$(0):RETURN
 30 GOTO500
 40 IFEN$<>" "ANDEN$<>"{home}"THENGETEN$

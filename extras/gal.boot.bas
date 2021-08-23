@@ -5,7 +5,7 @@
 !- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
 30000 SYS15625
-30020 GOSUB400:OPEN2,9,2,"gal.galaxy":RECORD#2,36:PRINT#2,STR$(ID)+CHR$(13)+LEFT$(O$(3),8):CLOSE2
+30020 GOSUB400:OPEN2,8,2,"gal.galaxy":RECORD#2,36:PRINT#2,STR$(ID)+CHR$(13)+LEFT$(O$(3),8):CLOSE2
 30030 GOSUB30050
 30040 F$="gal.empire":POKE2930,0:POKE2931,0:GOTO8940
 30050 O$="{clear}{down*2}{white}":GOSUB4
