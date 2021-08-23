@@ -3,6 +3,7 @@
 !- Import of : 
 !- c:\src\zelch128\extras\gam.tic tac toe.prg
 !- Commodore 128 BASIC 7/7.1
+!- &&&&&& MIGHT BE PARTIALLY CORRUPT -- MISSING A FEW LINES @ THE END
 !--------------------------------------------------
 1 PRINT:GOTO61000
 2200 GETKEYAN$:IFINSTR("abcdefghijklmnopqrstuvwxyz",AN$)THENAN$=CHR$(ASC(AN$)OR128)
