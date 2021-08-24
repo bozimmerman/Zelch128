@@ -9,7 +9,7 @@
 30020 REM ****** MAKE SURE THIS MODULE RUNS ONCE PER DAY DURING YOUR *******
 30030 REM ********************** SYSTEMS MONSTER MODE **********************
 30040 REM ******************************************************************
-30050 U=9:O$="Bank Maint...":GOSUB250:U1=U:D1=D:FORI=1TO50:VT(I)=0:VT$(I)="":NEXT:W9$="":FORI=0TO14:W9$=W9$+" 0"+R$:NEXTI
+30050 U=8:O$="Bank Maint...":GOSUB250:U1=U:D1=D:FORI=1TO50:VT(I)=0:VT$(I)="":NEXT:W9$="":FORI=0TO14:W9$=W9$+" 0"+R$:NEXTI
 30060 OPEN2,U1,2,MID$(STR$(D1),2)+":bnk.records"
 30070 RECORD#2,1:FORI=1TO7:SYS8222:VT(40+I)=VAL(I$):NEXTI:CLOSE2:W1=1:GOTO30999
 30500 A$="":FORI=1TO6:SYS8222:A$=A$+I$+R$:NEXT
