@@ -3,7 +3,6 @@
 !- Import of : 
 !- c:\src\zelch128\extras\gam.wizards.prg
 !- Commodore 128 BASIC 7/7.1
-!- ***************NOT CONVERTED -- USING POKES FOR MAP -- FIX THIS!
 !--------------------------------------------------
 5 X=RND(-TI)
 10 CLR
