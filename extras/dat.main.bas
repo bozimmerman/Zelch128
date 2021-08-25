@@ -6,7 +6,7 @@
 !- ***************PROBABLY CURRPT -- MISSING BOTTOM STUFF
 !--------------------------------------------------
 30000 SYS15625:REM =============== DATING MODULE ==============================
-30010 O$="{black}{ct k}Zelch Dating Module v1.0{ct k*2}{black}By Elite Software{ct k}   2968 W. Ina Rd. Suite 140{ct k}   Tucson, Az 85741{black}":GOSUB4:D1=U:D2=D
+30010 O$="{black}{ct k}Zelch Dating Module v1.0{ct k*2}{black}By Elite Software{ct k}   1991 - 1993 RIP{ct k}   Tucson, Az 85741{black}":GOSUB4:D1=U:D2=D
 30020 OPEN1,U,15:OPEN2,U,2,MID$(STR$(D),2)+":dat.users":INPUT#1,A:IFATHENCLOSE1:CLOSE2:O$="{ct k}Error, dating not configured.":GOSUB4:GOTO920
 30030 RECORD#2,1:SYS8222:W0=VAL(I$):SYS8222:W5=VAL(I$):SYS8222:U0=VAL(I$):SYS8222:D0=VAL(I$)
 30040 O$="{ct k}Searching for your dating file...{ct c}":GOSUB4:X=1

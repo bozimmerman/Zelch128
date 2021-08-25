@@ -10,13 +10,13 @@
 20 DIMC$(34),I$(34),R$(4),W$(8),E$(8)
 30 DIMC(3,4),T(8),O(3),R(3):PRINT"{clear}"
 40 REM E0 = PEEK(4624)+256*PEEK(4625):E0=E0+511
-45 E0=1024:E0=E0+511
-50 DEFFND(Q)=Q*64+X*8+Y+(E0-73):DEFFNE(Q)=Q+100*(Q>99):GOTO60
+45 DIM E0%(513):REME0=1024:E0=E0+511
+50 DEFFND(Q)=Q*64+X*8+Y+(-72):DEFFNE(Q)=Q+100*(Q>99):GOTO60
 55 A=PEEK(186):OPEN1,A,15,"s0:gam.wizards":CLOSE1:SAVE"gam.wizards",A:STOP
 60 Y$=CHR$(13)+"{white}** Answer YES or NO "+CHR$(13)
 70 DEFFNA(Q)=1+INT(RND(1)*Q):DEFFNB(Q)=Q+8*((Q=9)-(Q=0))
 80 Q=RND(-TI):RESTORE:FORQ=1TO34:READC$(Q),I$(Q):NEXT
-90 FORQ=E0TOE0+513:POKEQ,101:NEXT:FORQ=1TO8:READW$(Q),E$(Q):NEXT
+90 FORQ=1TO513:E0%(Q)=101:NEXT:FORQ=1TO8:READW$(Q),E$(Q):NEXT
 100 FORQ=1TO4:READR$(Q):NEXT:DEFFNC(Q)=-Q*(Q<19)-18*(Q>18)
 110 PRINT"{clear}{cyan}":GOSUB3270:PRINTTAB(10)"{light blue}The Wizard's Castle"
 120 PRINTTAB(10)"by Joseph Power{cyan}":GOSUB3270:PRINT
@@ -27,8 +27,8 @@
 138 PRINT"v=vendor";TAB(20);"m=any monster"
 139 PRINT"t=any treasure";TAB(20);I$(34)"=unexplored"
 140 PRINT:PRINT"{light green}Please be patient - ";:X=1:Y=4
-150 POKEFND(1),2:PRINT"in";:FORZ=1TO7:FORQ1=1TO2:Q=104:GOSUB3200
-160 POKEFND(Z+1),103:NEXTQ1:NEXTZ:PRINT"i";
+150 E0%(FND(1))=2:PRINT"in";:FORZ=1TO7:FORQ1=1TO2:Q=104:GOSUB3200
+160 E0%(FND(Z+1))=103:NEXTQ1:NEXTZ:PRINT"i";
 170 FORZ=1TO8:FORQ=113TO124:GOSUB3200:NEXTQ:FORQ1=1TO3
 180 FORQ=105TO112:GOSUB3200:NEXTQ:Q=125:GOSUB3200:NEXTQ1:READO$:PRINTO$;
 185 NEXT
@@ -83,8 +83,8 @@
 640 IFC(2,4)>T(3)THENGP=GP-FNA(5):IFGP<0THENGP=0
 650 IFC(3,4)<=T(5)THEN680
 660 A=X:B=Y:C=Z:X=FNA(8):Y=FNA(8):Z=FNA(8)
-670 POKEFND(Z),FNE(PEEK(FND(Z)))+100:X=A:Y=B:Z=C
-680 IFPEEK(FND(Z))<>1THEN690
+670 E0%(FND(Z))=FNE(E0%(FND(Z)))+100:X=A:Y=B:Z=C
+680 IFE0%(FND(Z))<>1THEN690
 681 FORQ=1TO3
 682 IFC(Q,4)THEN684
 683 C(Q,4)=-(C(Q,1)=X)*(C(Q,2)=Y)*(C(Q,3)=Z)
@@ -118,31 +118,31 @@
 920 IFO$="q"THEN1640
 930 PRINT:PRINT"{white}** Stupid ";R$(RC);" that wasn't a":PRINT"valid command.":INPUT"** See a menu (y/n) ";O$:IFO$<>"y"THENO$="":GOTO620
 931 PRINT"{down*2}{cyan}Move: n)orth, s)outh, e)ast, w)est,{f7} u)p, d)own.":PRINT"{down}{light blue}Other: d)rink, m)ap, f)lare, l)amp, q)uit,{f7} o)pen, g)aze, and t)eleport":GOTO620
-940 IFPEEK(FND(Z))=2THEN2900
+940 IFE0%(FND(Z))=2THEN2900
 950 X=X+(O$="n")-(O$="s"):Y=Y+(O$="w")-(O$="e")
 960 X=FNB(X):Y=FNB(Y):GOTO1670
-970 IFPEEK(FND(Z))=3THENZ=Z-1:GOTO1670
+970 IFE0%(FND(Z))=3THENZ=Z-1:GOTO1670
 980 Z$="Up":GOTO1000
-990 Z$="Down":IFPEEK(FND(Z))=4THENZ=Z+1:GOTO1670
+990 Z$="Down":IFE0%(FND(Z))=4THENZ=Z+1:GOTO1670
 1000 PRINT:PRINT"{white}** Oh ";R$(RC);" no stairs going ";Z$:PRINT"in here.":GOTO620
 1010 IFBL=1THENPRINT:PRINT"{white}** You can't see anything, dumb ";R$(RC):GOTO620
-1020 PRINT:PRINT:A=X:B=Y:FORX=1TO8:FORY=1TO8:Q=PEEK(FND(Z)):IFQ>99THENQ=34
+1020 PRINT:PRINT:A=X:B=Y:FORX=1TO8:FORY=1TO8:Q=E0%(FND(Z)):IFQ>99THENQ=34
 1030 IFX=AANDY=BTHENPRINT"<";I$(Q);">";:GOTO1050
 1040 PRINT" ";I$(Q);" ";
 1050 NEXTY:PRINT:PRINT:NEXTX:X=A:Y=B:GOTO1100
 1060 PRINT")level ";Z:GOTO620
 1070 IFFL=0THENPRINT:PRINT"{white}** Hey bright one, you're out  of flares":GOTO620
 1080 PRINT:FL=FL-1:A=X:B=Y:FORQ1=A-1TOA+1:X=FNB(Q1):FORQ2=B-1TOB+1:Y=FNB(Q2)
-1090 Q=FNE(PEEK(FND(Z))):POKEFND(Z),Q:PRINTI$(Q);" ";:NEXTQ2:PRINT:PRINT:NEXTQ1:X=A:Y=B
+1090 Q=FNE(E0%(FND(Z))):E0%(FND(Z))=Q:PRINTI$(Q);" ";:NEXTQ2:PRINT:PRINT:NEXTQ1:X=A:Y=B
 1100 GOSUB3400:GOTO620
 1110 IFLF=0THENPRINT"{white}** You don't have a lamp, ";R$(RC):GOTO620
 1120 PRINT:PRINT"{yellow}Where do you want to shine the lamp     (n,s,e, or w) ";:GOSUB3290
 1130 A=X:B=Y:X=FNB(X+(O$="n")-(O$="s")):Y=FNB(Y+(O$="w")-(O$="e"))
 1140 IFA-X+B-Y=0THENPRINT"{white}** Turkey! That's not a direction":GOTO620
 1150 PRINT:PRINT"{yellow}The lamp shines into (";X;",";Y;")":PRINT"level ";Z:PRINT
-1160 POKEFND(Z),FNE(PEEK(FND(Z))):PRINT"There you will find ";C$(PEEK(FND(Z)))
+1160 E0%(FND(Z))=FNE(E0%(FND(Z))):PRINT"There you will find ";C$(E0%(FND(Z)))
 1170 X=A:Y=B:GOTO620
-1180 IFPEEK(FND(Z))<>5THENPRINT:PRINT"{white}** If you want a drink, find a pool":GOTO620
+1180 IFE0%(FND(Z))<>5THENPRINT:PRINT"{white}** If you want a drink, find a pool":GOTO620
 1190 Q=FNA(8):PRINT:PRINT"{light blue}You take a drink and ";:IFQ<7THENPRINT"feel ";
 1200 ONQGOTO1210,1220,1230,1240,1250,1260,1270,1290
 1210 SG=FNC(SG+FNA(3)):PRINT"stronger":GOTO620
@@ -155,8 +155,8 @@
 1280 RC=Q:PRINT"become ";R$(RC):GOTO620
 1290 SX=1-SX:PRINT"turn into a ":IFSX=0THENPRINT"fe";
 1300 PRINT"male ";R$(RC):GOTO620
-1310 IFPEEK(FND(Z))=6THENPRINT:PRINT"{purple}You open the chest and...":PRINT:GOTO1430
-1320 IFPEEK(FND(Z))=12THENPRINT:PRINT"{purple}You open the book and...":PRINT:GOTO1340
+1310 IFE0%(FND(Z))=6THENPRINT:PRINT"{purple}You open the chest and...":PRINT:GOTO1430
+1320 IFE0%(FND(Z))=12THENPRINT:PRINT"{purple}You open the book and...":PRINT:GOTO1340
 1330 PRINT:PRINT"{white}** The only thing you opened was"+CHR$(13)+"your big mouth":GOTO620
 1340 ONFNA(6)GOTO1350,1360,1370,1380,1390,1400
 1350 PRINT"{yellow}FLASH! Oh no! You're now blind!{sh space}";R$(RC):BL=1:GOTO1420
@@ -166,19 +166,19 @@
 1390 PRINT"{green}Its a manual of strength !":SG=SG+1:GOTO1420
 1400 PRINT"{green}The book sticks to your hands .":PRINT
 1410 PRINT"now you can't draw your weapon!":BF=1
-1420 POKEFND(Z),1:GOTO620
+1420 E0%(FND(Z))=1:GOTO620
 1430 ONFNA(4)GOTO1440,1450,1460,1450
 1440 PRINT"{pink}{reverse on}KABOOM!{reverse off} it explodes!":Q=FNA(6):GOSUB2800:ON1-(SG<1)GOTO1420,2840
 1450 Q=FNA(1000):PRINT"{white}Find"Q"{yellow}gold{white} pieces":GP=GP+Q:GOTO1420
 1460 PRINT"{light green}GAS!{gray} You stagger from the room"
-1470 POKEFND(Z),1:T=T+20:O$=MID$("nsew",FNA(4),1):GOTO950
-1480 IFPEEK(FND(Z))<>11THENPRINT"{white}** No ORB - No gaze":GOTO620
+1470 E0%(FND(Z))=1:T=T+20:O$=MID$("nsew",FNA(4),1):GOTO950
+1480 IFE0%(FND(Z))<>11THENPRINT"{white}** No ORB - No gaze":GOTO620
 1490 PRINT:PRINT"{light gray}You see ";:ONFNA(7)GOTO1500,1510,1530,1540,1560,1575,1580
 1500 PRINT"yourself in a {red}bloody{light gray} heap":SG=SG-FNA(2):ON1-(SG<1)GOTO620,2840
 1510 PRINT"yourself drinking from a {light blue}pool"+CHR$(13)+"{light gray}and becoming ";C$(12+FNA(13))
 1520 GOTO620
 1530 PRINTC$(12+FNA(13));" gazing back at you":GOTO620
-1540 A=X:B=Y:C=Z:X=FNA(8):Y=FNA(8):Z=FNA(8):Q=FNE(PEEK(FND(Z))):POKEFND(Z),Q
+1540 A=X:B=Y:C=Z:X=FNA(8):Y=FNA(8):Z=FNA(8):Q=FNE(E0%(FND(Z))):E0%(FND(Z))=Q
 1550 PRINTC$(Q):PRINT" at (";X;",";Y;") level"Z:X=A:Y=B:Z=C:GOTO620
 1560 A=FNA(8):B=FNA(8):C=FNA(8):IFFNA(8)<=4THENA=O(1):B=O(2):C=O(3)
 1570 PRINT"the orb of zot at":PRINT"(";A;",";B;") level"C:GOTO620
@@ -195,7 +195,7 @@
 1670 PRINT"{white}------------------------------":IFBL=0THENGOSUB3400
 1680 PRINT"{pink}ST=";SG;" IQ=";IQ;" DX=";DX:PRINT"{yellow}Flares=";FL;" gp's=";GP
 1690 PRINT"{white}";W$(WV+1);" /";W$(AV+5);:IFLF=1THENPRINT" / a lamp";
-1700 PRINT:WC=0:Q=FNE(PEEK(FND(Z))):POKEFND(Z),Q:Z$="{cyan}You have "
+1700 PRINT:WC=0:Q=FNE(E0%(FND(Z))):E0%(FND(Z))=Q:Z$="{cyan}You have "
 1710 PRINT"{light blue}Here you find ";C$(Q):IF(Q<7)OR(Q=11)OR(Q=12)THEN620
 1720 IFQ=7THENGP=GP+FNA(10):PRINT:PRINTZ$;GP:GOTO1420
 1730 IFQ=8THENFL=FL+FNA(5):PRINT:PRINTZ$;FL:GOTO1420
@@ -204,7 +204,7 @@
 1760 X=FNA(8):Y=FNA(8):Z=FNA(8):GOTO1670
 1770 IFQ=10THENZ=FNB(Z+1):GOTO1670
 1780 IFQ>25ANDQ<34THENPRINT:PRINT"Its yours":T(Q-25)=1:TC=TC+1:GOTO1420
-1790 A=PEEK(FND(Z))-12:WC=0:IF(A<13)OR(VF=1)THEN2300
+1790 A=E0%(FND(Z))-12:WC=0:IF(A<13)OR(VF=1)THEN2300
 1800 PRINT:PRINT"{blue}You may trade with, Attack, or Ignore"+CHR$(13)+"the vendor"
 1810 GOSUB3280:IFO$="i"THEN620
 1820 IFO$="a"THENVF=1:PRINT:PRINT"{white}You'll be sorry you did that":GOTO2300
@@ -293,7 +293,7 @@
 2650 GOSUB3290:IFO$="n"THEN2690
 2660 IFO$<>"y"THENPRINTY$:GOTO2640
 2670 T(Q)=0:TC=TC-1:PRINT:PRINT"{light green}Ok, just don't tell anyone"
-2680 VF=VF+(PEEK(FND(Z))=25):GOTO620
+2680 VF=VF+(E0%(FND(Z))=25):GOTO620
 2690 Q3=2:IFWC>0THENWC=WC-1:IFWC=0THENPRINT:PRINT"{blue}THE{sh space}WEB{sh space}JUST{sh space}BROKE!"
 2700 Z$=MID$(C$(12+A),3):IFWC<=0THEN2720
 2710 PRINT:PRINT"{light blue}The ";Z$;" is stuck and can't attack":GOTO2750
@@ -345,8 +345,8 @@
 3170 DATA DAGGER," stew",MACE," soup",SWORD," burger",NO ARMOR," roast"
 3180 DATA LEATHER," munchy",CHAINMAIL," tacos",PLATE," pie"
 3190 DATA HOBBIT,ELF,MAN,DWARF,T,I,A,L,I,Z,I,N," ",C,A
-3200 X=FNA(8):Y=FNA(8):IFPEEK(FND(Z))<>101THEN3200
-3210 POKEFND(Z),Q:RETURN
+3200 X=FNA(8):Y=FNA(8):IFE0%(FND(Z))<>101THEN3200
+3210 E0%(FND(Z))=Q:RETURN
 3220 PRINT:PRINT"{yellow}You get all his wares:":PRINT:PRINT"Plate armor":AV=3:AH=21
 3230 PRINT"A sword":WV=3:PRINT"A strength potion":SG=FNC(SG+FNA(6))
 3240 PRINT"An intelligence potion":IQ=FNC(IQ+FNA(6))
@@ -370,7 +370,7 @@
 3400 x7$=mid$(str$(x),2):y7$=mid$(str$(y),2):l7$="("+x7$+","+y7$+")"
 3410 print"you are at ";l7$;" - level";z:return
 3500 print"hit any key to begin"
-3510 poke158,0
+3510 geta$:ifa$<>""then3510:REM poke158,0
 3520 geta$:on(a$="")+2goto3520,3530
 3530 return
 

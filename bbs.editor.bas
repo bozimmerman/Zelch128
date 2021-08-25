@@ -70,7 +70,7 @@
 560 PRINT"{right}{reverse on}{cyan}  For updates write to:               "
 570 PRINT"{right}{reverse on}{cyan}                                      "
 580 PRINT"{right}{reverse on}{cyan}     Elite Software                   "
-590 PRINT"{right}{reverse on}{cyan}     2968 W. Ina Rd. Suite #140       "
+590 PRINT"{right}{reverse on}{cyan}     1991 - 1993 RIP                  "
 600 PRINT"{right}{reverse on}{cyan}     Tucson,{sh space}Az 85741                 "
 610 PRINT"{right}{reverse on}{cyan}{cm p*38}"
 620 GETKEYA$:PRINT"{clear}":GOTO340
