@@ -6,7 +6,7 @@
 !--------------------------------------------------
 5 D1=26:DIMM1(D1),U2(D1),M2(D1):DP=0:NR%=0:CR$=CHR$(13):PRINT"{clear}{f6}{cyan}Dating subsystem:":HD$(1)="":CLOSE2:CLOSE15
 6 U=PEEK(2932):D=PEEK(2933)
-10 OPEN2,U,2,MID$(STR$(D),2)+":sys.work,s,r":INPUT#2,NA$,ID,AX,U2,D2,UR:CLOSE2
+10 OPEN2,U,2,MID$(STR$(D),2)+":sys.datingmeta,s,r":INPUT#2,NA$,ID,AX,U2,D2,UR:CLOSE2
 30 OPEN15,U,15:GOSUB3260:INPUT#15,A:CLOSE2:CLOSE15:IFA<>0THENPRINT"{f6}{white}Dating files not yet created.":GOTO400
 40 IFID=0THENPRINT"{f6}{white}Sorry, you must have an account to participate.":END
 50 GOSUB3260:X=ID:RECORD#2,X:INPUT#2,I$:CLOSE2:IFI$="^"THEN70:ELSE60
