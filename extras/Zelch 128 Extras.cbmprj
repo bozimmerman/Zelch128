@@ -178,7 +178,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
+            <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>gam.castle.bas</Name>
@@ -200,7 +200,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
+            <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>gam.hangman.bas</Name>
@@ -222,7 +222,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
+            <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>gam.sorceror.bas</Name>
@@ -244,7 +244,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
+            <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>gam.tic tac toe.bas</Name>
@@ -288,7 +288,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
+            <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>gam.zcasino.bas</Name>
@@ -353,7 +353,7 @@
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>True</Topmost>
+            <Topmost>False</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>

@@ -369,7 +369,7 @@
 3400 x7$=mid$(str$(x),2):y7$=mid$(str$(y),2):l7$="("+x7$+","+y7$+")"
 3410 print"you are at ";l7$;" - level";z:return
 3500 print"hit any key to begin"
-3510 geta$:ifa$<>""then3510:REM poke158,0
+3510 geta$:ifa$<>""then3510:REM poke198,0
 3520 geta$:on(a$="")+2goto3520,3530
 3530 return
 

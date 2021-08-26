@@ -4,7 +4,7 @@
 !- c:\src\zelch128\extras\gam.pyramid.prg
 !- Commodore 128 BASIC 7/7.1
 !--------------------------------------------------
-0 POKE 53272,21:REM" Adventure  1.2       by john o'hare, c64 mod. 3/1/83
+0 REM POKE 53272,21" Adventure  1.2       by john o'hare, c64 mod. 3/1/83
 1 LU=250:LF=2
 2 LT=61:REMLIGHT OBJECT #
 3 TV=15:T7=12:MX=TV*T7:REMTV=TREASURE VALUE/T7=#OF TREASURES/MX=MAX SCORE
@@ -19,7 +19,7 @@
 12 DT=40:REMDEATH ROOM
 13 AD=2:AD$="The Great Pyramid":REM ADVENTURE NUMBER AND NAME
 14 DIM OW$(O),M$(M),C$(C)
-15 POKE53272,23:PRINT"{clear}{down*3}Welcome to Adventure"AD
+15 PRINT"{clear}{down*3}Welcome to Adventure"AD
 16 PRINT:PRINT"{reverse on}"TAB(17-(LEN(AD$)/2));"{cyan}*"AD$"*{white}"
 17 GOSUB188
 18 FORI=0TON:READ N$(I):NEXT
@@ -45,7 +45,7 @@
 38 PRINT"{clear}{down}":GOTO48
 39 INPUT"use saved game   n{left*3}";G$
 40 IF G$="n"THEN48
-41 PRINT:PRINT"hit any key when tape is ready.":POKE198,0
+41 PRINT:PRINT"hit any key when tape is ready.":REMPOKE198,0
 42 GET SG$:IFSG$=""THEN42
 43 OPEN1,1,0,"advent"
 44 INPUT#1,R,LU,DF,LF
@@ -222,7 +222,7 @@
 215 PRINT"Please wait while I load my data..."
 216 RETURN
 217 PRINT"Treasures have a ({yellow}*{white}) in there name":PRINT
-218 POKE53280,0:POKE53281,0:PRINT"{clear}"
+218 PRINT"{clear}"
 219 PRINT"{ct n}{blue}{right}{reverse on}#{reverse off}  {reverse on}##{reverse off}  {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}###{reverse off} {reverse on}#{reverse off}   {reverse on}#{reverse off} {reverse on}###{reverse off} {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}###{reverse off}  {reverse on}###{reverse off}"
 220 PRINT"{reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}#{reverse off}   {reverse on}##{reverse off}  {reverse on}#{reverse off}  {reverse on}#{reverse off}  {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}#{reverse off}{sh space} {reverse on}#{reverse off} {reverse on}#{reverse off}"
 221 PRINT"{reverse on}###{reverse off} {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}##{reverse off}  {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}#{reverse off}  {reverse on}#{reverse off}  {reverse on}#{reverse off} {reverse on}#{reverse off} {reverse on}###{reverse off}  {reverse on}##{reverse off}
@@ -233,8 +233,8 @@
 238 PRINT"{yellow}{cm y*35}
 239 PRINT"{blue}HIT RETURN TO BEGIN ADVENTURE{white}"
 240 GETA$:IFA$=""THEN240
-241 PRINT"{clear}":POKE53280,0:POKE53281,0:RETURN
-242 PRINT:PRINT"hit any key when tape is ready.":POKE198,0
+241 PRINT"{clear}":RETURN
+242 PRINT:PRINT"hit any key when tape is ready.":REMPOKE198,0
 243 GETSG$:IFSG$=""THEN243
 244 OPEN1,1,2,"advent"
 245 PRINT#1,R:PRINT#1,LU:PRINT#1,DF:PRINT#1,LF
