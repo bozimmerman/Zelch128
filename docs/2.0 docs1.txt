@@ -1,9 +1,9 @@
-ûh:10:3^^Zelch 128 v2.0a
-ûf:10:2^Copyright (C)1991 Elite Software^^Page <>
-_
-_
-1.0  Introduction to Zelch 128_
-_
+Zelch 128 v2.0a
+Copyright (C)1991 Elite Software
+
+
+1.0  Introduction to Zelch 128
+
     Through our combined ten years of BBS sysoping, we have
 used almost every kind of BBS program available for the
 Commodore 64 and 128.  While some of these programs are very
@@ -11,186 +11,181 @@ good and allow moderate flexibility in customizing a BBS,
 none really let us do what we wanted with our systems.  Our
 aim in creating Zelch 128 was to make a system so flexible
 that it could mimic most BBS's or be completely unique and
-unusual--and that is just what we did._
-_
+unusual--and that is just what we did.
+
     With Zelch 128, the sky is the limit.  You are never out
 of options-- there is always something new you can do with
-your system.  Be creative!_
-_
+your system.  Be creative!
+
     Because Zelch is such a complex and unique program, we
 highly recommend that you take a few days to read through
 these docs.  It may seem overwhelming at first, but we've
 tried to make things as easy as possible.  If at any time
 while configuring your BBS you get stuck, don't hesitate to
 call and ask questions.  A good source of information is the
-Zelch support section on either of the support boards._
-_
-_
-1.1a  Disclaimer_
-_
+Zelch support section on either of the support boards.
+
+
+1.1a  Disclaimer
+
     In no event will the authors of this program be liable
 to you for ANY damages or misfortunes arising from the use
 or inability to use the program.  This program is provided
-without warranty either expressed or implied._
-_
+without warranty either expressed or implied.
+
     Though customer support is currently available, the
 authors do not guarantee any future availability of such
-services._
-_
-_
-1.1b  Copyright Information_
-_
+services.
+
+
+1.1b  Copyright Information
+
     The Zelch 128 BBS program and its associated files are
 copyrighted works.  You may not under any circumstances
-remove or modify the copyright notices._
-_
-_
-1.1c  Usage Agreement_
-_
+remove or modify the copyright notices.
+
+
+1.1c  Usage Agreement
+
     You have the non-exclusive right to use the Zelch 128
 BBS program.  This program may be operating on only one
 computer at a time.  You are not authorized to distribute or
 sell the program, any of its modules, or documentation.  You
 are only permitted to make copies for your own personal or
-for archival purposes._
-_
+for archival purposes.
+
     By using this program you acknowledge that you have read
 and that you understand all of the above copyright and
 disclaimer notices.  You take full responsibility for any
-violations of the copyright(s)._
-_
-_
-1.2  Ordering Updates_
-_
-    For information about updates write to:_
-_
-            Elite Software_
-            2968 W. Ina Rd. Suite 140_
-            Tucson, AZ 85741_
-_
-    Or call our support boards at:_
-_
-        The Zelch BBS                  The Elite BBS_
-    300-2400 Baud / 24 hrs         300-2400 Baud / 24 hrs_
-        (602)/297-6902                 (602)/742-7319_
-_
+violations of the copyright(s).
+
+
+1.2  Ordering Updates
+
+    For information about updates write to:
+
+            Elite Software
+            2968 W. Ina Rd. Suite 140
+            Tucson, AZ 85741
+
+    Or call our support boards at:
+
+        The Zelch BBS                  The Elite BBS
+    300-2400 Baud / 24 hrs         300-2400 Baud / 24 hrs
+        (602)/297-6902                 (602)/742-7319
+
     To order the latest release of the program, send the
-current update fee accompanied by the following information:_
-_
-            o  Your name and mailing address_
-            o  Serial number of your software_
-            o  Your system name, phone number, and_
-               operating specifications_
-_
-_
-1.3a  Hardware Compatibility_
-_
+current update fee accompanied by the following information:
+
+            o  Your name and mailing address
+            o  Serial number of your software
+            o  Your system name, phone number, and
+               operating specifications
+
+
+1.3a  Hardware Compatibility
+
     The Zelch 128 BBS program has been written to be
 compatible with a wide variety of hardware, though not all
-possible configurations have been tested._
-_
-Zelch is compatible with the following modems:_
-_
-    C=1650 (and compatibles), C=1660, C=1670, New 1670's,_
-    Packard Bell PB2400, Avatex 2400, Minimodem C-24, and_
-    most Hayes compatibles with carrier detect._
-_
+possible configurations have been tested.
+
+Zelch is compatible with the following modems:
+
+    C=1650 (and compatibles), C=1660, C=1670, New 1670's,
+    Packard Bell PB2400, Avatex 2400, Minimodem C-24, and
+    most Hayes compatibles with carrier detect.
+
     To enable carrier detect on some Hayes compatible
 modems, it is necessary to use the "AT&C1&W1" commands.
-Please refer to your owners manual for more information._
-_
-Floppy Drives:_
-_
-    1541, 1541-II, 1571, 1571-II, 1581, SFD1001_
-_
-Hard Drives:_
-_
-    Lt. Kernel, CMD HD's, ST10C, Most others._
-_
-Computer:_
-_
+Please refer to your owners manual for more information.
+
+Floppy Drives:
+
+    1541, 1541-II, 1571, 1571-II, 1581, SFD1001
+
+Hard Drives:
+
+    Lt. Kernel, CMD HD's, ST10C, Most others.
+
+Computer:
+
     Commodore 128 or 128d in 128 mode with either 40 or 80
-columns.  Color monitor is recommended, but not required._
-_
-_
-_
-_
-_
-_
-_
-1.3b  Notes on Drives/Logical Units_
-_
+columns.  Color monitor is recommended, but not required.
+
+
+1.3b  Notes on Drives/Logical Units
+
     Zelch supports all logical units (drives) from 0-254.
 Most hard drives designate each partition a separate
 drive/LU number along with the drives device number.  Due to
 a short-coming of BASIC 7.0, all system programs must be on
 drive/LU 0 or 1.  This only includes the modules that begin
 with the prefix "prg" and the ML files such as "p-xfer",
-"l-xfer", and "x-xfer"._
-_
+"l-xfer", and "x-xfer".
+
     It should be noted that this does not apply to single
 floppy drives (ie: 1541, 1571, 1581) since they are
-recognized automatically as drive/LU 0._
-_
-_
-1.3c  Ram Expansion Units_
-_
+recognized automatically as drive/LU 0.
+
+
+1.3c  Ram Expansion Units
+
     All Ram Expansion Units accessible by RamDos are
 compatible with Zelch.  A utility program has been included
-to install RamDos on your boot disk._
-_
+to install RamDos on your boot disk.
+
 Note that Ram Expansion Units may not be used for file
 transfers (ie: uploading and downloading).  This is a
 problem written into RamDos, not a problem with transfer
-routines._
-_
+routines.
+
     We would suggest using your Ram Expansion to store your
 most often accessed menus and programs since the speed of
-the ramdrive is amazing._
-_
-_
-1.3d  Trouble Shooting_
-_
-Problem                      Solution„€_
-_
-BBS doesn't answer calls     1. Make sure you are at the_
-                                Waiting for call screen._
-                             2. Make sure the option window_
-                                is not on the screen._
-                             3. Make sure your modem is set_
-                                for answer._
-                             4. Check modem settings in_
-                                the system editor._
-_
-Drive light flashes while    1. Configure the system,_
-loading userfiles               be sure to create the user_
-                                relative file._
-_
-After logon, nothing         1. Make sure the menu drive_
-happens.                        is set in the BBS editor._
-                             2. Make sure the menu_
-                                specified as your main menu_
-                                in the system variables_
+the ramdrive is amazing.
+
+
+1.3d  Trouble Shooting
+
+Problem                      Solution
+
+BBS doesn't answer calls     1. Make sure you are at the
+                                Waiting for call screen.
+                             2. Make sure the option window
+                                is not on the screen.
+                             3. Make sure your modem is set
+                                for answer.
+                             4. Check modem settings in
+                                the system editor.
+
+Drive light flashes while    1. Configure the system,
+loading userfiles               be sure to create the user
+                                relative file.
+
+After logon, nothing         1. Make sure the menu drive
+happens.                        is set in the BBS editor.
+                             2. Make sure the menu
+                                specified as your main menu
+                                in the system variables
                                 section of the editor is on
-                                the appropriate drive._
-_
-_
-_
-When I attempt to logon,     1. Make sure "sys.text" is on_
-nothing happens.                your boot disk._
-                             2. Make sure "prg.logon" and_
-                                the other "prg." files are_
-                                on the system disk_
-_
-_
-1.4a  Getting Started_
-_
+                                the appropriate drive.
+
+
+
+When I attempt to logon,     1. Make sure "sys.text" is on
+nothing happens.                your boot disk.
+                             2. Make sure "prg.logon" and
+                                the other "prg." files are
+                                on the system disk
+
+
+1.4a  Getting Started
+
     To start the configuration process you should make sure
 you have a few necessary supplies:  enough blank formatted
 disks for all the drives on your system, a general plan for
 what each drive will be used for, plenty of time and
-patience, and a steaming pot of coffee._
-_
+patience, and a steaming pot of coffee.
+
     Don't expect to have your system exactly the way you
 want it over night, Rome wasn't built in a day and neither
 is a good BBS.  Select a configuration that best fits your
@@ -199,74 +194,69 @@ changing it later. We encourage you to change and mold your
 menus and files to fit your personal preferences, it's what
 Zelch 128 was designed for!  Once you get used to using the
 program and the editor, you may even decide to start from
-scratch with your own menus._
-_
-_
-1.4b  Drive Selection_
-_
+scratch with your own menus.
+
+
+1.4b  Drive Selection
+
     The following are drive variables for your system which
 may be changed from the BBS editor.  If you are using one of
 the sample configurations, be sure to read section 1.4d for
-more information on file placement for the configurations._
-_
+more information on file placement for the configurations.
+
 System program files drive - all BBS files that begin with
 the prefix "prg." and the files "p-xfer 1300", "l-xfer
 1300", and "x-xfer 1300" must be copied to this drive. This
-may be any device, but the drive/LU must be 0 or 1._
-_
+may be any device, but the drive/LU must be 0 or 1.
+
 System data files drive - all system relative files except
 "sys.userfiles" and "sys.u/d desc", as well as your title
-screens, news, logs, etc. must be located on this drive._
-_
+screens, news, logs, etc. must be located on this drive.
+
 Voting topics drive - depending on how your system is set
 up, this drive will house anywhere from 0 to 26 voting
 topics. Each topic has two files which begin with the prefix
-"vote"._
-_
+"vote".
+
 User datafiles drive - this drive will contain the relative
 file "sys.userfiles" which is created with the BBS.CREATE
 program.  The size of the file will be half of the number of
 user slots you create. (ie: 500 users would make a 250 block
-"sys.userfiles")._
-_
-_
-_
-_
-_
-_
+"sys.userfiles").
+
 E-Mail drive - all the users E-Mail as well as the
 networking files will be on this drive.  Depending on the
 size of your system, this could involve a lot of little
-files._
-_
+files.
+
 Feedback drive - included mostly for organizational
 purposes, this drive will hold the file "sys.feedback" which
-is the feedback/comments to the sysops._
-_
+is the feedback/comments to the sysops.
+
 Menu drive - this is the drive on which ALL of your menus
 must be placed.  Since menus are the backbone of your system
 and will be accessed frequently, they should be on your
-fastest drive._
-_
+fastest drive.
+
 U/D descriptions - this is an optional file and not
 recommended for small systems as it could be as large as 800
-blocks._
-_
+blocks.
+
 Definable drive - the only purpose of this drive is for use
-by the various sample configurations._
-_
+by the various sample configurations.
+
    Additional information about the systems files or where
-they go may be found in Appendix C._
-_
-_
-1.4c  Creating the Necessary Files_
-_
+they go may be found in Appendix C.
+
+
+1.4c  Creating the Necessary Files
+
     After loading and running "zelch" off your boot disk,
 select option #3 "CREATE A BBS".  This program is used to
 create the necessary relative files for your system.  It is
 also used to unpack the sample configurations (covered in
-the next section)._
-_
+the next section).
+
     If this is your first time using the creation program,
 you should create all of the files listed which you plan on
 using (ie: create the voting booth file if you plan on using
@@ -274,11 +264,11 @@ any of the voting booth options, etc..).  Make sure you put
 these files on the drives described in section 1.4b.  Keep
 in mind that even though the option is given to relocate
 some of these files, you may put them all on the same disk
-if you choose (space permitting)._
-_
-_
-1.4d  Sample Configurations_
-_
+if you choose (space permitting).
+
+
+1.4d  Sample Configurations
+
     The sample configurations are actually a package of
 files (menus, text files, etc.) necessary for setting up a
 system quickly without having to write all the files from
@@ -288,14 +278,11 @@ for the unpacking should be the drive containing the "conf"
 file you wish to unpack (the configurations disk), and the
 destination disk should be the drive on which you created
 the system relative files in section 1.4c.  You need unpack
-only one of the configurations to set up that particular_
-_
-_
-_
+only one of the configurations to set up that particular
 system, though you may choose to sample them all in the
 future.  PLEASE unpack no more than one configuration onto
-any one disk as there may be duplicate files._
-_
+any one disk as there may be duplicate files.
+
     Each of the configurations described below has a
 different set of menus and along with that a different
 arrangement and feel.  You may want to call the systems from
@@ -304,35 +291,35 @@ which configuration best suits your taste.  Note that it is
 not required to unpack a sample configuration, as you may
 decide to skip this process and start a system from scratch,
 though we don't recommend that someone unfamiliar with the
-software do this._
-_
+software do this.
+
     After unpacking a configuration, copy all the programs
 appearing with it in the directory (in the same divider)
 onto the disk with the other unpacked files.  If after
 unpacking the configurations, you wish to move a set of
 files to a different drive, you can look at the dividers
 created above each set of files to see which drive they
-belong on (as described in section 1.4b)._
-_
+belong on (as described in section 1.4b).
+
     When using one of the sample configurations, keep in
 mind that new users are access level "A", validated users
 are "M", and sysops are "Z".  You may change these defaults
-by editing EACH individual menu in the configuration._
-_
+by editing EACH individual menu in the configuration.
+
 The Zelch BBS - (602)/297-6902 - A very colorful system with
 themed menus and a slightly traditional setup.  Includes a
 one subject voting booth, a subboard message base system,
-and a transfer/msg base section for different computers._
-_
+and a transfer/msg base section for different computers.
+
 The Elite BBS - (602)/742-7319 - A more traditional setup
 with lots of options and tons of menus.  This configuration
 is not recommended for small systems.  Options include:
 Dating/Matchmaking module, BBS list, classifieds, big voting
-booth, pfiles, gfiles, etc._
-_
-_
-1.4e  Which Files Do I Need? Where?_
-_
+booth, pfiles, gfiles, etc.
+
+
+1.4e  Which Files Do I Need? Where?
+
     In addition to the files unpacked onto your data disk
 from one of the sample configurations, you will also need to
 copy certain files from your boot disk onto the drive
@@ -343,21 +330,16 @@ make the BBS recognize the new location of any files you may
 move, you should see section 2.4c which involves changing
 the default device numbers for the drives.  If you are using
 a sample configuration, make sure you keep the files in
-their respective groups._
-_
-_
-_
-_
-_
-_
-    The files you should copy from your boot disk include:_
-_
-     All of the files beginning with the prefix "prg."_
-     "p-xfer 1300", "x-xfer 1300", and "l-xfer 1300"_
-_
-_
-1.4f  Definable Text Strings_
-_
+their respective groups.
+
+    The files you should copy from your boot disk include:
+
+     All of the files beginning with the prefix "prg."
+     "p-xfer 1300", "x-xfer 1300", and "l-xfer 1300"
+
+
+1.4f  Definable Text Strings
+
     To make customizing your BBS as easy as possible, we
 have taken the most often seen text strings from the BBS and
 its modules and included them in the sequential file
@@ -368,278 +350,265 @@ the BBS's editor (section 2.1) to edit and customize these
 strings to your liking.  Comments (remarks) may be added to
 this file by placing a semicolons (;) at the beginning of
 the line.  Comments are for those editing the "sys.text"
-file only and are ignored by the BBS._
-_
-_
-1.4g  Installing RamDos on Your Boot Disk_
-_
+file only and are ignored by the BBS.
+
+
+1.4g  Installing RamDos on Your Boot Disk
+
     Since RamDos is a copyrighted work, we cannot include it
 as part of the system; however, most ram expansion units
-come with RamDos on the Test/Demo disk._
-_
+come with RamDos on the Test/Demo disk.
+
     Installing RamDos on your boot disk must only be done
 once.  To install RamDos, simply run the program titled
-"raminstall" located on your boot disk._
-_
+"raminstall" located on your boot disk.
+
     When executed, the program will prompt you for the
 device number to make the RamDrive when activated, and will
 also prompt you to insert the disk containing RamDos.  After
 loading the RamDos machine language, you will be prompted to
 insert your boot disk.  RamDos will then be saved onto your
-boot disk, and will be automatically loaded by the system._
-_
-_
-2.0  Introduction to the Editor_
-_
+boot disk, and will be automatically loaded by the system.
+
+
+2.0  Introduction to the Editor
+
     The BBS's editor is where most of your customizing will
 be done.  We've tried to make the editor as easy as possible
 to operate-- without limiting the power of the functions
 that it performs.  Included in the editor is a 1000 line
 sequential file editor, your menu editor, several useful
 utilities, and a system variables editor.  To boot the
-editor, select option #2 from the boot program ("zelch")._
-_
-_
-2.1a  Sequential File Editor_
-_
+editor, select option #2 from the boot program ("zelch").
+
+
+2.1a  Sequential File Editor
+
     The sequential editor is one of the main parts of the
 editor program.  With it, you may edit any sequential file
 used with the BBS.  See Appendix F for a complete listing of
-the required sequential files._
-_
-_
-2.1b  The Sequential Editor Commands_
-_
+the required sequential files.
+
+
+2.1b  The Sequential Editor Commands
+
     The following is a complete break-down of all of the
-sequential editor commands:_
-_
+sequential editor commands:
+
 Quit - this command will return you to the main editor menu
 so that you may access another editing feature.  Text will
-not be lost._
-_
+not be lost.
+
 New - Deletes all text-- once deleted, the text cannot be
-recalled unless it has been saved to disk._
-_
+recalled unless it has been saved to disk.
+
 Load - will load a sequential file from disk so that it may
 be altered.  The file does not have to be a Zelch file to
 work properly.  This operation defaults to the drive that
 the editor was loaded from.  You can hit the back arrow key
-at the filename prompt to enter the last filename used._
-_
+at the filename prompt to enter the last filename used.
+
 Save - this operation will scratch the filename given (if it
-exists), and replace it with the text in memory._
-_
+exists), and replace it with the text in memory.
+
 L - List text with line numbers - this command will display
 the line number and the first 70-80 characters of the
 specified lines (in bit mode).  This command is useful when
-looking for line numbers for editing purposes._
-_
+looking for line numbers for editing purposes.
+
 V - View the text - will display the text exactly as it will
 appear on the BBS.  Line numbers will not be displayed, and
-all special characters/control codes will be translated._
-_
+all special characters/control codes will be translated.
+
 F - Function keys - will allow you to temporarily redefine
 the function keys (f1-f8).  The key definitions may not be
-saved and can only be used in the editor._
-_
+saved and can only be used in the editor.
+
 ! - Seq file reader - displays a sequential file without
-loading it into the editor._
-_
+loading it into the editor.
+
 # - Change active drive - using this function will allow you
 to change the device number of the drive accessed by the
 sequential editor.  This device number can be different than
 the device specified in the menu editor and other places
 throughout the program.  This device and drive/LU will
 affect the load, save, dos, directory and sequential file
-reader commands._
-_
+reader commands.
+
 $ - Directory - will display the directory of the drive
 specified with the  #  command.  You will be prompted for a
-filemask._
-_
+filemask.
+
 @ - Dos commands - will allow you to send any BASIC 2.0 DOS
-commands to the active device._
-_
-_
-_
-_
-_
-_
-_
-2.1c  Editing Commands_
-_
+commands to the active device.
+
+
+2.1c  Editing Commands
+
 A - Add to file without listing - this command works exactly
 like the continue command except that it does not list the
 text before allowing you to continue.  This command is
-particularly useful when working with large files._
-_
+particularly useful when working with large files.
+
 C - Continue after listing - allows you to add more text to
 the end of the file in memory.  It will display the text
 before allowing you to enter more lines.  This is useful
 when working with graphics or anything that must be lined up
 to look right.  It would be a good idea to start new files
-with this command._
-_
+with this command.
+
 D - Delete lines - use this command carefully.  It will
 erase the given line range.  The deleted text cannot be
-retrieved._
-_
+retrieved.
+
 E - Edit a line - will let you completely re-enter a line of
 text.  This is sometimes useful when the majority of a line
-of text needs to be changed._
-_
+of text needs to be changed.
+
 I - Insert a line of text - this will create a duplicate
 copy of the line number specified at the line number
 specified, creating a new line.  You must then use  *  or  E
-to change one of the two lines._
-_
+to change one of the two lines.
+
 S - Search and replace - allows you to select a line range,
 and prompts you for a string of text to search for, as well
 as the string to replace it with.  All occurrences of the
 "search" text within the defined line range will be replaced
-with the new text._
-_
+with the new text.
+
 * - Bit edit - it allows you to edit each individual
 character in a line of text, including graphic characters,
 control codes, and shifted control codes.  The line is
 displayed as it would appear in a basic print statement.
 Simply scroll through the line using the cursor keys and
-retype any changes._
-_
-_
-2.1d  Line Formatting Commands_
-_
+retype any changes.
+
+
+2.1d  Line Formatting Commands
+
 K - Insert characters at the start of a line - this command
 will insert a character or group of characters at the
 beginning of a range of text.  This command is particularly
 useful when indenting parts of text or adding colors to
-lines without retyping the text._
-_
+lines without retyping the text.
+
 R - Remove characters from the start of a line - some
 popular BBS programs automatically append one or more
 characters to the beginning of each line of text.  With this
 command you can easily remove these characters since they
 are not needed with Zelch.  Common characters include the
-quotation mark and exclamation point._
-_
-_
-_
+quotation mark and exclamation point.
+
 J - Justify text - will attempt to center a line or line
 range for viewing on the 80 column screen.  It should be
 noted that lines with control codes will not center
-properly._
-_
+properly.
+
 T - Toggle word wrap - tells the editor whether or not to
 wrap or carry over any words that will not fit onto the
 current line of text.  The words carried over will be placed
 on the next line of text if in continue or add mode.  We
 recommend turning word wrap on when working with text
-oriented files._
-_
+oriented files.
+
 % - Convert to 80 columns - converts text (in one paragraph
 chunks) from 40 column to 80 column format.  It will also
 add the word wrap flag necessary for 40 column viewing.  It
 is very important that you select the first line of the
 paragraph as the starting line number, and the last line as
 the ending line number.  If you perform this operation on
-more than one paragraph at a time, they could run together._
-_
-_
-2.2a  Intro to the Menu Editor_
-_
+more than one paragraph at a time, they could run together.
+
+
+2.2a  Intro to the Menu Editor
+
     The feature that separates Zelch from the typical BBS is
 the ability to use programmable system menus.  This also
 gives the software the ability to effectively mimic most
-other programs._
-_
+other programs.
+
     Where the word "menu" for most people refers to a text
 file listing the commands for the user to see; for our
 purposes, "menu" will refer not only to the viewable text
 file, but also to the command keys that the user may press,
 and to the commands themselves.  This means that parts of a
 BBS which normally require BASIC programming knowledge to
-modify, can be easily changed by altering the menus._
-_
+modify, can be easily changed by altering the menus.
+
     For every BBS command available to the user, from any
-particular menu, the following parameters are defined:_
-_
-1) The command key which must be pressed to activate the_
-   command._
-2) Access levels (A-Z) which have access, and may use_
-   the command._
-3) Text which is displayed when the command is selected._
-4) A list of functions for the command to perform_
-   (Op-codes)._
-_
+particular menu, the following parameters are defined:
+
+1) The command key which must be pressed to activate the
+   command.
+2) Access levels (A-Z) which have access, and may use
+   the command.
+3) Text which is displayed when the command is selected.
+4) A list of functions for the command to perform
+   (Op-codes).
+
     Creating and changing menus may seem complicated at
 first, but if you keep in mind a few basic ideas, you will
-find it's really not as bad as you might think._
-_
-    o  It's a good idea to plan ahead of time on the number_
-       of menus you want, the commands each menu will have,_
-       etc._
-_
-_
-_
-_
-    o  Be sure to implement all of the commands that you_
-       will need to operate your BBS._
-    o  Be sure to link menus with each other so that none_
-       of them are isolated and unaccessible._
-    o  If things seem tough, remember that the sample_
-       configurations are always there to look through and_
-       learn from._
-    o  Make sure you include a command in each menu (such_
-       as  ?  ) that will let the user view the menu text._
-    o  It's best to plan the use of access levels and access_
-       flags before diving into menu creation.  Remember_
-       you have 26 access levels and 26 definable access_
-       flags each lettered A through Z._
-    o  We strongly encourage you to make your best effort_
-       in making your BBS as unique as possible using this_
-       editor.  If you need ideas, get back to basics and_
-       call around town to see what kind of features other_
-       boards have implemented._
-    o  Make sure that you change the menu code for each_
-       menu to insure that it is unique, and also make sure_
-       you edit the prompts for each menu._
-    o  Check your menu text to make sure you've included_
-       all of the commands.  Remember that you must use the_
-       !  command in the menu editor to transfer the menu_
-       text to and from the seq editor for changing._
-_
-_
-2.2b  Command Summary_
-_
+find it's really not as bad as you might think.
+
+    o  It's a good idea to plan ahead of time on the number
+       of menus you want, the commands each menu will have,
+       etc.
+    o  Be sure to implement all of the commands that you
+       will need to operate your BBS.
+    o  Be sure to link menus with each other so that none
+       of them are isolated and unaccessible.
+    o  If things seem tough, remember that the sample
+       configurations are always there to look through and
+       learn from.
+    o  Make sure you include a command in each menu (such
+       as  ?  ) that will let the user view the menu text.
+    o  It's best to plan the use of access levels and access
+       flags before diving into menu creation.  Remember
+       you have 26 access levels and 26 definable access
+       flags each lettered A through Z.
+    o  We strongly encourage you to make your best effort
+       in making your BBS as unique as possible using this
+       editor.  If you need ideas, get back to basics and
+       call around town to see what kind of features other
+       boards have implemented.
+    o  Make sure that you change the menu code for each
+       menu to insure that it is unique, and also make sure
+       you edit the prompts for each menu.
+    o  Check your menu text to make sure you've included
+       all of the commands.  Remember that you must use the
+       !  command in the menu editor to transfer the menu
+       text to and from the seq editor for changing.
+
+
+2.2b  Command Summary
+
     Below is a list of the menu editor commands available
-for making and changing menus._
-_
+for making and changing menus.
+
 Quit - takes you back to the main editor menu.  Menu and Seq
-file data will not be lost._
-_
+file data will not be lost.
+
 New - erases all menu data from memory.  This is
 unrecoverable, unless you have already saved the data to
-disk._
-_
+disk.
+
 Load - will read in all of the data and text for a menu from
 the drive.  You can use the back arrow key to draw up the
-last used filename for this and the save commands._
-_
+last used filename for this and the save commands.
+
 Save - prompts you for the filename of the menu, then
 scratches that file off the drive (if it exists) and saves
-your menu onto the disk for use by the BBS._
-_
+your menu onto the disk for use by the BBS.
+
 L - List commands - displays the basic information on all of
 the commands (command keys, access levels, and
 descriptions).  You must edit the command to obtain a list
-of op-codes._
-_
+of op-codes.
+
 V - View menu text - displays the 1-25 line menu text file.
 See the  !  command for information about transferring the
-text to and from the editor._
-_
-_
-_
+text to and from the editor.
+
 M - Menu code - this setting tells the BBS what to do with a
 menu once it has been loaded.  There are two parts to this
 setting.  The first piece of data defines the menu type (a
@@ -647,59 +616,52 @@ setting.  The first piece of data defines the menu type (a
 prompt, a "1" in this spot will cause the menu text to be
 displayed).  The second piece of data (if there is a one) is
 the letter of the command to execute immediately after
-loading the menu._
-_
+loading the menu.
+
 X - Change log identifier - each menu on your system needs a
 unique three letter log identifier.  Even if you do not plan
 on using the extended log feature, it is a good idea to go
 ahead and change the log identifiers.  You may decide to
 keep an extended log in the future.  Try to make your log
 identifiers meaningful, for example, "MSG" may be used for
-the message bases, and "U/D" may be used for the U/D bases._
-_
+the message bases, and "U/D" may be used for the U/D bases.
+
 P - Edit prompts - each menu has spaces set aside for color
 and ASCII prompts.  Having separate prompts allows the
 system to have graphic prompts for graphics people, and
 keeps the system bearable for ASCII callers.  You may want
 to add color (but not graphic characters) to your ASCII
 prompts for ANSI callers.  After displaying the appropriate
-prompt, the system waits for a valid command from the user._
-_
+prompt, the system waits for a valid command from the user.
+
 * - Bit edit prompts - works the same as  P  (edit prompts)
-except that it uses the bit editor._
-_
+except that it uses the bit editor.
+
 ! - Import text to/from editor - this command will copy the
 menu text to and from the sequential editor for
 modification.  Make sure that if you send the menu text to
 the sequential editor for changes that you import the
 modified text back into the menu editor before saving. Using
 this command is the only way to change the menu text from
-the system editor._
-_
+the system editor.
+
 # - Change active drive - using this function will allow you
 to change the device number of the drive accessed by the
 menu editor.  This device number can be different than the
 device specified in the sequential editor and other places
 throughout the program.  This device and drive/LU will
-affect the load, save, and directory commands._
-_
+affect the load, save, and directory commands.
+
 $ - Directory - will display the directory of the drive
 specified with the  #  command.  You will be prompted for a
-filemask._
-_
+filemask.
+
 @ - Dos commands - will allow you to send any BASIC 2.0 DOS
-commands to the active device._
-_
-_
-_
-_
-_
-_
-_
-_
-_
-2.2c  Editing Commands_
-_
+commands to the active device.
+
+
+2.2c  Editing Commands
+
 A - Add a command - is used to add a new command to your
 menu.  The first prompt will be for the command key-- the
 letter or character the command will be accessed with.
@@ -723,26 +685,26 @@ accessed.  Use the cursor keys to scroll through the list of
 op-codes and return to choose.  From there you can follow
 the instructions at the bottom of the screen for adding more
 op-codes to the command.  Press  *  when done to save the
-command and return to the menu editor._
-_
+command and return to the menu editor.
+
 D - Delete a command - removes the command and all of its
 op-code information.  Enter lowercase letters if deleting an
 op-code subroutine and uppercase letters for deleting
-accessible commands._
-_
+accessible commands.
+
 E - Edit a command - works almost exactly like the  A
 command except that you will be prompted for changes.  This
 works only on already existing commands or op-code
-subroutines._
-_
+subroutines.
+
 I - Insert between commands - although the order that
 commands appear in the menu data file have no effect on the
 performance of the menu, you may find it necessary to
-organize or group your commands in a particular order._
-_
-_
-2.3a  Offline Utilities_
-_
+organize or group your commands in a particular order.
+
+
+2.3a  Offline Utilities
+
     Several useful utilities have been included to help you
 pass time when your board is offline.  Now what these
 utilities are, we aren't quite sure, but we believe they
@@ -750,14 +712,11 @@ exist, and are fully prepared to document them below. These
 utilities are accessed from main editor menu!  While most of
 them are also accessible from the boot program, and are
 therefore described in another section, the utilities unique
-to the editor program are discussed below._
-_
-_
-_
-_
-_
-2.3b  Function Key Editor_
-_
+to the editor program are discussed below.
+
+
+2.3b  Function Key Editor
+
     This section was written for you to edit the BBS's
 function keys.  These keys are available to the SysOp when
 on the BBS in local mode, and include the STOP and HELP key
@@ -767,35 +726,35 @@ should be created during your BBS configuration process.
 Enter the corresponding keys to edit the various macros,
 keeping in mind that all of the keys together may not total
 more than 255 characters.  The number of characters
-remaining is kept up for you above the definitions._
-_
-_
-2.3c  Hardcopy Users_
-_
+remaining is kept up for you above the definitions.
+
+
+2.3c  Hardcopy Users
+
     This option provides an easy way to keep a permanent
 record of your users, and some basic information about them.
 Make sure you have a serial printer hooked up and online as
 device 4 when choosing this option.  Having a print-out of
 your user files is particularly useful when evaluating new
-access or performing mass-validations._
-_
-_
-2.4a  Systems Variables Editor_
-_
+access or performing mass-validations.
+
+
+2.4a  Systems Variables Editor
+
     This part of the editor is very important as it is here
 that the most vital questions about your system will be
 answered.  Again, we must stress the necessity of planning
 your system out before attempting to configure, as it will
-make things go much more quickly._
-_
+make things go much more quickly.
+
     All of the data for this section is stored in a
 sequential file on your boot disk called "sys.variables".
 The  L  (load) and  S  (save) commands are to be used on
-your boot disk._
-_
-_
-2.4b  Color Cycle_
-_
+your boot disk.
+
+
+2.4b  Color Cycle
+
     The system has a special character (control-1) which,
 when encountered, will display the next available color in
 the predesigned pool of colors.  This function will work in
@@ -806,41 +765,36 @@ a color cycle at all, you should make all of the default
 colors the same.  To change colors, use the CONTROL and
 COMMODORE (C=) keys in conjunction with the number keys
 along the top of your keyboard to select and change each
-color in the cycle._
-_
-_
-_
-_
-_
-_
-_
-2.4c  Drive Configurations_
-_
+color in the cycle.
+
+
+2.4c  Drive Configurations
+
     This function will let you select the drives on which
 certain files are to be found by the BBS.  These are not the
 only drives the system may address however, and you may have
 to make sure that you are designing your menus and the rest
 of the system to match your drive configuration intentions.
 The drives defined in this section and a brief description
-of their function may be found in section 1.4b._
-_
+of their function may be found in section 1.4b.
+
     Remember when changing a device number and drive/LU,
 that valid device numbers range from 8-30, and valid
 drive/LU numbers range from 0-254 (though most floppy drives
-access only drive/LU 0)._
-_
-_
-2.4d  System Variables_
-_
+access only drive/LU 0).
+
+
+2.4d  System Variables
+
     Here are various important pieces of data which you must
 enter to personalize your system.  Below is a noble attempt
 at explaining the meaning of the numerous prompts you will
-encounter:_
-_
+encounter:
+
 BBS name - enter here the name of your BBS in 16 characters
 or less.  The name entered here will be displayed in your
-waiting for call window._
-_
+waiting for call window.
+
 Extended log default - the Zelch 128 BBS program has the
 ability to log every key press of every user that calls the
 system.  For systems that do not expect an overload of
@@ -852,92 +806,84 @@ subsequent calls.  Turning this feature off, will tell the
 system to log only the vital information about each new
 users call (and all subsequent calls).  This feature may
 also be toggled for each individual user by editing the
-user's account._
-_
+user's account.
+
 Maintenance hour - the automaintenance feature of your BBS
 (affectionately named Monster Mode) is a function which
 should be activated once a day for the system to run
 properly.  Maintenance should take no more than 20 minutes
 to execute.  Enter here the hour (in 24 hour format) that
-you wish your maintenance to run._
-_
+you wish your maintenance to run.
+
 All system up-case flag - created to appease one of the
 authors, this feature (if turned on) will send out all
 system text in uppercase.  Turning this feature on will NOT
-effect sequential files._
-_
+effect sequential files.
+
 Default block credits - this is the number of download
-credits given to new users.  A user may download only as_
-_
-_
-_
-_
+credits given to new users.  A user may download only as
 many blocks as they have credits.  If a user has 100 block
 credits, he or she may download no more than 100 blocks of
-file(s)._
-_
+file(s).
+
 Default system credits - "System Credits" is a term which
 will mean different things to different systems.  System
 credits may be used for anything, though their meaning to
 the users will depend on what the users have to spend them
 on, what they will have to do to receive more credits, and
-how much either way._
-_
+how much either way.
+
 Default weed protect - setting this option to a 1 will
 protect all new users from ever having to worry about
 deletion by automaintenance.  An easier way to prevent users
 from being autodeleted is to simply not include the weed
 command from your automaintenance script.  It should be
 noted that the weed command will not work for users with
-their weed protect set._
-_
+their weed protect set.
+
 Max users - if, because of drive space, you wish to set a
 limit on the maximum number of user files (other than the
-system limit of 500), then just change this number._
-_
+system limit of 500), then just change this number.
+
 System credits awarded per response - because of the message
 reading structure, it is impossible to use the system credit
 op-codes after a message base reply.  This number represents
 the number of system credits which will be added to the
 user's total after writing and saving a reply to a posted
-message._
-_
+message.
+
 Anonymous access levels - highlight here the access levels
 which may use the anonymous posting/replying feature of the
 system.  To disable anonymous for your system, simply
-unselect all of the access levels._
-_
+unselect all of the access levels.
+
 Password mask character - this is the character which is
 outputted when the user enters his or her password during
-logon._
-_
+logon.
+
 Main menu - in order to allow complete flexibility in the
 naming of your menu files, we've included this variable
 which should be the name of the first menu that is loaded
 when a user logs on.  If you are using a sample
-configuration, this must be "menu.main"._
-_
+configuration, this must be "menu.main".
+
 SysOp menu - this is the name of the menu which is loaded
 when using the SysOp utility menu option from the waiting
 for call screen.  This menu does not necessarily have to be
 connected with the rest of your system.  If you are using a
-sample configuration, this must be "menu.sysop"._
-_
+sample configuration, this must be "menu.sysop".
+
 ASCII color - this is the color that the text on the local
-screen will appear in if the caller is using ASCII._
-_
-_
-_
-_
-_
+screen will appear in if the caller is using ASCII.
+
 Number of ASCII title screens - this is the number of
 opening screens available for users in ASCII mode.  If this
 number is 1, the filename for the title screen is
 "sys.title/a".  If this number is greater than 1, then the
 filename will be "sys.title #/a" (where the # sign is which
 title screen, such as "sys.title 2/a" for ASCII title screen
-2)._
-_
+2).
+
 Number of color title screens - this is the number of
 opening screens available for users in commodore color
 graphics mode.  If this number is 1, the filename for the
@@ -945,102 +891,69 @@ title screen is "sys.title".  If this number is greater than
 1, then the filename will be "sys.title #" (where the # sign
 is which title screen, such as "sys.title 3" for color title
 screen 3).  Note that ANSI callers will be viewing the ASCII
-title screen(s)._
-_
-_
-2.4e  Modem Settings_
-_
+title screen(s).
+
+
+2.4e  Modem Settings
+
     Since each modem type is somewhat different from other
 modem types, we have provided the settings described below.
 Most of the settings that mention poking to a memory
 location are only used on Commodore 1650 and 1660 type
-modems._
-_
+modems.
+
 Modem type - if you have one of the modems listed, select
 it.  If your modem is not listed, try one that sounds like
-it may work._
-_
+it may work.
+
 Carrier detect bit - this is the bit that changes when a
 remote carrier is detected.  This setting is normally 16;
 however, you may want to check your modem owners manual to
 make sure.  The format for the carrier check should read "if
 peek((56577)and #)"  where "#" is the bit we are looking
-for._
-_
+for.
+
 Hangup poke (56577) - if this applies to your modem type,
 simply enter the suggested value.  If for some reason the
 system appears to not be hanging up, you may make
-adjustments later._
-_
+adjustments later.
+
 Hangup poke (56579) - if this applies to your modem type,
 simply enter the suggested value.  If for some reason the
 system appears to not be hanging up, you may make
-adjustments later._
-_
+adjustments later.
+
 Pickup poke (56577) - if this applies to your modem type,
 simply enter the suggested value.  If for some reason the
 system appears to not be answering, you may make adjustments
-later._
-_
+later.
+
 Pickup poke (56579) - if this applies to your modem type,
 simply enter the suggested value.  If for some reason the
 system appears to not be answering, you may make adjustments
-later._
-_
-_
+later.
+
 Idle baud rate - this is the baud rate at which your
 computer should send modem commands when there is no one
 online.  This is also usually the highest baud rate
-supported by your modem (300, 1200, or 2400)._
-_
+supported by your modem (300, 1200, or 2400).
+
 Modem initialization commands - this is a string of commands
 that should be sent to 1670 and Hayes compatible modems
 between calls.  Be sure to include:  "s0=1" to set the modem
 for auto answer, and "m0" if you want the modem speaker to
 be shut off.  Do not include "at" as part of the command
-string._
-_
+string.
+
 ZapTerm initialization - modem commands that are sent when
 entering ZapTerm.  We've included "s7=50s11=50" for speed
 dialing.  As stated previously, it is not necessary to
-include "at" in this string._
-_
-_
-2.4f  Time/Call Limits_
-_
+include "at" in this string.
+
+
+2.4f  Time/Call Limits
+
     Here is where you set the maximum number of minutes per
 call, the number of calls per day, and the idle time limits
 for each individual access level.  A zero in the idle time
-spot will give that access level unlimited idle time._
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-
+spot will give that access level unlimited idle time.

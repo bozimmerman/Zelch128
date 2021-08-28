@@ -1,22 +1,22 @@
-ûh:10:3^^Zelch 128 v2.0a
-ûf:10:2^Copyright (C)1991 Elite Software^^Page <>
-_
-_
-3.0  Miscellaneous Utilities_
-_
+Zelch 128 v2.0a
+Copyright (C)1991 Elite Software
+
+
+3.0  Miscellaneous Utilities
+
     The ASCII table editor and the copy program are both
 available from the boot program ("zelch"), as well as from
 the utilities section of the system editor.  It should be
 noted that both of these modules have been written to work
-online using the "execute a basic program" op-code._
-_
-_
-3.1  ASCII Table Editor  ("bbs.ascii edit")_
-_
+online using the "execute a basic program" op-code.
+
+
+3.1  ASCII Table Editor  ("bbs.ascii edit")
+
     The purpose of this program is to allow the sysop to
 change the translation tables which are used when converting
-Commodore PETSCII to standard ASCII and vis-versa._
-_
+Commodore PETSCII to standard ASCII and vis-versa.
+
     After booting this program you will first be prompted to
 load a new set of ASCII tables into memory or to use the
 ones that are already in memory.  You will then make your
@@ -25,43 +25,37 @@ options along with a line telling you which of the two ASCII
 tables you are working with. "Input" table refers to the
 table used for ASCII to PETSCII translations, while "Output"
 table refers to the PETSCII to ASCII table. The commands
-available from here are listed below:_
-_
-Save - saves the ASCII tables from memory to your boot disk._
-_
-Load - loads in a new set of ASCII tables._
-_
+available from here are listed below:
+
+Save - saves the ASCII tables from memory to your boot disk.
+
+Load - loads in a new set of ASCII tables.
+
 Hunt - is used when searching for the character number for a
 specific key or alphanumeric character.  You can hit a
 lowercase "l" for a straight list of the character set
-chosen (for this reason, you may not search for an "l")._
-_
+chosen (for this reason, you may not search for an "l").
+
 Edit - this is the section where you actually change the
 ASCII table you are working on.  The display shows you the
 translated character number, it's description and the data
 for the character it is translated to.  Descriptions with
 parenthesis around them refer to unused commodore codes.
-Commands available here are:_
-_
-    Q)uit back to the main command bar_
-    C)hange the "translated to" code to something else_
-    J)ump to another code in the current table_
-    +,-  to scroll through the current table_
-_
+Commands available here are:
+
+    Q)uit back to the main command bar
+    C)hange the "translated to" code to something else
+    J)ump to another code in the current table
+    +,-  to scroll through the current table
+
 Change table - allows you to switch between the input and
-output tables for editing._
-_
-Quit - will return you to BASIC._
-_
-_
-_
-_
-_
-_
-_
-_
-3.2  Copy Program  ("bbs.copy")_
-_
+output tables for editing.
+
+Quit - will return you to BASIC.
+
+
+3.2  Copy Program  ("bbs.copy")
+
     This is a two drive copy program that copies all file
 types including relative files.  Some of the unique features
 of this program include the four copy modes:  Query,
@@ -77,70 +71,70 @@ the source disk directory for a marker (filenames beginning
 with "---") and will select all subsequent files until the
 next marker is reached.  Ramload is mainly used to copy
 system modules and special files during the auto-copy
-process when booting your BBS with a ram expander._
-_
-    The commands available are:_
-_
+process when booting your BBS with a ram expander.
+
+    The commands available are:
+
 Copy mode - changes the copy mode which will be used when
-the copy files command is executed._
-_
+the copy files command is executed.
+
 Change source drive - prompts you to change the drive from
-which files will be copied._
-_
+which files will be copied.
+
 Change destination drive - prompts you to change the drive
-to which files will be copied._
-_
-Directory - displays the contents of the source drive._
-_
+to which files will be copied.
+
+Directory - displays the contents of the source drive.
+
 Copy files - depending on the copy mode, you may or may not
 be prompted for files to copy during the file choosing part
 of this process.  All selected files will be copied from the
-source drive to the destination drive._
-_
-Quit - returns you to BASIC._
-_
-_
-3.3a  "prg.misc" Utilities_
-_
+source drive to the destination drive.
+
+Quit - returns you to BASIC.
+
+
+3.3a  "prg.misc" Utilities
+
     This module contains independent BBS maintenance
 routines. Since the three op-codes represented by this
 module have nothing to do with each other, we felt it
 necessary to give it a separate section in the docs in order
-to better explore the uses of each._
-_
-_
-3.3b  Online Menu Editor_
-_
-Op-code #601_
-_
+to better explore the uses of each.
+
+
+3.3b  Online Menu Editor
+
+Op-code #601
+
     Much like its counterpart in the offline editor, this
 op-code's purpose is for the creating and editing of menus.
-Although it's not as fancy or user-friendly as the offline_
-_
-_
+Although it's not as fancy or user-friendly as the offline
+
+
 program, you'll find this op-code very useful when making
 minor adjustments or additions to your system.  After
 executing, you will be prompted to enter the name of the
 menu you wish to create or edit.  The system will then
 attempt to load that menu off your "menu drive", starting a
 new menu if it isn't found.  From your next prompt, the
-following commands are available:_
-_
+following commands are available:
+
 Quit - this command will execute a "return to previous menu"
 op-code, thus bringing you back to the menu from whence you
 came.  The quit command does not save the menu data to disk,
 also note that any "return to previous menu" op-codes on the
-previous menu will not work after executing this command._
-_
+previous menu will not work after executing this command.
+
 Save menu - doing basically just what it says, you can use
 this command to save the menu onto your "menu drive".  After
 saving, you will be returned to the prompt for more editing.
 This is useful for making backups during long editing
-sessions._
-_
+sessions.
+
 View text - will display the menu text for the menu in
-memory._
-_
+memory.
+
 Edit text - this will bring you straight into the message
 maker where you can use the standard editor commands to make
 any desired changes to the menu text.  All editor commands
@@ -148,8 +142,8 @@ should work normally except:  abort will erase your text
 from memory, and save will simply return you to the menu
 editor with all changes intact.  The viewable text is
 automatically saved along with the menu data when you use
-the "save menu" command._
-_
+the "save menu" command.
+
 Menu codes - allows you to change the two menu execution
 codes.  You will first be prompted to change whether or not
 the menu text is displayed automatically.  The second prompt
@@ -158,24 +152,20 @@ letter to execute when the menu is loaded.  At the second
 prompt you can simply hit RETURN to not use an autocommand,
 an uppercase letter to execute a menu command, or a
 lowercase letter to use an op-code subroutine. Remember the
-autocommand must either be "NONE" or a ONE-LETTER code._
-_
+autocommand must either be "NONE" or a ONE-LETTER code.
+
 Menu ID code - if you have chosen to use the extended log
 feature, this is the three letter menu identifier which
 precedes the string of commands accessed within this menu.
-You should make this code unique for each menu._
-_
+You should make this code unique for each menu.
+
 Edit/Add command - this is used to create and change the
 commands in your menu. The first prompt will be for the
 letter of the command or subroutine you wish you work with,
 and the next prompt will determine it's status as a command
 or subroutine.  Remember that "commands" may be entered by
 the user while "subroutines" are usually accessed by other
-commands.  The next prompt will be for the command_
-_
-_
-_
-_
+commands.  The next prompt will be for the command
 description, or the text that is displayed when the command
 is executed.  You can hit return to leave the description
 unchanged, or you may enter a new description.  You will
@@ -194,69 +184,65 @@ datafields asking for subboard letters and such should be in
 uppercase while filenames and text datafields are in
 lowercase.  Remember, for serious menu work, we recommend
 using the offline editor.  At this point you have the
-following commands available to you:_
-_
-    Quit   - saves your changes and brings you back to the_
-             main menu editor menu._
-    Add    - adds a new op-code to the end of the current_
-             list.  Remember to see your reference sheets_
-             for op-code numbers._
-    Edit   - allows you to change the datafields for one of_
-             the existing op-codes._
-    Insert - prompts you for the position within the op-code_
-             list you wish to place the new op-code, and_
-             then performs the "add" command for that_
-             position._
-    Delete - removes from the list the op-code specified._
-             You will be prompted for which op-code within_
-             the list you wish removed._
-_
+following commands available to you:
+
+    Quit   - saves your changes and brings you back to the
+             main menu editor menu.
+    Add    - adds a new op-code to the end of the current
+             list.  Remember to see your reference sheets
+             for op-code numbers.
+    Edit   - allows you to change the datafields for one of
+             the existing op-codes.
+    Insert - prompts you for the position within the op-code
+             list you wish to place the new op-code, and
+             then performs the "add" command for that
+             position.
+    Delete - removes from the list the op-code specified.
+             You will be prompted for which op-code within
+             the list you wish removed.
+
 Edit menu prompts - allows you to re-enter the ASCII and C=
-Graphics prompts for the menu in memory._
-_
+Graphics prompts for the menu in memory.
+
 List commands - will give you a list of the command letters,
 the access levels able to use the command, and the
-description for that command._
-_
+description for that command.
+
 Delete command - removes a command, all of that commands
 op-codes, and all the datafields for those op-codes from
-memory._
-_
-_
-3.3c  Message Base Fixer_
-_
-Op-Code #602_
-_
+memory.
+
+
+3.3c  Message Base Fixer
+
+Op-Code #602
+
     If for any reason you encounter errors in message and
 reply totals, this utility may be used to recreate the
 message base relative file directory.  You will be prompted
-_
-_
-_
-_
 for the letter of the message base to fix, and the rest is
 automatic.  The program will locate all message belonging to
 the subboard in question, and will remove deleted messages
-from the relative file records._
-_
-_
-3.3d  User Searcher/Changer_
-_
-Op-Code #603_
-_
+from the relative file records.
+
+
+3.3d  User Searcher/Changer
+
+Op-Code #603
+
     This is an extremely useful utility with which you can
 make sweeping user data searches and mass user flag/data
-changes.  Some of the many uses for this program include:_
-_
-    o Locating users with duplicate real names._
-    o Locating users with duplicate phone numbers._
-    o Increasing the credit supply of all users._
-    o Creating block and system credit reports._
-    o Performing mass join/unjoin sub changes for users._
-    o Checking for users with specific access levels/flags._
-    o Checking for users with specific computer types._
-    o Combinations of any of the above and more._
-_
+changes.  Some of the many uses for this program include:
+
+    o Locating users with duplicate real names.
+    o Locating users with duplicate phone numbers.
+    o Increasing the credit supply of all users.
+    o Creating block and system credit reports.
+    o Performing mass join/unjoin sub changes for users.
+    o Checking for users with specific access levels/flags.
+    o Checking for users with specific computer types.
+    o Combinations of any of the above and more.
+
     After executing you will be given a menu with a list of
 all of the user attributes you may affect with this program.
 Most of the options listed have search, change, and compare
@@ -268,11 +254,11 @@ search reports can either be sent to the screen, or to a
 printer hooked up as device 4.  Beware that these extensive
 functions may take an extremely long time to complete,
 depending on your number of users, and the number of
-attributes chosen._
-_
-_
-4.0a  Booting the BBS_
-_
+attributes chosen.
+
+
+4.0a  Booting the BBS
+
     Once all of the necessary files have been created, you
 are ready to boot your BBS for the first time.  It is best
 to completely reset the computer and start fresh to ensure
@@ -280,8 +266,8 @@ that the memory is clear.  We have not had any problem with
 running Zelch in conjunction with special speed up
 cartridges, so, unlike most BBS's, you should be able to
 leave them plugged in.  Next make sure that you have all of
-your drives turned on and renumbered appropriately._
-_
+your drives turned on and renumbered appropriately.
+
     Run the program titled "zelch" off of your BOOT disk
 (which is basically a backup copy of the original program
 disk).  The introduction graphics by Sir Lucifer will
@@ -289,45 +275,45 @@ entertain you while the necessary machine language files are
 loaded.  When the options appear, simply press  1  to boot
 the BBS.  If you have an empty Ram Expansion Unit online,
 the copy program will boot and auto RamLoading will occur;
-otherwise, the BBS will load and begin the setup procedures._
-_
-_
-4.0b  Automatic RamLoading_
-_
+otherwise, the BBS will load and begin the setup procedures.
+
+
+4.0b  Automatic RamLoading
+
     If you have the RamDos machine language properly
 installed as described in section 1.3c, and you selected to
 format and reload ram in the boot program, auto RamLoading
 will occur.  Auto RamLoading uses the BBS copy program
 RamLoad routines.  Files to be copied to ram should be
 marked in the directory of the boot disk with dividers. Here
-is a sample directory:_
-_
-    0 "Zelch 128 BBS   " 91 2a     (disk header)_
-    10  "zelch"            prg     (not copied)_
-    85  "bbs.main"         prg     (not copied)_
-    0   "----------------" seq     (divider)_
-    23  "prg.logon"        prg     (to be copied)_
-    9   "menu.main"        seq     (to be copied)_
-    0   "----------------" seq     (divider)_
-    7   "sys.text"         seq     (not copied)_
-    0   "----------------" seq     (divider)_
-    12  "p-xfer 1300"      prg     (to be copied)_
-    8   "x-xfer 1300"      prg     (to be copied)_
-    579 blocks free                (end of directory)_
-_
+is a sample directory:
+
+    0 "Zelch 128 BBS   " 91 2a     (disk header)
+    10  "zelch"            prg     (not copied)
+    85  "bbs.main"         prg     (not copied)
+    0   "----------------" seq     (divider)
+    23  "prg.logon"        prg     (to be copied)
+    9   "menu.main"        seq     (to be copied)
+    0   "----------------" seq     (divider)
+    7   "sys.text"         seq     (not copied)
+    0   "----------------" seq     (divider)
+    12  "p-xfer 1300"      prg     (to be copied)
+    8   "x-xfer 1300"      prg     (to be copied)
+    579 blocks free                (end of directory)
+
     Notice that dividers simply separate the files to be
 copied from the rest of the files.  The only requirement for
 a divider filename is that it start with three dashes
 ("---").  We recommend using a directory editor to insert
-the dividers and to move files into groups._
-_
+the dividers and to move files into groups.
+
     After all of the marked files have been copied to ram
 from the boot disk, you will be returned to the boot
-program._
-_
-_
-4.0c  All That Loading_
-_
+program.
+
+
+4.0c  All That Loading
+
     Once the main BBS program has been loaded, you will be
 initiated into the setup process.  First the system will
 create the information windows and then read the system
@@ -337,8 +323,8 @@ disks.  After inserting the disks into their appropriate
 drives and pressing return, the BBS will read the handles of
 all of the users on your system.  This allows for quick and
 easy logons since the disk does not have to be accessed when
-searching for user accounts._
-_
+searching for user accounts.
+
     The next step in this most wondrous loading procedure is
 the reading of your function keys and other system related
 data from the "sys.misc data" file.  Lastly the system will
@@ -348,41 +334,39 @@ sayings, bits of trivia, or whatever you feel like using.
 One of these lines will be chosen at random before each
 prompt.  It will only be displayed when the display code
 "\?o$(12)\" is encountered on your system. If this file does
-_
-_
 not exist, you may use the "change one-liner" op-code to
-define the variable "o$(12)"._
-_
-_
-4.0d  Entering the Time and Date_
-_
+define the variable "o$(12)".
+
+
+4.0d  Entering the Time and Date
+
     The next prompts that you will encounter will be the
 time and date prompts.  The time must be entered in
 HOURS:MINUTES format, such as 02:36 for 2:36 (you must
 include preceding zeros for single digit hours and minutes).
 After pressing return, the BBS will prompt you to press  A
-for AM, or  P  for PM._
-_
+for AM, or  P  for PM.
+
     Once the time has been successfully entered you will be
 prompted for the date.  Use MONTH/DAY/YEAR format, such as
 11/07/90  for November 7th, 1990.  When finished entering
 the date, the BBS will a chance to verify the information.
 Please check the information carefully since a wrong date
-could cause users to be deleted or possibly worse!_
-_
+could cause users to be deleted or possibly worse!
+
     The next thing the BBS will do will be to initialize the
 modem; this may take a few seconds depending on what kind of
-modem you are using._
-_
-_
-4.1  Windows, Windows, and More Windows!_
-_
+modem you are using.
+
+
+4.1  Windows, Windows, and More Windows!
+
     The user status window is the large rectangular grey box
 on the upper portion of the screen.  This window contains
 some of the necessary information about a user while he or
 she is accessing your system.  Between calls, this window
-functions as a means of seeing who the last caller was._
-_
+functions as a means of seeing who the last caller was.
+
     On each side of the user status window is an indicator.
 The one to the far left (labeled CHAT) will turn red when a
 user pages you (it also blinks if your system is running in
@@ -391,164 +375,159 @@ or not the caller is in some form of color or graphics mode.
 The indicator stays grey if the caller is in standard ASCII,
 turns purple if the caller is in IBM ANSI, and turns dark
 grey (40 cols) or dark cyan (80 cols) if the user is in
-Commodore graphics mode._
-_
+Commodore graphics mode.
+
     On the bottom line of the screen you may see a status
 line.  The right portion of the line is reserved for the
 filename of the last module loaded.  The rest of the line
 may contain any of the following:  logon baud rate/status,
 reason for chat page, waiting for call status, comments
-during monster mode, or any short message._
-_
+during monster mode, or any short message.
+
     Between calls, there is a BBS statistics/waiting for
 call window.  Information displayed here includes: your BBS
 name, time and date, calls since boot, number of feedback,
-number of logged errors, new users, etc._
-_
-_
-_
-_
-4.2a  Waiting for Call_
-_
+number of logged errors, new users, etc.
+
+
+4.2a  Waiting for Call
+
     Unfortunately, until you have a mongo-popular BBS, this
 is the section you will become most acquainted with.  While
 the system waits patiently for a caller and the above
 windows are glaring at you, the functions discussed below
 will give you something to do other than twiddling your
-thumbs:_
-_
-_
-4.2b  Screen Blanking_
-_
+thumbs:
+
+
+4.2b  Screen Blanking
+
 [ALT] - This key will toggle the screen blanking feature.
 When activated the screen will turn completely black (saving
 your screen from window burn-in, although we can think of
 nothing better than having Zelch windows burnt into your
-screen), until the BBS receives some kind of activity._
-_
-_
-4.2c  Screen Mode Switching_
-_
+screen), until the BBS receives some kind of activity.
+
+
+4.2c  Screen Mode Switching
+
 [CONTROL-X] - If you have a 40/80 column switchable monitor
 online, this option will let you toggle which screen your
-system is running on._
-_
-4.2d  That Groovy Calculator_
-_
+system is running on.
+
+
+4.2d  That Groovy Calculator
+
 [CONTROL-C] - If you have no real reason for running a BBS,
 at least you can rest assured that you have a good place to
-do your math homework._
-_
+do your math homework.
+
     The calculator functions much like a standard
 non-scientific calculator.  Several lines of display have
 been added for convenience.  To clear the calculator, press
 return 2 or three times, else all totals will carry over to
-the next operation._
-_
+the next operation.
+
     HEX and DEC conversion has been added mostly for use by
 the programmers.  Enter a value and press  CONTROL-H  to get
 its HEX equivalent, or enter a HEX number and press
 CONTROL-D  to get its decimal equivalent.  This is only a
-conversion routine, you may not work with HEX numbers._
-_
+conversion routine, you may not work with HEX numbers.
+
     When you are finished using the calculator, press  ESC
-to return to the waiting for call screen._
-_
-_
-4.2e  Pull Down Menu_
-_
+to return to the waiting for call screen.
+
+
+4.2e  Pull Down Menu
+
 [ESC] - This will cause the pull down menu with the utility
 type options to appear.  Use the cursor keys and return to
-select the options listed below._
-_
+select the options listed below.
+
 Local logon - this is what a visiting user should use to
 logon to the system locally.  After selecting this option,
-logon will proceed as it normally does for calling users._
-_
-_
+logon will proceed as it normally does for calling users.
 You will also have to use this command the first time that
 you logon to the system so that you can go through the new
-user logon process._
-_
+user logon process.
+
 SysOp logon - using this option will skip all of the logon
 procedures and take you directly to the welcome screen that
 normally appears after a correct password has been entered.
-You will be logged on as ID#1 (usually the sysop)._
-_
+You will be logged on as ID#1 (usually the sysop).
+
 Zapterm - will load the zapterm module.  The module is
-discussed in detail in section 6._
-_
+discussed in detail in section 6.
+
 Read feedback - this option will allow you to read and
 answer feedback as ID#1 without logging onto the system. It
-works exactly like the Read Feedback op-code._
-_
+works exactly like the Read Feedback op-code.
+
 View caller log - will allow you to view and delete the
-caller log.  Logs are discussed in detail in section 4.3._
-_
+caller log.  Logs are discussed in detail in section 4.3.
+
 Check error log - will allow you to view and delete the
-error log.  Logs are discussed in detail in section 4.3._
-_
+error log.  Logs are discussed in detail in section 4.3.
+
 New user apps - with this command you can view new user
 applications and validate or delete the users.  It works
-exactly like the Read new user apps op-code._
-_
+exactly like the Read new user apps op-code.
+
 Sysop utility menu - this function will log you onto the
 system as user ID#1 and will take you directly to the menu
 specified in the system variables part of the BBS editor as
 the "sysop's menu".  It should be noted that this does not
 have to be a menu that is accessible by your system, it can
-be a menu designed for use only with this command._
-_
-_
-4.3a  Introduction to "the Logs"_
-_
+be a menu designed for use only with this command.
+
+
+4.3a  Introduction to "the Logs"
+
     Your system has the ability to keep track of all sorts
 of interesting and useful data about its day to day
 operations.  Both of the system logs, the caller log, and
 the errorlog, will be discussed in detail below.  Remember
 that unless regularly deleted, one of these logs can become
 quite lengthy and possibly cause disk space problems. Don't
-let this happen to you._
-_
-4.3b  Extended call log_
-_
+let this happen to you.
+
+4.3b  Extended call log
+
     The call log is a list of the main daily operations of
 your system.  Listed in this file are:  all calls made by
-users, monster mode reports, and network linkups._
-_
+users, monster mode reports, and network linkups.
+
     An entry for a user's call begins with a reversed info
 line with the following information:  Date and time on, time
 logged off, baud rate, id number, handle, and real name.  If
 the caller is a new user (having access level "A"), the
-entry will appear in white, otherwise it will be in cyan._
-_
-_
-_
+entry will appear in white, otherwise it will be in cyan.
+
     If the user's extended log flag is set, the information
 described above will be followed by a complete listing of
 the user's activities.  Below is a sample extended log
 entry.  The first three letters of each line are the
-extended log identifiers defined when creating menus._
-_
-REP: ID1,ID36       at logon, the user replied to mail_
-                    received from id numbers 1 and 36._
-CMD: S,ID4,E,M      the user executed the commands S, E,_
-                    and M.  Command  S  was a send mail_
-                    command, since it's followed by the_
-                    ID number of the recipient._
-MSG: MBA,R,+,MBB,Q  when the message base menu was loaded,_
-                    message base A was automatically_
-                    selected. This is shown by "MBA". The_
-                    caller later pressed  +  and message_
-                    base B was selected._
-_
+extended log identifiers defined when creating menus.
+
+REP: ID1,ID36       at logon, the user replied to mail
+                    received from id numbers 1 and 36.
+CMD: S,ID4,E,M      the user executed the commands S, E,
+                    and M.  Command  S  was a send mail
+                    command, since it's followed by the
+                    ID number of the recipient.
+MSG: MBA,R,+,MBB,Q  when the message base menu was loaded,
+                    message base A was automatically
+                    selected. This is shown by "MBA". The
+                    caller later pressed  +  and message
+                    base B was selected.
+
     For transfer related entries, you may see things like
 "UDB" when U/D base B was selected, and "Download:
-filename,p" when a file is transferred._
-_
-_
-4.3c  The Errorlog_
-_
+filename,p" when a file is transferred.
+
+
+4.3c  The Errorlog
+
     Since our program contains no errors, this is mostly to
 aid the programmer in the creation and debugging of Zelch
 specific modules.  The file contains the following
@@ -556,49 +535,49 @@ information about each logged BASIC error:  Time and date it
 occurred, the error type and line number, the name of the
 last module loaded, the name of the last menu loaded, and
 the ID number of the user fortunate enough to encounter the
-problem._
-_
-_
-4.4a  Monster Mode! (Auto-maintenance)_
-_
+problem.
+
+
+4.4a  Monster Mode! (Auto-maintenance)
+
     Monster Mode is perhaps one of the most ruthless yet
 convenient features implemented into any BBS.  Monster Mode
 eliminates a lot of the boring and repetitive work of
 sysoping.  It automatically deletes inactive users, removes
 old news files, and deletes old replies. Monster Mode is
 also the means by which mail is carried from one system to
-another through networking._
-_
+another through networking.
+
     Monster Mode must be executed daily for the system to
 run properly.  The hour at which monster mode is supposed to
 execute is set in the system variables part of the offline
-editor._
-_
-_
-4.4b  Writing a Script_
-_
+editor.
+
+
+4.4b  Writing a Script
+
     In order to make Monster Mode as flexible as possible,
 we have adopted a script file command set.  The Monster will
-only perform the brutal acts listed in the "sys.script"_
-_
-_
+only perform the brutal acts listed in the "sys.script"
+
+
 file.  The script format allows you to customize the way
 your maintenance runs, and allows you to easily add
 additional maintenance modules for games, etc.  If the
 "sys.script" file does not exist, a default script will be
-used.  The default commands are:_
-_
-User 60            (weeds all users who have not called in_
-                    the last 60 days)_
-Msg                (enforces the max reply limits of each_
-                    message base by deleting old responses)_
-News "sys.news"    (performs news weeding on the main system_
-                    news file)_
-Collect 8,0        (will collect/validate drive 8,0)_
-_
-_
-4.4c  Commands Your Monster Can Understand_
-_
+used.  The default commands are:
+
+User 60            (weeds all users who have not called in
+                    the last 60 days)
+Msg                (enforces the max reply limits of each
+                    message base by deleting old responses)
+News "sys.news"    (performs news weeding on the main system
+                    news file)
+Collect 8,0        (will collect/validate drive 8,0)
+
+
+4.4c  Commands Your Monster Can Understand
+
     Monster Mode is virtually unlimited in the operations
 that it can perform.  Combinations of any of the commands
 listed in this section may be used to customize the
@@ -606,104 +585,100 @@ activities performed during auto-maintenance.  You can use
 any of the sequential file editors included in the BBS to
 change your script file.  Also, be sure to look at the
 script file "sys.script" that came with the BBS for a good
-example of how your script might be laid out._
-_
+example of how your script might be laid out.
+
     The following are all of the commands that your monster
-can understand:_
-_
+can understand:
+
 User xx - Weed any users that have not called in xx number
-of days.  We recommend at least 30 days._
-_
+of days.  We recommend at least 30 days.
+
 Msg - Will enforce the reply limits specified for each
-individual message base by deleting old replies._
-_
-Message - see "Msg"_
-_
+individual message base by deleting old replies.
+
+Message - see "Msg"
+
 News "filename" u,d - Perform news maintenance on the given
 filename device u, drive/LU d.  "sys.news" is the system
 newsfile that is automatically read at logon.  If u and d
 are not specified for this command, the system will look for
 the files on the system data files drive.  Ex: news
-"sys.news" 8,0_
-_
+"sys.news" 8,0
+
 Collect u,d - Will collect or validate the disk in device u,
-drive/LU d._
-_
-Validate u,d - see "Collect"_
-_
+drive/LU d.
+
+Validate u,d - see "Collect"
+
 Print "text" - Will display the text inside the quotes on
-the screen._
-_
+the screen.
+
 Run "filename" u,d - Will execute a stand alone basic
 program that appears on device u, drive/LU d.  Ex:  run
-"game maint" 8,0_
-_
-_
-_
+"game maint" 8,0
+
 Execute "filename" u,d - Loads and runs a zelch specific
 module off of device u, drive/LU d.  The module MUST end
 with  u=d(0,0):d=d(0,1):i$="prg.monster":goto23  to return
 to monster mode when the module is done executing.  Ex:
-execute "wall.maint" 8,0_
-_
+execute "wall.maint" 8,0
+
 DOS "command" u,d - Executes the DOS command inside the
 quotes on device u, drive/LU d as if it were sent using
-open15,u,15,"command":close15   Ex:  dos "s0:sys.work" 8,0_
-_
-Disk "command" u,d - see "DOS"_
-_
+open15,u,15,"command":close15   Ex:  dos "s0:sys.work" 8,0
+
+Disk "command" u,d - see "DOS"
+
 Display "filename" u,d - Reads the sequential file
 "filename" on device u, drive/LU d.  Ex:  display
-"sys.title" 8,0_
-_
-File "filename" u,d - see "Display"_
-_
+"sys.title" 8,0
+
+File "filename" u,d - see "Display"
+
 Hard "filename" u,d - Works in the same manner as display
 except that the output is directed at the printer (as device
-4) instead of the screen.  Ex:  hard "sys.userlog" 8,0_
-_
+4) instead of the screen.  Ex:  hard "sys.userlog" 8,0
+
 Clear xx - Resets the  o(xx)  variable specified.  Ex: clear
 0  will reset the number of calls since boot every time
-Monster Mode executes._
-_
-Reset xx - see "Clear"_
-_
+Monster Mode executes.
+
+Reset xx - see "Clear"
+
 Hayes "command" - Sends the data inside the quotes to the
 modem in the form of a Hayes command.  It is VERY important
 that you do not include "AT" as part of the command.  Ex:
 hayes "h1"  will send "ath1" to the modem, taking the phone
-off hook._
-_
-Modem "command" - see "Hayes"_
-_
+off hook.
+
+Modem "command" - see "Hayes"
+
 Network - Checks to see if there is any mail on file for any
 of the systems in your network.  If there is, the modem in
 initialized, and an attempt is made to call the destination
 board.  If the call goes through and the transfer is
-successful, the file will be deleted._
-_
+successful, the file will be deleted.
+
 Unpack - This command will sort through all of the networked
 mail that has been received and places it in the appropriate
 files.  Any messages not intended for your board will be
 forwarded.  It might be a good idea to unpack before and
-after the "Network" command._
-_
-_
-4.4d  The Monster Mode Report_
-_
+after the "Network" command.
+
+
+4.4d  The Monster Mode Report
+
     When Monster Mode has done its deeds, it files a light
 green report in the caller log.  Contained in this report is
 a list of:  all systems successfully networked with, users
-weeded, newsfiles weeded, and messages with deleted replies._
-_
-_
-_
+weeded, newsfiles weeded, and messages with deleted replies.
+
     If Monster Mode has nothing hideous to report, it will
-respond with "Growl"._
-_
-_
-4.5a  Logging on to the System_
-_
+respond with "Growl".
+
+
+4.5a  Logging on to the System
+
     For those of you interested in the specifics of what
 happens when a caller attempts to connect to your system,
 here it is:  If you are using a 1650 or 1660 modem, the
@@ -717,8 +692,8 @@ one of these codes, your system will go online. If your
 hayes compatible modem is not connecting with the user, it
 is probably due to your modem not being properly set. See
 your modem manual for information about setting the
-initialization commands defined in the system editor._
-_
+initialization commands defined in the system editor.
+
     As soon as a connection is made, the system will send
 out the "connection, hit return" string and wait for the
 user to hit RETURN.  Next the system will send out the "hit
@@ -728,8 +703,8 @@ into commodore graphics mode and turn linefeeds off.  Any
 other response will put the system into ASCII translation
 mode and prompt the caller for linefeeds.  An ASCII caller
 will also be asked whether or not they wish to receive ANSI
-codes._
-_
+codes.
+
     The system will then display an intro screen.  There are
 two types of intro screens, one set for Commodore graphics
 callers, and another for ANSI/ASCII callers.  You may have
@@ -744,8 +719,8 @@ number of intro screens for the current emulation mode.  For
 example, if the user is in ANSI and there are 5 intro
 screens specified for ASCII/ANSI intro screens, and the
 system has chosen the random number 3, then the file
-displayed will be "sys.title 3/a"._
-_
+displayed will be "sys.title 3/a".
+
     The next prompt will be for the user to enter either
 their user ID number, or their handle.  If an ID number is
 entered, the system will check for a valid account and
@@ -753,20 +728,20 @@ immediately prompt the caller for their password.  If a
 handle is entered, the system will check the list of valid
 handles in memory for an exact match.  If one is found, it
 will locate the user's account information, and prompt them
-for their password.  If for any reason the account_
-_
-_
+for their password.  If for any reason the account
+
+
 information given is not valid, the user will be asked if
-they would like to apply for a new account._
-_
+they would like to apply for a new account.
+
     While the user types in the characters to their
 password, the "password mask character" defined in the
 system editor will be echoed back to them and to the screen.
 If the password is valid, the system will log them in.  If
 not, the system will allow them to continue to try to
 remember their user information for no longer than two
-minutes before throwing them off._
-_
+minutes before throwing them off.
+
     After a valid password has been entered, the system
 loads the user's account information and updates the user
 information window.  The system will then display the file
@@ -775,52 +750,50 @@ exists.  After reading these files, the system opens
 "sys.news" and displays any new news files.  If the user is
 calling at 300 baud, but their last call information shows a
 nonstandard baud rate (300-600), they will be prompted to
-change back to that baud._
-_
+change back to that baud.
+
     With the welcome process completed, the system now reads
 in the system's first menu, as defined in the offline
-editor, and transfers to user control._
-_
-_
-4.5b  Communication Modes_
-_
+editor, and transfers to user control.
+
+
+4.5b  Communication Modes
+
     There are several emulation modes available to make the
-system more enjoyable to a large number of computer users._
-_
+system more enjoyable to a large number of computer users.
+
 Commodore Color/Graphics - Nicknamed PETSCII by loving
 Commodore owners, this mode is capable of displaying and
 receiving 15 colors, cursor movements, screen clearing,
 reverse mode, and all of the wondrous keyboard graphics
 found on Commodore computers.  For 80 column users, this
-also includes underline, and blink mode as well._
-_
+also includes underline, and blink mode as well.
+
 ANSI - Capable of viewing the 8 standard colors, cursor
 movements, and screen clearing, this emulation mode adds
-variety for the ASCII caller._
-_
+variety for the ASCII caller.
+
 ASCII - The lucky user using this mode can view all 26
 letters of the English alphabet in upper AND lowercase,
 Arabic numerals 0-9, mathematical signs, and many cool
-punctuation symbols in mono-chromatic greatness._
-_
-_
-4.5c  New User Logon_
-_
+punctuation symbols in mono-chromatic greatness.
+
+
+4.5c  New User Logon
+
     Upon determining New User status, the system will boot
 the new user module and display the file "sys.new msg"
 (which usually contains a welcome, list of rules, info,
 etc.).  Next the system will check to ensure that there is
 an open user account within the max limit set in the offline
 editor.  If there are no open accounts, the user will not be
-_
-_
 permitted to logon.  If an open account is found, a series
-of questions will follow._
-_
+of questions will follow.
+
     The first question will be for the users handle, or
 pseudoname.  The handle will be compared with the others in
-memory to ensure that there are no duplicates._
-_
+memory to ensure that there are no duplicates.
+
     The next questions will be for the user's full real
 name, the user's voice phone number where the first three
 characters are the area code, the next three characters are
@@ -829,20 +802,20 @@ last four digits of the phone number.  An example would be
 "6022976902" as input for the Zelch BBS phone number.  If
 correct input is received, the system will automatically
 format it into "(XXX)/XXX-XXXX" so that it may be more
-easily read._
-_
+easily read.
+
     The next prompt will be for a 1-10 character password.
 We recommend that passwords not be related to the user's
 handle or the name of the board.  The user will then be
-prompted for 40/80 columns and their computer type._
-_
+prompted for 40/80 columns and their computer type.
+
     After answering all of these questions, the user has an
 opportunity to edit any incorrect information.  The BBS then
 displays the definable text string that should contain the
 user's ID number assigned to their account.  They should be
 reminded to write their ID number and password down for
-future use, and prompted to hit return._
-_
+future use, and prompted to hit return.
+
     If the file "sys.new app" is not found on the
 appropriate drive, the user will go directly to logon.  If
 the file is found, the system will read in the questions one
@@ -852,16 +825,16 @@ free response type questions (where the user may answer
 anything).  The file "sys.new app" should contain only
 questions, one after another, one line each.  You can use
 any of the sequential file editors included with the BBS to
-edit/create this file._
-_
+edit/create this file.
+
     As soon as the questionaire is successfully completed,
 and the user verifies the correctness of his/her responses,
 the new user application is saved to the "sys.new user" file
-for pending validation._
-_
-_
-4.5d  Calls, Time, and Idle Time Limits_
-_
+for pending validation.
+
+
+4.5d  Calls, Time, and Idle Time Limits
+
     User's are not permitted to logon more than the
 specified number of times for their access level.  Using the
 offline system editor, you as the sysop have the ability to
@@ -869,39 +842,37 @@ define the maximum number of calls, the total number of
 minutes allowed for each call, and the maximum number of
 minutes that a user may sit idle (without pressing a key) at
 any part of the system.  To disable the idle timer for a
-particular access level, simply set the idle limit to 0._
-_
-_
+particular access level, simply set the idle limit to 0.
 Call limits range from 1-99 and time limits range from
-1-255, there is no way to disable these checks._
-_
-_
-5.0  Online SysOp Utilities_
-_
+1-255, there is no way to disable these checks.
+
+
+5.0  Online SysOp Utilities
+
     There are several commands available only to the sysop
 from the BBS's keyboard.  These keys will not function if
 sent across the modem.  Any other keys entered by the sysop,
-will be processed as if the user had entered them._
-_
-_
-5.1a  Chat Mode_
-_
+will be processed as if the user had entered them.
+
+
+5.1a  Chat Mode
+
     By hitting the  [ESC]  key located in the upper left
 hand corner of your keyboard, you can enter and exit Chat
 Mode.  While in Chat Mode, you may directly communicate with
 the user.  The user's time remaining will not decrease.  The
 only courtesies expected in chat are that one person types
 at a time, and two returns should be hit when you are
-finished talking._
-_
+finished talking.
+
     When you enter chat, note where the user is in the
 system.  It may be a good idea to enter "/v" to review the
 user's message after exiting chat if the user was in the
-message maker, or  ?  if they were at a prompt._
-_
-_
-5.1b  Forced Logoff_
-_
+message maker, or  ?  if they were at a prompt.
+
+
+5.1b  Forced Logoff
+
     This command can serve either of two purposes. The first
 has friendly intentions.  If you press the  [LINEFEED]  key
 and hold it down until the waiting for call screen appears,
@@ -909,17 +880,17 @@ you can log the caller off without saving their user
 information, or logging the call.  This is good if
 you wish to spare the caller the hassle of having to change
 his/her last call date or if they have a limited number of
-calls and they do not want to waste one._
-_
+calls and they do not want to waste one.
+
     The second purpose of this key requires that you lightly
 tap the  [LINEFEED]  once.  This logs the user off normally
 and saves all of their user information.  This is normally
 used to throw losers and potential hackers off your system,
-so that you may get on and delete them._
-_
-_
-5.2a  Pull Down Menu Utilities (User Dissection)_
-_
+so that you may get on and delete them.
+
+
+5.2a  Pull Down Menu Utilities (User Dissection)
+
     The most powerful commands available to the sysop while
 a caller is online are the pull down menu utilities,
 accessed by pressing the [ALT] key while the user is at a
@@ -928,102 +899,98 @@ keys and press return to select.  Using these utilities you
 can edit most of the user's information, and can perform DOS
 operations.  Any user info that is changed here will get
 saved when the caller logs off.  The most common use of this
-_
-_
 part of the board is for validating new users when they
 first logon.  Once at the main menu you can give them
 access, set the appropriate flags, and give them more time
-for their first call._
-_
+for their first call.
+
     All editing of user data using this program will be done
 with the bit editor.  Simply cursor through the displayed
 info, and make changes where necessary.  Make sure that you
 do not leave extra spaces at the end of any of the data that
 you edit, as spaces would be included as part of the change.
 Also, it is not necessary to enter things in uppercase,
-that will be done for you when you press return._
+that will be done for you when you press return.
 
-_
-5.2b  Profile_
-_
+
+5.2b  Profile
+
     The user profile option lets you edit the following user
-data:  handle, password, real name, and phone number._
+data:  handle, password, real name, and phone number.
 Handle - (16 characters max) - This is the name that the
 user goes by on your system.  When editing this information
 it should be noted that this module will not check for
-duplicates.  Be sure not to enter another user's handle._
-_
+duplicates.  Be sure not to enter another user's handle.
+
 Password - (10 characters max) - This is your personal
 access code.  Someone MUST have this information to get onto
 the system using your account.  It is best to keep this
 information private, as many problems result in sharing your
 account with other users.  A password should also be
 original.  Do not relate it in any way to your handle or the
-BBS's name._
-_
+BBS's name.
+
 Real name - (16 characters max) - Since Zelch allows for the
 use of handles or pseudonames, it is necessary to keep
 separate information regarding the user's real name.  This
 should, if possible, include first and last names in case
-you need to reach the user by phone._
-_
+you need to reach the user by phone.
+
 Phone number - (14 characters) - This is the user's phone
 number (preferably the number at which they can be reached
-by voice) written in an easy to read format._
-_
-_
-5.2c  Access and Flags_
-_
+by voice) written in an easy to read format.
+
+
+5.2c  Access and Flags
+
 Access level - This is the user's access level from A-Z.
 This is used to determine which news files the user has
 access to, which commands, which message bases, etc.  A is
 reserved for new users, but the other 25 may be defined as
 you wish.  Z is usually sysop access, but you could make it
-something else._
-_
+something else.
+
 System access flags - These access flags have no purpose as
 far as the "bare-bones" system is concerned.  They are meant
 for the purpose of special access commands (ie: adult access
 on message bases, expert mode flag, privileged functions,
-etc.).  The flags are checked using the related op-codes and_
-_
-_
+etc.).  The flags are checked using the related op-codes and
 are completely definable.  None of them are reserved or
-serve any specific purpose unless defined by you._
-_
+serve any specific purpose unless defined by you.
+
 To change the system access flags, cursor through the
 alphabet and toggle flags that should be turned on to
 reverse by pressing space.  Flags are turned off in the same
-manner._
-_
-_
-5.2d  Time/Credits_
-_
+manner.
+
+
+5.2d  Time/Credits
+
 Time remaining - This is the amount of time (in minutes)
 that the user has left online for this call.  When the
 caller runs out of time, he/she will be automatically logged
-off (but may call again, call limit permitting)._
-_
+off (but may call again, call limit permitting).
+
 Calls today - This is the number of calls that the user has
 made since midnight.  It is sometimes useful to change this
-number to allow a user more calls._
-_
+number to allow a user more calls.
+
 UD Block credits - Block credits are given to a user when
 he/she uploads a program.  How many block credits awarded is
 determined by the credit ratio for a particular U/D base.  A
 user may not download more disk blocks than they have
-credits._
-_
+credits.
+
 System credits - These serve no purpose, much like access
 flags.  These credits are earned and spent using op-codes.
 By implementing the system credits op-codes, you can award
 credits for certain BBS activities (posting, voting, etc.)
 and take credits for others (playing games, using special
-modules, etc.)._
-_
-_
-5.2e  DOS Commands_
-_
+modules, etc.).
+
+
+5.2e  DOS Commands
+
     When you select this command, two small windows appear.
 The first window contains the active device, drive/LU data,
 and the status of the drive after the last disk operation.
@@ -1033,246 +1000,187 @@ device number, enter the device,drive/LU (such as "9,0" to
 select device 9, drive/LU 0).  The only other non-standard
 command is directory.  Use  $:filemask  to view the
 directory on the current drive.  Press RETURN by itself to
-exit DOS._
-_
-_
-5.2f  Other/Unlisted User Attributes_
-_
+exit DOS.
+
+
+5.2f  Other/Unlisted User Attributes
+
     There are numerous pieces of data stored in the userfile
 that we decided were not important enough to include in the
-online user editor.  They are listed and described below._
-_
+online user editor.  They are listed and described below.
+
 Last call info - This is the user's last call date in the
-form of YYMMDDHHMM._
-_
-_
+form of YYMMDDHHMM.
+
 Info flags - This is a string of numbers and letters that
 store some of the information that is vital to the user's
 parameters.  Each character in the string defines a
 different parameter.  When you edit this string you have to
-re-enter all 10 settings._
-_
-    E) Extended log value - this is set to whatever the_
-       extended log default is at the time the user logs_
-       on as new.  It can, however, be changed.  A "1" in_
-       this spot turns this function on, while a "0" shuts_
-       it off._
-_
-    8) 40/80 columns - this is set to a "1" if the caller_
-       calls in 80 columns, and a "0" if they call in 40._
-_
-    D) Delete protect - setting this to a "1" will prevent_
-       the user from being weeded by Monster Mode,_
-       regardless of their last call date.  A "0" means that_
-       the user is eligible for weeding._
-_
-    S) SysOp flag - if this is set to a "1" the user will_
-       receive certain sysop privileges, such as being able_
-       to delete or edit any post/response, being able to_
-       view anonymous handles, and access to special message_
-       maker commands (get and put)._
-_
-    ?) Pause prompts - if this is set to "1", the screen_
-       will pause after every 24 lines of uninterrupted_
-       file output.  A "0" turns this feature off._
-_
-    X) Transfer protocol - this is the protocol that is_
-       loaded when the user logs on.  A "0" is used to_
-       signify Punter, and a "1" means Xmodem._
-_
-    #) Line numbers - setting this to a "1" will cause the_
-       line numbers feature of the message maker to default_
-       to on.  A "0" is the normal default._
-_
-    R) Read mode - this is the manner in which posts are_
-       read.  A "1" in this spot will put you in continuous_
-       read mode, stopping only at the end of a message and_
-       all of its replies.  A "0" will cause the BBS to stop_
-       after each individual message and reply._
-_
-    B) Baud timing - this is the fine tuning adjustment_
-       required for optimal 2400 baud performance for some_
-       users.  The bit is usually set for 8, but may be_
-       changed anywhere from 0 to 9._
-_
-    C) Computer type - this setting is used only for_
-       searches in the searcher/changer op-code.  Other_
-       than that, it is only for your information._
-_
-_
-_
-_
-_
-_
-6.0  Zapterm_
-_
+re-enter all 10 settings.
+
+    E) Extended log value - this is set to whatever the
+       extended log default is at the time the user logs
+       on as new.  It can, however, be changed.  A "1" in
+       this spot turns this function on, while a "0" shuts
+       it off.
+
+    8) 40/80 columns - this is set to a "1" if the caller
+       calls in 80 columns, and a "0" if they call in 40.
+
+    D) Delete protect - setting this to a "1" will prevent
+       the user from being weeded by Monster Mode,
+       regardless of their last call date.  A "0" means that
+       the user is eligible for weeding.
+
+    S) SysOp flag - if this is set to a "1" the user will
+       receive certain sysop privileges, such as being able
+       to delete or edit any post/response, being able to
+       view anonymous handles, and access to special message
+       maker commands (get and put).
+
+    ?) Pause prompts - if this is set to "1", the screen
+       will pause after every 24 lines of uninterrupted
+       file output.  A "0" turns this feature off.
+
+    X) Transfer protocol - this is the protocol that is
+       loaded when the user logs on.  A "0" is used to
+       signify Punter, and a "1" means Xmodem.
+
+    #) Line numbers - setting this to a "1" will cause the
+       line numbers feature of the message maker to default
+       to on.  A "0" is the normal default.
+
+    R) Read mode - this is the manner in which posts are
+       read.  A "1" in this spot will put you in continuous
+       read mode, stopping only at the end of a message and
+       all of its replies.  A "0" will cause the BBS to stop
+       after each individual message and reply.
+
+    B) Baud timing - this is the fine tuning adjustment
+       required for optimal 2400 baud performance for some
+       users.  The bit is usually set for 8, but may be
+       changed anywhere from 0 to 9.
+
+    C) Computer type - this setting is used only for
+       searches in the searcher/changer op-code.  Other
+       than that, it is only for your information.
+
+
+6.0  Zapterm
+
     Available from the Waiting for Call menu is the powerful
 Zapterm terminal program for use with all modem types.  This
 program is used to access bulletin boards and other online
-services without taking your system down._
-_
-_
-6.1  Initialization_
-_
+services without taking your system down.
+
+
+6.1  Initialization
+
     When loaded, Zapterm sends the hayes commands defined in
 the system variables section of the offline editor to your
 modem.  Your baud rate is also set to the idle baud rate
 setting.  Before displaying the menu, Zapterm also loads the
 special terminal function keys, and makes sure Punter is the
-loaded transfer protocol._
-_
-_
-6.2a  Zapterm Menu_
-_
+loaded transfer protocol.
+
+
+6.2a  Zapterm Menu
+
     Before you now is the main terminal menu.  Commands
 available are listed in four rows and columns with the
 command letter highlighted in white.  Below that is the
 active device, drive/LU which is used by disk related
 operations, the baud rate, and the active transfer protocol.
-Below that is your prompt._
-_
-_
-6.2b  Autodialer and Phonebook_
-_
+Below that is your prompt.
+
+
+6.2b  Autodialer and Phonebook
+
     When the autodialer is selected, the phonebook is
 automatically displayed.  The most important information
 about each system is listed.  Use the cursor keys to move
 the arrow up and down the left hand margin to the system of
 your choice.  Press RETURN to dial the selected system, or
-enter one of the following commands:_
-_
+enter one of the following commands:
+
 [ESC] - Exits the autodialer and takes you back to the main
-terminal menu._
-_
+terminal menu.
+
 L - Loads the last saved phonebook from your system data
-files drive._
-_
-U - Dial an unlisted phone number._
-_
+files drive.
+
+U - Dial an unlisted phone number.
+
 S - Saves the phonebook with all changes to the appropriate
-disk._
-_
-E - Edits the highlighted entry._
-_
+disk.
+
+E - Edits the highlighted entry.
+
     To abort dialing, press spacebar at any time.  If you
 connect to a system, the [HELP] key will be defined as the
 Handle/ID for the system dialed, and the [SHIFT]/[RUN/STOP]
-combination will send the password for the system._
-_
-_
-_
-_
-6.2c  File Commands_
-_
+combination will send the password for the system.
+
+
+6.2c  File Commands
+
 Download file - This command will attempt to receive a file
-using the current transfer protocol._
-_
+using the current transfer protocol.
+
 Upload file - Attempts to send a file from the active drive
-to the system online using the current transfer protocol._
-_
+to the system online using the current transfer protocol.
+
 Filedump - Will send a sequential file character by
-character across the modem._
-_
-Seq reader - Allows the sysop to view a sequential file._
-_
+character across the modem.
+
+Seq reader - Allows the sysop to view a sequential file.
+
 Message Maker - This allows you to create sequential files
 on the active drive.  These files can be sent using
-filedump._
-_
-_
-6.2d  Terminal Commands_
-_
+filedump.
+
+
+6.2d  Terminal Commands
+
     [ESC]  is used to enter the modem terminal.  Here all
 keypresses are sent directly to the modem channel and
 incoming data is sent to the screen.  The following keys
-have special functions while in terminal mode:_
-_
-[ESC] - Exits the terminal and takes you back to the menu._
-_
-[ALT] - Toggles between ASCII and Commodore Graphics modes._
-_
+have special functions while in terminal mode:
+
+[ESC] - Exits the terminal and takes you back to the menu.
+
+[ALT] - Toggles between ASCII and Commodore Graphics modes.
+
 [LINEFEED] - Toggles whether linefeeds are sent and
-received, or ignored altogether._
-_
-_
-6.2e  Other Commands_
-_
+received, or ignored altogether.
+
+
+6.2e  Other Commands
+
 Quit to the BBS - This reloads the BBS function keys and
-returns you to the Waiting for Call screen._
-_
+returns you to the Waiting for Call screen.
+
 Baud change - Allows you to select a new baud rate.  Entries
-100-600, 1200, and 2400 are accepted._
-_
-Directory - Displays the disk directory on the active drive._
-_
+100-600, 1200, and 2400 are accepted.
+
+Directory - Displays the disk directory on the active drive.
+
 Dos channel - Prompts you for a BASIC 2.0 DOS command to
-send to the open drive command channel._
-_
+send to the open drive command channel.
+
 Pickup phone - This is especially useful for 1650, and 1660
 users since the autodialer does not work with either of
 these modems.  This is used to sent the pickup phone codes
-to your modem._
-_
-Hangup phone - This is also useful for 1650, 1660 users._
-_
+to your modem.
+
+Hangup phone - This is also useful for 1650, 1660 users.
+
 Change drives - Use this command to change the active device
-and drive/LU._
-_
-_
-_
-Xfer protocols - This toggles between Punter and Xmodem._
-_
+and drive/LU.
+
+Xfer protocols - This toggles between Punter and Xmodem.
+
 Edit fkeys - This will list out the function key definitions
 and allow you to re-enter the text.  The  S  key will save
 these definitions to your Zapterm file while  L can be used
-to reload them._
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-_
-
+to reload them.

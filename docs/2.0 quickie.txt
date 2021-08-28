@@ -1,31 +1,32 @@
-˚h:10:3^^Zelch 128 v2.0a
-˚h:10:4^^Copyright (C)1991 Elite Software
-˚f:10:2^Quick Reference Guide^^Page <>
-_
-_
-_
-ÅPart I:  System Control Codes_
-_
-CONTROL-C          Line link--placed at the end of strings_
-                   and prevents RETURN from being sent_
-                   after output._
-CONTROL/SHIFT-G    Can be used in place of quotation marks._
-CONTROL/SHIFT-H    40 column word wrap marker which_
-                   translates to a space when viewed in 80_
-                   columns and a RETURN in 40 columns._
-CONTROL-H          Will hide the remainder of a line of text_
-                   when viewed in 40 columns._
-CONTROL-K          Translates to a carriage RETURN._
-CONTROL-S (home)   Will pause most BBS output._
-CONTROL-1 (black)  Displays the next color in the definable_
-                   color cycle._
-CONTROL-X          (Must be followed by a letter from A-Z)._
-                   Will abort SEQ files for users who do NOT_
-                   have appropriate access levels._
-_
-_
-ÅPart II:  OutputÄ ÅDisplay CodesÄ_
-_
+Zelch 128 v2.0a
+Copyright (C)1991 Elite Software
+
+Quick Reference Guide
+
+
+
+Part I:  System Control Codes
+
+CONTROL-C          Line link--placed at the end of strings
+                   and prevents RETURN from being sent
+                   after output.
+CONTROL/SHIFT-G    Can be used in place of quotation marks.
+CONTROL/SHIFT-H    40 column word wrap marker which
+                   translates to a space when viewed in 80
+                   columns and a RETURN in 40 columns.
+CONTROL-H          Will hide the remainder of a line of text
+                   when viewed in 40 columns.
+CONTROL-K          Translates to a carriage RETURN.
+CONTROL-S (home)   Will pause most BBS output.
+CONTROL-1 (black)  Displays the next color in the definable
+                   color cycle.
+CONTROL-X          (Must be followed by a letter from A-Z).
+                   Will abort SEQ files for users who do NOT
+                   have appropriate access levels.
+
+
+Part II:  Output Display Codes
+
     The following are actual encoded basic commands that may
 be used in any message or text string.  Only users in local
 mode may enter these codes when the bbs is online.  Display
@@ -33,376 +34,376 @@ codes are created by typing the english pound sign located
 next to the CLR/HOME key followed by the codes listed below,
 and then another english pound sign.  Please be extremely
 careful that you follow the code syntax exactly because a
-misused or mistyped code could crash your system!_
-_
-p#     - Display the value located in the location specified_
-         by the "#". p828 (if surrounded with english pound_
-         signs) would display the value of location 828._
-_
-f(1)   - Display the amount of free variable memory._
-         Replacing the "1" with a "0" will display the_
-         free basic memory._
-_
-g#     - Gosub to the line in basic memory specified by the_
-         "#"._
-_
-?      - Print any type of text or variables. After the "?"_
-         may be a list of variables or a set of quotes with_
-         text inside._
-_
-w#     - Will cause output to wait or sleep for the number_
-         of seconds specified by the "#"._
-_
-s#     - Call the machine language subroutine located at the_
-         memory location specified by "#"._
-_
-$(#)   - Display the character code associated with the_
-         ascii value specified in the parenthesis. You_
-         may use any number from 0-255 as an argument._
-_
-_
-m(#)   - Print the mid$ of the string and ranges in the_
-         parenthesis. For example: m(a$,5,3)  (if surrounded_
-         by english pound signs) would display the 3_
-         characters of string a$ starting with the 5th._
-_
-ka$    - Will wait for the user to press a key. That key's_
-         value would be stored in a$._
-_
-_
-ÅPart III:  Menu Op-code Reference TableÄ_
-_
-ÑMain BBS Op-CodesÄ            "bbs.main"_
-_
-1  Load a new menu           A. Filename (*=prompt user)_
-_
-2  Load a Zelch Module       A. Filename (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive/LU  "           "_
-_
-3  Logoff (instant)          (none)_
-_
-4  Send E-Mail               A. ID#      (*=prompt user)_
-_
-5  Re-Read E-Mail            (none)_
-_
-6  Send Feedback             (none)_
-_
-7  Read Feedback             (none)_
-_
-8  Edit a Seq. File          A. Filename (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive/LU  "           "_
-                             D. Link data(*=prompt user,_
-                                          +=create/append,_
-                                          -=overwrite)_
-_
-9  Read a Seq. File          A. Filename (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive/LU  "           "_
-                             D. Link data(*=prompt user,_
-                                          +=read all)_
-_
-10  Character Prompt         A. Keys to abort_
-                             B. Keys to continue_
-_
-11  Password Prompt          A. Data (password to continue)_
-_
-12  Toggle Graphics Mode     (none)_
-_
-13  Toggle Linefeeds         (none)_
-_
-14  Check for Graphics Mode  A. Data (1=continue if color,_
-                                      0=continue if ASCII)_
-_
-_
-_
-_
-_
-15  Check 1 Access Flag      A. Access Flags_
-                                (continue if any match)_
-_
-16  Check 100% Match         A. Access Flags_
-                                (continue if all match)_
-_
-17  Page the Sysop           A. Data (0=toggle page,_
-                                      1=continuously on)_
-_
-18  DOS Command              A. Data (command or *=prompt)_
-                             B. Device   (*=prompt user)_
-                             C. Drive/LU  "           "_
-_
-19  Directory                A. Filemask (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive/LU  "           "_
-                             D. Char Mask(*=prompt user,_
-                                #=set all data to current_
-                                  U/D area data)_
-_
-20  Random Check             A. Data (% to continue)_
-_
-21  Edit Stats               A. Data (*=displayed menu, or_
-                                      1=change handle,_
-                                      2=password,_
-                                      3=columns,_
-                                      4=last call date,_
-                                      5=auto-pause feature,_
-                                      6=line #'s in msg mkr,_
-                                      7=computer type,_
-                                      8=2400 baud timing)_
-_
-22  Userlist                 (none)_
-_
-23  Relogon                  (none)_
-_
-24  Change One-liner         (none) -- Does not work with_
-                                       random one-liners._
-_
-25  Display Line of Text     A. Data (text to display)_
-_
-26  Execute Another Op-code  A. Data (opcode to execute:_
-                                uppercase=command,_
-                                lowercase=opcode routine)_
-_
-27  Change Baud Rate         (none) -- 100-600 baud only_
-_
-28  Count Files              A. Filemask (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive/LU  "           "_
-_
-29  Redisplay Menu Text      (none)_
-_
-_
-_
-_
-_
-_
-30  Check for User ID#       A. ID Numbers (ID's that may_
-                                continue--separated by_
-                                semicolons (;))_
-_
-31  Set an Access Flag       A. Data (flag to change,_
-                                      *=prompt user)_
-                             B. Data (0=clear flag,_
-                                      1=set flag,_
-                                      *=prompt user)_
-_
-32  Jump on Bad Compare      A. Data (opcode to execute:_
-                                uppercase=command,_
-                                lowercase=opcode routine)_
-_
-33  Change System Credits    A. Data (amount to add or_
-                                      subtract)_
-_
-34  Reset Counter Variable   A. Data (0=calls since boot,_
-                                      2=number of feedback,_
-                                      4=calls ever,_
-                                      5=logged errors,_
-                                      6=new users)_
-_
-35  Check System Credits     A. Data (min. amount to cont.)_
-_
-36  Run a Basic Program      A. Filename (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive/LU  "           "_
-_
-37  Return to Previous Menu  (none)_
-_
-38  Write a File w/Header    A. Filename (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive/LU  "           "_
-                             D. Link data (+=append,_
-                                           -=overwrite)_
-_
-39  Menu Prompt              A. Data (valid keys)_
-                             B. Data (corresponding cmds)_
-_
-40  Check Access             A. Access Levels to continue_
-_
-41  Toggle ANSI              (none)_
-_
-_
-ÑMessage Base Op-CodesÄ        "prg.msg bases"_
-_
-101  Select a Message Base   A. Subboard (*=prompt user)_
-_
-102  List Message Bases      A. Subboard (starting msg base,_
-                                          *=A)_
-                             B. Subboard (ending msg base,_
-                                          *=Z)_
-_
-_
-_
-_
-_
-103  Read a Message          A. Data (msg #, *=prompt user,_
-                                      +=next, -=previous)_
-_
-104  Read New Messages       (none) -- current message base_
-_
-105  Global Read New         A. Subboard (ending msg base)_
-_
-106  Post a Message          (none)_
-_
-107  Scan Messages           A. Data (starting #, *=prompt)_
-_
-108  Check SubOp flag        (none)_
-_
-109  Edit Sub Intro          (none)_
-_
-110  Drop/Join Current Sub   (none)_
-_
-111  Scan New Messages       (none)_
-_
-112  Toggle Msg Read Mode    (none)_
-_
-_
-ÑU/D Base Op-CodesÄ            "prg.u/d bases"_
-Ç_
-201  Select a U/D Base       A. Subboard (*=prompt user)_
-_
-202  List U/D Bases          A. Subboard (starting u/d base,_
-                                          *=A)_
-                             B. Subboard (ending u/d base,_
-                                          *=Z)_
-_
-203  Upload a File           A. Filename (*=prompt user,_
-                                          #=current u/d)_
-                             B. Data (filetype 1=PRG, 2=SEQ)_
-                             C. Device   (*=prompt, #=u/d)_
-                             D. Drive/LU  "             "_
-_
-204  Download a File         A. Filename (*=prompt user,_
-                                          #=current u/d)_
-                             B. Data (filetype 1=PRG, 2=SEQ)_
-                             C. Device   (*=prompt, #=u/d)_
-                             D. Drive/LU  "             "_
-_
-205  Multi-Upload            A. Data (#=current u/d, *=open)_
-                             B. Device (if open)_
-                             C. Drive/LU (if open)_
-_
-206  Multi-Download          A. Data (#=current u/d, *=open)_
-                             B. Device (if open)_
-                             C. Drive/LU (if open)_
-_
-207  Check SubOp Flag        (none)_
-_
-208  Display Blocks Free     (none) -- current u/d base_
-_
-_
-_
-_
-209  Edit Sub Intro          (none)_
-_
-210  Change Protocols        A. Data (*=prompt, 0=punter,_
-                                      1=xmodem, #=toggle)_
-_
-211  Rebuild Description Log (none)_
-_
-212  List Files w/Desc.      (none)_
-ÇÇ_
-Ç_
-ÑVoting Booth Op-CodesÄ        "prg.voting booth"_
-Ç_
-301  Create/Edit a Topic     A. Topic (*=prompt, #=next_
-                                       available slot)_
-                             B. Data (1=normal,_
-                                      2=questionaire,_
-                                      *=prompt)_
-_
-302  Delete a Topic          A. Topic (*=prompt user)_
-_
-303  Reset Topic Results     A. Topic (*=prompt user)_
-_
-304  Vote on a Topic         A. Topic (*=prompt user_
-                                       +=next, -=previous)_
-_
-305  List Available Topics   A. Data (0=regular, 1=extended)_
-_
-306  Validate a Topic        A. Topic (*=prompt user)_
-                             B. Access levels (*=prompt)_
-_
-_
-ÑSysOp Op-CodesÄ               "prg.sysop"_
-_
-401  View User Information   (none)_
-_
-402  Edit User Information   (none)_
-_
-403  Edit a Message Base     A. Subboard (*=prompt user,_
-                                          #=current sub)_
-_
-404  Edit a U/D Base         A. Subboard (*=prompt user,_
-                                          #=current sub)_
-_
-405  ZOS Interface           A. Device (*=8)_
-                             B. Drive  (*=0)_
-_
-406  Edit Time/Date          (none)_
-_
-407  Add a User              (none)_
-_
-408  Read New User Apps      (none)_
-_
-409  Edit One-liners File    (none)_
-_
-_
-_
-_
-_
-ÑNews Op-CodesÄ                "prg.news"_
-_
-501  Create/Edit a Newsfile  A. Filename (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive     "           "_
-                             D. Data (newsfile to edit,_
-                                      *=prompt user)_
-_
-502  Delete a Newsfile       A. Filename (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive     "           "_
-                             D. Data (newfile to edit,_
-                                      *=prompt user)_
-_
-503  List Newsfiles          A. Filename (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive     "           "_
-_
-504  Read a Newsfile         A. Filename (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive     "           "_
-                             D. Data (newfile to edit,_
-                                      *=prompt user)_
-_
-505  Read New Newsfiles      A. Filename (*=prompt user)_
-                             B. Device    "           "_
-                             C. Drive     "           "_
-_
-_
-ÑMiscellaneous Op-CodesÄ       "prg.misc"_
-_
-601  Menu Editor             (none)_
-_
-602  Searcher/Changer        (none)_
-_
-603  Message Base Fixer      (none)_
-_
-_
-ÑNetwork Op-CodesÄ             "prg.network"_
-_
-701  Net E-Mail              (none)_
-_
-702  Net Feedback            (none)_
-_
-703  List Systems            (none)_
-_
-704  Add a System            (none)_
-_
-705  Delete a System         (none)_
-_
-_
-_
-_
-_
-
+misused or mistyped code could crash your system!
+
+p#     - Display the value located in the location specified
+         by the "#". p828 (if surrounded with english pound
+         signs) would display the value of location 828.
+
+f(1)   - Display the amount of free variable memory.
+         Replacing the "1" with a "0" will display the
+         free basic memory.
+
+g#     - Gosub to the line in basic memory specified by the
+         "#".
+
+?      - Print any type of text or variables. After the "?"
+         may be a list of variables or a set of quotes with
+         text inside.
+
+w#     - Will cause output to wait or sleep for the number
+         of seconds specified by the "#".
+
+s#     - Call the machine language subroutine located at the
+         memory location specified by "#".
+
+$(#)   - Display the character code associated with the
+         ascii value specified in the parenthesis. You
+         may use any number from 0-255 as an argument.
+
+
+m(#)   - Print the mid$ of the string and ranges in the
+         parenthesis. For example: m(a$,5,3)  (if surrounded
+         by english pound signs) would display the 3
+         characters of string a$ starting with the 5th.
+
+ka$    - Will wait for the user to press a key. That key's
+         value would be stored in a$.
+
+
+Part III:  Menu Op-code Reference Table
+
+Main BBS Op-Codes            "bbs.main"
+
+1  Load a new menu           A. Filename (*=prompt user)
+
+2  Load a Zelch Module       A. Filename (*=prompt user)
+                             B. Device    "           "
+                             C. Drive/LU  "           "
+
+3  Logoff (instant)          (none)
+
+4  Send E-Mail               A. ID#      (*=prompt user)
+
+5  Re-Read E-Mail            (none)
+
+6  Send Feedback             (none)
+
+7  Read Feedback             (none)
+
+8  Edit a Seq. File          A. Filename (*=prompt user)
+                             B. Device    "           "
+                             C. Drive/LU  "           "
+                             D. Link data(*=prompt user,
+                                          +=create/append,
+                                          -=overwrite)
+
+9  Read a Seq. File          A. Filename (*=prompt user)
+                             B. Device    "           "
+                             C. Drive/LU  "           "
+                             D. Link data(*=prompt user,
+                                          +=read all)
+
+10  Character Prompt         A. Keys to abort
+                             B. Keys to continue
+
+11  Password Prompt          A. Data (password to continue)
+
+12  Toggle Graphics Mode     (none)
+
+13  Toggle Linefeeds         (none)
+
+14  Check for Graphics Mode  A. Data (1=continue if color,
+                                      0=continue if ASCII)
+
+
+
+
+
+15  Check 1 Access Flag      A. Access Flags
+                                (continue if any match)
+
+16  Check 100% Match         A. Access Flags
+                                (continue if all match)
+
+17  Page the Sysop           A. Data (0=toggle page,
+                                      1=continuously on)
+
+18  DOS Command              A. Data (command or *=prompt)
+                             B. Device   (*=prompt user)
+                             C. Drive/LU  "           "
+
+19  Directory                A. Filemask (*=prompt user)
+                             B. Device    "           "
+                             C. Drive/LU  "           "
+                             D. Char Mask(*=prompt user,
+                                #=set all data to current
+                                  U/D area data)
+
+20  Random Check             A. Data (% to continue)
+
+21  Edit Stats               A. Data (*=displayed menu, or
+                                      1=change handle,
+                                      2=password,
+                                      3=columns,
+                                      4=last call date,
+                                      5=auto-pause feature,
+                                      6=line #'s in msg mkr,
+                                      7=computer type,
+                                      8=2400 baud timing)
+
+22  Userlist                 (none)
+
+23  Relogon                  (none)
+
+24  Change One-liner         (none) -- Does not work with
+                                       random one-liners.
+
+25  Display Line of Text     A. Data (text to display)
+
+26  Execute Another Op-code  A. Data (opcode to execute:
+                                uppercase=command,
+                                lowercase=opcode routine)
+
+27  Change Baud Rate         (none) -- 100-600 baud only
+
+28  Count Files              A. Filemask (*=prompt user)
+                             B. Device    "           "
+                             C. Drive/LU  "           "
+
+29  Redisplay Menu Text      (none)
+
+
+
+
+
+
+30  Check for User ID#       A. ID Numbers (ID's that may
+                                continue--separated by
+                                semicolons (;))
+
+31  Set an Access Flag       A. Data (flag to change,
+                                      *=prompt user)
+                             B. Data (0=clear flag,
+                                      1=set flag,
+                                      *=prompt user)
+
+32  Jump on Bad Compare      A. Data (opcode to execute:
+                                uppercase=command,
+                                lowercase=opcode routine)
+
+33  Change System Credits    A. Data (amount to add or
+                                      subtract)
+
+34  Reset Counter Variable   A. Data (0=calls since boot,
+                                      2=number of feedback,
+                                      4=calls ever,
+                                      5=logged errors,
+                                      6=new users)
+
+35  Check System Credits     A. Data (min. amount to cont.)
+
+36  Run a Basic Program      A. Filename (*=prompt user)
+                             B. Device    "           "
+                             C. Drive/LU  "           "
+
+37  Return to Previous Menu  (none)
+
+38  Write a File w/Header    A. Filename (*=prompt user)
+                             B. Device    "           "
+                             C. Drive/LU  "           "
+                             D. Link data (+=append,
+                                           -=overwrite)
+
+39  Menu Prompt              A. Data (valid keys)
+                             B. Data (corresponding cmds)
+
+40  Check Access             A. Access Levels to continue
+
+41  Toggle ANSI              (none)
+
+
+Message Base Op-Codes        "prg.msg bases"
+
+101  Select a Message Base   A. Subboard (*=prompt user)
+
+102  List Message Bases      A. Subboard (starting msg base,
+                                          *=A)
+                             B. Subboard (ending msg base,
+                                          *=Z)
+
+
+
+
+
+103  Read a Message          A. Data (msg #, *=prompt user,
+                                      +=next, -=previous)
+
+104  Read New Messages       (none) -- current message base
+
+105  Global Read New         A. Subboard (ending msg base)
+
+106  Post a Message          (none)
+
+107  Scan Messages           A. Data (starting #, *=prompt)
+
+108  Check SubOp flag        (none)
+
+109  Edit Sub Intro          (none)
+
+110  Drop/Join Current Sub   (none)
+
+111  Scan New Messages       (none)
+
+112  Toggle Msg Read Mode    (none)
+
+
+U/D Base Op-Codes            "prg.u/d bases"
+
+201  Select a U/D Base       A. Subboard (*=prompt user)
+
+202  List U/D Bases          A. Subboard (starting u/d base,
+                                          *=A)
+                             B. Subboard (ending u/d base,
+                                          *=Z)
+
+203  Upload a File           A. Filename (*=prompt user,
+                                          #=current u/d)
+                             B. Data (filetype 1=PRG, 2=SEQ)
+                             C. Device   (*=prompt, #=u/d)
+                             D. Drive/LU  "             "
+
+204  Download a File         A. Filename (*=prompt user,
+                                          #=current u/d)
+                             B. Data (filetype 1=PRG, 2=SEQ)
+                             C. Device   (*=prompt, #=u/d)
+                             D. Drive/LU  "             "
+
+205  Multi-Upload            A. Data (#=current u/d, *=open)
+                             B. Device (if open)
+                             C. Drive/LU (if open)
+
+206  Multi-Download          A. Data (#=current u/d, *=open)
+                             B. Device (if open)
+                             C. Drive/LU (if open)
+
+207  Check SubOp Flag        (none)
+
+208  Display Blocks Free     (none) -- current u/d base
+
+
+
+
+209  Edit Sub Intro          (none)
+
+210  Change Protocols        A. Data (*=prompt, 0=punter,
+                                      1=xmodem, #=toggle)
+
+211  Rebuild Description Log (none)
+
+212  List Files w/Desc.      (none)
+
+
+Voting Booth Op-Codes        "prg.voting booth"
+
+301  Create/Edit a Topic     A. Topic (*=prompt, #=next
+                                       available slot)
+                             B. Data (1=normal,
+                                      2=questionaire,
+                                      *=prompt)
+
+302  Delete a Topic          A. Topic (*=prompt user)
+
+303  Reset Topic Results     A. Topic (*=prompt user)
+
+304  Vote on a Topic         A. Topic (*=prompt user
+                                       +=next, -=previous)
+
+305  List Available Topics   A. Data (0=regular, 1=extended)
+
+306  Validate a Topic        A. Topic (*=prompt user)
+                             B. Access levels (*=prompt)
+
+
+SysOp Op-Codes               "prg.sysop"
+
+401  View User Information   (none)
+
+402  Edit User Information   (none)
+
+403  Edit a Message Base     A. Subboard (*=prompt user,
+                                          #=current sub)
+
+404  Edit a U/D Base         A. Subboard (*=prompt user,
+                                          #=current sub)
+
+405  ZOS Interface           A. Device (*=8)
+                             B. Drive  (*=0)
+
+406  Edit Time/Date          (none)
+
+407  Add a User              (none)
+
+408  Read New User Apps      (none)
+
+409  Edit One-liners File    (none)
+
+
+
+
+
+News Op-Codes                "prg.news"
+
+501  Create/Edit a Newsfile  A. Filename (*=prompt user)
+                             B. Device    "           "
+                             C. Drive     "           "
+                             D. Data (newsfile to edit,
+                                      *=prompt user)
+
+502  Delete a Newsfile       A. Filename (*=prompt user)
+                             B. Device    "           "
+                             C. Drive     "           "
+                             D. Data (newfile to edit,
+                                      *=prompt user)
+
+503  List Newsfiles          A. Filename (*=prompt user)
+                             B. Device    "           "
+                             C. Drive     "           "
+
+504  Read a Newsfile         A. Filename (*=prompt user)
+                             B. Device    "           "
+                             C. Drive     "           "
+                             D. Data (newfile to edit,
+                                      *=prompt user)
+
+505  Read New Newsfiles      A. Filename (*=prompt user)
+                             B. Device    "           "
+                             C. Drive     "           "
+
+
+Miscellaneous Op-Codes       "prg.misc"
+
+601  Menu Editor             (none)
+
+602  Searcher/Changer        (none)
+
+603  Message Base Fixer      (none)
+
+
+Network Op-Codes             "prg.network"
+
+701  Net E-Mail              (none)
+
+702  Net Feedback            (none)
+
+703  List Systems            (none)
+
+704  Add a System            (none)
+
+705  Delete a System         (none)
+
+
+
+
+
+

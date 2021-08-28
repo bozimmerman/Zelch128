@@ -1,119 +1,117 @@
-ûh:10:3^^Zelch 128 v2.0a
-ûh:10:4^^Copyright (C)1991 Elite Software
-_
-                     Table of Contents_
-_
-_
- 1.0   Introduction to Zelch 128..........................1_
- 1.1a  Disclaimer.........................................1_
-    b  Copyright information..............................1_
-    c  Usage agreement (do's and don'ts)..................1_
- 1.2   Ordering updates...................................2_
- 1.3a  Hardware compatibility.............................2_
-    b  Notes on drives/logical units......................3_
-    c  Ram expansion units................................3_
-    d  Trouble shooting...................................3_
- 1.4a  Getting started....................................4_
-    b  Drive selection....................................4_
-    c  Creating the necessary files.......................5_
-    d  Sample configurations..............................5_
-    e  Which files do I need? Where?......................6_
-    f  Definable text strings.............................7_
-    g  Installing RamDos on your boot disk................7_
-_
- 2.0   Introduction to the editor.........................7_
- 2.1a  Sequential file editor.............................7_
-    b  Command summary....................................8_
-    c  Editing commands...................................9_
-    d  Line formatting commands...........................9_
- 2.2a  Intro to the menu editor..........................10_
-    b  Command summary...................................11_
-    c  Editing commands..................................13_
- 2.3a  Offline utilities.................................13_
-    b  Function key editor...............................14_
-    c  Hardcopy users....................................14_
- 2.4a  Systems variables editor..........................14_
-    b  Color cycle.......................................14_
-    c  Drive configurations..............................15_
-    d  System variables..................................15_
-    e  Modem settings....................................17_
-    f  Time/call limits..................................18_
-_
- 3.0   Miscellaneous utilities...........................19_
- 3.1   ASCII table editor................................19_
- 3.2   Copy program......................................20_         
- 3.3a  "prg.misc" utilities..............................20_
-    b  Online menu editor................................20_
-    c  Message base fixer................................22_
-    d  User searcher/changer.............................23_
-_
- 4.0a  Booting the BBS...................................23_
-    b  Automatic ramloading..............................24_
-    c  All that loading..................................24_
-    d  Entering the time and date........................25_
- 4.1   Windows, windows and more windows.................25_
- 4.2a  Waiting for call..................................26_
-    b  Screen blanking...................................26_
-    c  Screen mode switching.............................26_
-    d  That groovy calculator............................26_
-    e  Pull down menu....................................26_
-_
-_
- 4.3a  Introduction to "the LOGS"........................27_
-    b  Extended call log.................................27_
-    c  The errorlog......................................28_
- 4.4a  Monster Mode! (auto-maintenance)..................28_
-    b  Writing a script..................................28_
-    c  Commands your monster can understand..............29_
-    d  The monster mode report...........................30_
- 4.5a  Logging on to the system..........................31_
-    b  Communication modes...............................32_
-    c  New user logon....................................32_
-    d  Calls, time, and idle time limits.................33_
-_
- 5.0   Online sysop utilities............................34_
- 5.1a  Chat mode.........................................34_
-    b  Forced logoff.....................................34_
- 5.2a  Pull down menu utilities (user dissection)........34_
-    b  Profile...........................................35_
-    c  Access and flags..................................35_
-    d  Time/credits......................................36_
-    e  Dos commands......................................36_
-    f  Other/unlisted user attributes....................36_
-_
- 6.0   Zapterm...........................................38_
- 6.1   Initialization....................................38_
- 6.2a  Zapterm menu......................................38_
-    b  Autodialer and phone book.........................38_
-    c  File commands.....................................39_
-    d  Terminal commands.................................39_
-    e  Other commands....................................39_
-_
- 7.0a  Op-codes and op-code routines.....................41_
-    b  Main BBS op-codes.................................43_
- 7.1a  Intro to Zelch message bases......................49_
-    b  Op-code module: "prg.msg bases"...................50_
- 7.2a  Intro to Zelch U/D bases..........................52_
-    b  Op-code module: "prg.u/d bases"...................52_
- 7.3a  Intro to the voting booth.........................54_
-    b  Op-code module: "prg.voting booth"................54_
- 7.4a  The SysOp-oriented op-codes.......................55_
-    b  Op-code module: "prg.sysop".......................55_
- 7.5a  Possibilities with newsfiles......................59_
-    b  Op-code module: "prg.news"........................60_
- 7.6   Op-code module: "prg.misc"........................60_
- 7.7a  Zelch networking system...........................60_
-    b  Concepts behind networking........................61_
-    c  Op-code module: "prg.network".....................62_
-_
-                         Appendices_
-_
- A.    Message Maker/online sequential editor............63_
- B.    Definable strings ("sys.text" file)...............66_
- C.    Required system sequential files..................69_
- D.    Writing Zelch specific modules....................72_
- E.    Memory usage and organization.....................75_
- F.    Machine language routines.........................79_
-_
-       Glossary..........................................84_
-
+Zelch 128 v2.0a
+Copyright (C)1991 Elite Software
+
+                     Table of Contents
+
+
+ 1.0   Introduction to Zelch 128..........................1
+ 1.1a  Disclaimer.........................................1
+    b  Copyright information..............................1
+    c  Usage agreement (do's and don'ts)..................1
+ 1.2   Ordering updates...................................2
+ 1.3a  Hardware compatibility.............................2
+    b  Notes on drives/logical units......................3
+    c  Ram expansion units................................3
+    d  Trouble shooting...................................3
+ 1.4a  Getting started....................................4
+    b  Drive selection....................................4
+    c  Creating the necessary files.......................5
+    d  Sample configurations..............................5
+    e  Which files do I need? Where?......................6
+    f  Definable text strings.............................7
+    g  Installing RamDos on your boot disk................7
+
+ 2.0   Introduction to the editor.........................7
+ 2.1a  Sequential file editor.............................7
+    b  Command summary....................................8
+    c  Editing commands...................................9
+    d  Line formatting commands...........................9
+ 2.2a  Intro to the menu editor..........................10
+    b  Command summary...................................11
+    c  Editing commands..................................13
+ 2.3a  Offline utilities.................................13
+    b  Function key editor...............................14
+    c  Hardcopy users....................................14
+ 2.4a  Systems variables editor..........................14
+    b  Color cycle.......................................14
+    c  Drive configurations..............................15
+    d  System variables..................................15
+    e  Modem settings....................................17
+    f  Time/call limits..................................18
+
+ 3.0   Miscellaneous utilities...........................19
+ 3.1   ASCII table editor................................19
+ 3.2   Copy program......................................20_
+ 3.3a  "prg.misc" utilities..............................20
+    b  Online menu editor................................20
+    c  Message base fixer................................22
+    d  User searcher/changer.............................23
+
+ 4.0a  Booting the BBS...................................23
+    b  Automatic ramloading..............................24
+    c  All that loading..................................24
+    d  Entering the time and date........................25
+ 4.1   Windows, windows and more windows.................25
+ 4.2a  Waiting for call..................................26
+    b  Screen blanking...................................26
+    c  Screen mode switching.............................26
+    d  That groovy calculator............................26
+    e  Pull down menu....................................26
+ 4.3a  Introduction to "the LOGS"........................27
+    b  Extended call log.................................27
+    c  The errorlog......................................28
+ 4.4a  Monster Mode! (auto-maintenance)..................28
+    b  Writing a script..................................28
+    c  Commands your monster can understand..............29
+    d  The monster mode report...........................30
+ 4.5a  Logging on to the system..........................31
+    b  Communication modes...............................32
+    c  New user logon....................................32
+    d  Calls, time, and idle time limits.................33
+
+ 5.0   Online sysop utilities............................34
+ 5.1a  Chat mode.........................................34
+    b  Forced logoff.....................................34
+ 5.2a  Pull down menu utilities (user dissection)........34
+    b  Profile...........................................35
+    c  Access and flags..................................35
+    d  Time/credits......................................36
+    e  Dos commands......................................36
+    f  Other/unlisted user attributes....................36
+
+ 6.0   Zapterm...........................................38
+ 6.1   Initialization....................................38
+ 6.2a  Zapterm menu......................................38
+    b  Autodialer and phone book.........................38
+    c  File commands.....................................39
+    d  Terminal commands.................................39
+    e  Other commands....................................39
+
+ 7.0a  Op-codes and op-code routines.....................41
+    b  Main BBS op-codes.................................43
+ 7.1a  Intro to Zelch message bases......................49
+    b  Op-code module: "prg.msg bases"...................50
+ 7.2a  Intro to Zelch U/D bases..........................52
+    b  Op-code module: "prg.u/d bases"...................52
+ 7.3a  Intro to the voting booth.........................54
+    b  Op-code module: "prg.voting booth"................54
+ 7.4a  The SysOp-oriented op-codes.......................55
+    b  Op-code module: "prg.sysop".......................55
+ 7.5a  Possibilities with newsfiles......................59
+    b  Op-code module: "prg.news"........................60
+ 7.6   Op-code module: "prg.misc"........................60
+ 7.7a  Zelch networking system...........................60
+    b  Concepts behind networking........................61
+    c  Op-code module: "prg.network".....................62
+
+                         Appendices
+
+ A.    Message Maker/online sequential editor............63
+ B.    Definable strings ("sys.text" file)...............66
+ C.    Required system sequential files..................69
+ D.    Writing Zelch specific modules....................72
+ E.    Memory usage and organization.....................75
+ F.    Machine language routines.........................79
+
+       Glossary..........................................84
+
