@@ -3,13 +3,12 @@
 !- Import of : 
 !- c:\src\zelch128\extras\gam.tic tac toe.prg
 !- Commodore 128 BASIC 7/7.1
-!- &&&&&& MIGHT BE PARTIALLY CORRUPT -- MISSING A FEW LINES @ THE END
 !--------------------------------------------------
 1 PRINT:GOTO61000
 2200 GETKEYAN$:IFINSTR("abcdefghijklmnopqrstuvwxyz",AN$)THENAN$=CHR$(ASC(AN$)OR128)
 2210 PRINT"{white}"AN$:RETURN
 61000 AN$="":CL$="{red}{pink}{yellow}{blue}{light blue}{cyan}{green}{light green}{white}":SY$="":PRINT:PRINT"{down*3}{light blue}TIC-TAC-TOE  {white}V{light blue}2{white}.{light blue}0":FORX=0TO10:SO(X)=0:NEXT
-61001 PRINT"{down}{white}THE{sh space}WESTERN{sh space}WHITE{sh space}HOUSE{sh space}714-498-2841{down}"
+61001 PRINT"{down}{white}{down}"
 61002 GOSUB61024
 61010 PRINT"{down*2}{light blue}Where do you move? {white}";:GOSUB2200
 61012 I%=VAL(AN$):IFI%>9THENGOTO61010
@@ -70,4 +69,4 @@
 61122 PRINT"{down*2}PLAY AGAIN (Y/N)?";
 61124 GOSUB2200:IFAN$="Y"THENL%=0:FORX=1TO9:SO(X)=0:NEXTX:I%=0:N%=0:GOTO61000
 61126 PRINT"{down*2}Thanks For Playing!
-61128 L%=0:FORX=1TO9:S
+61128 end
