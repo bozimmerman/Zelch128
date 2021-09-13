@@ -18,18 +18,18 @@
 110 IFLEN(I$)=5THEN70
 120 IFINSTR("0123456789?YySs",A$)=0THEN70
 130 I$=I$+A$:PRINTA$;:GOTO70
-140 PRINT:#############2,(FL$),U(UU):IFDS>0THENPRINT:CLOSE2:RETURN:ELSESYS8210:CLOSE2:RETURN
+140 PRINT:DOPEN#2,(FL$),U(UU):IFDS>0THENPRINT:CLOSE2:RETURN:ELSESYS8210:CLOSE2:RETURN
 150 PRINT"{ct k}{black}{reverse on}  Hit any key to continue  ";:GETKEYA$:PRINT:RETURN
 160 CO=0:PRINTQ$" (y/n) --> ";:DO:GETKEYA$:LOOPUNTILINSTR("YyNn",A$)>0
 170 PRINTA$:IFA$="y"ORA$="Y"THENCO=1:RETURN:ELSERETURN
 180 X=INT(RND(0)*5)+1:PRINT"{black}{ct k}"C$(X):RETURN
 190 X=INT(RND(0)*5)+1:PRINTC$(X):RETURN
-200 TRAP4790:CLOSE2:#############2,"emp.config",U(U):INPUT#2,M3:INPUT#2,M2:INPUT#2,UU:CLOSE2:DIMAR$(500)
+200 TRAP4790:CLOSE2:DOPEN#2,"emp.config",U(U):INPUT#2,M3:INPUT#2,M2:INPUT#2,UU:CLOSE2:DIMAR$(500)
 210 DR$="0":FL$="emp.reqs":GOSUB140:FL$="emp.emps":GOSUB140:BQ=0
-220 CLOSE2:#############2,"emp.req",U(UU):FORI=1TO10:INPUT#2,EM(I):NEXTI:CLOSE2
-230 CLOSE2:#############2,"emp.players",U(UU)
+220 CLOSE2:DOPEN#2,"emp.req",U(UU):FORI=1TO10:INPUT#2,EM(I):NEXTI:CLOSE2
+230 CLOSE2:DOPEN#2,"emp.players",U(UU)
 240 YU=0:AC=0
-250 YU=YU+1:IFYU>M2THEN290:ELSE##################2,YU,1:INPUT#2,N$
+250 YU=YU+1:IFYU>M2THEN290:ELSERECORD#2,YU,1:INPUT#2,N$
 260 IF(N$="empty")AND(AC=0)THENAC=YU
 270 IFN$=NM$ THEN AC=YU:GOTO330
 280 GOTO250
@@ -40,7 +40,7 @@
 330 C$(1)="Opening the Gates...":C$(2)="Entering your realm...":C$(3)="Rolling out the red carpet...":C$(4)="Crossing into unknown territory..."
 340 C$(5)="This might be your lucky day...":GOSUB180
 350 IFAC$="Z"THENPRINT"{ct k}{white}* {cyan}Sysop access recognized,{ct k}  Press [Z] at main menu to reset game."
-360 ##################2,YU,1:INPUT#2,N$,LA,WA,SF,NB,GR,TR,PN,I1,I2,I3,I4,I5,LD$,E2,I6,I7,I8,Q0,I9,Q1,Q2,Q3
+360 RECORD#2,YU,1:INPUT#2,N$,LA,WA,SF,NB,GR,TR,PN,I1,I2,I3,I4,I5,LD$,E2,I6,I7,I8,Q0,I9,Q1,Q2,Q3
 370 CLOSE2:IFE2>M3THENPRINT"{ct k*2}{black}No more plays left today!":END
 380 GOSUB4570
 390 CLOSE2:OPEN2,UU,2,"emp.msg":IFDSTHENCLOSE2:GOTO420
@@ -55,7 +55,7 @@
 480 IFI$="N"THENFL$="emp.news":GOSUB140:GOTO440
 490 ONINSTR("GRCZQ",I$)GOTO510,610,710,4600,4660
 500 GOTO440
-8857 {ct k}{ct k}STOP{reverse on}  VALRCLRRDOTRIGHT$HEX$VAL RGRJOYINSTRINSTRVALHEX$TROFF  {ct k}":og{cm r}{cm j}({cm f}(0){cm d}3{cm n}3):{light green}"{ct k}JOYSTR$STR$ERR$ ATNHEX$VAL:"D(og){cm n}"-1"
+510 PRINT"{ct k}{ct k}z{reverse on}  EMPIRE LOTTERY   {ct k}":og=INT(RND(0)*3+3):PRINT"{ct k}ODDS ARE:"+STR$(og)+"-1"
 520 PRINT"{black}You currently have $"STR$(PN)
 530 PRINT"{ct k}{black}Wager How Much (0=Quit):";:GOSUB60:W=ABS(INT(VAL(I$))):IFW=0THEN440
 540 IFW>5000THENPRINT"{ct k}{black}$5000 maximum bet.":GOTO510
@@ -70,9 +70,9 @@
 630 PRINT"New Tax Rate (max=50)? ";:GOSUB60:W=VAL(I$):IFW>50THENPRINT"{ct k}{black}50% is the maximum tax rate!{ct k}":GOTO610
 640 TR=W:PRINT"{ct k}{black}Tax rate now"+STR$(TR)+"%":GOTO440
 650 PRINT"{ct k*2}{black}{reverse on}  OTHER WARLORDS  {ct k}"
-660 CLOSE2:#############2,"emp.players",U(UU)
-670 FOR PL = 1 TO M2:##################2,PL,1:INPUT#2,N$:IFN$="empty"THEN700
-680 ##################2,PL,1:INPUT#2,N$,LN
+660 CLOSE2:DOPEN#2,"emp.players",U(UU)
+670 FOR PL = 1 TO M2:RECORD#2,PL,1:INPUT#2,N$:IFN$="empty"THEN700
+680 RECORD#2,PL,1:INPUT#2,N$,LN
 690 IFN$<>"empty"THENPRINT"{black}#"RIGHT$(STR$(PL),LEN(STR$(PL))-1)"  "N$" has"STR$(LN)" acres.":IFAB=1THENCLOSE2:GOSUB150:PL=M2+1:GOSUB150:RETURN
 700 NEXTPL:CLOSE2:GOSUB150:RETURN
 710 HV=INT(LA*2.7*RND(0)+SF*7.5*RND(0)+I3*99*RND(0)):IFHV>(LA+SF)*4THENHV=(LA+SF)*4
@@ -158,7 +158,7 @@
 1510 IFI$=""THENW=0:RETURN
 1520 W=VAL(I$):IFW>MATHENPRINT"{ct k}{black}You cannot buy that many!":GOTO1460
 1530 PN=PN-(W*PC):IV$=IV$+"s.":RETURN
-1540 CLOSE2:#############2,"emp.players",L150,U(UU):##################2,AC,1:Z$=","
+1540 CLOSE2:DOPEN#2,"emp.players",L150,U(UU):RECORD#2,AC,1:Z$=","
 1550 I$=NM$+Z$+STR$(LA)+Z$+STR$(WA)+Z$+STR$(SF)+Z$+STR$(NB)+Z$+STR$(GR)+Z$+STR$(TR)+Z$+STR$(PN)+Z$+STR$(I1)+Z$+STR$(I2)+Z$+STR$(I3)+Z$+STR$(I4)+Z$+STR$(I5)
 1560 IFLD$<>DT$THENE2=0
 1570 E2=E2+1:LD$=DT$:I$=I$+Z$+DT$+Z$+STR$(E2)+Z$+STR$(I6)+Z$+STR$(I7)+Z$+STR$(I8)+Z$+STR$(Q0)+Z$+STR$(I9)+Z$+STR$(Q1)+Z$+STR$(Q2)+Z$+STR$(Q3)
@@ -183,7 +183,7 @@
 1760 IFI$="0"THEN2050
 1770 I=VAL(I$):IF(I<1)OR(I>4)THEN1720
 1780 ON(I)GOTO1800,1860,1950,2000
-35209 GOTOGOTOGOTOGOTO1720
+1790 GOTO1720
 1800 MG=25000-Q1:IFMG<0 THEN MG=0
 1810 IFMG>GRTHENMG=GR
 1820 PRINT"{ct k}{black}Load Grain [Max ="MG"] =>";:GOSUB60
@@ -311,7 +311,7 @@
 3040 IFAX>Q3THENPRINT"{ct k}{black}You only have"STR$(Q3)" tons.":GOTO2980
 3050 PRINT"{ct k}{black}Gross Profit  : {white}$"STR$(AX*IA):IQ=INT(RND(0)*15)+21:IQ=IQ/100
 3060 PRINT"{black}Import Taxes  : {white}$"STR$(INT(AX*IA*IQ))"    ("STR$(IQ)"% )"
-39321 PRINTPRINTPRINTPRINTPRINTPRINTPRINTPRINTPRINT"{black}Net Profit    : {white}$"STR$(AX*IA-INT(AX*IA*IQ))
+3070 PRINT"{black}Net Profit    : {white}$"STR$(AX*IA-INT(AX*IA*IQ))
 3080 11111111111:Q3=Q3-AX:PN=PN+(AX*IA-INT(AX*IA*IQ)):GOTO3090
 3090 AX=INT(RND(0)*Q3+5):IFAX>Q3THEN3110
 3100 PRINT"{ct k}{black}Spoilage consumes"STR$(AX)" ton(s).":Q3=Q3-AX
@@ -323,8 +323,8 @@
 3160 IFI$="y"ORI$="Y"THENGOSUB1590:GOTO3130
 3170 IFI$="?"THENGOSUB650:GOTO3120
 3180 AT=VAL(I$):IF(AT<1)OR(AT>24)THENGOTO3240
-3190 CLOSE2:#############2,"emp.players",U(UU):##################2,AT,1:INPUT#2,N$:IFN$="empty"THENCLOSE2:GOTO3240
-3200 ##################2,AT,1:INPUT#2,EN$,EA,EW,EP,EN,EG,ET,EM,V1,V2,V3,V4,V5,AD$,AD,V6,V7,V8,K0,V9,K1,K2,K3
+3190 CLOSE2:DOPEN#2,"emp.players",U(UU):RECORD#2,AT,1:INPUT#2,N$:IFN$="empty"THENCLOSE2:GOTO3240
+3200 RECORD#2,AT,1:INPUT#2,EN$,EA,EW,EP,EN,EG,ET,EM,V1,V2,V3,V4,V5,AD$,AD,V6,V7,V8,K0,V9,K1,K2,K3
 3210 CLOSE2:PRINT"{ct k}{black} => Enemy: "EN$" <={ct k} => Land:"STR$(EA)" acres"
 3220 Q$="{ct k}Is this correct":GOSUB160
 3230 IFCO=0THEN3120:ELSE3250
@@ -365,7 +365,7 @@
 3580 PRINT"{black}{ct k}"EN$" has"STR$(EA)" acres left":GOTO4170
 3590 AP$=NM$+" IS DEFEATED BY "+EN$:PRINT"{ct k*2}{black}Defeated!  But your remaining warlords":LT=(ABS(SR-EW))
 3600 LT=ABS(INT(LT*RND(0)*4)+100):PRINT"manage to claim"STR$(LT)" enemy acres.":LA=(LA+LT):EA=INT(EA-LT):GOSUB1630:GOTO3560
-3610 AP$=NM$+" KILLS "+EN$:GOSUB1630:CLOSE2:OPEN2,UU,2,"emp.players":##################2,AT,1:PRINT#2,"empty":CLOSE2:SF=SF+EP:PN=PN+EM:GOTO4210
+3610 AP$=NM$+" KILLS "+EN$:GOSUB1630:CLOSE2:OPEN2,UU,2,"emp.players":RECORD#2,AT,1:PRINT#2,"empty":CLOSE2:SF=SF+EP:PN=PN+EM:GOTO4210
 3620 PRINT"{ct k}{black}*Attack Palace*":
 3630 IFV3<1THENPRINT"{ct k}{black}They don't have a palace!":GOTO3360
 3640 IFRND(0)*WA<RND(0)*EW*2 THEN 3750
@@ -421,7 +421,7 @@
 4140 PRINT"{ct k}{black}You take a warlord{ct k}and 20 Soldiers!":EN=EN-1:EW=EW-1:IFEW<1THENEW=0
 4150 NB=NB+1:WA=WA+20
 4160 PRINT"{ct k*2}{black}Returning to battle...":22222222222:GOTO3360
-4170 CLOSE2:OPEN2,UU,2,"emp.players":##################2,AT,1
+4170 CLOSE2:OPEN2,UU,2,"emp.players":RECORD#2,AT,1
 4180 Z$=","
 4190 I$=EN$+Z$+STR$(EA)+Z$+STR$(EW)+Z$+STR$(EP)+Z$+STR$(EN)+Z$+STR$(EG)+Z$+STR$(ET)+Z$+STR$(EM)+Z$+STR$(V1)+Z$+STR$(V2)+Z$+STR$(V3)+Z$+STR$(V4)+Z$+STR$(V5)
 4200 I$=I$+Z$+AD$+Z$+STR$(AD)+Z$+STR$(V6)+Z$+STR$(V7)+Z$+STR$(V8)+Z$+STR$(K0)+Z$+STR$(V9)+Z$+STR$(K1)+Z$+STR$(K2)+Z$+STR$(K3):PRINT#2,I$:I$="":CLOSE2
@@ -439,12 +439,12 @@
 4320 A=INT(RND(0)*(LA/3)):PRINT"{ct k}{black}King George rewards you with"STR$(A):LA=LA+A
 4330 C$(1)="Acres for not banging his daughter!!":C$(2)="Acres cuz he says you have a cute butt!":C$(3)="Acres for murdering one of his{ct k}unwanted relatives
 4340 C$(4)="Acres for the hell of it...":C$(5)="Acres because his daughter is still a{ct k}virgin.... he checked himself!":GOSUB190:GOTO4390
-17733 EEEEEEEEEEEEEE2=E2-1:PRINT"{ct k}{black}King George Rewards You With 1 Extra{ct k}Play Today!":GOTO4390
+4350 E2=E2-1:PRINT"{ct k}{black}King George Rewards You With 1 Extra{ct k}Play Today!":GOTO4390
 4360 IFI6<1THEN4390
 4370 PRINT"{ct k*2}{black}VD Epidemic Strikes Your Military Camp!"
 4380 N1=INT(WA/((RND(0)*6)+3)):PRINT"{ct k}{black}Soldiers Killed ..."STR$(N1):WA=WA-N1:GOTO4390
 4390 IF(LA<50)THENPRINT"{ct k}{black}You dont have enough land to continue.{ct k}You gone...":GOTO4690
-12336 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000{down}IF(SF<99)THENPRINT"{ct k}{black}Not enough people to continue.{ct k}You gone...":GOTO4690
+4400 IF(SF<99)THENPRINT"{ct k}{black}Not enough people to continue.{ct k}You gone...":GOTO4690
 4410 PRINT"{ct k*2}{black}{reverse on}  Treasury Report  {ct k*2}":P1=INT(((RND(0)*75)+25)*91):P2=INT(((RND(0)*100)+50)*I2):P3=INT(((RND(0)*175)+125)*I4):P4=INT(((RND(0)*200)+150)*I5)
 4420 P5=INT(((RND(0)*500)+200)*I6):P6=INT(((RND(0)*1500)+220)*I9):TP=P1+P2+P3+P4+P5+P6:PN=PN+TP
 4430 PRINT"{black}Markets       :"P1"{ct k}{black}Mills         :"P2"{ct k}{black}Foundries     :"P3"{ct k}{black}Shipyards     :"P4"{ct k}{black}Brothels      :"P5"{ct k}{black}Colonies      :"P6"{ct k}{black}Total Profit  :"TP
@@ -466,14 +466,14 @@
 4590 PRINT"{ct k}{white}* {cyan}You have"STR$(M3-E2)" plays left.":RETURN
 4600 IFAC$<>"Z"THEN440
 4610 Q$="{ct k}{black}Reset the Empire":GOSUB160:IFCO=0THEN440
-4620 PRINT"{ct k}{black}Clearing all accounts...":CLOSE2:#############2,"emp.players",U(UU):FORX=1TOM2:##################2,X,1:PRINT#2,"empty":NEXT X:CLOSE2
+4620 PRINT"{ct k}{black}Clearing all accounts...":CLOSE2:DOPEN#2,"emp.players",U(UU):FORX=1TOM2:RECORD#2,X,1:PRINT#2,"empty":NEXT X:CLOSE2
 4630 PRINT"{black}Resetting news...":CLOSE15:OPEN15,UU,15,"s0:emp.news":CLOSE15:OPEN2,UU,2,"emp.news,s,w":PRINT#2,"Activity Recorded On: "+DT$
 4640 CLOSE 2
 4650 GOTO230
 4660 PRINT"{ct k}{black}Good Bye 'O Mighty Warlord!{ct k*2}Enter 1 line msg to next warlord":INPUTI$
 4670 IFI$=""THENEND
 4680 CLOSE15:OPEN15,UU,15,"s0:emp.msg":CLOSE15:CLOSE2:OPEN2,UU,2,"emp.msg,s,w":PRINT#2,CHR$(34)+NM$:PRINT#2,I$:CLOSE2:END
-4690 CLOSE2:#############2,"emp.players",U(UU):##################2,AC,1:PRINT#2,"empty":CLOSE2:END
+4690 CLOSE2:DOPEN#2,"emp.players",U(UU):RECORD#2,AC,1:PRINT#2,"empty":CLOSE2:END
 4700 IFLA<EM(1)ORSF<EM(2)ORNB<EM(3)ORI1<EM(4)ORI2<EM(5)OR(I3*10)<EM(9)ORI4<EM(6)ORI5<EM(7)ORI6<EM(8)ORI9<EM(10)THENRETURN
 4710 PRINT"{ct k*3}{black}A NEW EMPEROR!  You have conquered"
 4720 PRINT"all others... a job well done!"
