@@ -122,9 +122,11 @@ Main BBS Op-Codes            "bbs.main"
 
 15  Check 1 Access Flag      A. Access Flags
                                 (continue if any match)
+                             B. Data (Clear=0, Set=1)
 
 16  Check 100% Match         A. Access Flags
                                 (continue if all match)
+                             B. Data (Clear=0, Set=1)
 
 17  Page the Sysop           A. Data (0=toggle page,
                                       1=continuously on)
@@ -134,25 +136,28 @@ Main BBS Op-Codes            "bbs.main"
                              C. Drive/LU  "           "
 
 19  Directory                A. Filemask (*=prompt user)
+                                         (**=no filemask)                    
                              B. Device    "           "
                              C. Drive/LU  "           "
                              D. Char Mask(*=prompt user,
                                 #=set all data to current
-                                  U/D area data)
+                                  U/D area data, or 0-255)
 
 20  Random Check             A. Data (% to continue)
 
 21  Edit Stats               A. Data (*=displayed menu, or
-                                      1=change handle,
-                                      2=password,
-                                      3=columns,
-                                      4=last call date,
-                                      5=auto-pause feature,
-                                      6=line #'s in msg mkr,
-                                      7=computer type,
-                                      8=2400 baud timing)
+                                      #=use numbers,
+                                      A/1=change handle,
+                                      B/2=password,
+                                      C/3=columns,
+                                      D/4=last call date,
+                                      E/5=auto-pause feature,
+                                      F/6=line #'s in msg mkr,
+                                      G/7=computer type,
+                                      H/8=2400 baud timing)
 
-22  Userlist                 (none)
+22  Userlist                 A. Starting # (*=prompt)
+                             B. Extended List (0=No,1=Yes,or A-Z)
 
 23  Relogon                  (none)
 
@@ -222,15 +227,18 @@ Main BBS Op-Codes            "bbs.main"
 
 41  Toggle ANSI              (none)
 
+42  List Email               (none)
+
+43  Check Gate Flag          A. Data (Gate A-Z to check)
 
 Message Base Op-Codes        "prg.msg bases"
 
 101  Select a Message Base   A. Subboard (*=prompt user)
 
 102  List Message Bases      A. Subboard (starting msg base,
-                                          *=A)
+                                          *=A, # or number)
                              B. Subboard (ending msg base,
-                                          *=Z)
+                                          *=Z, # or number)
 
 
 
@@ -279,34 +287,26 @@ U/D Base Op-Codes            "prg.u/d bases"
                              C. Device   (*=prompt, #=u/d)
                              D. Drive/LU  "             "
 
-205  Multi-Upload            A. Data (#=current u/d, *=open)
-                             B. Device (if open)
-                             C. Drive/LU (if open)
+205  Add Filename to Dir     A. Filename (*=prompt)
+                             B. Data (File Type 1=PRG, 2=SEQ)
 
-206  Multi-Download          A. Data (#=current u/d, *=open)
-                             B. Device (if open)
-                             C. Drive/LU (if open)
+206  Del Filename From Dir   A. Filename (*=prompt)
 
 207  Check SubOp Flag        (none)
 
 208  Display Blocks Free     (none) -- current u/d base
-
-
-
 
 209  Edit Sub Intro          (none)
 
 210  Change Protocols        A. Data (*=prompt, 0=punter,
                                       1=xmodem, #=toggle)
 
-211  Rebuild Description Log (none)
-
-212  List Files w/Desc.      (none)
+211  List Files in Directory (none)
 
 
 Voting Booth Op-Codes        "prg.voting booth"
 
-301  Create/Edit a Topic     A. Topic (*=prompt, #=next
+301  Create/Edit a Topic     A. Topic (*=prompt, +=next
                                        available slot)
                              B. Data (1=normal,
                                       2=questionaire,
@@ -319,7 +319,10 @@ Voting Booth Op-Codes        "prg.voting booth"
 304  Vote on a Topic         A. Topic (*=prompt user
                                        +=next, -=previous)
 
-305  List Available Topics   A. Data (0=regular, 1=extended)
+305  List Available Topics   A. Data (0=regular, 1=extended,
+                                      3=regular #, 4=ext #)
+                             B. Data (beginning #)
+                             C. Data (ending #)
 
 306  Validate a Topic        A. Topic (*=prompt user)
                              B. Access levels (*=prompt)
@@ -348,7 +351,7 @@ SysOp Op-Codes               "prg.sysop"
 
 409  Edit One-liners File    (none)
 
-
+410  Add a Reservation       (none)
 
 
 
@@ -369,6 +372,8 @@ News Op-Codes                "prg.news"
 503  List Newsfiles          A. Filename (*=prompt user)
                              B. Device    "           "
                              C. Drive     "           "
+                             D. Data (*=normal, #=numb, 
+                                      starting # or Letter)
 
 504  Read a Newsfile         A. Filename (*=prompt user)
                              B. Device    "           "
@@ -380,6 +385,13 @@ News Op-Codes                "prg.news"
                              B. Device    "           "
                              C. Drive     "           "
 
+506  Network News            A. Data (# days to remain new)
+                             B. Data (# days to deletion)
+
+507  Execute a Script        A. Filename (*=prompt user)
+                             B. Device    "           "
+                             C. Drive     "           "
+
 
 Miscellaneous Op-Codes       "prg.misc"
 
@@ -387,20 +399,23 @@ Miscellaneous Op-Codes       "prg.misc"
 
 602  Searcher/Changer        (none)
 
-603  Message Base Fixer      (none)
+603  Message Base Fixer      A. Subboard (*=prompt user,
+                                          #=current sub)
 
 
 Network Op-Codes             "prg.network"
 
-701  Net E-Mail              (none)
+701  Net E-Mail              A. Network System (*=prompt, +=all)
+                             B. User Handle (*=prompt)
 
-702  Net Feedback            (none)
+702  Net Feedback            A. Network System (*=prompt, +=all)
 
-703  List Systems            (none)
+703  List Systems            A. Starting Network System 
+                             B. Ending Network System
 
-704  Add a System            (none)
+704  Edit a System           A. Network System (*=prompt, +=home)
 
-705  Delete a System         (none)
+705  Add a System            (none)
 
 
 

@@ -169,8 +169,6 @@ loaded into the message maker for editing and/or creating.
 Many Zelch files are further separated into different links
 (like an E-Mail file containing 5 file links, ie: 5 pieces
 of mail, or a message containing 15 replies, ie: 15 file
-
-
 links).  Link 0 in any file is usually the first file link,
 or the entire file in cases where there is only 1 part to
 the file.  For menus, link 0 contains the viewable menu
@@ -245,17 +243,18 @@ users access LEVEL, access flags (lettered A through Z) are
 simply put: flags individual to each user which may be
 either set, or not set.  The purpose of this op-code is to
 check to see if any one access flag specified in the data
-field is set.  If ANY of the flags which you have set in the
-datafield are also set for the caller, the system will allow
-the rest of the op-codes in the command to be executed.
-Otherwise the command will not be executed and the user will
-be returned to the prompt.
+field is set or clear.  If ANY of the flags which you have set 
+in the datafield are also set or clear for the caller, the 
+system will allow the rest of the op-codes in the command 
+to be executed. Otherwise the command will not be executed 
+and the user will be returned to the prompt.  The second 
+data field specifies whether to check for set(1) or clear(0).
 
  16 : Check 100% match : like the above op-code, this one is
 used in checking the status of the users access flags.  The
 difference, however, is that the rest of the command will
 only be executed if ALL of the access flags set in the
-datafield are also set for the caller.
+datafield are also set (or clear) for the caller.
 
  17 : Page the sysop : sometimes and often for the stupidest
 reasons, your users will want to go into chat mode with you.
@@ -317,14 +316,15 @@ where he/she may change various trivial aspects of their
 person.  Able to be edited here are their user handle,
 system password, screen width, last call date (for new
 message reading purposes), etc.  Making the datafield a
-number from 1-8 will make only a specific change possible.
+number from 1-8 or A-H will make only a specific change possible.
 
  22 : Userlist : give the user an opportunity to view the
 user handle and ID number of the users on your system.  At
 the prompt the user may either press return to view all the
 users (spacebar aborts), a user ID number to view all users
 starting at that number, or a string which the system will
-try to match against the handles.
+try to match against the handles.  An extended or list of 
+flagged users may also be listed.
 
  23 : Relogon : when executed, this op-code will immediately
 log the user off the system, and initiate the logon process
@@ -492,6 +492,13 @@ linefeeds op-code except ANSI mode is the object of the
 switch.  Note that ANSI may only be turned on if the user is
 in ASCII translation mode.
 
+ 42 : List E-Mail : displays a list of the users new or held
+e-mail.
+
+ 43 : Check a Gate Flag : checks whether a gate is set. Gates 
+are system-wide flags that the sysop can easily toggle from 
+the waiting-for-call screen.  They can be used to enable or 
+disable parts of the bbs.  
 
 7.1a  Intro to Zelch Message Bases
 
@@ -535,9 +542,9 @@ created.
 all of the message bases which he/she may access.  In order
 to create the feel of message base subdirectories, two
 datafields are used:  starting message base letter (A-Z) and
-ending message base letter (A-Z).  Using these datafields
-can make groups of message bases accessible from different
-areas of your system.
+ending message base letter (A-Z).  Numbers (1-26) may also be
+used.  Using these datafields can make groups of message bases 
+accessible from different areas of your system.
 
 103 : Read a message : reads a message on the selected
 subboard.  The following commands are available while
@@ -639,13 +646,13 @@ limit greater than zero was specified in the U/D base
 configuration.
 
     Transferring of files may either be done using the
-Punter protocol or the Xmodem protocol.  Also note that like
-the message bases, U/D base op-codes assume that a U/D base
-was selected prior to allowing the user to access sig-based
-commands.  Lastly, remember that when using the transfer
-base (non-open) system, you must make sure to include the
-"#" as the datafields for all op-codes relating to uploading
-and downloading.
+Punter protocol, Multi-Punter, Xmodem, or Xmodem 1k protocols.  
+Also note that like the message bases, U/D base op-codes 
+assume that a U/D base was selected prior to allowing the 
+user to access sig-based commands.  Lastly, remember that 
+when using the transfer base (non-open) system, you must 
+make sure to include the "#" as the datafields for all 
+op-codes relating to uploading and downloading.
 
 
 7.2b  Op-Code Module:  "prg.u/d bases"
@@ -688,17 +695,10 @@ amount of credits equal to the length of the download (in
 blocks) will then be subtracted from the users block
 credits.
 
-205 : Multi-Upload : transfers work exactly as the Upload
-transfer except that using a properly programmed terminal,
-the user may send multiple files one after another.  If a
-bad transfer occurs, the multi-upload function will abort.
-Multi-Upload will only work with the Punter protocol.
+205 : Add Filename : add a new existing file the current
+U/D base.  
 
-206 : Multi-Download : this works like the download except
-that the user will be prompted to select multiple files from
-the files available, making sure the user has enough block
-credits before allowing the transfer.  Multi-Download will
-only work with the Punter protocol.
+206 : Del Filename : delete a file from the current U/D base
 
 207 : Check current U/D base Sub-Operator flag : this works
 exactly like its message base counterpart.
@@ -715,15 +715,7 @@ switch between the two available transfer protocols.  This
 protocol is used for all file transfers, and the users
 preference here is saved with their account information.
 
-211 : Rebuild description log : if you are using the file
-description system, then this op-code will attempt to verify
-the data contained in the relative file.  For each U/D base,
-the following must be true for the files to get logged: the
-"sys.u/d desc" file must exist, the max files for the
-selected U/D base is something other than 0, there are free
-records available in the relative file.
-
-212 : List files with descriptions : this will list the
+211 : List files with descriptions : this will list the
 files and their descriptions for the U/D base.
 
 
@@ -745,8 +737,8 @@ by the sysops.
 301 : Create/Edit a topic : executing this op-code allows
 the user to either create or change a voting topic and its
 data.  The first datafield is the topic letter to be
-created/changed (A-Z), or "#" for the next available slot.
-The second datafield is the type of voting topic
+created/changed (A-Z, 1-26), or "+" for the next available 
+slot.  The second datafield is the type of voting topic
 (traditional or questionnaires).  The user will be prompted
 for the topic title (a short 20 character description of the
 voting topic), a short text describing the voting topic, the
@@ -1055,6 +1047,8 @@ Validate - give the user a new access level and toggle any
 you to the message maker for changes.  After saving, the new
 one-liners are loaded and implemented.
 
+410 : Add a Reservation : adds a reserved validated slot for
+a user who you know will be created soon.
 
 7.5a  Possibilities With Newsfiles
 
@@ -1103,6 +1097,11 @@ longer new, but has not yet been deleted.
 505 : Read new newsfiles : performs the same operation that
 occurs at logon, except a different newsfile name may be
 specified.
+
+506 : Network News : configures and sends your newsfile to
+your BBS network.
+
+507 : Execute a Script : executes a script
 
 
 7.6  Op-Code Module:  "prg.misc"
@@ -1212,11 +1211,12 @@ board will not be listed, and local numbers will be preceded
 with an "L".  Before each system is the letter used to
 identify it when sending messages.
 
-704 : Add a system : by using this command, you can
-configure your system as part of the network and add new
-systems.  Read section 7.7b for information about this data.
-
-705 : Delete a system : this command is used to delete a
+704 : Edit a system : this command is used to edit or delete a
 system from your network should it go down or be removed
 from your network.  Make sure that you reconfigure the
 destination numbers if you remove an important system.
+
+705 : Add a system : by using this command, you can
+configure your system as part of the network and add new
+systems.  Read section 7.7b for information about this data.
+

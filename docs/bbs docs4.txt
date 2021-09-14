@@ -418,11 +418,13 @@ ui$(500) Handles of all users       9  Idle baud rate
 m$(30,4) Current menu data         10  New user blocks
 cd(26,1) Time and call limits      11  New user credits
 p0$(75)  Extended log storage      12  Default weed protect
-mr(50)   Number of responses/msg   14  Max Users
-mn$(50)  Activity dates for msgs   15  # credits/response
-mx(30)   SysOp work array          16  # ascii titles
-                                   17  # color titles
-
+mr(50)   Number of responses/msg   13  Perm file new user apps
+mn$(50)  Activity dates for msgs   14  Max Users
+mx(30)   SysOp work array          15  Color Cycle colors flag
+                                   16  # ascii screens
+                                   17  # color screens
+                                   18  System Input Mode (0=hotkey)
+                                   19  Hangup value (see #4)
 
 o$(x)  System string variables  o(x)   Numeric data
   x=1  On at time                 x=0  Calls since boot
@@ -446,8 +448,12 @@ o$(x)  System string variables  o(x)   Numeric data
    19  Main menu                   18  "            "
    20  SysOp utility menu          19  Xfer protocol
    21  Default ASCII color         20  At prompt flag
-   22  Anonymous access
-   23  Current protocol
+   22  Menu of Global Commands     21  Num commands everywhere
+   23  Current protocol            22  SysCreds per post
+   24  NetNews access              23  SysCreds per reply
+   25  Anonymous access            24  Anonymous flag
+   26  SysOp gate flags            25  "First" mode
+                                   26  "prg.logon" logoff flag
 
 
 u$(x)  User data variables      u(x)   User Numericals
@@ -456,11 +462,11 @@ u$(x)  User data variables      u(x)   User Numericals
     3  Real name                    3  Default baud
     4  Phone number                 4  Number of posts
     5  Access level                 5  Number of email
-    6  Last call info
-    7  Access flags
-    8  Info flags
-    9  Calls today
-   10  Join/Unjoin
+    6  Last call info               6  Calls today
+    7  Birthday                     7  Lines per screen
+    8  Info flags                   8  Time On Today
+    9  Access flags (A-Z)
+   10  Join/Unjoin (A-Z)
 
 
 d(x,y) y=0 for unit, y=1 for drive/LU
@@ -469,7 +475,8 @@ d(x,y) y=0 for unit, y=1 for drive/LU
     4  User data files              5  E-Mail drive
     6  Feedback                     7  Current message base
     8  Current U/D drive            9  Menus drive
-   10  U/D descriptions            11  Expansion drive
+   10  Network files                11 xExpansion drive ...
+   
 
 
 System work and temporary variables used throughout the
@@ -524,13 +531,15 @@ Line   Description
    4   Output o$ to modem and screen.
    5   Limited input (uppercase, max length set as x)
    6   Standard input (text returned in i$)
+   7   Add to ext log (o$)?
    8   Get a$--sysop menu is accessible if at prompt
    9   Output 1 character (a$)
   10   Numeric input as i, text as i$.
-  13   Hangup/Disconnect routines
-  18   Pickup phone
+  15   Like 5, but takes separated commands
+  20   Take 1 Key input from keys in c$, return i(pos in c$) and i$
   23   Load a module named i$ from unit (u), drive/lu (d)
   25   Read file f$ from unit (u), drive/lu (d)
+  26   Display file f$ w/o header string
   28   Limited get routine c$=possible keys, a$=key
        pressed
   30   Print o$ on screen at positions x and y
@@ -643,8 +652,8 @@ System flags:
 2890 (0b4a)           October
 2891 (0b4b)           November
 2892 (0b4c)           December
-2893 (0b4d) (not used)
-2894 (0b4e) (not used)
+2893 (0b4d) ALT key flag (8=yes)
+2894 (0b4e) ONBASIC "change vectors" flag (1=yes)
 2895 (0b4f) Flag 0=add a line link and exit input, 1=wait
             for return
 2896 (0b50) Chat page flag (0=off, 1=on, 2=waiting for
@@ -734,6 +743,11 @@ System flags:
 2979 (0ba3) ANSI flag (1=on)
 2980 (0ba4) "direc" work byte
 2981 (0ba5) ANSI work byte
+2982 (0ba6) "First" input mode 1=on
+2983 (0ba7) Mins Remaining Today
+2984 (0ba8) Lines per screen for MORE prompt
+2985 (0ba9) Device for Ram Drive
+
 
 
 
