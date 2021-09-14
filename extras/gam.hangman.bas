@@ -6,7 +6,7 @@
 !--------------------------------------------------
 10 PRINT:PRINT"{reverse on}{pink}H{yellow}a{white}n{cyan}g{light blue}m{blue}a{purple}n{reverse off} {red}v1.0"
 20 B$(1)="O":B$(2)="#":B$(3)="[":B$(4)="]":B$(5)="<":B$(6)=">"
-30 PRINT:PRINT"Finding a puzzle...";:11111111111:PRINT:M=0
+30 PRINT:PRINT"Finding a puzzle...";:SLEEP1:PRINT:M=0
 40 READX:V=INT(RND(0)*X)+1:FORX=1TOV:READP$:NEXT
 50 D$="":G$="":FORX=1TOLEN(P$):D$=D$+"?":NEXT
 60 C=0:PRINT:PRINT"{yellow}";D$:PRINT"{cyan}Letters used: {white}";G$

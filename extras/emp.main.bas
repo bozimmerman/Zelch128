@@ -118,7 +118,7 @@
 1120 GA=VAL(I$)
 1130 IFGA>GRTHENPRINT"{ct k}{black}You do not have enough grain":GOTO1080
 1140 GR=GR-GA
-1150 DN=INT(RND(0)*(SF/10)+30):BB=INT(RND(0)*(SF/12)+10):PI=(INT(RND(0)*(SF/15)+10)):AF=0
+1150 DN=INT(RND(0)*(SF/10)+30):BB=INT(RND(0)*(SF/12)+10):P1=(INT(RND(0)*(SF/15)+10)):AF=0
 1160 PRINT"{ct k*3}{black}{reverse on}STATUS REPORT:{reverse off} "NM$R$
 1170 GD=GP/PR:AD=GA/AR:PZ=.
 1180 IFGD<1THENPZ=INT((PR-GP)/5)-INT(RND(0)*(PR-GP)/5+30)
@@ -126,9 +126,9 @@
 1200 PRINT"{ct k*2}{black}EMPIRE Ransacked by Starving Serfs!":AP$=NM$+" attacked by starving serfs.":GOSUB1630
 1210 I1=I1-INT(RND(0)*I1):I2=I2-INT(RND(0)*I2):I3=I3-INT(RND(0)*I3):I3=I3-INT(RND(0)*I3):I4=I4-INT(RND(0)*I4):I5=I5-INT(RND(0)*I5):WA=.:PN=.
 1220 GR=.:NB=INT(RND(0)*(NB*.5)):SF=INT(RND(0)*(SF*.5)):LA=1+INT(RND(0)*(LA*.5)):GOTO1280
-1230 TP=BB+PI-PZ-DN:KG$="Gained":IFTP<0THENKG$="Lossed"
+1230 TP=BB+P1-PZ-DN:KG$="Gained":IFTP<0THENKG$="Lossed"
 1240 SF=SF+TP:SF=SF*ABS(SF>.)
-1250 PRINT"{black}Serfs Starved .......{white}"STR$(PZ)"{ct k}{black}Babies Born .........{white}"STR$(BB)"{ct k}{black}Peons Died ..........{white}"STR$(DN)"{ct k}{black}People Immigrated ...{white}"STR$(PI)
+1250 PRINT"{black}Serfs Starved .......{white}"STR$(PZ)"{ct k}{black}Babies Born .........{white}"STR$(BB)"{ct k}{black}Peons Died ..........{white}"STR$(DN)"{ct k}{black}People Immigrated ...{white}"STR$(P1)
 1260 PRINT"{black}Vassels "KG$" ......{white}"STR$(ABS(TP))"{ct k}{black}Total Population ....{white}"STR$(SF)
 1270 TX=INT(((GP-PR)*(TR/100))/2):IFTX>0THENPRINT"{ct k}{black}Taxes Generated Were {white}$"STR$(TX)"!":PN=PN+TX
 1280 AF=0:IFGA<ARTHENPRINT"{ct k}{black}Your army is on strike!":AF=1

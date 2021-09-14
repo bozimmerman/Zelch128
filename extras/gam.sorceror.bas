@@ -302,5 +302,5 @@
 2250 C$(6)="passages that all seem alike can seem quite different, just hope"
 2255 c$(6)=c$(6)+" you're right!"
 2260 c$(7)="not all treasure lies under a roof, some might be under a tree!"
-2270 goto2
+2270 goto1500
 
