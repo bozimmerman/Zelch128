@@ -46,31 +46,10 @@
         <FileName>interrupts.asm</FileName>
         <FileName>main ml.asm</FileName>
         <FileName>p-xfer.asm</FileName>
-        <FileName>bbs.ascii edit.bas</FileName>
-        <FileName>bbs.copy.bas</FileName>
-        <FileName>bbs.create.bas</FileName>
-        <FileName>bbs.editor.bas</FileName>
-        <FileName>bbs.main.bas</FileName>
-        <FileName>bbs.setup.bas</FileName>
-        <FileName>prg.logon.bas</FileName>
-        <FileName>prg.misc.bas</FileName>
-        <FileName>prg.monster.bas</FileName>
-        <FileName>prg.msg bases.bas</FileName>
-        <FileName>prg.network.bas</FileName>
-        <FileName>prg.new user.bas</FileName>
-        <FileName>prg.news.bas</FileName>
-        <FileName>prg.online utils.bas</FileName>
-        <FileName>prg.sysop.bas</FileName>
-        <FileName>prg.u - d bases.bas</FileName>
-        <FileName>prg.voting booth.bas</FileName>
-        <FileName>prg.zapterm.bas</FileName>
-        <FileName>zelch.bas</FileName>
         <FileName>ansi.asm</FileName>
         <FileName>x-xfer.asm</FileName>
         <FileName>l-xfer.asm</FileName>
         <FileName>k-xfer.asm</FileName>
-        <FileName>ansi maker.bas</FileName>
-        <FileName>raminstall.bas</FileName>
         <FileName>ramdos128.asm</FileName>
     </BuildList>
     <DetermineBuildOrder>0</DetermineBuildOrder>
@@ -82,7 +61,7 @@
     <SourceFiles>
         <SourceFile>
             <Name>ansi maker.bas</Name>
-            <PrgName />
+            <PrgName>ansi maker.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -93,7 +72,7 @@
         </SourceFile>
         <SourceFile>
             <Name>ansi.asm</Name>
-            <PrgName>ansi.prg</PrgName>
+            <PrgName>ansi 3a00.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -104,7 +83,7 @@
         </SourceFile>
         <SourceFile>
             <Name>ascii.asm</Name>
-            <PrgName>ascii.prg</PrgName>
+            <PrgName>ascii 3b00.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -236,7 +215,7 @@
         </SourceFile>
         <SourceFile>
             <Name>interrupts.asm</Name>
-            <PrgName>interrupts.prg</PrgName>
+            <PrgName>v3.0 3d00.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -247,7 +226,7 @@
         </SourceFile>
         <SourceFile>
             <Name>k-xfer.asm</Name>
-            <PrgName>k-xfer.prg</PrgName>
+            <PrgName>k-xfer 1300.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -258,7 +237,7 @@
         </SourceFile>
         <SourceFile>
             <Name>l-xfer.asm</Name>
-            <PrgName>l-xfer.prg</PrgName>
+            <PrgName>l-xfer 1300.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -269,7 +248,7 @@
         </SourceFile>
         <SourceFile>
             <Name>main ml.asm</Name>
-            <PrgName>main ml.prg</PrgName>
+            <PrgName>v3.0 2000.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -412,7 +391,7 @@
         </SourceFile>
         <SourceFile>
             <Name>p-xfer.asm</Name>
-            <PrgName>p-xfer.prg</PrgName>
+            <PrgName>p-xfer 1300.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -423,7 +402,7 @@
         </SourceFile>
         <SourceFile>
             <Name>ramdos128.asm</Name>
-            <PrgName />
+            <PrgName>ramdos128.bin.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -434,7 +413,7 @@
         </SourceFile>
         <SourceFile>
             <Name>raminstall.bas</Name>
-            <PrgName />
+            <PrgName>raminstall.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -467,9 +446,20 @@
         </SourceFile>
         <SourceFile>
             <Name>x-xfer.asm</Name>
-            <PrgName>x-xfer.prg</PrgName>
+            <PrgName>x-xfer 1300.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>False</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>zelch ad.seq</Name>
+            <PrgName />
+            <FileType>12</FileType>
+            <IncludeInBuild>False</IncludeInBuild>
             <Regions />
             <Breakpoints />
             <Bookmarks />
@@ -485,17 +475,6 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>True</Topmost>
-            <FileOpen>False</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>zelch ad.seq</Name>
-            <PrgName />
-            <FileType>12</FileType>
-            <IncludeInBuild>False</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
             <FileOpen>False</FileOpen>
         </SourceFile>
     </SourceFiles>

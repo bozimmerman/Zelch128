@@ -63,7 +63,7 @@ To build the files for these disks, you'll need three programs.  One, obviously,
 
 The first step is to load CBM prg studio.  Then click on the menu options Build->Project->To File to Generate .prg files. If any Assembly files give you an extra window "Assembly Dump", you can just hit the X to close this and ignore it.
 
-The next step is to copy the files for the boot disk into a .D71 image, in the order shown above.  Please note that some of the files will need to be renamed after they are copied into the image.  These are: "prg.u - d bases," which should be renamed to "prg.u/d bases", "main ml" which should be renamed to "v3.0 2000", "interrupts" which should be renamed to "v3.0 3d00", "ansi" should be renamed to "ansi 3a00", and "ascii" renamed to "ascii 3b00".  Also, the SEQ (,s) files mentioned above can be found in the project "data" directory, such as sys.text and sys.variables, and copied in as-is.
+The next step is to copy the files for the boot disk into a .D71 image, in the order shown above.  Please note that some of the files will need to be renamed after they are copied into the image.  These are: "prg.u - d bases," which should be renamed to "prg.u/d bases".  Also, the SEQ (,s) files mentioned above can be found in the project Misc Files section, such as sys.text and sys.variables, and copied in as-is.
 
 Next is to build the files for the configuration disk into a different .D71 image.  Most of the "prg.*" files can be built from the other CBM Prg Studio in the "extras" directory.  Load the "Zelch 128 Extras" project from that directory and built the specific programs shown in the configurations disk above.  For the SEQ files, once again, you can copy the from the main projects "data" directory.
 
