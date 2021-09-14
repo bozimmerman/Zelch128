@@ -3,7 +3,6 @@
 !- Import of : 
 !- c:\src\zelch128\extras\dat.main.prg
 !- Commodore 128 BASIC 7/7.1
-!- ***************PROBABLY CURRPT -- MISSING BOTTOM STUFF
 !--------------------------------------------------
 30000 SYS15625:REM =============== DATING MODULE ==============================
 30010 O$="{black}{ct k}Zelch Dating Module v1.0{ct k*2}{black}By Elite Software{ct k}   1991 - 1993 RIP{ct k}   Tucson, Az 85741{black}":GOSUB4:D1=U:D2=D
@@ -135,4 +134,5 @@
 51200 DATA "What is your general attitude{f7}towards others?","Attitude  "
 51205 DATA 5,"Aggressive","Posessive","Easy-going","Quiet/Reserved","Sincere"
 51210 DATA "How do you spend your free time?","Free time "
-51215 DATA 9,"With friends","Reading","Outdoors/S
+51215 DATA 9,"With friends","Reading","Outdoors/Sports","Watching TV","BBS-ing","Shopping" ,"Relaxing","Computer Gaming", "Other"
+51220 DATA "{pound}"

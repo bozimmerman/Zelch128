@@ -9,7 +9,7 @@
 20 REM*********** CONVERTED TO ZELCH 128 FORMAT BY ELITE SOFTWARE.
 30 REM*********** WILL WORK ONLY WITH ZELCH 128 IF THIS PROGRAM IS BOOTED
 40 REM*********** FROM THE ZELCH SPECIFIC MODULE "emp.boot".
-50 U=PEEK(186):D=0:CLOSE2:OPEN2,U,2,STR$(D)+":sys.work,s,r":INPUT#2,DT$,ID,NM$,AC$:CLOSE2:R$=CHR$(13):SCRATCH"sys.work",U(U),D(D):GOTO200
+50 U=PEEK(186):D=0:CLOSE2:OPEN2,U,2,STR$(D)+":sys.temp,s,r":INPUT#2,DT$,ID,NM$,AC$:CLOSE2:R$=CHR$(13):SCRATCH"sys.temp",U(U),D(D):GOTO200
 60 I$=""
 70 GETA$:IFA$=CHR$(13)THENPRINT:RETURN
 80 IFA$<>CHR$(20)THEN110
@@ -170,7 +170,7 @@
 1630 C$(1)="Spreading the news...{ct k}":C$(2)="Printing the news...{ct k}":C$(3)="Lettin' everyone know about this!{ct k}"
 1640 C$(4)="The town crier is tellin' everyone!!{ct k}":C$(5)="The others will be excited to hear this!{ct k}":GOSUB180
 1650 CLOSE8:OPEN8,UU,8,"emp.news,s,a":PRINT#8,AP$:CLOSE8:RETURN
-1660 RW=0:Q4=0:Q5=0:IFQ0=0THENPRINT"{ct k*2}{black}You have no ships, you cannot sail to{f7}colonies during this turn...":22222222222:GOTO3120
+1660 RW=0:Q4=0:Q5=0:IFQ0=0THENPRINT"{ct k*2}{black}You have no ships, you cannot sail to{f7}colonies during this turn...":SLEEP2:GOTO3120
 1670 Q$="{ct k}{black}Take a trip to colonies":GOSUB160:IFCO=0THEN3120
 1680 FL$="emp.colony":GOSUB140
 1690 GOTO1720
@@ -209,14 +209,14 @@
 2020 IFI$=""ORVAL(I$)=0THEN1720
 2030 LG=VAL(I$):IF(LG<1)OR(LG>MG)THENPRINT"{ct k}{black}The maximum is"MG" navigators.":GOTO2010
 2040 Q5=Q5+LG:PN=PN-2000*LG:PRINT"{ct k}{black}You now have"Q5" navigators.":GOTO1720
-2050 PRINT"{ct k*2}{black}Setting sail for colonies...":11111111111:GOSUB4830
-2060 11111111111:PRINT"{ct k}{black}Docking at colony(s)...":11111111111
+2050 PRINT"{ct k*2}{black}Setting sail for colonies...":SLEEP1:GOSUB4830
+2060 SLEEP1:PRINT"{ct k}{black}Docking at colony(s)...":SLEEP1
 2070 CP=INT(INT(RND(0)*5500*(I9))):IF(Q2<>0)AND(I9<>0)THENCP=CP*(Q2/(I9*100))
 2080 CP=CP+INT(RND(0)*20000):IFCP+Q1>100000THENCP=INT(100000-Q1)
 2090 CP=INT(CP):Q1=Q1+CP:Q2=Q2+RW:RW=0
 2100 PRINT"{ct k}{black}Colony(s) produce"STR$(CP)" bushels{ct k}of grain."
 2110 PRINT"{ct k}{black}Bushels can be converted into exports{ct k}to be sold back at empire for cash!"
-2120 33333333333:GOSUB1700
+2120 SLEEP3:GOSUB1700
 2130 PRINT"{ct k}{black}You have"STR$(Q3)" tons of exports."
 2140 PRINT"[A]quire  [T]rade  [C]ontinue =>";:GOSUB4810:ONINSTR("CAT",I$)GOTO2270,2170,2220
 2150 IFI$="Y"THENGOSUB1700
@@ -272,7 +272,7 @@
 2650 CC=INT(RND(0)*I9*100):Q2=Q2-CC:IFQ2=<0 THEN Q2=INT(RND(0)*50)
 2660 PRINT"{black}Only"STR$(Q2)" serfs escape starvation..."
 2670 PRINT"All of your exports have been stolen!":Q3=0
-2680 22222222222:GOTO2690
+2680 SLEEP2:GOTO2690
 2690 IFGW=>WRTHEN2770
 2700 PRINT"{ct k*2}{black}Warlords declare mutiny!"
 2710 CC=INT(RND(0)*(I9/2)):PRINT"They attack & destroy"STR$(CC)" colonies...":I9=I9-CC
@@ -280,28 +280,28 @@
 2730 Q3=0:Q4=INT(RND(0)*(Q4/2))
 2740 IFQ4=0THENPRINT"{black}All of your warlords have deserted you!":GOTO2760
 2750 PRINT"{black}All but"STR$(Q4)" warlord(s) desert you!"
-2760 11111111111
+2760 SLEEP1
 2770 IFGI=>IRTHEN2820
 2780 PRINT"{ct k*2}{black}Indians mount a raid on you..."
 2790 CC=INT(RND(0)*(I9/2)):PRINT"{black}They take over"STR$(CC)" colonies...":I9=I9-CC
 2800 WK=INT(RND(0)*(Q4/3)):PRINT"{black}They've killed"STR$(WK)" warlords...":Q4=Q4-WK
 2810 PRINT"{black}They steal every bit of grain and every{ct k}ton of export they can find...":Q1=0:Q3=INT(RND(0)*(Q3/2))
-2820 11111111111:PRINT"{ct k}{black}Loading ship(s) for return voyage..."
+2820 SLEEP1:PRINT"{ct k}{black}Loading ship(s) for return voyage..."
 2830 ZZ=I9*2000:IFQ2>ZZTHENQ2=I9*1000
 2840 PRINT"{ct k}{black}Your"STR$(Q0)" ships can{ct k}hold"STR$(Q0*2)" tons..."
 2850 RE=Q3:IFRE>Q0*2THENRE=Q0*2
-2860 11111111111
+2860 SLEEP1
 2870 PRINT"{ct k*2}{black}Tonage Loaded =>"STR$(Q3)" tons."
-2880 11111111111
+2880 SLEEP1
 2890 IFRE<>Q3THENPRINT"{ct k}{black}Indians steal"STR$(Q3-RE)" tons!":Q3=RE
 2900 PRINT"{ct k}{black}Your ships leave with"STR$(Q3)" tons{ct k}in their hulls."
-2910 PRINT"{black}Setting sail for empire...":11111111111:GOSUB4830
+2910 PRINT"{black}Setting sail for empire...":SLEEP1:GOSUB4830
 2920 IFQ3>Q0*2THENQ3=INT(RND(0)*Q3)+1
-2930 11111111111:NB=NB+Q4:PRINT"{black}{ct k*2}Docking at the Market..."
-2940 22222222222:PRINT"{black}Crew unloads ships, {ct k}and"STR$(Q3)" tons survived the voyage.":LD=0
-2950 IFQ3=0THENPRINT"{ct k}{black}No Exports?!?  The market master laughs!":22222222222:GOTO3090
+2930 SLEEP1:NB=NB+Q4:PRINT"{black}{ct k*2}Docking at the Market..."
+2940 SLEEP2:PRINT"{black}Crew unloads ships, {ct k}and"STR$(Q3)" tons survived the voyage.":LD=0
+2950 IFQ3=0THENPRINT"{ct k}{black}No Exports?!?  The market master laughs!":SLEEP2:GOTO3090
 2960 IA=INT(RND(0)*9500)+500
-2970 LD=LD+1:IFLD>3THENPRINT"{ct k*2}{black}Market master closes up shop...":22222222222:GOTO3090
+2970 LD=LD+1:IFLD>3THENPRINT"{ct k*2}{black}Market master closes up shop...":SLEEP2:GOTO3090
 2980 PRINT"{ct k}{black}Market Master offers $"STR$(IA)"."
 2990 PRINT"[S]ell  [B]arter  [H]old  =>";:GOSUB4810:ONINSTR("BSH",I$)GOTO2960,3020,3090
 3000 IFI$="Y"THENGOSUB1700
@@ -312,10 +312,10 @@
 3050 PRINT"{ct k}{black}Gross Profit  : {white}$"STR$(AX*IA):IQ=INT(RND(0)*15)+21:IQ=IQ/100
 3060 PRINT"{black}Import Taxes  : {white}$"STR$(INT(AX*IA*IQ))"    ("STR$(IQ)"% )"
 3070 PRINT"{black}Net Profit    : {white}$"STR$(AX*IA-INT(AX*IA*IQ))
-3080 11111111111:Q3=Q3-AX:PN=PN+(AX*IA-INT(AX*IA*IQ)):GOTO3090
+3080 SLEEP1:Q3=Q3-AX:PN=PN+(AX*IA-INT(AX*IA*IQ)):GOTO3090
 3090 AX=INT(RND(0)*Q3+5):IFAX>Q3THEN3110
 3100 PRINT"{ct k}{black}Spoilage consumes"STR$(AX)" ton(s).":Q3=Q3-AX
-3110 22222222222:PRINT"{ct k}{black}Warlords are returning to battlefield...":22222222222
+3110 SLEEP2:PRINT"{ct k}{black}Warlords are returning to battlefield...":SLEEP2
 3120 BT=0:FF=0:IF(AF=1)OR(WA<1)THENPRINT"{ct k}{black}Your army is immobilized!":GOTO4210
 3130 PRINT"{ct k*2}{black}Attack Whom [0=None, ?=List] =>";:GOSUB60
 3140 IFI$="0"THENC$(1)="Coward!!":C$(2)="The townfolks laugh..":C$(3)="Other warlords chuckle...":C$(4)="King George thinks you're a wimp!"
@@ -335,10 +335,10 @@
 3280 IFAR$(II)=EN$THENPRINT"{ct k}{black}You fought them already!":GOTO3120
 3290 GOTO3270
 3300 IFV7<1 THEN 3360
-3310 PRINT"{ct k*2}{black}You hit a trap!":22222222222
+3310 PRINT"{ct k*2}{black}You hit a trap!":SLEEP2
 3320 IFI8<1THENPRINT"{black}{ct k}Theres nothing you can do!":N1=INT(LA/(RND(0)*3+2)):N2=INT(SF/(RND(0)*3+2)):N3=INT(WA/(RND(0)*3+2)):N4=INT(GR/(RND(0)*3+2))
 3330 IFI8<1THENLA=LA-N1:SF=SF-N2:WA=WA-N3:GR=GR-N4:EA=EA+N1:EP=EP+N2:EW=EW+N3:EG=EG+N4:PRINT"{ct k}{black}Your enemy confiscated some of your{ct k}posessions..."
-3340 IFI8<1THENAP$=NM$+" HITS TRAP OF "+EN$:GOSUB1630:V7=V7-1:22222222222:GOTO3360
+3340 IFI8<1THENAP$=NM$+" HITS TRAP OF "+EN$:GOSUB1630:V7=V7-1:SLEEP2:GOTO3360
 3350 PRINT"{ct k}{black}Your detector gave early enough{ct k}warning to save your army.":I8=I8-1:V7=V7-1:AP$=NM$+" DETECTS TRAP OF "+EN$:GOSUB1630
 3360 IF(AF=1)OR(WA<1)THENPRINT"{ct k}You are unable to employ your army.":GOTO4170
 3370 PRINT"{ct k}{black}Battle Command [?=List] =>";:GOSUB4810:IFI$="?"THENFL$="emp.menu2":GOSUB140:GOTO3370:ELSEW=VAL(I$):IFI$="Y"THENGOSUB1590:GOTO3370
@@ -382,8 +382,8 @@
 3750 SL=INT(RND(0)*(WA*.3))+2:IFWA<1THENWA=.
 3760 PRINT"Guards appear out of no where and halt{ct k}your attack."
 3770 PRINT"You lost"STR$(SL)" soldiers in the process":WA=WA-SL:GOTO3360
-3780 IFBT=1THENPRINT"{ct k}{black}One hand to hand combat per battle...":22222222222:GOTO3360
-3790 IFEN=<0THENPRINT"{ct k}{black}No Warlords!!":22222222222:GOTO3360
+3780 IFBT=1THENPRINT"{ct k}{black}One hand to hand combat per battle...":SLEEP2:GOTO3360
+3790 IFEN=<0THENPRINT"{ct k}{black}No Warlords!!":SLEEP2:GOTO3360
 3800 FL$="emp.hand":GOSUB140:GOSUB150
 3810 RZ=0:AW=0:AE=0:BT=1
 3820 RZ=RZ+1:IFRZ>5THEN4070
@@ -420,7 +420,7 @@
 4130 PRINT"{ct k}{black}You have defeated "EN$"."
 4140 PRINT"{ct k}{black}You take a warlord{ct k}and 20 Soldiers!":EN=EN-1:EW=EW-1:IFEW<1THENEW=0
 4150 NB=NB+1:WA=WA+20
-4160 PRINT"{ct k*2}{black}Returning to battle...":22222222222:GOTO3360
+4160 PRINT"{ct k*2}{black}Returning to battle...":SLEEP2:GOTO3360
 4170 CLOSE2:OPEN2,UU,2,"emp.players":RECORD#2,AT,1
 4180 Z$=","
 4190 I$=EN$+Z$+STR$(EA)+Z$+STR$(EW)+Z$+STR$(EP)+Z$+STR$(EN)+Z$+STR$(EG)+Z$+STR$(ET)+Z$+STR$(EM)+Z$+STR$(V1)+Z$+STR$(V2)+Z$+STR$(V3)+Z$+STR$(V4)+Z$+STR$(V5)
@@ -485,5 +485,8 @@
 4780 PRINT"{ct k*3}{black}You must now start your quest again!":GOTO4690
 4790 IFER=30ANDAC>0THENGOSUB1540:PRINT"Break Error":END
 4800 PRINTERR$(ER)"in"EL:END
-4810 GETKEYI$:
-4830 REM **** MISSING
+4810 GETKEYI$:IFI$="0"ORi$="?"ORVAL(I$)>0OR(I$>="A"ANDI$<="Z")THENRETURN
+4820 IFI$>="a"ANDI$<="z"THENI$=CHR$(ASC(I$)OR128):RETURN
+4825 GOTO4810
+4830 GETA$:IFA$<>""THEN4830
+4840 PRINT"{ct k}{black}Press any key to continue ... ":GETKEYA$:RETURN
