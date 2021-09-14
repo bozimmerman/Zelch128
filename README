@@ -1,4 +1,4 @@
-Zelch 128 (C)1991-2017 William Fink, Bo Zimmerman
+Zelch 128 (C)1991-2021 William Fink, Bo Zimmerman
 Please read the LICENSE file for license information
 Please read the NOTICE file for credits information
 
@@ -71,7 +71,7 @@ The last step is to either load up your emulator, or copy the images to real flo
 
 ----------------------
 
-The main program disk and the configurations disk are really all you need to get started, but there are numerous optional programs in the "extras" directory off the main project.  These are built from the Zelch 128 Extras CBM Prg Studio project.  Several of these extra programs also have data files of their own, which are located in the data directory off the extras directory.
+The main program disk and the configurations disk are really all you need to get started, but there are numerous optional programs in the "extras" directory off the main project.  These are built from the Zelch 128 Extras CBM Prg Studio project.  Several of these extra programs also have data files of their own, which are located in the misc files section of the project.
 
 Most of the programs in the extras can be used as-is, either as Online-BASIC programs, or as Zelch-Specific modules.  Which are which is listed here, along with some specific details on using some of the special ones.
 
