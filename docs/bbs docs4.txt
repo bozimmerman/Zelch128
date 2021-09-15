@@ -475,7 +475,7 @@ d(x,y) y=0 for unit, y=1 for drive/LU
     4  User data files              5  E-Mail drive
     6  Feedback                     7  Current message base
     8  Current U/D drive            9  Menus drive
-   10  Network files                11 xExpansion drive ...
+   10  Network files                11 Expansion drive ...
    
 
 
