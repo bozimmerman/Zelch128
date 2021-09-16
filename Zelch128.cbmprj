@@ -41,16 +41,16 @@
         <PostBuildCommands />
     </BuildEvents>
     <BuildList>
-        <FileName>crsr 0e00.asm</FileName>
+        <FileName>ansi.asm</FileName>
         <FileName>ascii.asm</FileName>
+        <FileName>crsr 0e00.asm</FileName>
         <FileName>interrupts.asm</FileName>
+        <FileName>k-xfer.asm</FileName>
+        <FileName>l-xfer.asm</FileName>
         <FileName>main ml.asm</FileName>
         <FileName>p-xfer.asm</FileName>
-        <FileName>ansi.asm</FileName>
-        <FileName>x-xfer.asm</FileName>
-        <FileName>l-xfer.asm</FileName>
-        <FileName>k-xfer.asm</FileName>
         <FileName>ramdos128.asm</FileName>
+        <FileName>x-xfer.asm</FileName>
     </BuildList>
     <DetermineBuildOrder>0</DetermineBuildOrder>
     <PaddingByte>234</PaddingByte>
@@ -145,7 +145,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
+            <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>bbs.setup.bas</Name>
@@ -266,7 +266,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
+            <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.misc.bas</Name>
@@ -277,7 +277,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
+            <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.monster.bas</Name>
@@ -288,7 +288,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
+            <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.msg bases.bas</Name>
@@ -299,7 +299,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
+            <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.network.bas</Name>
@@ -310,7 +310,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
+            <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.new user.bas</Name>
@@ -320,7 +320,7 @@
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>False</Topmost>
+            <Topmost>True</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
@@ -331,8 +331,8 @@
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>True</Topmost>
-            <FileOpen>True</FileOpen>
+            <Topmost>False</Topmost>
+            <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.online utils.bas</Name>

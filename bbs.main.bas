@@ -39,7 +39,7 @@
 210 Y=3:O$=LEFT$(MID$(STR$(BA),2,4)+SP$,4):GOSUB30:X=42:Y=0:O$=LEFT$(STR$(U(2))+SP$,5):GOSUB30:Y=1:O$=LEFT$(STR$(U(1))+SP$,5):GOSUB30
 215 Y=2:O$=LEFT$(STR$(U(4))+SP$,5):GOSUB30:Y=3:O$=LEFT$(STR$(U(5))+SP$,5):GOSUB30:X=55:Y=0
 220 O$=RIGHT$("00"+MID$(STR$(U(6)),2),2)+"/":O$=O$+RIGHT$("00"+MID$(STR$(CD(ASC(U$(5))-192,0)),2),2):GOSUB30:Y=1:O$=LEFT$(U$(7),2)+RIGHT$(U$(7),3)
-225 GOSUB30:Y=2:X=INSTR("ACDEIMTPO",MID$(U$(8),10,1))-1:O$=MID$("AmigaC=64 C=128AppleCloneMac  AtariCP/M Other",(X*5)+1,5):X=55:GOSUB30
+225 GOSUB30:Y=2:X=INSTR("ACDEIMTPO0",MID$(U$(8),10,1))-1:O$=MID$("AmigaC=64 C=128AppleCloneMac  AtariCP/M OtherOther",(X*5)+1,5):X=55:GOSUB30
 230 Y=3:X=49:O$="{ct b}":FORI=1TO26:IFMID$(U$(9),I,1)="1"THENO$=O$+"{reverse off}":ELSEO$=O$+"{reverse on}"
 235 O$=O$+CHR$(I+192):NEXTI:O$=O$+"{130}":GOSUB30
 237 VT$(0)="Q{down}{left}":VT$(1)="W{down}{left}":X=62:Y=0:O$="{142}":O$=O$+VT$(VAL(MID$(U$(8),1,1))):O$=O$+VT$(VAL(MID$(U$(8),3,1))):O$=O$+VT$(VAL(MID$(U$(8),4,1))):GOSUB30
