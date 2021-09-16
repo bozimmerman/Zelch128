@@ -41,16 +41,16 @@
         <PostBuildCommands />
     </BuildEvents>
     <BuildList>
-        <FileName>ansi.asm</FileName>
-        <FileName>ascii.asm</FileName>
+        <FileName>ansi 3a00.asm</FileName>
+        <FileName>ascii 3b00.asm</FileName>
         <FileName>crsr 0e00.asm</FileName>
-        <FileName>interrupts.asm</FileName>
-        <FileName>k-xfer.asm</FileName>
-        <FileName>l-xfer.asm</FileName>
-        <FileName>main ml.asm</FileName>
-        <FileName>p-xfer.asm</FileName>
+        <FileName>v3.0 3d00.asm</FileName>
+        <FileName>k-xfer 1300.asm</FileName>
+        <FileName>l-xfer 1300.asm</FileName>
+        <FileName>v3.0 2000.asm</FileName>
+        <FileName>p-xfer 1300.asm</FileName>
         <FileName>ramdos128.asm</FileName>
-        <FileName>x-xfer.asm</FileName>
+        <FileName>x-xfer 1300.asm</FileName>
     </BuildList>
     <DetermineBuildOrder>0</DetermineBuildOrder>
     <PaddingByte>234</PaddingByte>
@@ -59,6 +59,17 @@
     <AssyExportList />
     <!--End of screen designer settings-->
     <SourceFiles>
+        <SourceFile>
+            <Name>ansi 3a00.asm</Name>
+            <PrgName>ansi 3a00.prg</PrgName>
+            <FileType>2</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>False</FileOpen>
+        </SourceFile>
         <SourceFile>
             <Name>ansi maker.bas</Name>
             <PrgName>ansi maker.prg</PrgName>
@@ -71,18 +82,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>ansi.asm</Name>
-            <PrgName>ansi 3a00.prg</PrgName>
-            <FileType>2</FileType>
-            <IncludeInBuild>True</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>ascii.asm</Name>
+            <Name>ascii 3b00.asm</Name>
             <PrgName>ascii 3b00.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
@@ -214,18 +214,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>interrupts.asm</Name>
-            <PrgName>v3.0 3d00.prg</PrgName>
-            <FileType>2</FileType>
-            <IncludeInBuild>True</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>k-xfer.asm</Name>
+            <Name>k-xfer 1300.asm</Name>
             <PrgName>k-xfer 1300.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
@@ -236,19 +225,8 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>l-xfer.asm</Name>
+            <Name>l-xfer 1300.asm</Name>
             <PrgName>l-xfer 1300.prg</PrgName>
-            <FileType>2</FileType>
-            <IncludeInBuild>True</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>main ml.asm</Name>
-            <PrgName>v3.0 2000.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -390,7 +368,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>p-xfer.asm</Name>
+            <Name>p-xfer 1300.asm</Name>
             <PrgName>p-xfer 1300.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
@@ -445,7 +423,29 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>x-xfer.asm</Name>
+            <Name>v3.0 2000.asm</Name>
+            <PrgName>v3.0 2000.prg</PrgName>
+            <FileType>2</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>False</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>v3.0 3d00.asm</Name>
+            <PrgName>v3.0 3d00.prg</PrgName>
+            <FileType>2</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>False</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>x-xfer 1300.asm</Name>
             <PrgName>x-xfer 1300.prg</PrgName>
             <FileType>2</FileType>
             <IncludeInBuild>True</IncludeInBuild>
