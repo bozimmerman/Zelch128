@@ -412,8 +412,8 @@ d(10+,1) System drives              3  All system up-case
 o$(20+)  System work strings        4  Carrier detect bit
 o(20+)   System work numbers        5  Hangup (poke 56577)
 u$(10+)  User data                  6  Hangup (poke 56579)
-u(5+)    User numeric data          7  Pickup (poke 56577)
-tt$(200) Message maker/work array   8  Pickup (poke 56579)
+u(8+)    User numeric data          7  Pickup (poke 56577)
+tt$(500) Message maker/work array   8  Pickup (poke 56579)
 ui$(500) Handles of all users       9  Idle baud rate
 m$(30,4) Current menu data         10  New user blocks
 cd(26,1) Time and call limits      11  New user credits
@@ -421,10 +421,15 @@ p0$(75)  Extended log storage      12  Default weed protect
 mr(50)   Number of responses/msg   13  Perm file new user apps
 mn$(50)  Activity dates for msgs   14  Max Users
 mx(30)   SysOp work array          15  Color Cycle colors flag
-                                   16  # ascii screens
-                                   17  # color screens
-                                   18  System Input Mode (0=hotkey)
-                                   19  Hangup value (see #4)
+d$(17)   Init Strings for Drvs     16  # ascii screens
+mb$(20)  Message Base Data         17  # color screens
+gb$(50)  Grab text                 18  System Input Mode (0=hotkey)
+pl$(26)  Post roots, this call     19  Hangup value (see #4)
+vt$(50), vt(50) Work Arrays
+sy$(9), sy(9) System Work Arrays
+ub$(9+)  U/D Base Data
+ub(9+)   U/D Base Data
+pr$(6,2) Protocol/Prg data (0=name, 1=file part, 2=file prg)
 
 o$(x)  System string variables  o(x)   Numeric data
   x=1  On at time                 x=0  Calls since boot
@@ -455,7 +460,6 @@ o$(x)  System string variables  o(x)   Numeric data
    26  SysOp gate flags            25  "First" mode
                                    26  "prg.logon" logoff flag
 
-
 u$(x)  User data variables      u(x)   User Numericals
   x=1  Handle                     x=1  Block credits
     2  Password                     2  System credits
@@ -468,7 +472,6 @@ u$(x)  User data variables      u(x)   User Numericals
     9  Access flags (A-Z)
    10  Join/Unjoin (A-Z)
 
-
 d(x,y) y=0 for unit, y=1 for drive/LU
   x=0  System prg files drive       1  System data files
     2  Voting topics                3  Temp usage
@@ -477,8 +480,41 @@ d(x,y) y=0 for unit, y=1 for drive/LU
     8  Current U/D drive            9  Menus drive
    10  Network files                11 Expansion drive ...
    
+ub$(x) U/D Base variables      ud(x)   U/D Base Numericals
+  x=1  Name of base               x=1  Current U/D sec
+    2  Base letter                  2  Min blocks
+    3  Actual U/D path              3  U/D credit ratio
+    4  Name of directory            4  Max files
+    5  Current type                 5  Max Desc length
+    6                               6 
+    7                               7 
+    8  File Desc                    8 
+    9  SubOp Flag                   9  Next Desc Slot 
 
+mb$(x) Msg Base variables      mb(x)   Msg Base Numericals
+  x=1  Name of base               x=1  Base number
+    2  Letter of base               2  Max msgs
+    3  Msg Base path                3  Number of msgs
+    4  Msg Base relative path       4  Record position
+    5  Rel Msg string               5  Current msg
+    6  Name of directory            6  Current reply
+    7  Current type                 7  M/B Network
+    8                               8  Global end
+    9  SubOp flag                   9  M/B cont flag
+                                    10 Global new 
+                                    11 New flag
+                                    12 Abort read new
+                                    13 Read new loop
 
+sy$(x) System work variables   sy(x)   System work numericals
+  x=1  input type menu            x=1  input work var
+    2  op-codes                     2  input work var II
+    3  datafields                   3  var print use
+    4  network mail                 4  input num byte
+    5  input use var                5  # commands in menu
+    6  last caller                  6  temp input hold var
+    7  logged off                   7  which app/script line
+  
 System work and temporary variables used throughout the
 program:
 
@@ -489,30 +525,13 @@ Other variables:
 
 f$ = Filename                   f0$= Secondary filename
 
-m1$= Op-Code work variable      m2$= Data field temp
-m3$= Data field work variable   m4$= Current message base
-m5$= Message base subop flag    m6$= Last caller or sub name
-m7$= Last logoff or sub letter  m8$= File description string
-
 n$ = Name of your BBS           r$ = chr$(13)
 sp$= String of 100 spaces       t$ = Mins remaining online
-u2$= U/D subop flag
+sy$= op-code data field
 
 ba = Current baud               d0 = Secondary drive/LU
 d1 = 3rd Unit                   d2 = 3rd drive/LU
 id = Callers system ID number   l  = current line in editor
-
-m0 = Global read new loop       m1 = Current message base
-m2 = Max messages               m3 = Current # of messages
-m4 = Current post position      m5 = Current message number
-m6 = Current reply              m7 = Read new flag
-m8 = Abort read new flag        m9 = Read new loop variable
-
-u0 = Secondary unit             u1 = Current u/d section
-u2 = Min. blocks for u/d        u3 = U/D Credit ratio
-u4 = Max. files for u/d         u5 = Global read end
-u6 = Variable print use         u7 = Msg base cont flag
-
 
 Part II: Module requirements
 
