@@ -5,7 +5,7 @@
 !- Unknown Machine
 !--------------------------------------------------
 1 REM *** MAP MAKER / SECTOR MAKER ***
-2 SCRATCH "e.config",U11:SCRATCH"ee2.data",U11
+2 SCRATCH "e.config",U8:SCRATCH"ee2.data",U8
 8 INPUT "Unit (Uxx) to create files on:";U:INPUT "Device (Dxx) to create files on:";DV
 9 PRINT "{light gray} Empire Edition II -- File Generator"
 10 DIM A$(32):DIM AR%(21,21,2):DIMPR$(41)
