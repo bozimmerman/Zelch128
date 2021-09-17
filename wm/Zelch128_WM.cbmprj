@@ -40,9 +40,7 @@
         <PreBuildCommands />
         <PostBuildCommands />
     </BuildEvents>
-    <BuildList>
-        <FileName>ggg.warr&amp;mons.bas</FileName>
-    </BuildList>
+    <BuildList />
     <DetermineBuildOrder>0</DetermineBuildOrder>
     <PaddingByte>234</PaddingByte>
     <!--Screen designer settings-->
@@ -50,17 +48,6 @@
     <AssyExportList />
     <!--End of screen designer settings-->
     <SourceFiles>
-        <SourceFile>
-            <Name>ggg.warr&amp;mons.bas</Name>
-            <PrgName />
-            <FileType>1</FileType>
-            <IncludeInBuild>True</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
-        </SourceFile>
         <SourceFile>
             <Name>prg.wm.p1.bas</Name>
             <PrgName>prg.wm.p1.prg</PrgName>
