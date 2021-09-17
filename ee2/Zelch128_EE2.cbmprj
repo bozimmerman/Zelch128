@@ -48,8 +48,6 @@
         <FileName>prg.ee2.main.bas</FileName>
         <FileName>prg.ee2.bas</FileName>
         <FileName>prg.ee2.str..bas</FileName>
-        <FileName>ggg.warr&amp;amp;mons.bas</FileName>
-        <FileName>ggg.warr&amp;mons.bas</FileName>
     </BuildList>
     <DetermineBuildOrder>0</DetermineBuildOrder>
     <PaddingByte>234</PaddingByte>
@@ -158,17 +156,6 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>ggg.warr&amp;mons.bas</Name>
-            <PrgName />
-            <FileType>1</FileType>
-            <IncludeInBuild>True</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
-        </SourceFile>
-        <SourceFile>
             <Name>hlp.Designations.seq</Name>
             <PrgName />
             <FileType>12</FileType>
@@ -242,7 +229,7 @@
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>False</Topmost>
+            <Topmost>True</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
