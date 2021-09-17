@@ -4,7 +4,7 @@
 <!-- Project Target : C128 -->
 <Project>
     <Target>4</Target>
-    <Executable>wm.prg</Executable>
+    <Executable />
     <StartAddress>7169</StartAddress>
     <FilesGlobal>False</FilesGlobal>
     <BatchMode>True</BatchMode>
@@ -15,7 +15,7 @@
     <Comments />
     <Author />
     <Email />
-    <AutoLaunchName>wm.prg</AutoLaunchName>
+    <AutoLaunchName />
     <NoSingleFileBuild>False</NoSingleFileBuild>
     <CreatedWithVersion />
     <HasGitRepo>False</HasGitRepo>
@@ -40,15 +40,7 @@
         <PreBuildCommands />
         <PostBuildCommands />
     </BuildEvents>
-    <BuildList>
-        <FileName>prg.ee2.amaint.bas</FileName>
-        <FileName>prg.ee2.create.bas</FileName>
-        <FileName>prg.ee2.edit.bas</FileName>
-        <FileName>prg.ee2.init.bas</FileName>
-        <FileName>prg.ee2.main.bas</FileName>
-        <FileName>prg.ee2.bas</FileName>
-        <FileName>prg.ee2.str..bas</FileName>
-    </BuildList>
+    <BuildList />
     <DetermineBuildOrder>0</DetermineBuildOrder>
     <PaddingByte>234</PaddingByte>
     <!--Screen designer settings-->
@@ -212,7 +204,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.amaint.bas</Name>
-            <PrgName />
+            <PrgName>.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -223,18 +215,18 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.bas</Name>
-            <PrgName />
+            <PrgName>.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>True</Topmost>
+            <Topmost>False</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.create.bas</Name>
-            <PrgName />
+            <PrgName>.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -245,7 +237,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.edit.bas</Name>
-            <PrgName />
+            <PrgName>.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -256,7 +248,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.init.bas</Name>
-            <PrgName />
+            <PrgName>.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -267,7 +259,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.main.bas</Name>
-            <PrgName />
+            <PrgName>.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -278,13 +270,13 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.str..bas</Name>
-            <PrgName />
+            <PrgName>.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>False</Topmost>
+            <Topmost>True</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
