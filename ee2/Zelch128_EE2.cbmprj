@@ -48,6 +48,7 @@
         <FileName>prg.ee2.main.bas</FileName>
         <FileName>prg.ee2.bas</FileName>
         <FileName>prg.ee2.str..bas</FileName>
+        <FileName>ggg.warr&amp;amp;mons.bas</FileName>
         <FileName>ggg.warr&amp;mons.bas</FileName>
     </BuildList>
     <DetermineBuildOrder>0</DetermineBuildOrder>
@@ -76,7 +77,7 @@
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>True</Topmost>
+            <Topmost>False</Topmost>
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>

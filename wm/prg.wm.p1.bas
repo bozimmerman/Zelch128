@@ -4,7 +4,7 @@
 !- z:\_cbmsoft\_bo_unz\d-zelch\zee2wm\prg.wm.p1.prg
 !- Unknown Machine
 !--------------------------------------------------
-0 DV=11:LU=0:D2=15:L2=0:LU$=MID$(STR$(LU),2):REM D2 AND L2 ARE FOR PRG.*
+0 DV=8:LU=0:D2=8:L2=0:LU$=MID$(STR$(LU),2):REM D2 AND L2 ARE FOR PRG.*
 1 IFOO$="{ct y}"THEN1600
 10 CLOSE2:DIMMM$(26),DD(19),MP$(26),BS(19),M$(20),DT$(25),DU$(25),XX(25),YY(25),OP(25):MAX=10:R$=CHR$(13)
 20 KK$="{sh asterisk*40}":CF=0:FC=0
