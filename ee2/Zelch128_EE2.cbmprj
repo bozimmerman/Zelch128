@@ -193,7 +193,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.amaint.bas</Name>
-            <PrgName>.prg</PrgName>
+            <PrgName>prg.ee2.amaint.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -204,18 +204,18 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.bas</Name>
-            <PrgName>.prg</PrgName>
+            <PrgName>prg.ee2.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>True</Topmost>
+            <Topmost>False</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.create.bas</Name>
-            <PrgName>.prg</PrgName>
+            <PrgName>prg.ee2.create.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -226,7 +226,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.edit.bas</Name>
-            <PrgName>.prg</PrgName>
+            <PrgName>prg.ee2.edit.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -237,7 +237,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.init.bas</Name>
-            <PrgName>.prg</PrgName>
+            <PrgName>prg.ee2.init.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -248,7 +248,7 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.main.bas</Name>
-            <PrgName>.prg</PrgName>
+            <PrgName>prg.ee2.main.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
@@ -259,13 +259,13 @@
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.str.bas</Name>
-            <PrgName>.prg</PrgName>
+            <PrgName>prg.ee2.str.prg</PrgName>
             <FileType>1</FileType>
             <IncludeInBuild>True</IncludeInBuild>
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>False</Topmost>
+            <Topmost>True</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
     </SourceFiles>

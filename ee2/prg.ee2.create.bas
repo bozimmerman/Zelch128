@@ -60,5 +60,5 @@
 6105 RECORD#1,401:PRINT#1,CHR$(255);:RECORD#1,401
 6110 DCLOSE#1:R=0:RETURN
 7000 DATA".............................."
-9010 DOPEN#1,"ee2.sectors1.dat,s",D(DV),U(U),R:Z=1
+9010 DOPEN#1,"ee2.sectors1.dat",D(DV),U(U),R:Z=1
 9015 INPUT#1,A$:PRINTA$:PRINTZ:Z=Z+1:GOTO9015

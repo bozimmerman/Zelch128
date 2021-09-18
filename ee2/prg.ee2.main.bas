@@ -36,10 +36,10 @@
 304 PRINT "{gray}-->{light gray}Now loading player statistics and sectors...":P=R:P2=1:GOSUB 5700:P=PL:GOSUB6200
 305 IF R=99 THEN PRINT "ERROR: Record not loaded, aborting.":END
 310 PRINT"{light gray}Welcome back, "P$(1,2):PRINT
-315 PRINT "[{white}Empire Bulletin{light gray}]":P$="ee2.message,s":GOSUB7000:IFR=99THENPRINT"-->No bulletin file present."
+315 PRINT "[{white}Empire Bulletin{light gray}]":P$="ee2.message":GOSUB7000:IFR=99THENPRINT"-->No bulletin file present."
 330 PRINT:PRINT "{light gray}Empire News since "P$(1,3)":"
 333 P=PL:GOSUB7050
-335 P$="ee2."+R$+".news,s":GOSUB 7000
+335 P$="ee2."+R$+".news":GOSUB 7000
 340 IF R=99 THEN PRINT "{green}-->No news file present."
 345 GOTO 500
 400 REM ----- MAIN TRAP ROUTINE -----------------------------------------------
@@ -62,7 +62,7 @@
 550 GOTO 500
 560 REM -----------------------------
 570 BEND
-572 IF R$="PO" THEN PRINT:P$="ee2.power,s":GOSUB7000:GOTO500
+572 IF R$="PO" THEN PRINT:P$="ee2.power":GOSUB7000:GOTO500
 580 IF R$="M" THEN BEGIN
 590 REM -----------------------------
 600 PRINT "{light gray}Upper left corner[{gray}X,Y{light gray}]:{white}";:GOSUB7200:P1=RA:A=RB:PRINT"{light gray}Lower right corner[{gray}X,Y,RETURN for 20,20{light gray}]:{white}";:GOSUB7200:P3=RA:P4=RB:P2=A:PRINT
@@ -80,7 +80,7 @@
 842 IF AR%(RA,RB,0)=9 THEN PRINT "Nuked sectors cannot be redesignated.":GOTO500
 845 PRINT "{light gray}Change to what type[{gray}.,S,M,F,X,#,E,A,T ?,Quit{light gray}]:{white}";:P2=1:P=1:L=1:GOSUB5000
 850 X=INSTR(".SMFX#EAT?Q",R$)
-851 IF X=10 THEN P$="ee2.Designate,s":GOSUB7000:GOTO 845
+851 IF X=10 THEN P$="ee2.Designate":GOSUB7000:GOTO 845
 852 IF X=11 THEN GOTO 500
 853 IF X=0 THEN PRINT "Invalid designation.":GOTO500
 854 IF AR%(RA,RB,0)=X-1 THEN GOTO 500
@@ -207,9 +207,9 @@
 1770 IF R$="S" THEN PRINT:PRINT "{blue}-->{light blue}Switching to strategic module...please wait.":DLOAD (SR$),U(U),D(DV)
 2600 IF R$="N" THEN BEGIN
 2605 PRINT:R$="{cyan}World News as of "+LD$:GOSUB7600:PRINT "{white}-----------------------------------------------------------------------------"
-2620 P$="ee2.news,s":GOSUB7000:IFR=99THEN PRINT "-->No world news at this time."
+2620 P$="ee2.news":GOSUB7000:IFR=99THEN PRINT "-->No world news at this time."
 2630 PRINT:R$="{cyan}"+P$(1,2)+" Empire News as of "+LD$:GOSUB7600:PRINT"{white}-----------------------------------------------------------------------------"
-2632 P=PL:GOSUB7050:P$="ee2."+R$+".news,s":GOSUB7000
+2632 P=PL:GOSUB7050:P$="ee2."+R$+".news":GOSUB7000
 2635 IF R=99 THEN PRINT "-->No news at this time."
 2637 PRINT "{light gray}Reset your news file[{gray}Yes, No{light gray}]:{white}";:GETKEYA$:IFA$="y"ORA$="Y"THENPRINT"Yes":DOPEN#1,("@"+P$),D(DV),U(U),W:PRINT#1,"(News reset)":DCLOSE#1
 2638 IF A$<>"y" AND A$<>"Y" THEN PRINT "No"
@@ -226,7 +226,7 @@
 2750 BEND
 2770 IF R$="H" THEN BEGIN
 2780 PRINT:PRINT "{light gray}-->{blue}Loading help directory...";
-2785 X=1:DOPEN#1,"ee2.helpmenu,s",D(DV),U(U)
+2785 X=1:DOPEN#1,"ee2.helpmenu",D(DV),U(U)
 2790 INPUT#1,PR$(X):IF ST<>0 THEN 2792:ELSE X=X+1:GOTO 2790
 2792 DCLOSE#1:C$="":FOR Y=1 TO X:A$(Y)=LEFT$(PR$(Y),1):C$=C$+A$(Y):NEXTY:PR$(X+1)=""
 2795 PRINT "{left*28}{light gray}Help Topics:{space*16}":PRINT
@@ -235,7 +235,7 @@
 2810 PRINT:PRINT "{light gray}Help System({gray}";:FOR Y=1 TO X:PRINT A$(Y)",";:NEXTY:PRINT"eXit{light gray}):{white}";
 2820 L=1:P=1:P2=1:GOSUB 5000:IF R$="X" THEN GOTO 500
 2825 B=INSTR(C$,R$):IF B=0 THEN PRINT "{red}No help file for that topic.":GOTO 2810
-2830 P$="ee2."+PR$(B)+",s":PRINT:GOSUB 7000:GOTO 2810
+2830 P$="ee2."+PR$(B):PRINT:GOSUB 7000:GOTO 2810
 2840 BEND
 4997 GOTO 500
 4998 END
@@ -269,7 +269,7 @@
 6020 NEXT X:DCLOSE#1
 6024 RETURN
 6025 REM **LOAD 40X40 ARRAY**
-6030 DOPEN#1,"ee2.sectors1.dat,s",D(DV),U(U),R
+6030 DOPEN#1,"ee2.sectors1.dat",D(DV),U(U)
 6035 INPUT#1,A$(1),A$(2),A$(3),A$(4),A$(5),A$(6),A$(7),A$(8),A$(9),A$(10),A$(11),A$(12),A$(13),A$(14),A$(15),A$(16),A$(17),A$(18),A$(19),A$(20)
 6036 DCLOSE#1
 6037 FORX=1TO20:Z=1:FORY=1TO20:AR%(X,Y,0)=VAL(MID$(A$(X),Z,1)):AR%(X,Y,1)=VAL(MID$(A$(X),(Z+1),1)):Z=Z+2:NEXTY:NEXTX
@@ -323,7 +323,7 @@
 7599 REM **CENTER R$ AND PRINT IT*****
 7600 X=40-(LEN(R$)/2):PRINT LEFT$(SP$,X)+R$:RETURN
 7649 REM **ADD LINES P$(1-3) TO FILE P$******
-7650 A=P:GOSUB7050:FI$="ee2."+R$+".news,s":IF A=0 THEN FI$="ee2.news,s"
+7650 A=P:GOSUB7050:FI$="ee2."+R$+".news":IF A=0 THEN FI$="ee2.news"
 7653 APPEND#1,(FI$),D(DV),U(U):FORX=1TO3:IFPR$(X)<>""THEN PR$(X)=CHR$(34)+PR$(X):PRINT#1,PR$(X)
 7654 PR$(X)="":NEXTX:DCLOSE#1:RETURN
 7699 REM ** LOAD SINGLE SECTOR P=X, P2=Y **
@@ -353,6 +353,6 @@
 8060 P1=VAL(MID$(A$,1,(INSTR(A$,",")-1))):P2=VAL(MID$(A$,(INSTR(A$,",")+1))):P3=VAL(MID$(B$,1,(INSTR(B$,",")-1))):P4=VAL(MID$(B$,(INSTR(B$,",")+1)))
 8065 IF P1<1 OR P1>20 OR P2<1 OR P2>20 OR P3<1 OR P3>20 OR P4<1 OR P4>20 THEN R=99:RETURN:ELSE RETURN
 8999 END
-9000 DOPEN#1,"ee2.news,s",D(DV),U(U)
+9000 DOPEN#1,"ee2.news",D(DV),U(U)
 9005 GET#1,A$:G=ST:PRINTA$;:IFG=0THEN9005:ELSEEND
 9200 DATA "{gray}. ","{light blue}s ","{white}m ","{white}f ","{white}x ","{white}# ","{white}e ","{white}a ","{white}t ","{red}* "

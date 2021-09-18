@@ -7,7 +7,7 @@
 0 TRAP 400:FAST
 1 REM *** EMPIRE EDITOR ****************************************
 5 CLR:FAST:DIM M$(25):DIM P$(5,10):DIM P(5,26):DIM AR%(21,21,11):DIM PR$(401):DIMA$(31):DIM XC(401):DIM YC(401):DIM S(401)
-6 DOPEN#1,"ee2.config,s":INPUT#1,A$,B$,C$:DCLOSE#1:U=VAL(A$):DV=VAL(B$)
+6 DOPEN#1,"ee2.config":INPUT#1,A$,B$,C$:DCLOSE#1:U=VAL(A$):DV=VAL(B$)
 7 SP$="{space*60}{sh space*5}"
 8 BS$="{left*53}"
 9 C$(1)="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz?"
@@ -128,7 +128,7 @@
 6020 NEXT X:DCLOSE#1
 6024 RETURN
 6025 REM **LOAD 40X40 ARRAY**
-6030 DOPEN#1,"ee2.sectors1.dat,s",D(DV),U(U),R
+6030 DOPEN#1,"ee2.sectors1.dat",D(DV),U(U)
 6035 INPUT#1,A$(1),A$(2),A$(3),A$(4),A$(5),A$(6),A$(7),A$(8),A$(9),A$(10),A$(11),A$(12),A$(13),A$(14),A$(15),A$(16),A$(17),A$(18),A$(19),A$(20)
 6036 DCLOSE#1
 6037 FORX=1TO20:Z=1:FORY=1TO20:AR%(X,Y,0)=VAL(MID$(A$(X),Z,1)):AR%(X,Y,1)=VAL(MID$(A$(X),(Z+1),1)):Z=Z+2:NEXTY:NEXTX
@@ -195,7 +195,7 @@
 7599 REM **CENTER R$ AND PRINT IT*****
 7600 X=40-(LEN(R$)/2):PRINT LEFT$(SP$,X)+R$:RETURN
 7649 REM **ADD LINES P$(1-3) TO FILE P$******
-7650 A=P:GOSUB7050:FI$="ee2."+R$+".news,s":IF A=0 THEN FI$="ee2.news,s"
+7650 A=P:GOSUB7050:FI$="ee2."+R$+".news":IF A=0 THEN FI$="ee2.news"
 7653 APPEND#1,(FI$),D(DV),U(U):FORX=1TO3:IFPR$(X)<>""THEN PR$(X)=CHR$(34)+PR$(X):PRINT#1,PR$(X)
 7654 PR$(X)="":NEXTX:DCLOSE#1:RETURN
 7699 REM ** LOAD SINGLE SECTOR P=X, P2=Y **

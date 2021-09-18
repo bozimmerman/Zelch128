@@ -87,12 +87,12 @@
 1140 IF VC(X,1)>200 THEN BEGIN:REM **SOMEBODY DID IT!!**
 1150 PRINT "{yellow}VICTORY ACHIEVED:{white}Player {light gray}"P$(X,2)" wins with"STR$(VC(X,1)) SECTORS."
 1155 A$=RIGHT$(STR$(X),1):SCRATCH("ee2."+A$+".news"),D(DV),U(U):COPY D(DV),"ee2.winfile" TO D(DV),("ee2."+A$+".news"),U(U)
-1160 APPEND#1,"ee2.news,s",D(DV),U(U):PRINT#1,CHR$(34)"{red}VICTORY!{light gray}:"PN$(X)" wins the game by controlling a majority of the sectors."
+1160 APPEND#1,"ee2.news",D(DV),U(U):PRINT#1,CHR$(34)"{red}VICTORY!{light gray}:"PN$(X)" wins the game by controlling a majority of the sectors."
 1170 PRINT#1,"Inform your sysop!":DCLOSE#1
 1180 BEND
 1200 PRINT:PRINT "{yellow}-->{gray}Updating news files...{space*7}"
 1210 FORCT=1TOPL
-1280 P=CT:GOSUB7050:FI$="ee2."+R$+".news,s":APPEND#1,(FI$),D(DV),U(U):A$=CHR$(34)+"{white}-->{light gray}Empire Update Summary for {cyan}"+LD$:PRINT#1,A$
+1280 P=CT:GOSUB7050:FI$="ee2."+R$+".news":APPEND#1,(FI$),D(DV),U(U):A$=CHR$(34)+"{white}-->{light gray}Empire Update Summary for {cyan}"+LD$:PRINT#1,A$
 1281 PRINT#1,CHR$(34)"{space*3}{light gray}Produced this turn:
 1282 PRINT#1,CHR$(34);:PRINT#1,USING"{cyan}{space*3}Workers{space*3}:#####{space*2}Soldiers{space*2}:#####{space*2}Guns{space*6}:#####";VC(CT,10),VC(CT,11),VC(CT,12)
 1284 PRINT#1,CHR$(34);:PRINT#1,USING"{space*3}Production:#####{space*2}Money{space*5}:#####{space*2}Food{space*6}:#####";VC(CT,30),VC(CT,15),VC(CT,16)
@@ -151,7 +151,7 @@
 4840 NEXT X:DCLOSE#1:DCLEAR D0,U(U)
 4860 RETURN
 4880 REM **LOAD 40X40 ARRAY**
-4900 DOPEN#1,"ee2.sectors1.dat,s",D(DV),U(U),R
+4900 DOPEN#1,"ee2.sectors1.dat",D(DV),U(U)
 4920 INPUT#1,A$(1),A$(2),A$(3),A$(4),A$(5),A$(6),A$(7),A$(8),A$(9),A$(10),A$(11),A$(12),A$(13),A$(14),A$(15),A$(16),A$(17),A$(18),A$(19),A$(20)
 4940 DCLOSE#1
 4960 FORX=1TO20:Z=1:FORY=1TO20:AR%(X,Y,0)=VAL(MID$(A$(X),Z,1)):AR%(X,Y,1)=VAL(MID$(A$(X),(Z+1),1)):Z=Z+2:NEXTY:NEXTX

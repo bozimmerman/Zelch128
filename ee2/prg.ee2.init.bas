@@ -22,7 +22,7 @@
 160 SP$="{space*46}"
 170 MK$(0)="None":MK$(1)="Missles":MK$(2)="Convent.":MK$(3)="Nuclear":MK$(4)="Chemical":MK$(5)="Guns":MK$(6)="Food":MK$(7)="Ore":MK$(8)="Energy"
 180 MK$(9)="Airplanes"
-190 DOPEN#1,"ee2.data,s",D(DV),U(U),R:IF DS<>0 THEN DCLOSE#1:PRINT "ERROR: Date/User data missing!":END
+190 DOPEN#1,"ee2.data",D(DV),U(U),R:IF DS<>0 THEN DCLOSE#1:PRINT "ERROR: Date/User data missing!":END
 200 INPUT#1,PA$(1),PA$(2),PA$(3):IF DS<>0 THEN DCLOSE#1:PRINT "ERROR: Date/User data corrupt!":END:ELSE DCLOSE#1
 210 DT$=PA$(3)
 220 A=VAL(LEFT$(DT$,2)):B=VAL(MID$(DT$,3,2)):C=VAL(RIGHT$(DT$,2)):LD$=MT$(B)+STR$(A)+", 19"+MID$(STR$(C),2)
