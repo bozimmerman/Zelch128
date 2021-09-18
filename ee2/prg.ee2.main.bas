@@ -36,10 +36,10 @@
 304 PRINT "{gray}-->{light gray}Now loading player statistics and sectors...":P=R:P2=1:GOSUB 5700:P=PL:GOSUB6200
 305 IF R=99 THEN PRINT "ERROR: Record not loaded, aborting.":END
 310 PRINT"{light gray}Welcome back, "P$(1,2):PRINT
-315 PRINT "[{white}Empire Bulletin{light gray}]":P$="ee2.message":GOSUB7000:IFR=99THENPRINT"-->No bulletin file present."
+315 PRINT "[{white}Empire Bulletin{light gray}]":P$="ee2.message,s":GOSUB7000:IFR=99THENPRINT"-->No bulletin file present."
 330 PRINT:PRINT "{light gray}Empire News since "P$(1,3)":"
 333 P=PL:GOSUB7050
-335 P$=R$+".news":GOSUB 7000
+335 P$="ee2."+R$+".news,s":GOSUB 7000
 340 IF R=99 THEN PRINT "{green}-->No news file present."
 345 GOTO 500
 400 REM ----- MAIN TRAP ROUTINE -----------------------------------------------
@@ -62,7 +62,7 @@
 550 GOTO 500
 560 REM -----------------------------
 570 BEND
-572 IF R$="PO" THEN PRINT:P$="empire.power":GOSUB7000:GOTO500
+572 IF R$="PO" THEN PRINT:P$="ee2.power,s":GOSUB7000:GOTO500
 580 IF R$="M" THEN BEGIN
 590 REM -----------------------------
 600 PRINT "{light gray}Upper left corner[{gray}X,Y{light gray}]:{white}";:GOSUB7200:P1=RA:A=RB:PRINT"{light gray}Lower right corner[{gray}X,Y,RETURN for 20,20{light gray}]:{white}";:GOSUB7200:P3=RA:P4=RB:P2=A:PRINT
@@ -80,7 +80,7 @@
 842 IF AR%(RA,RB,0)=9 THEN PRINT "Nuked sectors cannot be redesignated.":GOTO500
 845 PRINT "{light gray}Change to what type[{gray}.,S,M,F,X,#,E,A,T ?,Quit{light gray}]:{white}";:P2=1:P=1:L=1:GOSUB5000
 850 X=INSTR(".SMFX#EAT?Q",R$)
-851 IF X=10 THEN P$="hlp.Designate":GOSUB7000:GOTO 845
+851 IF X=10 THEN P$="ee2.Designate,s":GOSUB7000:GOTO 845
 852 IF X=11 THEN GOTO 500
 853 IF X=0 THEN PRINT "Invalid designation.":GOTO500
 854 IF AR%(RA,RB,0)=X-1 THEN GOTO 500
@@ -130,7 +130,7 @@
 1050 P=1:P2=PL:PRINT"Please wait, saving.":GOSUB 5800
 1060 GOSUB6050
 1070 GOSUB6150
-1075 DOPEN#1,"@ee2.data",D(DV),U(U),W:PRINT#1,PA$(1),DT$,DT$:DCLOSE#1
+1075 DOPEN#1,"@ee2.data,s",D(DV),U(U),W:PRINT#1,PA$(1),DT$,DT$:DCLOSE#1
 1080 PRINT:PRINT"{blue}Elite Empire Edition II {light blue}v1.3a {blue}Copyright 1991 by J. MacNish{black}";
 1082 END
 1085 REM ---------------------------------
@@ -207,9 +207,9 @@
 1770 IF R$="S" THEN PRINT:PRINT "{blue}-->{light blue}Switching to strategic module...please wait.":DLOAD (SR$),U(U),D(DV)
 2600 IF R$="N" THEN BEGIN
 2605 PRINT:R$="{cyan}World News as of "+LD$:GOSUB7600:PRINT "{white}-----------------------------------------------------------------------------"
-2620 P$="empire.news":GOSUB7000:IFR=99THEN PRINT "-->No world news at this time."
+2620 P$="ee2.news,s":GOSUB7000:IFR=99THEN PRINT "-->No world news at this time."
 2630 PRINT:R$="{cyan}"+P$(1,2)+" Empire News as of "+LD$:GOSUB7600:PRINT"{white}-----------------------------------------------------------------------------"
-2632 P=PL:GOSUB7050:P$=R$+".news":GOSUB7000
+2632 P=PL:GOSUB7050:P$="ee2."+R$+".news,s":GOSUB7000
 2635 IF R=99 THEN PRINT "-->No news at this time."
 2637 PRINT "{light gray}Reset your news file[{gray}Yes, No{light gray}]:{white}";:GETKEYA$:IFA$="y"ORA$="Y"THENPRINT"Yes":DOPEN#1,("@"+P$),D(DV),U(U),W:PRINT#1,"(News reset)":DCLOSE#1
 2638 IF A$<>"y" AND A$<>"Y" THEN PRINT "No"
@@ -226,7 +226,7 @@
 2750 BEND
 2770 IF R$="H" THEN BEGIN
 2780 PRINT:PRINT "{light gray}-->{blue}Loading help directory...";
-2785 X=1:DOPEN#1,"ee2.helpmenu",D(DV),U(U),R
+2785 X=1:DOPEN#1,"ee2.helpmenu,s",D(DV),U(U)
 2790 INPUT#1,PR$(X):IF ST<>0 THEN 2792:ELSE X=X+1:GOTO 2790
 2792 DCLOSE#1:C$="":FOR Y=1 TO X:A$(Y)=LEFT$(PR$(Y),1):C$=C$+A$(Y):NEXTY:PR$(X+1)=""
 2795 PRINT "{left*28}{light gray}Help Topics:{space*16}":PRINT
@@ -235,7 +235,7 @@
 2810 PRINT:PRINT "{light gray}Help System({gray}";:FOR Y=1 TO X:PRINT A$(Y)",";:NEXTY:PRINT"eXit{light gray}):{white}";
 2820 L=1:P=1:P2=1:GOSUB 5000:IF R$="X" THEN GOTO 500
 2825 B=INSTR(C$,R$):IF B=0 THEN PRINT "{red}No help file for that topic.":GOTO 2810
-2830 P$="hlp."+PR$(B):PRINT:GOSUB 7000:GOTO 2810
+2830 P$="ee2."+PR$(B)+",s":PRINT:GOSUB 7000:GOTO 2810
 2840 BEND
 4997 GOTO 500
 4998 END
@@ -252,31 +252,31 @@
 5698 REM **RECORD LENGHT OF 150 BYTES, 30 RECORDS IN FILE**
 5699 REM **LOAD PLAYER P INTO P$(P2) AND P(P2) SLOT**
 5700 IF P<1 OR P>20 OR P2>20 OR P2<1 THEN R=99:RETURN
-5705 DOPEN#1,"empires.dat",L150,D(DV),U(U)
+5705 DOPEN#1,"ee2.empires.dat",L150,D(DV),U(U)
 5710 RECORD#1,(P):FOR X=1 TO 5:INPUT#1,P$(P2,X):NEXTX:FORX=1TO20:INPUT#1,A$:P(P2,X)=VAL(A$):NEXTX:RECORD#1,(P)
 5730 DCLOSE#1:RETURN
 5799 REM **SAVE PLAYER FROM P$(P,##) AND P(P,##) INTO P2 SLOT**
 5800 IF P<1 OR P>20 OR P2>20 OR P2<1 THEN R=99:RETURN
-5810 PR$="":DOPEN#1,"empires.dat",L150,D(DV),U(U)
+5810 PR$="":DOPEN#1,"ee2.empires.dat",L150,D(DV),U(U)
 5820 FOR X=1 TO 5:PR$=PR$+P$(P,X)+CHR$(13):NEXTX
 5825 FOR X=1 TO 20:PR$=PR$+STR$(P(P,X))+CHR$(13):NEXT X
 5830 IF LEN(PR$)>150 THEN R=99:PRINTPR$::PRINT LEN(PR$):DCLOSE#1:RETURN
 5840 RECORD#1,(P2):PRINT#1,PR$:RECORD#1,(P2)
 5850 DCLOSE#1:R=0:RETURN
 5999 REM **SEARCH FOR PLAYER NAME P$, RETURN PLAYER # IN R**
-6000 DOPEN#1,"empires.dat",L150,D(DV),U(U):C=0
+6000 DOPEN#1,"ee2.empires.dat",L150,D(DV),U(U):C=0
 6010 R=99:FOR X=1 TO 9:RECORD#1,(X):INPUT#1,X$:RECORD#1,(X):IF X$=P$ THENR=X:DCLOSE#1:RETURN
 6020 NEXT X:DCLOSE#1
 6024 RETURN
 6025 REM **LOAD 40X40 ARRAY**
-6030 DOPEN#1,"sectors1.dat",D(DV),U(U),R
+6030 DOPEN#1,"ee2.sectors1.dat,s",D(DV),U(U),R
 6035 INPUT#1,A$(1),A$(2),A$(3),A$(4),A$(5),A$(6),A$(7),A$(8),A$(9),A$(10),A$(11),A$(12),A$(13),A$(14),A$(15),A$(16),A$(17),A$(18),A$(19),A$(20)
 6036 DCLOSE#1
 6037 FORX=1TO20:Z=1:FORY=1TO20:AR%(X,Y,0)=VAL(MID$(A$(X),Z,1)):AR%(X,Y,1)=VAL(MID$(A$(X),(Z+1),1)):Z=Z+2:NEXTY:NEXTX
 6040 DCLOSE#1
 6042 RETURN
 6049 REM **SAVE ARRAY**
-6050 DOPEN#1,"@sectors1.dat",D(DV),U(U),W
+6050 DOPEN#1,"@ee2.sectors1.dat,s",D(DV),U(U),W
 6051 FORX=1TO20:PR$(X)="":FORY=1TO20
 6053 A$=STR$(AR%(X,Y,0)):B$=STR$(AR%(X,Y,1))
 6054 A$=RIGHT$(A$,1):B$=RIGHT$(B$,1)
@@ -284,13 +284,13 @@
 6057 FORX=1TO20:PRINT#1,PR$(X):NEXTX:DCLOSE#1
 6060 RETURN
 6149 REM **SAVE ALL CHANGED SECTORS**
-6150 C=0:PR$="":DOPEN#1,"sectors2.dat",L26,D(DV),U(U)
+6150 C=0:PR$="":DOPEN#1,"ee2.sectors2.dat",L26,D(DV),U(U)
 6155 FOR X=1TO20:FORY=1TO20
 6160 IF AR%(X,Y,10)=1 THEN C=C+1:S(C)=((X-1)*20)+Y:PR$(C)="":FORZ=2TO9:PR$(C)=PR$(C)+STR$(AR%(X,Y,Z))+CHR$(13):NEXTZ
 6161 NEXTY:NEXTX:IFC=0THEN DCLOSE#1:RETURN:ELSE FORD=1TOC:RECORD#1,(S(D)):PRINT#1,PR$(D):RECORD#1,(S(D)):NEXT D:DCLOSE#1:R=0:RETURN
 6198 REM**LOAD ALL SECTORS OWNED BY PLAYER P**
 6199 REM**FILLER**
-6200 DOPEN#1,"sectors2.dat",L26,D(DV),U(U)
+6200 DOPEN#1,"ee2.sectors2.dat",L26,D(DV),U(U)
 6205 C=0:FORX=1TO20:FORY=1TO20
 6220 IF AR%(X,Y,1)=P THEN C=C+1:S(C)=((X-1)*20)+Y:XC(C)=X:YC(C)=Y
 6221 NEXTY:NEXTX:IF C=0 THEN DCLOSE#1:RETURN
@@ -302,7 +302,7 @@
 7049 REM **STRIP:RETURNS A STRIPPED STR$ VALUE FOR P IN R$**
 7050 P$=STR$(P):R$=RIGHT$(P$,(LEN(P$)-1)):RETURN
 7099 REM ** FIND LAST PLAYER **
-7100 DCLOSE#1:DOPEN#1,"empires.dat",L150,D(DV),U(U)
+7100 DCLOSE#1:DOPEN#1,"ee2.empires.dat",L150,D(DV),U(U)
 7110 R=99:FOR X=1 TO 20:RECORD#1,(X):INPUT#1,X$:IF LEN(X$)<3 THENR=X:DCLOSE#1:RETURN
 7120 RECORD#1,(X):NEXT X:RECORD#1,(X):DCLOSE#1
 7124 RETURN
@@ -323,12 +323,12 @@
 7599 REM **CENTER R$ AND PRINT IT*****
 7600 X=40-(LEN(R$)/2):PRINT LEFT$(SP$,X)+R$:RETURN
 7649 REM **ADD LINES P$(1-3) TO FILE P$******
-7650 A=P:GOSUB7050:FI$=R$+".news":IF A=0 THEN FI$="empire.news"
+7650 A=P:GOSUB7050:FI$="ee2."+R$+".news,s":IF A=0 THEN FI$="ee2.news,s"
 7653 APPEND#1,(FI$),D(DV),U(U):FORX=1TO3:IFPR$(X)<>""THEN PR$(X)=CHR$(34)+PR$(X):PRINT#1,PR$(X)
 7654 PR$(X)="":NEXTX:DCLOSE#1:RETURN
 7699 REM ** LOAD SINGLE SECTOR P=X, P2=Y **
 7700 IF P<1 OR P>20 OR P2<1 OR P2>20 THEN R=99:RETURN
-7705 X=P:Y=P2:DOPEN#1,"sectors2.dat",L26,D(DV),U(U):S=((X-1)*20)+Y:RECORD#1,(S):INPUT#1,PR$(2),PR$(3),PR$(4),PR$(5),PR$(6),PR$(7),PR$(8),PR$(9):RECORD#1,(S)
+7705 X=P:Y=P2:DOPEN#1,"ee2.sectors2.dat",L26,D(DV),U(U):S=((X-1)*20)+Y:RECORD#1,(S):INPUT#1,PR$(2),PR$(3),PR$(4),PR$(5),PR$(6),PR$(7),PR$(8),PR$(9):RECORD#1,(S)
 7710 FORZ=2TO9:AR%(X,Y,Z)=VAL(PR$(Z)):NEXTZ:AR%(X,Y,10)=1:DCLOSE#1:RETURN
 7799 REM ** TAB ROUTINE**
 7800 PRINT A$;LEFT$(SP$,(40-POS(1)))+B$:RETURN
@@ -353,6 +353,6 @@
 8060 P1=VAL(MID$(A$,1,(INSTR(A$,",")-1))):P2=VAL(MID$(A$,(INSTR(A$,",")+1))):P3=VAL(MID$(B$,1,(INSTR(B$,",")-1))):P4=VAL(MID$(B$,(INSTR(B$,",")+1)))
 8065 IF P1<1 OR P1>20 OR P2<1 OR P2>20 OR P3<1 OR P3>20 OR P4<1 OR P4>20 THEN R=99:RETURN:ELSE RETURN
 8999 END
-9000 DOPEN#1,"empire.news",D(DV),U(U)
-9005 GET#1,A$:PRINTA$;:GOTO9005
+9000 DOPEN#1,"ee2.news,s",D(DV),U(U)
+9005 GET#1,A$:G=ST:PRINTA$;:IFG=0THEN9005:ELSEEND
 9200 DATA "{gray}. ","{light blue}s ","{white}m ","{white}f ","{white}x ","{white}# ","{white}e ","{white}a ","{white}t ","{red}* "

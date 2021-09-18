@@ -49,18 +49,7 @@
     <!--End of screen designer settings-->
     <SourceFiles>
         <SourceFile>
-            <Name>7.news.seq</Name>
-            <PrgName />
-            <FileType>12</FileType>
-            <IncludeInBuild>False</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>e.config.seq</Name>
+            <Name>ee2.config.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -72,6 +61,28 @@
         </SourceFile>
         <SourceFile>
             <Name>ee2.data.seq</Name>
+            <PrgName />
+            <FileType>12</FileType>
+            <IncludeInBuild>False</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>False</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>ee2.Designations.seq</Name>
+            <PrgName />
+            <FileType>12</FileType>
+            <IncludeInBuild>False</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>False</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>ee2.Goal.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -104,7 +115,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>emp.msg.seq</Name>
+            <Name>ee2.msg.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -115,7 +126,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>emp.news.seq</Name>
+            <Name>ee2.news.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -126,7 +137,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>empire.news.seq</Name>
+            <Name>ee2.power.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -137,7 +148,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>empire.power.seq</Name>
+            <Name>ee2.Production.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -148,7 +159,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>hlp.Designations.seq</Name>
+            <Name>ee2.sectors1.dat.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -159,7 +170,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>hlp.Goal.seq</Name>
+            <Name>ee2.Strategic.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -170,29 +181,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>hlp.Production.seq</Name>
-            <PrgName />
-            <FileType>12</FileType>
-            <IncludeInBuild>False</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>hlp.Strategic.seq</Name>
-            <PrgName />
-            <FileType>12</FileType>
-            <IncludeInBuild>False</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>hlp.Updates.seq</Name>
+            <Name>ee2.Updates.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -221,7 +210,7 @@
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>False</Topmost>
+            <Topmost>True</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
@@ -265,7 +254,7 @@
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>True</Topmost>
+            <Topmost>False</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
@@ -278,17 +267,6 @@
             <Bookmarks />
             <Topmost>False</Topmost>
             <FileOpen>True</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>sectors1.dat.seq</Name>
-            <PrgName />
-            <FileType>12</FileType>
-            <IncludeInBuild>False</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
         </SourceFile>
     </SourceFiles>
 </Project>
