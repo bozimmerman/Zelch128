@@ -89,6 +89,7 @@
 865 REM -------------------------------
 870 BEND
 897 REM --------------------------------
+900 REM What's this line for?
 915 IF R$="A" THEN BEGIN
 917 REM ---------------------------------
 925 PRINT "{light gray}Attack sector:{white}";:GOSUB7200:IFRA=99THEN500:ELSE XA=RA:YA=RB
@@ -182,7 +183,7 @@
 1652 REM >> A=ITEM #, B=DISTANCE TO MOVE, C=AMOUNT TO MOVE
 1655 REM ------------------------------------------------------
 1660 A=0:B=0:C=0:PRINT "{light gray}Item to move[{gray}Workers,Soldiers,Guns{light gray}]:{white}";:L=1:P2=1:P=1:GOSUB5000:A=INSTR("WSG",R$):IF A=0 THEN 1660:ELSE A=A+2
-1665 PRINT "{light gray}Sector to move from:{white}";:GOSUB 7200:IFRA=99 THEN GOTO 900
+1665 PRINT "{light gray}Sector to move from:{white}";:GOSUB 7200:IFRA=99 THEN GOTO 500
 1666 IF AR%(RA,RB,1)<>PL THEN PRINT "{red}Not your sector.":GOTO500
 1667 XA=RA:YA=RB
 1668 IF AR%(XA,YA,A)=0 THEN PRINT "Nothing to move in that sector.":GOTO500
