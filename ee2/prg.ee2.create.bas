@@ -23,9 +23,9 @@
 90 DCLEAR:DOPEN#1,"ee2.empires.dat",L150,D(DV),U(U):RECORD#1,11:PRINT#1,CHR$(255):RECORD#1,11:DCLOSE#1:DCLEAR:PRINT"Done making player file."
 95 PRINT "{green}--{light green}>Now creating empire news files(1-9), and empire world news files..."
 97 FOR X=1 TO 9:X$=STR$(X):Y$=RIGHT$(X$,(LEN(X$)-1)):FI$="ee2."+Y$+".news"
-98 DOPEN#1,("@"+FI$+",s"),D(DV),U(U),W:PRINT#1,CHR$(34):DCLOSE#1:NEXTX:DOPEN#1,"@ee2.news,s",D(DV),U(U),W:PRINT#1,CHR$(34):DCLOSE#1
+98 DOPEN#1,("@"+FI$),D(DV),U(U),W:PRINT#1,CHR$(34):DCLOSE#1:NEXTX:DOPEN#1,"@ee2.news",D(DV),U(U),W:PRINT#1,CHR$(34):DCLOSE#1
 99 PRINT "{red}-->{white}Now creating e.config file."
-100 DOPEN#1,"@ee2.config,s",D(DV),U(U),W:PRINT#1,STR$(U):PRINT#1,STR$(DV):DCLOSE#1
+100 DOPEN#1,"@ee2.config",D(DV),U(U),W:PRINT#1,STR$(U):PRINT#1,STR$(DV):DCLOSE#1
 899 PRINT:PRINT"DONE WITH FILE CREATION.":END
 901 DATA"...................."
 902 DATA"...................."
@@ -48,7 +48,7 @@
 919 DATA"...............s...."
 920 DATA"...s................"
 921 DATA"...................."
-6050 DOPEN#1,"@ee2.sectors1.dat,s",D(DV),U(U),W
+6050 DOPEN#1,"@ee2.sectors1.dat",D(DV),U(U),W
 6051 FORX=1TO20:PR$(X)="":FORY=1TO20
 6053 A$=STR$(AR%(X,Y,0)):B$=STR$(AR%(X,Y,1))
 6054 A$=RIGHT$(A$,1):B$=RIGHT$(B$,1)

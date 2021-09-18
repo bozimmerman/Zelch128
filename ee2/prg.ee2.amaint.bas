@@ -75,7 +75,7 @@
 1045 VL(X,3)=(INT((VC(X,2)+VC(X,3))*.75)+VC(X,5))*3:VL(X,4)=VL(X,1)+VL(X,2)+VL(X,3):VL(X,5)=VC(X,1):VL(X,6)=INT((VC(X,1)/400)*100):VL(X,7)=X:NEXTX
 1050 FORY=1TOPL:FORX=1 TO PL:IF VL(X,4)<VL((X+1),4) THEN FORZ=1TO7:T(Z)=VL(X,Z):VL(X,Z)=VL((X+1),Z):VL((X+1),Z)=T(Z):NEXTZ
 1055 NEXTX:NEXTY
-1057 DOPEN#1,"@ee2.power,s",D(DV),U(U),W:A$="{white}Empire Edition II {light gray}-- {white}Power report for "+LD$:PRINT:PRINT A$:PRINT#1,CHR$(34);A$
+1057 DOPEN#1,"@ee2.power",D(DV),U(U),W:A$="{white}Empire Edition II {light gray}-- {white}Power report for "+LD$:PRINT:PRINT A$:PRINT#1,CHR$(34);A$
 1058 A$="Rank{space*2}Empire{space*11}Resource Tactical Populace TotalPower Sectors %ofmap":PRINTA$:PRINT#1,A$
 1059 A$="{light gray}----------------------------------------------------------------------------{cyan}":PRINT#1,CHR$(34);A$:PRINTA$
 1060 FORX=1TOPL:FORZ=1TO6:P=VL(X,Z):GOSUB7050:T$(Z)=R$:NEXTZ:T$(6)=T$(6)+"%"
@@ -158,7 +158,7 @@
 4980 DCLOSE#1
 5000 RETURN
 5020 REM **SAVE ARRAY**
-5040 DOPEN#1,"@ee2.sectors1.dat,s",D(DV),U(U),W
+5040 DOPEN#1,"@ee2.sectors1.dat",D(DV),U(U),W
 5060 FORX=1TO20:PR$(X)="":FORY=1TO20
 5080 A$=STR$(AR%(X,Y,0)):B$=STR$(AR%(X,Y,1))
 5100 A$=RIGHT$(A$,1):B$=RIGHT$(B$,1)
@@ -211,13 +211,13 @@
 6000 BEND
 6020 NEXT Y:NEXTX:RETURN
 6040 END
-6060 DOPEN#1,"ee2.config,s",D0,U8,W
+6060 DOPEN#1,"ee2.config",D0,U8,W
 6080 PRINT#1,"8":PRINT#1,"0":PRINT#1,"Date":DCLOSE#1
 6100 END
 6120 REMOPEN 4,4,7:PRINT#4,CHR$(27);"a":PRINT#4,CHR$(29):PRINT#4,CHR$(27);"h":PRINT#4,CHR$(27);"8":CMD4:LIST:CLOSE4
 6140 REMPRINTTI$:FORX=1TO20:FORY=1TO20:NEXTY:NEXTX:PRINTTI$
-6160 REMDOPEN#1,"ee2.array,s":INPUT#1,A$:PRINTLEN(A$)
-6180 REMDOPEN#1,"ee2.maintlist,s",D0,U8,W:CMD1:LIST:DCLOSE#1:END
+6160 REMDOPEN#1,"ee2.array":INPUT#1,A$:PRINTLEN(A$)
+6180 REMDOPEN#1,"ee2.maintlist",D0,U8,W:CMD1:LIST:DCLOSE#1:END
 6200 REMSCRATCH"empire20":SCRATCH"empire21":SCRATCH"empire22":SCRATCH"empire23":SCRATCH"empire24":SCRATCH"empire25":SCRATCH"empire26":SCRATCH"empire26"
 6220 S=400
 6240 Y=(S/21-INT(S/21))*21:X=INT(S/21)+1
