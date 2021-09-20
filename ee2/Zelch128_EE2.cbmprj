@@ -40,7 +40,9 @@
         <PreBuildCommands />
         <PostBuildCommands />
     </BuildEvents>
-    <BuildList />
+    <BuildList>
+        <FileName>ee2.Intro.seq</FileName>
+    </BuildList>
     <DetermineBuildOrder>0</DetermineBuildOrder>
     <PaddingByte>234</PaddingByte>
     <!--Screen designer settings-->
@@ -267,6 +269,17 @@
             <Bookmarks />
             <Topmost>False</Topmost>
             <FileOpen>True</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>ee2.Intro.seq</Name>
+            <PrgName />
+            <FileType>12</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>True</Topmost>
+            <FileOpen>False</FileOpen>
         </SourceFile>
     </SourceFiles>
 </Project>
