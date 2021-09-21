@@ -480,7 +480,7 @@ d(x,y) y=0 for unit, y=1 for drive/LU
     8  Current U/D drive            9  Menus drive
    10  Network files                11 Expansion drive ...
    
-ub$(x) U/D Base variables      ud(x)   U/D Base Numericals
+ub$(x) U/D Base variables      ub(x)   U/D Base Numericals
   x=1  Name of base               x=1  Current U/D sec
     2  Base letter                  2  Min blocks
     3  Actual U/D path              3  U/D credit ratio

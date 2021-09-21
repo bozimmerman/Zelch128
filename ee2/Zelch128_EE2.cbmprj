@@ -73,7 +73,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>ee2.Designations.seq</Name>
+            <Name>ee2.designations.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -84,7 +84,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>ee2.Goal.seq</Name>
+            <Name>ee2.goal.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -99,6 +99,17 @@
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
+            <Regions />
+            <Breakpoints />
+            <Bookmarks />
+            <Topmost>False</Topmost>
+            <FileOpen>False</FileOpen>
+        </SourceFile>
+        <SourceFile>
+            <Name>ee2.intro.seq</Name>
+            <PrgName />
+            <FileType>12</FileType>
+            <IncludeInBuild>True</IncludeInBuild>
             <Regions />
             <Breakpoints />
             <Bookmarks />
@@ -150,7 +161,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>ee2.Production.seq</Name>
+            <Name>ee2.production.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -172,7 +183,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>ee2.Strategic.seq</Name>
+            <Name>ee2.strategic.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -183,7 +194,7 @@
             <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
-            <Name>ee2.Updates.seq</Name>
+            <Name>ee2.updates.seq</Name>
             <PrgName />
             <FileType>12</FileType>
             <IncludeInBuild>False</IncludeInBuild>
@@ -202,7 +213,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
+            <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.bas</Name>
@@ -212,7 +223,7 @@
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>False</Topmost>
+            <Topmost>True</Topmost>
             <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
@@ -224,7 +235,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
+            <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.edit.bas</Name>
@@ -235,7 +246,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
+            <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.ee2.init.bas</Name>
@@ -268,17 +279,6 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>True</FileOpen>
-        </SourceFile>
-        <SourceFile>
-            <Name>ee2.Intro.seq</Name>
-            <PrgName />
-            <FileType>12</FileType>
-            <IncludeInBuild>True</IncludeInBuild>
-            <Regions />
-            <Breakpoints />
-            <Bookmarks />
-            <Topmost>True</Topmost>
             <FileOpen>False</FileOpen>
         </SourceFile>
     </SourceFiles>

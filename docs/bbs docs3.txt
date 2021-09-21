@@ -687,8 +687,7 @@ allowed to write a description for the upload.
 either a specific file found in the datafield, a file from
 the current U/D base (if "#"'s were included in the
 datafields), or any file on the specified drive if the
-filename is "*", or any file listed in the desc directory if
-the filename is "**".  The user must have enough block credits 
+filename is "*".  The user must have enough block credits 
 to download the specified file.   After the download, an
 amount of credits equal to the length of the download (in
 blocks) will then be subtracted from the users block

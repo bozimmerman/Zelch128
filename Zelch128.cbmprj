@@ -145,7 +145,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
+            <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>bbs.setup.bas</Name>
@@ -298,8 +298,8 @@
             <Regions />
             <Breakpoints />
             <Bookmarks />
-            <Topmost>True</Topmost>
-            <FileOpen>True</FileOpen>
+            <Topmost>False</Topmost>
+            <FileOpen>False</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.news.bas</Name>
@@ -343,7 +343,7 @@
             <Breakpoints />
             <Bookmarks />
             <Topmost>False</Topmost>
-            <FileOpen>False</FileOpen>
+            <FileOpen>True</FileOpen>
         </SourceFile>
         <SourceFile>
             <Name>prg.voting booth.bas</Name>
