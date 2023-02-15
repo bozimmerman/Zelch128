@@ -20,7 +20,7 @@
 70 READA,B:IFA>0THENFORX=ATOB:READDX$(X),DX(X):NEXTX:GOTO70
 80 DATA"INFORMATION","SEQ EDITOR","MENU EDITOR","UTILITIES","SYSTEM VARS","QUIT"
 90 DATA"Filename","Data","Device","Drive/LU","Link data","Topic/Subboard","Filemask","ID number(s)","Access","Abort","Continue","Data"
-100 DATA 1,42,"100000000Load a menu",1,"134000000Execute a module",3,"000000000Logoff",0,"800000000Send E-Mail",1
+100 DATA 1,43,"100000000Load a menu",1,"134000000Execute a module",3,"000000000Logoff",0,"800000000Send E-Mail",1
 110 DATA "000000000Re-read E-Mail",0,"000000000Send feedback",0,"000000000Read feedback",0,"134500000Edit Seq file",4
 120 DATA "134500000Read Seq file",4,"AB0000000Character prompt",2,"C00000000Ask for password",1,"000000000Graphics toggle",0
 130 DATA "000000000Linefeeds toggle",0,"200000000Check for graphics",1,"920000000Check 1 access flag",2
@@ -30,7 +30,8 @@
 170 DATA "000000000Change baud rate",0,"734000000Count files on disk",3,"000000000Redisplay current menu text",0
 180 DATA "800000000Check for ID#",1,"C20000000Set a flag",2,"200000000Jump on bad compare",1,"200000000Add/Subtract system credits",1
 190 DATA "200000000Reset a counter variable",1,"200000000Check system credits",1,"134000000Run a basic program",3,"000000000Return to previous menu",0
-195 DATA "134200000Write a file w/header",4,"A20000000Menu prompt",2,"900000000Check access",1,"000000000Toggle ANSI mode",0,"000000000List E-mail",0
+193 DATA "134200000Write a file w/header",4,"A20000000Menu prompt",2,"900000000Check access",1,"000000000Toggle ANSI mode",0,"000000000List E-mail",0
+195 DATA "C00000000Check Gate Flag",1
 200 DATA 101,112,"600000000Select a subboard",1,"660000000List subboards",2,"200000000Read a message",1
 210 DATA "000000000Read new messages",0,"600000000Global new",1,"000000000Post a message",0,"200000000Scan messages",1
 220 DATA "000000000Check current subop flag",0,"000000000Edit current sub intro",0,"000000000Join/Drop current sub",0,"200000000Scan new messages",1
@@ -42,12 +43,12 @@
 270 DATA "600000000Reset topic results",1,"600000000Vote on topic",1,"266000000List topics",3,"690000000Validate topic",2
 280 DATA 401,409,"000000000View user info",0,"000000000Edit user info",0,"600000000Edit subboard data",1
 290 DATA "600000000Edit UD data",1,"340000000ZOS",2,"000000000Change time/date",0,"000000000Add a user",0,"000000000View new user applications",0
-291 DATA"000000000Edit one-liners file",0
-295 DATA 501,505,"134C00000Create/Edit Newsfile",4,"134C00000Delete Newsfile",4,"134C00000List Newsfiles",4,"134C00000Read a Newsfile",4
-296 DATA "134000000Read New News",3
+291 DATA "000000000Edit one-liners file",0
+295 DATA 501,508,"134C00000Create/Edit Newsfile",4,"134C00000Delete Newsfile",4,"134C00000List Newsfiles",4,"134C00000Read a Newsfile",4
+296 DATA "134000000Read New News",3,"CC0000000Network News",2,"134000000Execute Script",3,"734600000Read Library",4
 297 DATA 601,603,"000000000Menu Editor",0,"000000000User database",0,"600000000Msg base fixer",1
-298 DATA 701,706,"6C0000000Network Mail",2,"600000000Network Feedback",1,"660000000List network systems",2,"000000000Add a system",0
-299 DATA "600000000Delete a system",1,"CC0000000Network News",2,0,0
+298 DATA 701,705,"6C0000000Network Mail",2,"600000000Network Feedback",1,"660000000List network systems",2,"600000000Edit a system",1
+299 DATA "000000000Add a system",0,0,0
 300 IFPEEK(238)=79THEN370:ELSESLOW:POKE53280,0:POKE53281,0:FORX=1TO6
 310 IFLEN(TT$(X))<13THENTT$(X)=TT$(X)+" ":GOTO310
 320 NEXTX:PRINT"{home*2}{clear}{ct n}{reverse on}{white} Zelch 128               System Editor "

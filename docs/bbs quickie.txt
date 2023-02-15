@@ -392,6 +392,10 @@ News Op-Codes                "prg.news"
                              B. Device    "           "
                              C. Drive     "           "
 
+508  View a Library File     A. File mask (*=prompt user)
+                             B. Device    "           "
+                             C. Drive     "           "
+                             D. Starting Letter or Number
 
 Miscellaneous Op-Codes       "prg.misc"
 

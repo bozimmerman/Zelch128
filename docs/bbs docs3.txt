@@ -1101,6 +1101,8 @@ your BBS network.
 
 507 : Execute a Script : executes a script
 
+508 : View a Library File: select a SEQ file from your 
+directory to show the user.
 
 7.6  Op-Code Module:  "prg.misc"
 
