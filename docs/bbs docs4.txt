@@ -518,7 +518,7 @@ sy$(x) System work variables   sy(x)   System work numericals
 System work and temporary variables used throughout the
 program:
 
-a$, c$, i$, o$, w0$-w9$, a, d, e, i, u, w0-w9, x, y
+a$, c$, i$, o$, w0$-w9$, a, d, d$, e, i, u, w0-w9, x, y
 
 
 Other variables:

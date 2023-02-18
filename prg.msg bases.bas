@@ -134,7 +134,7 @@
 35950 O$="{black}":GOSUB4:IFPEEK(2859)THENI=INSTR(C$,CHR$(PEEK(2859))):GOTO36250
 35970 A$="Continue":MB(11)=0:Y=MB(6):MB(6)=MB(6)+1:IFMB(9)=1ANDMB(6)<SY(7)THENA$="{ct k}":GOTO35650:ELSE36000
 35999 REM------PROMPT--------
-36000 C$="":O$="{black}J)ump, G)rab, A)gain, M)ail,":IFMB$(9)="{sh @}"ORVT(1)=IDTHENO$=O$+" K)ill,{f7}E)dit, ":C$="KE"
+36000 C$="":O$=CHR$(14)+"{black}{reverse off}J)ump, G)rab, A)gain, M)ail,":IFMB$(9)="{sh @}"ORVT(1)=IDTHENO$=O$+" K)ill,{f7}E)dit, ":C$="KE"
 36050 IFC$=""THENO$=O$+"{f7}"
 36100 IFSY(7)ANDMB(12)ANDMB(6)=0THENO$=O$+"N)ew, "
 36150 O$=O$+"Q)uit, (RETURN="+A$+"): {ct c}":C$="NJAMQ"+R$+"G"+C$
