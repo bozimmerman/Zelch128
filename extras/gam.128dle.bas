@@ -158,7 +158,7 @@
 2110 return
 3000 dimsc(7):open8,8,2,"scoredle,l,"+chr$(50)
 3010 record#8,501:input#8,id,n1$:record#8,501
-3020 record#8,id:input#8,n2$
+3020 record#8,id
 3030 input#8,n2$,sc(1),sc(2),sc(3),sc(4),sc(5),sc(6),sc(7)
 3040 close8
 3050 ifn1$=n2$thenreturn
