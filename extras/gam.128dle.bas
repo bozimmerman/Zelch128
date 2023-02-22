@@ -163,8 +163,9 @@
 3040 close8
 3050 ifn1$=n2$thenreturn
 3060 fori=1to7:sc(i)=0:next:return
-3300 open8,8,2,"scoredle,l,"+chr$(50):ifid<=0orlen(n1$)=0then3320
-3310 record#8,id:print#8,n1$,sc(1),sc(2),sc(3),sc(4),sc(5),sc(6),sc(7):record#8,id
-3320 close8
+3300 open8,8,2,"scoredle,l,"+chr$(50):ifid<=0orlen(n1$)=0then3330
+3310 a$=n1$+chr$(13):fori=1to7:a$=a$+str$(sc(i))+chr$(13):next
+3320 record#8,id:print#8,a$:record#8,id
+3330 close8
 3400 PRINT"totals out of";SC(7);"games."
 3410 FORI=1TO6:PRINT"guess";I;":";SC(I):NEXTI:RETURN
