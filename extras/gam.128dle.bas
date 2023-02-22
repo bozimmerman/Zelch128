@@ -20,7 +20,6 @@
 140 b2$="{cm n}{down}{left*3}L{cm p}{sh @}{up*2}"
 150 p$="{home}{down*21}"
 160 l$="{black}CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
-170 bank1:ifpeek(35840)=76 then bank15:goto 210
 180 bank15:ifl=0thengosub2000
 190 ifl=0thenl=1:bload"gam.128dldic.bin",u8,b1
 200 ifl=1thenl=2:bload"gam.128dlml.bin",u8,b1
